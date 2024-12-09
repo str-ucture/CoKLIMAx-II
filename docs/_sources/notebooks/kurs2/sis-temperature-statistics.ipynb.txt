@@ -1,0 +1,254 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "bac698cd",
+   "metadata": {},
+   "source": [
+    "# Temperature Statistics for Europe\n",
+    "\n",
+    "Deroived from climate projections\n",
+    "\n",
+    "This dataset provides temperature exposure statistics for Europe, focusing on daily 2-meter air temperature (mean, minimum, and maximum) for entire years, as well as for winter (DJF) and summer (JJA) seasons. Derived using bias-adjusted EURO-CORDEX data, the statistics span a smoothed 30-year average from 1971 to 2100, resulting in a timeseries from 1986 to 2085, with model ensemble averages and associated standard deviations included. These temperature percentiles are crucial in public health and epidemiology for assessing health risks and impacts, enabling comparisons across regions under various climate change scenarios.\n",
+    "\n",
+    "**Information on Dataset:**\n",
+    "* Source: [Temperature Statistics for Europe](https://cds.climate.copernicus.eu/datasets/sis-temperature-statistics?tab=overview)\n",
+    "* Author:\n",
+    "* Notebook Version: 1.0 (Updated: December 02. 2024)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a13c4c69",
+   "metadata": {},
+   "source": [
+    "## 1. Specifying the paths and working directories"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "be75da3a-e76a-4638-9369-74021000be9d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import os\n",
+    "\n",
+    "''' ---- Hier die Verzeichnisse angeben ---- '''\n",
+    "download_folder = r\".\\data\\sis-temperature-statistics\\download\"\n",
+    "working_folder = r\".\\data\\sis-temperature-statistics\\working\"\n",
+    "geotiff_folder = r\".\\data\\sis-temperature-statistics\\geotiff\"\n",
+    "csv_folder = r\".\\data\\sis-temperature-statistics\\csv\"\n",
+    "output_folder = r\".\\data\\sis-temperature-statistics\\output\"\n",
+    "''' ----- Ende der Eingaben ---- '''\n",
+    "\n",
+    "os.makedirs(download_folder, exist_ok=True)\n",
+    "os.makedirs(working_folder, exist_ok=True)\n",
+    "os.makedirs(geotiff_folder, exist_ok=True)\n",
+    "os.makedirs(csv_folder, exist_ok=True)\n",
+    "os.makedirs(output_folder, exist_ok=True)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "bf5a038c",
+   "metadata": {},
+   "source": [
+    "## 2. Download and Extract Dataset"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e7ea3e72",
+   "metadata": {},
+   "source": [
+    "### 2.1 Authentication"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "1266bff9",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import cdsapi\n",
+    "\n",
+    "def main():\n",
+    "    api_key = \"fdae60fd-35d4-436f-825c-c63fedab94a4\"\n",
+    "    api_url = \"https://cds.climate.copernicus.eu/api\"\n",
+    "    client = cdsapi.Client(url=api_url, key=api_key)\n",
+    "    return client"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4fb5987e",
+   "metadata": {},
+   "source": [
+    "### 2.2 Request Definition and Download"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "aefce33c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Define additional request fields to ensure the request stays within the file size limit.\n",
+    "# These coordinates were obtained using the BBox Extractor tool: https://str-ucture.github.io/bbox-extractor/\n",
+    "\n",
+    "bbox_wgs84_deutschland = [56.0, 5.8, 47.2, 15.0]\n",
+    "bbox_wgs84_konstanz = [47.9, 8.9, 47.6, 9.3]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "80dd9e85-f124-4457-808e-b6ff3df3989f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dataset = \"sis-temperature-statistics\"\n",
+    "request = {\n",
+    "    \"variable\": \"maximum_temperature\", # Options: \"average/ minimum/ maximum\" _temperature\n",
+    "    \"period\": \"year\",\n",
+    "    \"statistic\": [\n",
+    "        \"time_average\",\n",
+    "        \"10th_percentile\",\n",
+    "        \"90th_percentile\"\n",
+    "    ],\n",
+    "    \"experiment\": [\n",
+    "        \"rcp4_5\",\n",
+    "        \"rcp8_5\"\n",
+    "    ],\n",
+    "    \"ensemble_statistic\": [\n",
+    "        \"ensemble_members_average\",\n",
+    "        \"ensemble_members_standard_deviation\"\n",
+    "    ],\n",
+    "    \"area\": bbox_wgs84_deutschland\n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "c49cc794",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "2024-12-09 13:45:56,033 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your \n",
+      "[feedback](https://jira.ecmwf.int/plugins/servlet/desk/portal/1/create/202) is key to improve the user experience on the new CDS for the benefit of everyone. Thank you.\n",
+      "2024-12-09 13:45:56,035 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.\n",
+      "2024-12-09 13:45:56,035 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**\n",
+      "2024-12-09 13:45:56,036 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the \"Show API request code\" tool on the dataset Download Form to check you are using the correct syntax for your API request.\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Dataset already downloaded.\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Uncomment and run this cell to download the dataset:\n",
+    "\n",
+    "def main_retrieve():\n",
+    "    dataset_filename = f\"{dataset}_{request['variable']}.zip\"\n",
+    "    dataset_filepath = os.path.join(download_folder, dataset_filename)\n",
+    "\n",
+    "    # Download the dataset only if the dataset has not been downloaded before\n",
+    "    if not os.path.isfile(dataset_filepath):\n",
+    "        # Download the dataset with the defined request parameters\n",
+    "        client.retrieve(dataset, request, dataset_filepath)\n",
+    "    else:\n",
+    "        print(\"Dataset already downloaded.\")\n",
+    "\n",
+    "if __name__ == \"__main__\":\n",
+    "    client = main()\n",
+    "    main_retrieve()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "79225c6e",
+   "metadata": {},
+   "source": [
+    "### 2.3 Extract Zip folder"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "04559a4d-81fe-4906-9899-0de084367ade",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Folder is not empty. Skipping extraction.\n"
+     ]
+    }
+   ],
+   "source": [
+    "import zipfile\n",
+    "\n",
+    "dataset_filename = f\"{dataset}_{request['variable']}.zip\"\n",
+    "dataset_filepath = os.path.join(download_folder, dataset_filename)\n",
+    "extract_folder = os.path.join(working_folder, f\"{request['variable']}\")\n",
+    "\n",
+    "# Extract the zip file\n",
+    "try:\n",
+    "    os.makedirs(extract_folder, exist_ok=True)\n",
+    "    \n",
+    "    if not os.listdir(extract_folder):\n",
+    "        with zipfile.ZipFile(dataset_filepath, 'r') as zip_ref:\n",
+    "            zip_ref.extractall(extract_folder)\n",
+    "            print(f\"Successfully extracted files to: {extract_folder}\")\n",
+    "    else:\n",
+    "        print(\"Folder is not empty. Skipping extraction.\")\n",
+    "except FileNotFoundError:\n",
+    "    print(f\"Error: The file {dataset_filepath} was not found.\")\n",
+    "except zipfile.BadZipFile:\n",
+    "    print(f\"Error: The file {dataset_filepath} is not a valid zip file.\")\n",
+    "except Exception as e:\n",
+    "    print(f\"An unexpected error occurred: {e}\")"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "myenv",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.0"
+  },
+  "widgets": {
+   "application/vnd.jupyter.widget-state+json": {
+    "state": {},
+    "version_major": 2,
+    "version_minor": 0
+   }
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

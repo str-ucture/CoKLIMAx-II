@@ -1,0 +1,18 @@
+# Virtual environments
+venv/
+cds_venv/
+myenv/
+
+# Secrets and API keys
+source/secrets/
+**/.cdsapirc
+**/cds_api
+
+# Data files
+*.nc
+*.zip
+*.csv
+*.tiff
+*.tif
+*.gif
+*.png
