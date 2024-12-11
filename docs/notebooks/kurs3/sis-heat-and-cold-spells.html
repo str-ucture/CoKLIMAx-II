@@ -10,7 +10,8 @@
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=3b187e9f" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -36,6 +37,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             Coklimax
+              <img src="../../_static/coklimax_logo_new.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -160,17 +162,17 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 11:07:56,566 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 17:24:09,568 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
 [feedback](https://jira.ecmwf.int/plugins/servlet/desk/portal/1/create/202) is key to improve the user experience on the new CDS for the benefit of everyone. Thank you.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 11:07:56,568 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 17:24:09,571 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 11:07:56,568 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 17:24:09,572 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 11:07:56,569 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 17:24:09,572 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
 </pre></div>
 </div>
 </div>
@@ -235,32 +237,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">PermissionError</span><span class="g g-Whitespace">                           </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">9</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="c1"># Öffnen Sie die Zip-Datei im Lesemodus und extrahieren Sie den Inhalt in den Arbeitsordner</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">dataset_filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">9</span>     <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">working_folder</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ZIP-Datei wurde in das Verzeichnis </span><span class="si">{</span><span class="n">working_folder</span><span class="si">}</span><span class="s2"> entpackt&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python310\lib\zipfile.py:1634,</span> in <span class="ni">ZipFile.extractall</span><span class="nt">(self, path, members, pwd)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1631</span>     <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">fspath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1633</span> <span class="k">for</span> <span class="n">zipinfo</span> <span class="ow">in</span> <span class="n">members</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1634</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_extract_member</span><span class="p">(</span><span class="n">zipinfo</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">pwd</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python310\lib\zipfile.py:1689,</span> in <span class="ni">ZipFile._extract_member</span><span class="nt">(self, member, targetpath, pwd)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1685</span>     <span class="k">return</span> <span class="n">targetpath</span>
-<span class="g g-Whitespace">   </span><span class="mi">1687</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">member</span><span class="p">,</span> <span class="n">pwd</span><span class="o">=</span><span class="n">pwd</span><span class="p">)</span> <span class="k">as</span> <span class="n">source</span><span class="p">,</span> \
-<span class="g g-Whitespace">   </span><span class="mi">1688</span>      <span class="nb">open</span><span class="p">(</span><span class="n">targetpath</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">target</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1689</span>     <span class="n">shutil</span><span class="o">.</span><span class="n">copyfileobj</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1691</span> <span class="k">return</span> <span class="n">targetpath</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python310\lib\shutil.py:198,</span> in <span class="ni">copyfileobj</span><span class="nt">(fsrc, fdst, length)</span>
-<span class="g g-Whitespace">    </span><span class="mi">196</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">buf</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">197</span>     <span class="k">break</span>
-<span class="ne">--&gt; </span><span class="mi">198</span> <span class="n">fdst_write</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span>
-
-<span class="ne">PermissionError</span>: [Errno 13] Permission denied
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ZIP-Datei wurde in das Verzeichnis .\data\sis-heat-and-cold-spells\working entpackt
 </pre></div>
 </div>
 </div>
@@ -462,9 +439,15 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Erstelle GeoTIFFs für rcp45/mean
-Erstelle GeoTIFFs für rcp45/stdev
-Erstelle GeoTIFFs für rcp85/mean
-Erstelle GeoTIFFs für rcp85/stdev
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Erstelle GeoTIFFs für rcp45/stdev
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Erstelle GeoTIFFs für rcp85/mean
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Erstelle GeoTIFFs für rcp85/stdev
 </pre></div>
 </div>
 </div>
@@ -565,135 +548,95 @@ Erstelle GeoTIFFs für rcp85/stdev
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>100%|██████████| 4/4 [00:40&lt;00:00, 10.23s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                                                                                                                                                          | 0/4 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Die Datei .\data\sis-heat-and-cold-spells\csv\sis-heat-and-cold-spells.csv.zip existiert bereits. Überspringe Erstellung.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25%|████████████████████████████████████████████████████████▌                                                                                                                                                                         | 1/4 [00:07&lt;00:23,  7.68s/it]
 </pre></div>
 </div>
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 50%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████                                                                                                                 | 2/4 [00:15&lt;00:15,  7.80s/it]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 75%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▌                                                        | 3/4 [00:23&lt;00:07,  7.98s/it]
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">70</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span>     <span class="n">dataset</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="c1"># Durchlaufe Szenarien/Statistiken</span>
+<span class="ne">---&gt; </span><span class="mi">70</span> <span class="n">dataframes</span> <span class="o">=</span> <span class="p">[</span><span class="n">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="p">)</span> <span class="k">for</span> <span class="n">nc_file</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">nc_files</span><span class="p">)]</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span> <span class="c1"># Kombiniere alle Daten in eine Tabelle</span>
+<span class="g g-Whitespace">     </span><span class="mi">73</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dataframes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
+<span class="nn">Cell In[8], line 70,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span>     <span class="n">dataset</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="c1"># Durchlaufe Szenarien/Statistiken</span>
+<span class="ne">---&gt; </span><span class="mi">70</span> <span class="n">dataframes</span> <span class="o">=</span> <span class="p">[</span><span class="n">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="p">)</span> <span class="k">for</span> <span class="n">nc_file</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">nc_files</span><span class="p">)]</span>
+<span class="g g-Whitespace">     </span><span class="mi">72</span> <span class="c1"># Kombiniere alle Daten in eine Tabelle</span>
+<span class="g g-Whitespace">     </span><span class="mi">73</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dataframes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th></th>
-      <th>HWD_EU_climate-rcp45-mean</th>
-      <th>HWD_EU_climate-rcp45-stdev</th>
-      <th>HWD_EU_climate-rcp85-mean</th>
-      <th>HWD_EU_climate-rcp85-stdev</th>
-    </tr>
-    <tr>
-      <th>time</th>
-      <th>latitude</th>
-      <th>longitude</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="5" valign="top">1986-01-01</th>
-      <th rowspan="5" valign="top">47.0</th>
-      <th>5.0</th>
-      <td>0.740421</td>
-      <td>1.332602</td>
-      <td>0.740421</td>
-      <td>0.997316</td>
-    </tr>
-    <tr>
-      <th>5.1</th>
-      <td>0.781338</td>
-      <td>1.305503</td>
-      <td>0.781338</td>
-      <td>0.982611</td>
-    </tr>
-    <tr>
-      <th>5.2</th>
-      <td>0.824017</td>
-      <td>1.293689</td>
-      <td>0.824017</td>
-      <td>0.934252</td>
-    </tr>
-    <tr>
-      <th>5.3</th>
-      <td>0.824828</td>
-      <td>1.245492</td>
-      <td>0.824828</td>
-      <td>0.886260</td>
-    </tr>
-    <tr>
-      <th>5.4</th>
-      <td>0.791667</td>
-      <td>1.157519</td>
-      <td>0.791667</td>
-      <td>0.830136</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <th>...</th>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th rowspan="5" valign="top">2085-01-01</th>
-      <th rowspan="5" valign="top">55.0</th>
-      <th>13.7</th>
-      <td>5.410092</td>
-      <td>2.420100</td>
-      <td>10.333487</td>
-      <td>2.151545</td>
-    </tr>
-    <tr>
-      <th>13.8</th>
-      <td>5.457219</td>
-      <td>2.427997</td>
-      <td>10.392411</td>
-      <td>2.200505</td>
-    </tr>
-    <tr>
-      <th>13.9</th>
-      <td>5.538381</td>
-      <td>2.417469</td>
-      <td>10.523212</td>
-      <td>2.215542</td>
-    </tr>
-    <tr>
-      <th>14.0</th>
-      <td>5.535455</td>
-      <td>2.388092</td>
-      <td>10.512488</td>
-      <td>2.225050</td>
-    </tr>
-    <tr>
-      <th>14.1</th>
-      <td>5.312610</td>
-      <td>2.171081</td>
-      <td>10.291465</td>
-      <td>2.247749</td>
-    </tr>
-  </tbody>
-</table>
-<p>758700 rows × 4 columns</p>
-</div></div></div>
+<span class="nn">Cell In[8], line 54,</span> in <span class="ni">netcdf_to_dataframe</span><span class="nt">(nc_file)</span>
+<span class="g g-Whitespace">     </span><span class="mi">52</span> <span class="c1"># Erstelle ein DataFrame aus den Einträgen</span>
+<span class="g g-Whitespace">     </span><span class="mi">53</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">54</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">55</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">])</span>
+<span class="g g-Whitespace">     </span><span class="mi">56</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">])</span>
+
+<span class="nn">File F:\OneDrive - str.ucture GmbH\General\CoKLIMAx (Phase 2)\CoKLIMAx-II\myenv\lib\site-packages\pandas\core\series.py:4700,</span> in <span class="ni">Series.map</span><span class="nt">(self, arg, na_action)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4620</span> <span class="k">def</span> <span class="nf">map</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">4621</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">4622</span>     <span class="n">arg</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="n">Mapping</span> <span class="o">|</span> <span class="n">Series</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">4623</span>     <span class="n">na_action</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;ignore&quot;</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">4624</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Series</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">4625</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">4626</span><span class="sd">     Map values of Series according to an input mapping or function.</span>
+<span class="g g-Whitespace">   </span><span class="mi">4627</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4698</span><span class="sd">     dtype: object</span>
+<span class="g g-Whitespace">   </span><span class="mi">4699</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">4700</span>     <span class="n">new_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_map_values</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">na_action</span><span class="o">=</span><span class="n">na_action</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">4701</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor</span><span class="p">(</span><span class="n">new_values</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">4702</span>         <span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;map&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">4703</span>     <span class="p">)</span>
+
+<span class="nn">File F:\OneDrive - str.ucture GmbH\General\CoKLIMAx (Phase 2)\CoKLIMAx-II\myenv\lib\site-packages\pandas\core\base.py:921,</span> in <span class="ni">IndexOpsMixin._map_values</span><span class="nt">(self, mapper, na_action, convert)</span>
+<span class="g g-Whitespace">    </span><span class="mi">918</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">ExtensionArray</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">919</span>     <span class="k">return</span> <span class="n">arr</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mapper</span><span class="p">,</span> <span class="n">na_action</span><span class="o">=</span><span class="n">na_action</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">921</span> <span class="k">return</span> <span class="n">algorithms</span><span class="o">.</span><span class="n">map_array</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">mapper</span><span class="p">,</span> <span class="n">na_action</span><span class="o">=</span><span class="n">na_action</span><span class="p">,</span> <span class="n">convert</span><span class="o">=</span><span class="n">convert</span><span class="p">)</span>
+
+<span class="nn">File F:\OneDrive - str.ucture GmbH\General\CoKLIMAx (Phase 2)\CoKLIMAx-II\myenv\lib\site-packages\pandas\core\algorithms.py:1743,</span> in <span class="ni">map_array</span><span class="nt">(arr, mapper, na_action, convert)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1741</span> <span class="n">values</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1742</span> <span class="k">if</span> <span class="n">na_action</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1743</span>     <span class="k">return</span> <span class="n">lib</span><span class="o">.</span><span class="n">map_infer</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">mapper</span><span class="p">,</span> <span class="n">convert</span><span class="o">=</span><span class="n">convert</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1744</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1745</span>     <span class="k">return</span> <span class="n">lib</span><span class="o">.</span><span class="n">map_infer_mask</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1746</span>         <span class="n">values</span><span class="p">,</span> <span class="n">mapper</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">isna</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">),</span> <span class="n">convert</span><span class="o">=</span><span class="n">convert</span>
+<span class="g g-Whitespace">   </span><span class="mi">1747</span>     <span class="p">)</span>
+
+<span class="nn">File lib.pyx:2981,</span> in <span class="ni">pandas._libs.lib.map_infer</span><span class="nt">()</span>
+
+<span class="nn">File lib.pyx:2543,</span> in <span class="ni">pandas._libs.lib.maybe_convert_objects</span><span class="nt">()</span>
+
+<span class="nn">File F:\OneDrive - str.ucture GmbH\General\CoKLIMAx (Phase 2)\CoKLIMAx-II\myenv\lib\site-packages\numpy\core\numeric.py:322,</span> in <span class="ni">full</span><span class="nt">(shape, fill_value, dtype, order, like)</span>
+<span class="g g-Whitespace">    </span><span class="mi">274</span> <span class="nd">@set_array_function_like_doc</span>
+<span class="g g-Whitespace">    </span><span class="mi">275</span> <span class="nd">@set_module</span><span class="p">(</span><span class="s1">&#39;numpy&#39;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">276</span> <span class="k">def</span> <span class="nf">full</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">like</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">277</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">278</span><span class="sd">     Return a new array of given shape and type, filled with `fill_value`.</span>
+<span class="g g-Whitespace">    </span><span class="mi">279</span><span class="sd"> </span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">322</span>     <span class="k">if</span> <span class="n">like</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span>         <span class="k">return</span> <span class="n">_full_with_like</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">324</span>                 <span class="n">like</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">fill_value</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span>     <span class="k">if</span> <span class="n">dtype</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="filtern-der-daten-fur-konstanz">

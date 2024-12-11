@@ -10,7 +10,8 @@
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=3b187e9f" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -38,6 +39,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             Coklimax
+              <img src="../../_static/coklimax_logo_new.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -73,10 +75,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#data-processing-and-visualization">3. Data Processing and Visualization</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#recording-of-available-rcp-scenarios-and-statistics">3.1 Recording of available RCP scenarios and statistics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#for-variable-seas">3.1 For variable = ‘seas’</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#for-variable-suit">3.2 For variable = ‘suit’</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#export-dataset-to-csv">4. Export Dataset to CSV</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="sis-temperature-statistics.html">Temperature Statistics for Europe</a></li>
@@ -125,6 +129,7 @@
 <ul class="simple">
 <li><p>Source: <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/sis-health-vector?tab=overview">SIS Health Vector</a></p></li>
 <li><p>Author: T. Tewes (Stadt Konstanz)</p></li>
+<li><p>Resolution: 0.1° x 0.1°</p></li>
 <li><p>Notebook-Version: 1.1 (Updated: December 02, 2024)</p></li>
 </ul>
 <section id="specifying-the-paths-and-working-directories">
@@ -179,6 +184,31 @@
 
 <span class="n">bbox_wgs84_deutschland</span> <span class="o">=</span> <span class="p">[</span><span class="mf">56.0</span><span class="p">,</span> <span class="mf">5.8</span><span class="p">,</span> <span class="mf">47.2</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">]</span>
 <span class="n">bbox_wgs84_konstanz</span> <span class="o">=</span> <span class="p">[</span><span class="mf">47.9</span><span class="p">,</span> <span class="mf">8.9</span><span class="p">,</span> <span class="mf">47.6</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">]</span>
+
+<span class="c1"># Alternatively, use a shapefile for precise geographic filtering</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="c1"># Example: Load shapefile of Konstanz (WGS84 projection)</span>
+<span class="n">de_shapefile</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;./shapefiles/de_boundary.shp&quot;</span>
+<span class="n">de_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">de_shapefile</span><span class="p">)</span>
+<span class="n">de_bounds</span> <span class="o">=</span> <span class="n">de_gdf</span><span class="o">.</span><span class="n">total_bounds</span>
+
+<span class="c1"># Adjust and buffer</span>
+<span class="n">de_bounds_adjusted</span> <span class="o">=</span> <span class="p">[(</span><span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">de_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">de_bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">de_bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">de_bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">+</span><span class="mf">0.1</span><span class="p">]</span>
+
+<span class="n">bbox_de_bounds_adjusted</span> <span class="o">=</span> <span class="p">[</span><span class="n">de_bounds_adjusted</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">de_bounds_adjusted</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                           <span class="n">de_bounds_adjusted</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">de_bounds_adjusted</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+
+<span class="n">bbox_de_bounds_adjusted</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[55.2, 5.7, 47.1, 15.2]
 </pre></div>
 </div>
 </div>
@@ -199,7 +229,7 @@
         <span class="s2">&quot;ensemble_members_average&quot;</span><span class="p">,</span>
         <span class="s2">&quot;ensemble_members_standard_deviation&quot;</span>
     <span class="p">],</span>
-    <span class="s2">&quot;area&quot;</span><span class="p">:</span> <span class="n">bbox_wgs84_deutschland</span>
+    <span class="s2">&quot;area&quot;</span><span class="p">:</span> <span class="n">bbox_de_bounds_adjusted</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -227,17 +257,17 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 11:07:03,565 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 17:26:34,911 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
 [feedback](https://jira.ecmwf.int/plugins/servlet/desk/portal/1/create/202) is key to improve the user experience on the new CDS for the benefit of everyone. Thank you.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 11:07:03,567 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 17:26:34,913 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 11:07:03,568 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 17:26:34,913 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 11:07:03,568 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 17:26:34,914 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset already downloaded.
@@ -254,16 +284,15 @@
 
 <span class="n">dataset_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">.zip&quot;</span>
 <span class="n">dataset_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">dataset_filename</span><span class="p">)</span>
-<span class="n">extract_folder</span> <span class="o">=</span> <span class="n">working_folder</span>
 
 <span class="c1"># Extract the zip file</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">working_folder</span><span class="p">):</span>
         <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">dataset_filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
-            <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully extracted files to: </span><span class="si">{</span><span class="n">extract_folder</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">working_folder</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully extracted files to: </span><span class="si">{</span><span class="n">working_folder</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Folder is not empty. Skipping extraction.&quot;</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
@@ -283,33 +312,84 @@
 </div>
 </section>
 </section>
-<section id="data-processing-and-visualization">
-<h2>3. Data Processing and Visualization<a class="headerlink" href="#data-processing-and-visualization" title="Link to this heading"></a></h2>
-<section id="recording-of-available-rcp-scenarios-and-statistics">
-<h3>3.1 Recording of available RCP scenarios and statistics<a class="headerlink" href="#recording-of-available-rcp-scenarios-and-statistics" title="Link to this heading"></a></h3>
+<section id="read-the-netcdf-file-and-print-the-metadata">
+<h2>3. Read the netCDF file and print the metadata<a class="headerlink" href="#read-the-netcdf-file-and-print-the-metadata" title="Link to this heading"></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="k">def</span> <span class="nf">meta</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;mosquito_(suit|seas)_(rcp\d</span><span class="si">{2}</span><span class="s1">)_(\w+)_v(\d+\.\d+)\.&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span> <span class="c1"># For subset area</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;mosquito_(suit|seas)_(rcp\d</span><span class="si">{2}</span><span class="s1">)_(\w+)_v(\d+\.\d+)\.&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;the given filename does not fit the expected naming scheme&quot;</span><span class="p">)</span>
-        
+    
+    <span class="n">var</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span><span class="p">,</span>
-        <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">filename</span><span class="p">),</span>
-        <span class="n">variable</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+        <span class="n">path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">filename</span><span class="p">),</span>
+        <span class="n">variable</span><span class="o">=</span><span class="n">var</span><span class="p">,</span>
+        <span class="n">varilable_name</span><span class="o">=</span><span class="s2">&quot;season_length&quot;</span> <span class="k">if</span> <span class="n">var</span> <span class="o">==</span> <span class="s1">&#39;seas&#39;</span> <span class="k">else</span> <span class="s2">&quot;suitability&quot;</span><span class="p">,</span>
         <span class="n">rcp</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
         <span class="n">statistic</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span>
         <span class="n">version</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span>
     <span class="p">)</span>
 
+<span class="c1"># Create DataFrame from the list of files inside the extracted directory</span>
 <span class="n">nc_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">meta</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">working_folder</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.nc&#39;</span><span class="p">)]</span>
-
 <span class="n">df_nc_files</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">nc_files</span><span class="p">)</span>
-<span class="n">df_nc_files</span>
+
+<span class="c1"># Modify pandas display options</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_colwidth</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="c1"># Display the DataFrame</span>
+<span class="c1"># df_nc_files</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="for-variable-seas">
+<h3>3.1 For variable = ‘seas’<a class="headerlink" href="#for-variable-seas" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">netCDF4</span> <span class="k">as</span> <span class="nn">nc</span>
+
+<span class="c1"># Open the NetCDF file in read mode</span>
+<span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">df_nc_files</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="c1"># List all variables in the dataset</span>
+<span class="n">variables_list</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Available variables: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">variables_list</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Available variables: [&#39;season_length&#39;, &#39;height&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;time&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define variable name from available variables and read variable data</span>
+<span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;season_length&#39;</span>
+<span class="n">variable_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
+
+<span class="c1"># Generate summary of the primary variable</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Variable Name&quot;</span><span class="p">:</span> <span class="n">variable_name</span><span class="p">,</span>
+    <span class="s2">&quot;Data Type&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+    <span class="s2">&quot;Shape&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+    <span class="s2">&quot;Variable Info&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">variable_data</span><span class="o">.</span><span class="n">dimensions</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Units&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Long Name&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;long_name&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="c1"># Display dataset summary as a DataFrame for better visualization</span>
+<span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">,</span> <span class="s1">&#39;Remarks&#39;</span><span class="p">])</span>
+
+<span class="c1"># Display the summary DataFrame</span>
+<span class="n">nc_summary</span>
 </pre></div>
 </div>
 </div>
@@ -332,274 +412,304 @@
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>filename</th>
-      <th>path</th>
-      <th>variable</th>
-      <th>rcp</th>
-      <th>statistic</th>
-      <th>version</th>
+      <th>Description</th>
+      <th>Remarks</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>mosquito_seas_rcp45_mean_v1.0.area-subset.56.0...</td>
-      <td>.\data\sis-health-vector\working\mosquito_seas...</td>
-      <td>seas</td>
-      <td>rcp45</td>
-      <td>mean</td>
-      <td>1.0</td>
+      <td>Variable Name</td>
+      <td>season_length</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>mosquito_seas_rcp45_stdev_v1.0.area-subset.56....</td>
-      <td>.\data\sis-health-vector\working\mosquito_seas...</td>
-      <td>seas</td>
-      <td>rcp45</td>
-      <td>stdev</td>
-      <td>1.0</td>
+      <td>Data Type</td>
+      <td>float32</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>mosquito_seas_rcp85_mean_v1.0.area-subset.56.0...</td>
-      <td>.\data\sis-health-vector\working\mosquito_seas...</td>
-      <td>seas</td>
-      <td>rcp85</td>
-      <td>mean</td>
-      <td>1.0</td>
+      <td>Shape</td>
+      <td>(100, 82, 95)</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>mosquito_seas_rcp85_stdev_v1.0.area-subset.56....</td>
-      <td>.\data\sis-health-vector\working\mosquito_seas...</td>
-      <td>seas</td>
-      <td>rcp85</td>
-      <td>stdev</td>
-      <td>1.0</td>
+      <td>Variable Info</td>
+      <td>season_length(time, lat, lon)</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>mosquito_suit_rcp45_mean_v1.0.area-subset.56.0...</td>
-      <td>.\data\sis-health-vector\working\mosquito_suit...</td>
-      <td>suit</td>
-      <td>rcp45</td>
-      <td>mean</td>
-      <td>1.0</td>
+      <td>Units</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>mosquito_suit_rcp45_stdev_v1.0.area-subset.56....</td>
-      <td>.\data\sis-health-vector\working\mosquito_suit...</td>
-      <td>suit</td>
-      <td>rcp45</td>
-      <td>stdev</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>mosquito_suit_rcp85_mean_v1.0.area-subset.56.0...</td>
-      <td>.\data\sis-health-vector\working\mosquito_suit...</td>
-      <td>suit</td>
-      <td>rcp85</td>
-      <td>mean</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>mosquito_suit_rcp85_stdev_v1.0.area-subset.56....</td>
-      <td>.\data\sis-health-vector\working\mosquito_suit...</td>
-      <td>suit</td>
-      <td>rcp85</td>
-      <td>stdev</td>
-      <td>1.0</td>
+      <td>Long Name</td>
+      <td>Ensemble members average o...</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
 </div>
+</section>
+<section id="for-variable-suit">
+<h3>3.2 For variable = ‘suit’<a class="headerlink" href="#for-variable-suit" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">num2date</span>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open the NetCDF file in read mode</span>
+<span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">df_nc_files</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">][</span><span class="mi">4</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="p">):</span>
-    
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">],</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-    <span class="n">variable</span> <span class="o">=</span> <span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;variable&#39;</span><span class="p">]</span>
-
-    <span class="k">if</span> <span class="n">variable</span> <span class="o">==</span> <span class="s1">&#39;suit&#39;</span><span class="p">:</span>
-        <span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;suitability&#39;</span>
-    <span class="k">elif</span> <span class="n">variable</span> <span class="o">==</span> <span class="s1">&#39;seas&#39;</span><span class="p">:</span>
-        <span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;season_length&#39;</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected variable: </span><span class="si">{</span><span class="n">variable</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    
-    <span class="k">if</span> <span class="n">variable_name</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span> <span class="ow">and</span> <span class="s1">&#39;time&#39;</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">:</span>
-        <span class="n">temperature</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">variable_name</span><span class="p">][:]</span>
-        <span class="n">time</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">][:]</span>
-        <span class="n">lat</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">][:]</span>
-        <span class="n">lon</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">][:]</span>
-        
-        <span class="n">time_units</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">units</span>
-        <span class="n">time_calendar</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">calendar</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="s1">&#39;calendar&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="s1">&#39;standard&#39;</span>
-        <span class="n">time</span> <span class="o">=</span> <span class="n">num2date</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">time_units</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="n">time_calendar</span><span class="p">)</span>
-        
-        <span class="n">variable_column_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;rcp&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;statistic&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
-        
-        <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">temperature</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">temperature</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
-                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">temperature</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>
-                    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-                        <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">time</span><span class="p">[</span><span class="n">t</span><span class="p">],</span>
-                        <span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="n">lat</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-                        <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="n">lon</span><span class="p">[</span><span class="n">j</span><span class="p">],</span>
-                        <span class="n">variable_column_name</span><span class="p">:</span> <span class="n">temperature</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
-                    <span class="p">})</span>
-        
-        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">])</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">])</span>
-        <span class="c1"># df[variable_column_name] = pd.to_numeric(df[variable_column_name])</span>
-        
-        <span class="c1"># Setze den Index auf time, latitude und longitude</span>
-        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">])</span>
-
-    <span class="k">else</span><span class="p">:</span>
-        <span class="c1"># Zugriff auf das nc_file Dictionary separat aufgelöst</span>
-        <span class="n">path</span> <span class="o">=</span> <span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variables not found in </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="n">dataframes</span> <span class="o">=</span> <span class="p">[</span><span class="n">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="p">)</span> <span class="k">for</span> <span class="n">nc_file</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">nc_files</span><span class="p">)]</span>
-
-<span class="c1"># Kombiniere alle Daten in eine Tabelle</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dataframes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">df</span>
-
-<span class="c1">## Export and compile takes more than 30s, error in sphinx</span>
-<span class="c1">## Runs without error locally</span>
+<span class="c1"># List all variables in the dataset</span>
+<span class="n">variables_list</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Available variables: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">variables_list</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  0%|                                                                                                                                                                                                                     | 0/8 [00:00&lt;?, ?it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 12%|█████████████████████████▋                                                                                                                                                                                   | 1/8 [00:08&lt;00:56,  8.03s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 25%|███████████████████████████████████████████████████▎                                                                                                                                                         | 2/8 [00:16&lt;00:48,  8.11s/it]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> 38%|████████████████████████████████████████████████████████████████████████████▉                                                                                                                                | 3/8 [00:24&lt;00:40,  8.10s/it]
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">8</span><span class="p">],</span> <span class="n">line</span> <span class="mi">55</span>
-<span class="g g-Whitespace">     </span><span class="mi">52</span>         <span class="n">path</span> <span class="o">=</span> <span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">53</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variables not found in </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">55</span> <span class="n">dataframes</span> <span class="o">=</span> <span class="p">[</span><span class="n">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="p">)</span> <span class="k">for</span> <span class="n">nc_file</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">nc_files</span><span class="p">)]</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span> <span class="c1"># Kombiniere alle Daten in eine Tabelle</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dataframes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="nn">Cell In[8], line 55,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">     </span><span class="mi">52</span>         <span class="n">path</span> <span class="o">=</span> <span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">53</span>         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Variables not found in </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">55</span> <span class="n">dataframes</span> <span class="o">=</span> <span class="p">[</span><span class="n">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="p">)</span> <span class="k">for</span> <span class="n">nc_file</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">nc_files</span><span class="p">)]</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span> <span class="c1"># Kombiniere alle Daten in eine Tabelle</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dataframes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="nn">Cell In[8], line 41,</span> in <span class="ni">netcdf_to_dataframe</span><span class="nt">(nc_file)</span>
-<span class="g g-Whitespace">     </span><span class="mi">33</span>         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">temperature</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>
-<span class="g g-Whitespace">     </span><span class="mi">34</span>             <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-<span class="g g-Whitespace">     </span><span class="mi">35</span>                 <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">time</span><span class="p">[</span><span class="n">t</span><span class="p">],</span>
-<span class="g g-Whitespace">     </span><span class="mi">36</span>                 <span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="n">lat</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
-<span class="g g-Whitespace">     </span><span class="mi">37</span>                 <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="n">lon</span><span class="p">[</span><span class="n">j</span><span class="p">],</span>
-<span class="g g-Whitespace">     </span><span class="mi">38</span>                 <span class="n">variable_column_name</span><span class="p">:</span> <span class="n">temperature</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">39</span>             <span class="p">})</span>
-<span class="ne">---&gt; </span><span class="mi">41</span> <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">42</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">43</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">])</span>
-
-<span class="nn">File F:\OneDrive - str.ucture GmbH\General\CoKLIMAx (Phase 2)\CoKLIMAx-II\myenv\lib\site-packages\pandas\core\frame.py:851,</span> in <span class="ni">DataFrame.__init__</span><span class="nt">(self, data, index, columns, dtype, copy)</span>
-<span class="g g-Whitespace">    </span><span class="mi">849</span>     <span class="k">if</span> <span class="n">columns</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">850</span>         <span class="n">columns</span> <span class="o">=</span> <span class="n">ensure_index</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">851</span>     <span class="n">arrays</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">nested_data_to_arrays</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">852</span>         <span class="c1"># error: Argument 3 to &quot;nested_data_to_arrays&quot; has incompatible</span>
-<span class="g g-Whitespace">    </span><span class="mi">853</span>         <span class="c1"># type &quot;Optional[Collection[Any]]&quot;; expected &quot;Optional[Index]&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">854</span>         <span class="n">data</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">855</span>         <span class="n">columns</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">856</span>         <span class="n">index</span><span class="p">,</span>  <span class="c1"># type: ignore[arg-type]</span>
-<span class="g g-Whitespace">    </span><span class="mi">857</span>         <span class="n">dtype</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">858</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="n">mgr</span> <span class="o">=</span> <span class="n">arrays_to_mgr</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">860</span>         <span class="n">arrays</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">861</span>         <span class="n">columns</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">864</span>         <span class="n">typ</span><span class="o">=</span><span class="n">manager</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">865</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">866</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="nn">File F:\OneDrive - str.ucture GmbH\General\CoKLIMAx (Phase 2)\CoKLIMAx-II\myenv\lib\site-packages\pandas\core\internals\construction.py:520,</span> in <span class="ni">nested_data_to_arrays</span><span class="nt">(data, columns, index, dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">517</span> <span class="k">if</span> <span class="n">is_named_tuple</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="ow">and</span> <span class="n">columns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">518</span>     <span class="n">columns</span> <span class="o">=</span> <span class="n">ensure_index</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_fields</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">520</span> <span class="n">arrays</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">to_arrays</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">521</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">ensure_index</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">523</span> <span class="k">if</span> <span class="n">index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-
-<span class="nn">File F:\OneDrive - str.ucture GmbH\General\CoKLIMAx (Phase 2)\CoKLIMAx-II\myenv\lib\site-packages\pandas\core\internals\construction.py:837,</span> in <span class="ni">to_arrays</span><span class="nt">(data, columns, dtype)</span>
-<span class="g g-Whitespace">    </span><span class="mi">835</span>     <span class="n">arr</span> <span class="o">=</span> <span class="n">_list_to_arrays</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">836</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">abc</span><span class="o">.</span><span class="n">Mapping</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">837</span>     <span class="n">arr</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">_list_of_dict_to_arrays</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">838</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ABCSeries</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">839</span>     <span class="n">arr</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">_list_of_series_to_arrays</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
-
-<span class="nn">File F:\OneDrive - str.ucture GmbH\General\CoKLIMAx (Phase 2)\CoKLIMAx-II\myenv\lib\site-packages\pandas\core\internals\construction.py:917,</span> in <span class="ni">_list_of_dict_to_arrays</span><span class="nt">(data, columns)</span>
-<span class="g g-Whitespace">    </span><span class="mi">915</span>     <span class="n">gen</span> <span class="o">=</span> <span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">916</span>     <span class="n">sort</span> <span class="o">=</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">917</span>     <span class="n">pre_cols</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">fast_unique_multiple_list_gen</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="n">sort</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">918</span>     <span class="n">columns</span> <span class="o">=</span> <span class="n">ensure_index</span><span class="p">(</span><span class="n">pre_cols</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">920</span> <span class="c1"># assure that they are of the base dict class and not of derived</span>
-<span class="g g-Whitespace">    </span><span class="mi">921</span> <span class="c1"># classes</span>
-
-<span class="nn">File lib.pyx:367,</span> in <span class="ni">pandas._libs.lib.fast_unique_multiple_list_gen</span><span class="nt">()</span>
-
-<span class="nn">File F:\OneDrive - str.ucture GmbH\General\CoKLIMAx (Phase 2)\CoKLIMAx-II\myenv\lib\site-packages\pandas\core\internals\construction.py:915,</span> in <span class="ni">&lt;genexpr&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">895</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">896</span><span class="sd"> Convert list of dicts to numpy arrays</span>
-<span class="g g-Whitespace">    </span><span class="mi">897</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">912</span><span class="sd"> columns : Index</span>
-<span class="g g-Whitespace">    </span><span class="mi">913</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">914</span> <span class="k">if</span> <span class="n">columns</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">915</span>     <span class="n">gen</span> <span class="o">=</span> <span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">916</span>     <span class="n">sort</span> <span class="o">=</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">data</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">917</span>     <span class="n">pre_cols</span> <span class="o">=</span> <span class="n">lib</span><span class="o">.</span><span class="n">fast_unique_multiple_list_gen</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="n">sort</span><span class="p">)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Available variables: [&#39;suitability&#39;, &#39;height&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;time&#39;]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># csv_path = os.path.join(csv_folder, &#39;sis-health-vector.csv.zip&#39;)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define variable name from available variables and read variable data</span>
+<span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;suitability&#39;</span>
+<span class="n">variable_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
 
+<span class="c1"># Generate summary of the primary variable</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Variable Name&quot;</span><span class="p">:</span> <span class="n">variable_name</span><span class="p">,</span>
+    <span class="s2">&quot;Data Type&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+    <span class="s2">&quot;Shape&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+    <span class="s2">&quot;Variable Info&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">variable_data</span><span class="o">.</span><span class="n">dimensions</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Units&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Long Name&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;long_name&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+<span class="p">}</span>
 
-<span class="c1"># if not os.path.isfile(csv_path):</span>
-<span class="c1">#     df.to_csv(csv_path, sep=&#39;,&#39;, encoding=&#39;utf8&#39;, compression=&#39;zip&#39;)</span>
-<span class="c1">#     print(f&quot;Summary data exported to {csv_path}&quot;)</span>
-<span class="c1"># else:</span>
-<span class="c1">#     print(f&quot;{csv_path} file already exists. Skipping export.&quot;)</span>
+<span class="c1"># Display dataset summary as a DataFrame for better visualization</span>
+<span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">,</span> <span class="s1">&#39;Remarks&#39;</span><span class="p">])</span>
+
+<span class="c1"># Display the summary DataFrame</span>
+<span class="n">nc_summary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Description</th>
+      <th>Remarks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Variable Name</td>
+      <td>suitability</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Data Type</td>
+      <td>float32</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Shape</td>
+      <td>(100, 82, 95)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Variable Info</td>
+      <td>suitability(time, lat, lon)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Units</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Long Name</td>
+      <td>Ensemble members average o...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="export-dataset-to-csv">
+<h2>4. Export Dataset to CSV<a class="headerlink" href="#export-dataset-to-csv" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">netCDF4</span> <span class="k">as</span> <span class="nn">nc</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="k">def</span> <span class="nf">netcdf_to_dataframe</span><span class="p">(</span>
+    <span class="n">nc_file</span><span class="p">,</span>
+    <span class="n">bounding_box</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Converts a netCDF file to a DataFrame, optionally filtering by a bounding box.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        nc_file (dict): Dictionary with keys &#39;filename&#39;, &#39;path&#39;, &#39;variable&#39;, &#39;variable_name&#39;, &#39;rcp&#39;, &#39;statistic&#39;, &#39;version&#39;.</span>
+<span class="sd">        bbox (list): Bounding box as [lon_min, lat_min, lon_max, lat_max] (optional).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: DataFrame with time, latitude, longitude, and the variable&#39;s values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Open the netCDF file</span>
+        <span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">],</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+        <span class="n">lon</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">][:]</span>
+        <span class="n">lat</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">][:]</span>
+        
+        <span class="c1"># Retrieve the variable name</span>
+        <span class="n">variable</span> <span class="o">=</span> <span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;variable&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">variable</span> <span class="o">==</span> <span class="s1">&#39;suit&#39;</span><span class="p">:</span>
+            <span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;suitability&#39;</span>
+        <span class="k">elif</span> <span class="n">variable</span> <span class="o">==</span> <span class="s1">&#39;seas&#39;</span><span class="p">:</span>
+            <span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;season_length&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unexpected variable: </span><span class="si">{</span><span class="n">variable</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="c1"># Extract time variable and convert it to readable dates</span>
+        <span class="n">time_var</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
+        <span class="n">time_units</span> <span class="o">=</span> <span class="n">time_var</span><span class="o">.</span><span class="n">units</span>
+        <span class="n">time_calendar</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">time_var</span><span class="p">,</span> <span class="s2">&quot;calendar&quot;</span><span class="p">,</span> <span class="s2">&quot;standard&quot;</span><span class="p">)</span>
+        <span class="n">cftime</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">time_var</span><span class="p">[:],</span> <span class="n">units</span><span class="o">=</span><span class="n">time_units</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="n">time_calendar</span><span class="p">)</span>
+
+        <span class="c1"># Extract temperature/variable data</span>
+        <span class="n">temperature_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">variable_name</span><span class="p">][:]</span>
+        
+        <span class="c1"># Filter by bounding box if provided</span>
+        <span class="k">if</span> <span class="n">bounding_box</span><span class="p">:</span>
+            <span class="n">lon_min</span><span class="p">,</span> <span class="n">lat_min</span><span class="p">,</span> <span class="n">lon_max</span><span class="p">,</span> <span class="n">lat_max</span> <span class="o">=</span> <span class="n">bounding_box</span>
+            
+            <span class="n">indices_lat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">lat</span> <span class="o">&gt;=</span> <span class="n">lat_min</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lat</span> <span class="o">&lt;=</span> <span class="n">lat_max</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">indices_lon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">lon</span> <span class="o">&gt;=</span> <span class="n">lon_min</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lon</span> <span class="o">&lt;=</span> <span class="n">lon_max</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+            
+            <span class="n">start_lat</span><span class="p">,</span> <span class="n">end_lat</span> <span class="o">=</span> <span class="n">indices_lat</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">indices_lat</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">start_lon</span><span class="p">,</span> <span class="n">end_lon</span> <span class="o">=</span> <span class="n">indices_lon</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">indices_lon</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+            
+            <span class="n">filtered_lat</span> <span class="o">=</span> <span class="n">lat</span><span class="p">[</span><span class="n">start_lat</span><span class="p">:</span><span class="n">end_lat</span><span class="p">]</span>
+            <span class="n">filtered_lon</span> <span class="o">=</span> <span class="n">lon</span><span class="p">[</span><span class="n">start_lon</span><span class="p">:</span><span class="n">end_lon</span><span class="p">]</span>
+            <span class="n">temperature_data_subset</span> <span class="o">=</span> <span class="n">temperature_data</span><span class="p">[:,</span> <span class="n">start_lat</span><span class="p">:</span><span class="n">end_lat</span><span class="p">,</span> <span class="n">start_lon</span><span class="p">:</span><span class="n">end_lon</span><span class="p">]</span>
+            
+            <span class="c1"># # Filter the data (Alternative approach)</span>
+            <span class="c1"># # Suitable for irregularly spaced lat/lon values (curvilinear grids, non-uniform sampling)</span>
+            <span class="c1"># filtered_lat = lat[indices_lat]</span>
+            <span class="c1"># filtered_lon = lon[indices_lon]</span>
+            <span class="c1"># temperature_data_subset = temperature_data[:, indices_lat, :][:, :, indices_lon]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">filtered_lat</span> <span class="o">=</span> <span class="n">lat</span>
+            <span class="n">filtered_lon</span> <span class="o">=</span> <span class="n">lon</span>
+            <span class="n">temperature_data_subset</span> <span class="o">=</span> <span class="n">temperature_data</span>
+            
+        <span class="c1"># Create a column name for the variable</span>
+        <span class="n">variable_column_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;rcp&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;statistic&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+        
+        
+        <span class="c1"># Create rows for the DataFrame</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">temperature_data_subset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">temperature_data_subset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">temperature_data_subset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">is_masked</span><span class="p">(</span><span class="n">temperature_data_subset</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]):</span>
+                        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                            <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">cftime</span><span class="p">[</span><span class="n">t</span><span class="p">],</span>
+                            <span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="n">filtered_lat</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                            <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="n">filtered_lon</span><span class="p">[</span><span class="n">j</span><span class="p">],</span>
+                            <span class="n">variable_column_name</span><span class="p">:</span> <span class="n">temperature_data_subset</span><span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+                        <span class="p">})</span>
+                    
+        
+        <span class="c1"># Create a DataFrame from the rows</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="nb">str</span><span class="p">))</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">])</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">variable_column_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">variable_column_name</span><span class="p">])</span>
+        
+        <span class="c1"># Set the index to time, latitude, and longitude</span>
+        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">])</span>
+    <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;KeyError: Missing required variable in the netCDF file: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="c1"># Ensure the dataset is closed</span>
+        <span class="n">nc_dataset</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-</section>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create individual DataFrame and Export as individual CSV files</span>
+<span class="k">for</span> <span class="n">nc_file</span> <span class="ow">in</span> <span class="n">nc_files</span><span class="p">:</span>
+    <span class="n">csv_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;mosquito_</span><span class="si">{</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;variable&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;rcp&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;statistic&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+    <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">csv_filename</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">csv_path</span><span class="p">):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="p">)</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data exported successfully to </span><span class="si">{</span><span class="n">csv_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File already exists at </span><span class="si">{</span><span class="n">csv_path</span><span class="si">}</span><span class="s2">. Skipping export.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File already exists at .\data\sis-health-vector\csv\mosquito_seas_rcp45_mean.csv. Skipping export.
+File already exists at .\data\sis-health-vector\csv\mosquito_seas_rcp45_stdev.csv. Skipping export.
+File already exists at .\data\sis-health-vector\csv\mosquito_seas_rcp85_mean.csv. Skipping export.
+File already exists at .\data\sis-health-vector\csv\mosquito_seas_rcp85_stdev.csv. Skipping export.
+File already exists at .\data\sis-health-vector\csv\mosquito_suit_rcp45_mean.csv. Skipping export.
+File already exists at .\data\sis-health-vector\csv\mosquito_suit_rcp45_stdev.csv. Skipping export.
+File already exists at .\data\sis-health-vector\csv\mosquito_suit_rcp85_mean.csv. Skipping export.
+File already exists at .\data\sis-health-vector\csv\mosquito_suit_rcp85_stdev.csv. Skipping export.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create combined DataFrame and Export as merged CSV file</span>
+<span class="n">csv_filename</span> <span class="o">=</span> <span class="s1">&#39;sis-health-vector-merged.csv.zip&#39;</span>
+<span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">csv_filename</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">csv_path</span><span class="p">):</span>
+    <span class="n">dataframes</span> <span class="o">=</span> <span class="p">[</span><span class="n">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="p">)</span> <span class="k">for</span> <span class="n">nc_file</span> <span class="ow">in</span> <span class="n">nc_files</span><span class="p">]</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dataframes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s1">&#39;zip&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File already exists at </span><span class="si">{</span><span class="n">csv_path</span><span class="si">}</span><span class="s2">. Skipping export.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File already exists at .\data\sis-health-vector\csv\sis-health-vector-merged.csv.zip. Skipping export.
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
 

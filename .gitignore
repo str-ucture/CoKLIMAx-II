@@ -1,18 +1,32 @@
 # Virtual environments
 venv/
-cds_venv/
 myenv/
+env/
+cds_venv/
+
 
 # Secrets and API keys
 source/secrets/
 **/.cdsapirc
 **/cds_api
 
-# Data files
+# Archived data
 *.zip
 *.tar
+*.tar.gz
+*.7z
+*.rar
+*.gz
 
 *.csv
+*.xls
+*.xlsx
+
+# Temporary files
+*.aux.xml
+*.ovr
+*.idx
+*.lock
 
 *.nc
 *.tiff

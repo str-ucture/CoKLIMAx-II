@@ -10,7 +10,8 @@
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=3b187e9f" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -38,6 +39,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             Coklimax
+              <img src="../../_static/coklimax_logo_new.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -226,17 +228,17 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 11:06:37,108 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 17:26:08,897 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
 [feedback](https://jira.ecmwf.int/plugins/servlet/desk/portal/1/create/202) is key to improve the user experience on the new CDS for the benefit of everyone. Thank you.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 11:06:37,111 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 17:26:08,899 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 11:06:37,112 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 17:26:08,900 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 11:06:37,112 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 17:26:08,900 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset already downloaded.
@@ -288,17 +290,24 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">netCDF4</span> <span class="k">as</span> <span class="nn">nc</span>
 
+<span class="c1"># Print list of netCDF4 files inside the working/extracted folder</span>
+<span class="n">filename_list</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">filename_list</span><span class="p">)</span>
+
 <span class="c1"># Open the NetCDF file in read mode</span>
-<span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1871.v1.2.nc&#39;</span><span class="p">)</span>
+<span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 
 <span class="c1"># List all variables in the dataset</span>
-<span class="n">variables_list</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">variables_list</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Available variables: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">variables_list</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;LAPrec1871.v1.2.nc&#39;, &#39;LAPrec1901.v1.2.nc&#39;]
+</pre></div>
+</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Available variables: [&#39;X&#39;, &#39;Y&#39;, &#39;time&#39;, &#39;LAPrec1871&#39;, &#39;lon&#39;, &#39;lat&#39;, &#39;dem&#39;, &#39;lambert_azimuthal_equal_area&#39;]
 </pre></div>
 </div>
@@ -308,8 +317,9 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
+<span class="c1"># Define variable name from available variables and read variable data</span>
 <span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;LAPrec1871&#39;</span>
-<span class="n">variable_data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
+<span class="n">variable_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
 
 <span class="c1"># Generate summary of the primary variable</span>
 <span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
@@ -446,12 +456,14 @@
 <p>It is recommended to use <strong>kn_bounds_laea_adjusted</strong> for extracting GeoTIFF files.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># File paths and variable names</span>
-<span class="n">prec1871</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1871.v1.2.nc&#39;</span><span class="p">)</span>
-<span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;LAPrec1871&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open the NetCDF file in read mode</span>
+<span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1871.v1.2.nc&#39;</span><span class="p">)</span>
+<span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 
-<span class="c1"># Open the NetCDF dataset</span>
-<span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">prec1871</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="c1"># Define variable name from available variables and read variable data</span>
+<span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;LAPrec1871&#39;</span>
+<span class="n">variable_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
+
 <span class="n">x</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">][:]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">][:]</span>
 
@@ -477,24 +489,24 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>
 
-<span class="c1"># File paths and variable names</span>
-<span class="n">prec1871</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1871.v1.2.nc&#39;</span><span class="p">)</span>
+<span class="c1"># Define filepath for netCDF4 file and variable name from Available variables</span>
+<span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1871.v1.2.nc&#39;</span><span class="p">)</span>
 <span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;LAPrec1871&#39;</span>
 
 <span class="c1"># Open the NetCDF dataset using xarray</span>
-<span class="k">with</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">prec1871</span><span class="p">)</span> <span class="k">as</span> <span class="n">nc_dataset</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">nc_filepath</span><span class="p">)</span> <span class="k">as</span> <span class="n">nc_dataset</span><span class="p">:</span>
     <span class="n">variable_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
 
     <span class="c1"># Apply geographic filtering using the defined bounding box</span>
     <span class="n">filtered_data</span> <span class="o">=</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
-        <span class="p">(</span><span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">x_min</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">x_max</span><span class="p">)</span> <span class="o">&amp;</span>
-        <span class="p">(</span><span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">y_min</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">y_max</span><span class="p">),</span>
+        <span class="p">(</span><span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">x_min_adjusted</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">x_max_adjusted</span><span class="p">)</span> <span class="o">&amp;</span>
+        <span class="p">(</span><span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">y_min_adjusted</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">y_max_adjusted</span><span class="p">),</span>
         <span class="n">drop</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
 
-   <span class="c1"># Convert the filtered data into a DataFrame</span>
-    <span class="n">filtered_df</span> <span class="o">=</span> <span class="n">filtered_data</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
+    <span class="c1"># Convert the filtered data into a DataFrame</span>
+    <span class="n">filtered_df</span> <span class="o">=</span> <span class="n">filtered_data</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    
     <span class="c1"># Generate the CSV file path</span>
     <span class="n">csv_file_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s2">_filtered_data.csv&quot;</span>
     <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">csv_file_name</span><span class="p">)</span>
@@ -506,8 +518,11 @@
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File already exists at </span><span class="si">{</span><span class="n">csv_path</span><span class="si">}</span><span class="s2">. Skipping export.&quot;</span><span class="p">)</span>
 
-<span class="c1"># Display the first few rows of the filtered DataFrame for verification</span>
-<span class="n">filtered_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="c1"># Modify display format for numbers in the DataFrames</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
+
+<span class="c1"># Display the filtered DataFrame</span>
+<span class="n">filtered_df</span>
 </pre></div>
 </div>
 </div>
@@ -543,51 +558,95 @@
     <tr>
       <th>0</th>
       <td>1871-01-01</td>
-      <td>2730000.0</td>
-      <td>4255000.0</td>
-      <td>37.0</td>
+      <td>2,725,000.00</td>
+      <td>4,250,000.00</td>
+      <td>41.00</td>
     </tr>
     <tr>
       <th>1</th>
       <td>1871-01-01</td>
-      <td>2730000.0</td>
-      <td>4260000.0</td>
-      <td>34.0</td>
+      <td>2,725,000.00</td>
+      <td>4,255,000.00</td>
+      <td>39.00</td>
     </tr>
     <tr>
       <th>2</th>
       <td>1871-01-01</td>
-      <td>2735000.0</td>
-      <td>4255000.0</td>
-      <td>33.0</td>
+      <td>2,725,000.00</td>
+      <td>4,260,000.00</td>
+      <td>38.00</td>
     </tr>
     <tr>
       <th>3</th>
       <td>1871-01-01</td>
-      <td>2735000.0</td>
-      <td>4260000.0</td>
-      <td>31.0</td>
+      <td>2,730,000.00</td>
+      <td>4,250,000.00</td>
+      <td>40.00</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1871-02-01</td>
-      <td>2730000.0</td>
-      <td>4255000.0</td>
-      <td>46.0</td>
+      <td>1871-01-01</td>
+      <td>2,730,000.00</td>
+      <td>4,255,000.00</td>
+      <td>37.00</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>21595</th>
+      <td>2020-12-01</td>
+      <td>2,735,000.00</td>
+      <td>4,255,000.00</td>
+      <td>54.00</td>
+    </tr>
+    <tr>
+      <th>21596</th>
+      <td>2020-12-01</td>
+      <td>2,735,000.00</td>
+      <td>4,260,000.00</td>
+      <td>52.00</td>
+    </tr>
+    <tr>
+      <th>21597</th>
+      <td>2020-12-01</td>
+      <td>2,740,000.00</td>
+      <td>4,250,000.00</td>
+      <td>55.00</td>
+    </tr>
+    <tr>
+      <th>21598</th>
+      <td>2020-12-01</td>
+      <td>2,740,000.00</td>
+      <td>4,255,000.00</td>
+      <td>56.00</td>
+    </tr>
+    <tr>
+      <th>21599</th>
+      <td>2020-12-01</td>
+      <td>2,740,000.00</td>
+      <td>4,260,000.00</td>
+      <td>56.00</td>
     </tr>
   </tbody>
 </table>
+<p>21600 rows × 4 columns</p>
 </div></div></div>
 </div>
 </section>
 <section id="compute-monthly-means-and-export-as-csv">
 <h3>4.3 Compute Monthly Means and Export as CSV<a class="headerlink" href="#compute-monthly-means-and-export-as-csv" title="Link to this heading"></a></h3>
+<p>(Monthly Means calculated for the filtered area)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="c1"># # Example: Load DataFrame from saved csv file</span>
-<span class="c1"># filtered_df = pd.read_csv(&#39;your_data.csv&#39;)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Example: Load DataFrame from locally saved csv file</span>
+<span class="c1"># csv_file_name = f&quot;{variable_name}_filtered_data.csv&quot;</span>
+<span class="c1"># csv_path = os.path.join(csv_folder, csv_file_name)</span>
+<span class="c1"># filtered_df = pd.read_csv(csv_path)</span>
 
 <span class="c1"># Convert the &#39;time&#39; column to datetime format</span>
 <span class="n">filtered_df_copy</span> <span class="o">=</span> <span class="n">filtered_df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -602,15 +661,15 @@
     <span class="n">filtered_df_copy</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="s1">&#39;Month&#39;</span><span class="p">])[</span><span class="n">variable_name</span><span class="p">]</span>
     <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
     <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">round</span><span class="p">({</span><span class="n">variable_name</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
 <span class="p">)</span>
 
 <span class="c1"># Create a pivot table with years as rows and months as columns</span>
 <span class="n">pivot_table</span> <span class="o">=</span> <span class="n">monthly_means</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;Month&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="n">variable_name</span><span class="p">)</span>
 
 <span class="c1"># Ensure all months (1–12) are included, and add yearly totals</span>
-<span class="n">pivot_table</span> <span class="o">=</span> <span class="n">pivot_table</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">))</span>  <span class="c1"># Fill in missing months with NaN</span>
-<span class="n">pivot_table</span><span class="p">[</span><span class="s1">&#39;Yearly_Sum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pivot_table</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
+<span class="n">pivot_table</span> <span class="o">=</span> <span class="n">pivot_table</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">))</span>
+<span class="n">pivot_table</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Yearly_Sum&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pivot_table</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Generate the output file path</span>
 <span class="n">csv_file_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s2">_monthly_means.csv&quot;</span>
@@ -623,7 +682,7 @@
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File already exists at </span><span class="si">{</span><span class="n">csv_path_area_mean</span><span class="si">}</span><span class="s2">. Skipping export.&quot;</span><span class="p">)</span>
 
-<span class="c1"># Display the first few rows of the pivot table for verification</span>
+<span class="c1"># Display the pivot table for verification</span>
 <span class="n">pivot_table</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -684,83 +743,83 @@
   <tbody>
     <tr>
       <th>1871</th>
-      <td>33.75</td>
-      <td>43.00</td>
-      <td>33.25</td>
-      <td>116.50</td>
-      <td>29.00</td>
-      <td>118.25</td>
-      <td>75.25</td>
-      <td>68.75</td>
-      <td>32.00</td>
-      <td>84.75</td>
-      <td>30.00</td>
-      <td>10.00</td>
-      <td>674.50</td>
+      <td>35.75</td>
+      <td>44.75</td>
+      <td>34.33</td>
+      <td>120.50</td>
+      <td>28.92</td>
+      <td>120.42</td>
+      <td>76.33</td>
+      <td>70.00</td>
+      <td>33.58</td>
+      <td>88.92</td>
+      <td>31.58</td>
+      <td>10.42</td>
+      <td>695.50</td>
     </tr>
     <tr>
       <th>1872</th>
-      <td>34.25</td>
-      <td>35.75</td>
-      <td>36.25</td>
-      <td>69.50</td>
-      <td>201.25</td>
-      <td>131.25</td>
-      <td>82.00</td>
-      <td>113.25</td>
-      <td>30.50</td>
-      <td>65.50</td>
-      <td>67.00</td>
-      <td>62.75</td>
-      <td>929.25</td>
+      <td>36.08</td>
+      <td>37.50</td>
+      <td>37.67</td>
+      <td>71.83</td>
+      <td>206.67</td>
+      <td>133.17</td>
+      <td>83.92</td>
+      <td>115.25</td>
+      <td>30.75</td>
+      <td>69.58</td>
+      <td>70.00</td>
+      <td>65.75</td>
+      <td>958.17</td>
     </tr>
     <tr>
       <th>1873</th>
-      <td>16.25</td>
-      <td>29.50</td>
-      <td>61.50</td>
-      <td>101.75</td>
-      <td>91.25</td>
-      <td>95.25</td>
-      <td>98.75</td>
-      <td>89.25</td>
-      <td>73.50</td>
-      <td>88.50</td>
-      <td>50.25</td>
-      <td>19.00</td>
-      <td>814.75</td>
+      <td>17.67</td>
+      <td>30.42</td>
+      <td>64.42</td>
+      <td>103.75</td>
+      <td>92.83</td>
+      <td>95.92</td>
+      <td>100.25</td>
+      <td>90.42</td>
+      <td>75.08</td>
+      <td>91.08</td>
+      <td>52.17</td>
+      <td>20.00</td>
+      <td>834.01</td>
     </tr>
     <tr>
       <th>1874</th>
-      <td>16.50</td>
-      <td>13.75</td>
-      <td>33.00</td>
-      <td>64.75</td>
-      <td>101.75</td>
-      <td>96.00</td>
-      <td>103.75</td>
-      <td>65.00</td>
-      <td>36.75</td>
-      <td>22.75</td>
-      <td>68.75</td>
-      <td>70.50</td>
-      <td>693.25</td>
+      <td>17.08</td>
+      <td>14.00</td>
+      <td>34.00</td>
+      <td>66.42</td>
+      <td>104.08</td>
+      <td>97.17</td>
+      <td>105.33</td>
+      <td>66.25</td>
+      <td>37.75</td>
+      <td>24.33</td>
+      <td>72.83</td>
+      <td>73.75</td>
+      <td>712.99</td>
     </tr>
     <tr>
       <th>1875</th>
-      <td>73.00</td>
-      <td>19.75</td>
-      <td>32.25</td>
-      <td>20.75</td>
-      <td>74.75</td>
-      <td>126.50</td>
-      <td>97.00</td>
-      <td>54.50</td>
-      <td>71.50</td>
-      <td>94.25</td>
-      <td>125.00</td>
-      <td>18.50</td>
-      <td>807.75</td>
+      <td>77.83</td>
+      <td>20.42</td>
+      <td>33.42</td>
+      <td>21.92</td>
+      <td>76.17</td>
+      <td>128.33</td>
+      <td>99.33</td>
+      <td>56.33</td>
+      <td>73.50</td>
+      <td>97.50</td>
+      <td>130.42</td>
+      <td>18.92</td>
+      <td>834.09</td>
     </tr>
   </tbody>
 </table>
@@ -802,7 +861,6 @@
 
     <span class="c1"># Calculate monthly statistics: mean and standard deviation</span>
     <span class="n">monthly_stats</span> <span class="o">=</span> <span class="n">df_period</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_period</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="p">)[</span><span class="n">variable_name</span><span class="p">]</span><span class="o">.</span><span class="n">agg</span><span class="p">([</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">])</span>
-
 
     <span class="c1"># Create the plot</span>
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#f1f1f1&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
@@ -856,8 +914,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/6ee17264935c0ca3001f2f14725fef84b511e5c9eecf7a04e202b8da13f5a65a.png" src="../../_images/6ee17264935c0ca3001f2f14725fef84b511e5c9eecf7a04e202b8da13f5a65a.png" />
-<img alt="../../_images/329dcf150e3e1d659e9cb785b5a89ad4ccf3edf291fcaea635a00159d36302b8.png" src="../../_images/329dcf150e3e1d659e9cb785b5a89ad4ccf3edf291fcaea635a00159d36302b8.png" />
+<img alt="../../_images/3c7eb2057da0af27f6be6758cf0eabebdb3af393b89968e31d338e436eef0628.png" src="../../_images/3c7eb2057da0af27f6be6758cf0eabebdb3af393b89968e31d338e436eef0628.png" />
+<img alt="../../_images/91e66d55daa0ec4a9f42c19f81b83812466bdd7584db324278a7d1e587addaf9.png" src="../../_images/91e66d55daa0ec4a9f42c19f81b83812466bdd7584db324278a7d1e587addaf9.png" />
 </div>
 </div>
 </section>
@@ -876,13 +934,12 @@
 
 <span class="k">def</span> <span class="nf">main_export_geotiff</span><span class="p">():</span>
     <span class="c1"># File paths and variable names</span>
-    <span class="n">prec1871</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1871.v1.2.nc&#39;</span><span class="p">)</span>
+    <span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1871.v1.2.nc&#39;</span><span class="p">)</span>
     <span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;LAPrec1871&#39;</span>
 
-    <span class="c1"># Open the NetCDF dataset</span>
-    <span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">prec1871</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">][:]</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">][:]</span>
+    <span class="c1"># Open the NetCDF dataset and read variable data</span>
+    <span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">precipitation_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
 
     <span class="c1"># Extract time variable and convert it to readable dates</span>
     <span class="n">time_var</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
@@ -891,12 +948,11 @@
     <span class="n">cftime</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">time_var</span><span class="p">[:],</span> <span class="n">units</span><span class="o">=</span><span class="n">time_units</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="n">time_calendar</span><span class="p">)</span>
 
     <span class="c1"># Compute spatial resolution and raster transformation</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">][:]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">][:]</span>
     <span class="n">dx</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">dy</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">transform</span> <span class="o">=</span> <span class="n">from_origin</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="n">dx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="n">dy</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="o">-</span><span class="n">dy</span><span class="p">)</span>
-
-    <span class="c1"># Extract precipitation data from the NetCDF dataset</span>
-    <span class="n">precipitation_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
     
     <span class="c1"># Create folder for individual geotiffs</span>
     <span class="n">output_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">geotiff_folder</span><span class="p">,</span> <span class="s2">&quot;individual_geotiff&quot;</span><span class="p">)</span>
@@ -904,12 +960,12 @@
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">output_folder</span><span class="p">))</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="c1"># Iterate over the time dimension to process each time slice</span>
-        <span class="k">for</span> <span class="n">year_index</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">precipitation_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Exporting GeoTIFF files&quot;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">year_index</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">precipitation_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Exporting individual GeoTIFF files&quot;</span><span class="p">):</span>
             <span class="c1"># Retrieve the date for the current time slice</span>
             <span class="n">dt</span> <span class="o">=</span> <span class="n">cftime</span><span class="p">[</span><span class="n">year_index</span><span class="p">]</span>
             <span class="n">dt_full</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">&quot;</span>
 
-            <span class="c1"># Define the output GeoTIFF file path</span>
+            <span class="c1"># Define the output GeoTIFF file path for individual GeoTIFFs</span>
             <span class="n">output_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">dt_full</span><span class="si">}</span><span class="s2">.tif&quot;</span>
             <span class="n">output_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">)</span>
 
@@ -962,13 +1018,11 @@
 <span class="sd">        end_year (int): Ending year for the dataset (optional).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># File paths and variable names</span>
-    <span class="n">prec1871</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1871.v1.2.nc&#39;</span><span class="p">)</span>
+    <span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1871.v1.2.nc&#39;</span><span class="p">)</span>
     <span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;LAPrec1871&#39;</span>
 
-    <span class="c1"># Open the NetCDF dataset</span>
-    <span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">prec1871</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">][:]</span>
-    <span class="n">y</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">][:]</span>
+    <span class="c1"># Open the NetCDF dataset and read variable data</span>
+    <span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 
     <span class="c1"># Extract time variable and convert it to readable dates</span>
     <span class="n">time_var</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span>
@@ -977,6 +1031,8 @@
     <span class="n">cftime</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">time_var</span><span class="p">[:],</span> <span class="n">units</span><span class="o">=</span><span class="n">time_units</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="n">time_calendar</span><span class="p">)</span>
     
     <span class="c1"># Compute spatial resolution and raster transformation</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">][:]</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">][:]</span>
     <span class="n">dx</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">dy</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">transform</span> <span class="o">=</span> <span class="n">from_origin</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="n">dx</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="n">dy</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="o">-</span><span class="n">dy</span><span class="p">)</span>
@@ -1007,7 +1063,7 @@
     <span class="n">start_index</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cftime</span><span class="p">)</span> <span class="k">if</span> <span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="n">start_year</span><span class="p">)</span>
     <span class="n">end_index</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cftime</span><span class="p">)</span> <span class="k">if</span> <span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="n">end_year</span><span class="p">)</span> <span class="o">+</span> <span class="mi">12</span> <span class="c1"># Months</span>
     
-    <span class="c1"># Extract precipitation data for the specified range</span>
+    <span class="c1"># Extract precipitation data for the specified data (year) range</span>
     <span class="n">precipitation_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
     <span class="n">precipitation_data_subset</span> <span class="o">=</span> <span class="n">precipitation_data</span><span class="p">[</span><span class="n">start_index</span><span class="p">:</span><span class="n">end_index</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
         
@@ -1031,7 +1087,7 @@
             <span class="n">nodata</span> <span class="o">=</span> <span class="o">-</span><span class="mi">9999</span><span class="p">,</span>
             <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>        
         <span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">year_index</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">precipitation_data_subset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Writing bands from </span><span class="si">{</span><span class="n">start_year</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">end_year</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">year_index</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">precipitation_data_subset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Exporting merged GeoTIFF file from </span><span class="si">{</span><span class="n">start_year</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">end_year</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">):</span>
                 <span class="n">band_data</span> <span class="o">=</span> <span class="n">precipitation_data_subset</span><span class="p">[</span><span class="n">year_index</span><span class="p">,:,:]</span>
                 <span class="n">dt</span> <span class="o">=</span> <span class="n">cftime</span><span class="p">[</span><span class="n">start_index</span> <span class="o">+</span> <span class="n">year_index</span><span class="p">]</span>
                 <span class="n">band_desc</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -1045,8 +1101,8 @@
 <span class="c1"># Specify the year range to filter and combine data into a single GeoTIFF.</span>
 <span class="c1"># If no range is provided, the full dataset will be used.</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">main_export_merged_geotiff</span><span class="p">()</span>
-    <span class="n">main_export_merged_geotiff</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span><span class="mi">2020</span><span class="p">)</span>
+    <span class="n">main_export_merged_geotiff</span><span class="p">()</span> <span class="c1"># Export all the available data set</span>
+    <span class="n">main_export_merged_geotiff</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span><span class="mi">2020</span><span class="p">)</span> <span class="c1"># Export dataset defined by date (year) range</span>
 </pre></div>
 </div>
 </div>
@@ -1079,14 +1135,16 @@ Folder is not empty. Skipping export.
 <span class="sd">        merged (bool): Whether to generate merged geotiff or individual geotiffs (optional).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># File paths and variable names</span>
-    <span class="n">prec1871</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1871.v1.2.nc&#39;</span><span class="p">)</span>
+    <span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1871.v1.2.nc&#39;</span><span class="p">)</span>
     <span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;LAPrec1871&#39;</span>
 
     <span class="c1"># Open the NetCDF dataset</span>
-    <span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">prec1871</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> 
+    <span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Read x and y coordinate data</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">][:]</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;Y&#39;</span><span class="p">][:]</span>
-    
+
     <span class="c1"># Apply geographic filtering using the defined bounding box</span>
     <span class="k">if</span> <span class="n">bounding_box</span><span class="p">:</span>
         <span class="n">indices_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">x</span> <span class="o">&gt;=</span> <span class="n">bounding_box</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span> <span class="n">bounding_box</span><span class="p">[</span><span class="mi">2</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]</span>
@@ -1137,7 +1195,7 @@ Folder is not empty. Skipping export.
     <span class="n">start_index</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cftime</span><span class="p">)</span> <span class="k">if</span> <span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="n">start_year</span><span class="p">)</span>
     <span class="n">end_index</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cftime</span><span class="p">)</span> <span class="k">if</span> <span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">==</span> <span class="n">end_year</span><span class="p">)</span> <span class="o">+</span> <span class="mi">12</span> <span class="c1"># Months</span>
      
-    <span class="c1"># Extract precipitation data for the specified range</span>
+    <span class="c1"># Extract precipitation data for the specified data (year) range</span>
     <span class="n">precipitation_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
     <span class="n">precipitation_data_subset</span> <span class="o">=</span> <span class="n">precipitation_data</span><span class="p">[</span><span class="n">start_index</span><span class="p">:</span><span class="n">end_index</span><span class="p">,</span>
                                                    <span class="n">start_y</span><span class="p">:</span><span class="n">end_y</span><span class="p">,</span>
@@ -1163,7 +1221,7 @@ Folder is not empty. Skipping export.
             <span class="n">nodata</span> <span class="o">=</span> <span class="o">-</span><span class="mi">9999</span><span class="p">,</span>
             <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>        
         <span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">year_index</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">precipitation_data_subset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Writing bands from </span><span class="si">{</span><span class="n">start_year</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">end_year</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">year_index</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">precipitation_data_subset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Exporting merged GeoTIFF file from </span><span class="si">{</span><span class="n">start_year</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">end_year</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">):</span>
                 <span class="n">band_data</span> <span class="o">=</span> <span class="n">precipitation_data_subset</span><span class="p">[</span><span class="n">year_index</span><span class="p">,:,:]</span>
                 <span class="n">dt</span> <span class="o">=</span> <span class="n">cftime</span><span class="p">[</span><span class="n">start_index</span> <span class="o">+</span> <span class="n">year_index</span><span class="p">]</span>
                 <span class="n">band_desc</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -1176,7 +1234,7 @@ Folder is not empty. Skipping export.
         <span class="n">output_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">geotiff_folder</span><span class="p">,</span> <span class="s2">&quot;filtered_and_individual_geotiff&quot;</span><span class="p">)</span>
         <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">year_index</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">precipitation_data_subset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Exporting GeoTIFF files&quot;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">year_index</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">precipitation_data_subset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Exporting individual GeoTIFF files&quot;</span><span class="p">):</span>
             <span class="c1"># Retrieve the date for the current time slice</span>
             <span class="n">dt</span> <span class="o">=</span> <span class="n">cftime</span><span class="p">[</span><span class="n">start_index</span> <span class="o">+</span> <span class="n">year_index</span><span class="p">]</span>
             <span class="n">dt_full</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="si">:</span><span class="s2">04d</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">dt</span><span class="o">.</span><span class="n">day</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -1205,62 +1263,76 @@ Folder is not empty. Skipping export.
 
 <span class="c1"># Specify the year range to filter and combine data into a single GeoTIFF.</span>
 <span class="c1"># If no range is provided, the full dataset will be used.</span>
+<span class="c1"># If same start and end year is used for export, then old GeoTIFF file will be replaced.</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main_export_filtered_geotiff</span><span class="p">(</span><span class="n">bounding_box</span><span class="o">=</span><span class="n">kn_bounds_laea_adjusted</span><span class="p">,</span>
                                  <span class="n">start_year</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span>
                                  <span class="n">end_year</span><span class="o">=</span><span class="mi">2005</span><span class="p">,</span>
                                  <span class="n">merged</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># Export individual GeoTIFFs</span>
+    
     <span class="n">main_export_filtered_geotiff</span><span class="p">(</span><span class="n">bounding_box</span><span class="o">=</span><span class="n">kn_bounds_laea_adjusted</span><span class="p">,</span>
-                                 <span class="n">start_year</span><span class="o">=</span><span class="mi">1850</span><span class="p">,</span>
+                                 <span class="n">merged</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Export merged GeoTIFF</span>
+    
+    <span class="n">main_export_filtered_geotiff</span><span class="p">(</span><span class="n">bounding_box</span><span class="o">=</span><span class="n">kn_bounds_laea_adjusted</span><span class="p">,</span>
+                                 <span class="n">start_year</span><span class="o">=</span><span class="mi">1950</span><span class="p">,</span>
                                  <span class="n">end_year</span><span class="o">=</span><span class="mi">2005</span><span class="p">,</span>
                                  <span class="n">merged</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Export merged GeoTIFF</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting GeoTIFF files:   0%|                                                                                                                                                                                           | 0/72 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:   0%|                                                                                                                                                                                                     | 0/72 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting GeoTIFF files:  11%|███████████████████▉                                                                                                                                                               | 8/72 [00:00&lt;00:00, 78.58it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  12%|███████████████████████▋                                                                                                                                                                     | 9/72 [00:00&lt;00:00, 86.30it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting GeoTIFF files:  29%|███████████████████████████████████████████████████▋                                                                                                                             | 21/72 [00:00&lt;00:00, 104.16it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  32%|███████████████████████████████████████████████████████████▋                                                                                                                               | 23/72 [00:00&lt;00:00, 113.06it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting GeoTIFF files:  46%|█████████████████████████████████████████████████████████████████████████████████▏                                                                                               | 33/72 [00:00&lt;00:00, 110.87it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  50%|█████████████████████████████████████████████████████████████████████████████████████████████▌                                                                                             | 36/72 [00:00&lt;00:00, 118.96it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting GeoTIFF files:  62%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                                                  | 45/72 [00:00&lt;00:00, 105.50it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  67%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                                              | 48/72 [00:00&lt;00:00, 114.71it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting GeoTIFF files:  78%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                       | 56/72 [00:00&lt;00:00, 100.97it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  85%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍                            | 61/72 [00:00&lt;00:00, 118.13it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting GeoTIFF files:  93%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋            | 67/72 [00:00&lt;00:00, 101.65it/s]
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting GeoTIFF files: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 72/72 [00:00&lt;00:00, 102.47it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 72/72 [00:00&lt;00:00, 112.98it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Provided start year 1850 is earlier than the dataset range. Adjusting start year to 1871.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:   0%|                                                                                                                                                                                      | 0/1800 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing bands from 1871 to 2005:   0%|                                                                                                                                                                                 | 0/1620 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:  28%|███████████████████████████████████████████████▏                                                                                                                          | 499/1800 [00:00&lt;00:00, 4941.80it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing bands from 1871 to 2005:  33%|██████████████████████████████████████████████████████▍                                                                                                              | 534/1620 [00:00&lt;00:00, 5329.17it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:  55%|█████████████████████████████████████████████████████████████████████████████████████████████▉                                                                            | 994/1800 [00:00&lt;00:00, 3798.42it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing bands from 1871 to 2005:  66%|████████████████████████████████████████████████████████████████████████████████████████████████████████████                                                        | 1067/1620 [00:00&lt;00:00, 5103.63it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:  77%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▌                                      | 1390/1800 [00:00&lt;00:00, 3852.74it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing bands from 1871 to 2005:  97%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋    | 1578/1620 [00:00&lt;00:00, 5005.26it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:  99%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▌ | 1785/1800 [00:00&lt;00:00, 3578.96it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Writing bands from 1871 to 2005: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1620/1620 [00:00&lt;00:00, 5026.75it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1800/1800 [00:00&lt;00:00, 3724.82it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1950 to 2005:   0%|                                                                                                                                                                                       | 0/672 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1950 to 2005:  84%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎                           | 563/672 [00:00&lt;00:00, 5574.60it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1950 to 2005: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 672/672 [00:00&lt;00:00, 4690.18it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
@@ -1280,13 +1352,16 @@ Folder is not empty. Skipping export.
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
 
-<span class="k">def</span> <span class="nf">main_plt_plot</span><span class="p">(</span><span class="n">selected_year</span><span class="p">,</span> <span class="n">selected_month</span><span class="p">,</span> <span class="n">save</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">main_plt_plot</span><span class="p">(</span><span class="n">selected_year</span><span class="p">,</span>
+                  <span class="n">selected_month</span><span class="p">,</span>
+                  <span class="n">save</span><span class="p">):</span>
+    
     <span class="c1"># File paths and variable names</span>
-    <span class="n">prec1871</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1871.v1.2.nc&#39;</span><span class="p">)</span>
+    <span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1871.v1.2.nc&#39;</span><span class="p">)</span>
     <span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;LAPrec1871&#39;</span>
-
+    
     <span class="c1"># Open the NetCDF dataset</span>
-    <span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">prec1871</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
     <span class="n">lon</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">][:]</span>
     <span class="n">lat</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">][:]</span>
 
@@ -1369,17 +1444,72 @@ Folder is not empty. Skipping export.
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 
-<span class="c1"># Extract data for selected year and month</span>
-<span class="n">selected_year</span> <span class="o">=</span> <span class="s1">&#39;2020&#39;</span>
-<span class="n">selected_month</span> <span class="o">=</span> <span class="s1">&#39;08&#39;</span>
-
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">main_plt_plot</span><span class="p">(</span><span class="n">selected_year</span><span class="p">,</span> <span class="n">selected_month</span><span class="p">,</span> <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">main_plt_plot</span><span class="p">(</span><span class="n">selected_year</span><span class="o">=</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span>
+                  <span class="n">selected_month</span><span class="o">=</span><span class="s1">&#39;08&#39;</span><span class="p">,</span>
+                  <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">main_plt_plot</span><span class="p">(</span><span class="n">selected_year</span><span class="o">=</span><span class="s1">&#39;2020&#39;</span><span class="p">,</span>
+                  <span class="n">selected_month</span><span class="o">=</span><span class="s1">&#39;09&#39;</span><span class="p">,</span>
+                  <span class="n">save</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># for year in range(2000,2002):</span>
+    <span class="c1">#     for month in range(1,13):</span>
+    <span class="c1">#         main_plt_plot(selected_year=(f&quot;{year}&quot;),</span>
+    <span class="c1">#                     selected_month=(f&quot;{month:02d}&quot;),</span>
+    <span class="c1">#                     save=True)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <img alt="../../_images/b4cb61afad61af4de6357b363a5a2647edc40a1334fbd88b4b74e132f4ac5580.png" src="../../_images/b4cb61afad61af4de6357b363a5a2647edc40a1334fbd88b4b74e132f4ac5580.png" />
+<img alt="../../_images/6ce2aa02a26366c43c439544129301988f0165e7f99650031d7db038ccd641a2.png" src="../../_images/6ce2aa02a26366c43c439544129301988f0165e7f99650031d7db038ccd641a2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span><span class="s1">&#39;LAPrec1871_monthly_means.csv&#39;</span><span class="p">))</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Yearly_Sum&#39;</span><span class="p">])</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
+
+<span class="n">df_filtered</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="mi">2010</span><span class="p">:]</span>
+
+<span class="c1"># Create the heatmap</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span> <span class="c1">#, facecolor=&#39;#f1f1f1&#39;, edgecolor=&#39;k&#39;)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">df_filtered</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span><span class="mi">11</span><span class="p">),</span>
+    <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">annot_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;fontsize&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">},</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;.0f&quot;</span><span class="p">,</span>
+    <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Precipitation (</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s1">&#39;Units&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+              <span class="s2">&quot;ticks&quot;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">221</span><span class="p">,</span><span class="mi">20</span><span class="p">),</span>
+              <span class="s2">&quot;pad&quot;</span><span class="p">:</span> <span class="mf">0.015</span><span class="p">},</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">220</span>
+<span class="p">)</span>
+
+<span class="c1"># Customize x-axis with month names</span>
+<span class="n">month_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Jan&#39;</span><span class="p">,</span> <span class="s1">&#39;Feb&#39;</span><span class="p">,</span> <span class="s1">&#39;Mär&#39;</span><span class="p">,</span> <span class="s1">&#39;Apr&#39;</span><span class="p">,</span> <span class="s1">&#39;Mai&#39;</span><span class="p">,</span> <span class="s1">&#39;Jun&#39;</span><span class="p">,</span> <span class="s1">&#39;Jul&#39;</span><span class="p">,</span> <span class="s1">&#39;Aug&#39;</span><span class="p">,</span> <span class="s1">&#39;Sep&#39;</span><span class="p">,</span> <span class="s1">&#39;Okt&#39;</span><span class="p">,</span> <span class="s1">&#39;Nov&#39;</span><span class="p">,</span> <span class="s1">&#39;Dez&#39;</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">month_labels</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Add labels and title</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Monthly Average (Precipitation)&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Month&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="c1"># Show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d3bbbf2213e774b8855d5f70badca2fb67590ba83df042acbe843d6fc05785e5.png" src="../../_images/d3bbbf2213e774b8855d5f70badca2fb67590ba83df042acbe843d6fc05785e5.png" />
 </div>
 </div>
 </section>
