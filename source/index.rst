@@ -29,6 +29,7 @@ Welcome to the official documentation for CoKLIMAx II. Here you'll find everythi
   ./notebooks/kurs2/satellite-lake-water-temperature
   ./notebooks/kurs2/sis-health-vector
   ./notebooks/kurs2/sis-temperature-statistics
+  ./notebooks/kurs2/alpine-monthly-precipitation
 
 .. toctree::
   :maxdepth: 2
@@ -36,6 +37,14 @@ Welcome to the official documentation for CoKLIMAx II. Here you'll find everythi
 
   ./notebooks/kurs3/senthub_downloader
   .. ./notebooks/kurs3/sis-heat-and-cold-spells
+
+.. toctree::
+  :maxdepth: 2
+  :caption: Kurs Note Defined:
+
+  ./notebooks/kurs_not_defined/era5_land_hourly
+  ./notebooks/kurs_not_defined/era5_land_monthly
+  ./notebooks/kurs_not_defined/landsat_with_landsatxplore
 
 Before you begin
 ----------------

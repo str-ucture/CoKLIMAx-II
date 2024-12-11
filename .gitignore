@@ -9,10 +9,14 @@ source/secrets/
 **/cds_api
 
 # Data files
-*.nc
 *.zip
+*.tar
+
 *.csv
+
+*.nc
 *.tiff
 *.tif
-*.gif
+
 *.png
+*.gif
