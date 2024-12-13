@@ -11,7 +11,7 @@
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=3b187e9f" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=7fcdb88d" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -79,7 +79,19 @@
 <li class="toctree-l1"><a class="reference internal" href="era5_land_hourly.html">ERA5-Land Hourly Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="era5_land_monthly.html">ERA5-Land Monthly Averaged</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Landsat Dataset Downloader using Landsatxplorer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#this-notebook-searches-the-available-satellite-images-with-and-downloads-it-locally">This notebook searches the available satellite images with and downloads it locally.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#authentication">2.1 Authentication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#important-security-note">Important Security Note:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-format-of-the-credentials-file">Example Format of the Credentials File:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#search-for-the-available-scenes">2.2 Search for the available scenes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download-the-scenes">2.3 Download the scenes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extract-the-tar-file">2.4 Extract the tar file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#merge-rgb-bands-a-single-geotiff-file">3. Merge RGB bands a single GeoTIFF file</a></li>
 </ul>
 </li>
 </ul>
@@ -110,19 +122,71 @@
              
   <section id="landsat-dataset-downloader-using-landsatxplorer">
 <h1>Landsat Dataset Downloader using Landsatxplorer<a class="headerlink" href="#landsat-dataset-downloader-using-landsatxplorer" title="Link to this heading"></a></h1>
-<section id="this-notebook-searches-the-available-satellite-images-with-and-downloads-it-locally">
-<h2>This notebook searches the available satellite images with and downloads it locally.<a class="headerlink" href="#this-notebook-searches-the-available-satellite-images-with-and-downloads-it-locally" title="Link to this heading"></a></h2>
+<p><strong>landsatxplorer</strong> is a Python library designed for searching and downloading Landsat imagery from the USGS EarthExplorer platform. It allows users to query Landsat datasets by various parameters like location, date, and cloud cover, and download the corresponding images. This tool simplifies the process of accessing and working with satellite imagery for analysis and visualization in Python</p>
+<p><strong>Information on Library:</strong></p>
+<ul class="simple">
+<li><p>Author:</p></li>
+<li><p>Notebook Version: 1.3 (Updated: December 03, 2024)</p></li>
+</ul>
 <p>Although it is open-source, there are many limitations like:</p>
 <ul class="simple">
-<li><p>No filtering/clipping by bounds possible (The images needs to be post processed)</p></li>
-<li><p>With the current code, the satellite images are downloaded as .tar file. Also, each band is saved as a single GeoTiff file inside the tar file.</p></li>
+<li><p>Downloads satellite images as <strong>.tar</strong> files, with each band stored as a separate GeoTIFF.</p></li>
+<li><p>Lacks functionality to filter or clip images by bounding box, requiring post-processing.</p></li>
+<li><p>Outdated (last updated 3 years ago); installing it may disrupt other libraries. Use pip –upgrade libraryName if issues arise.</p></li>
 </ul>
-<p>Other functionalities still needs to be explored</p>
+<section id="specifying-the-paths-and-working-directories">
+<h2>1. Specifying the paths and working directories<a class="headerlink" href="#specifying-the-paths-and-working-directories" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="sd">&#39;&#39;&#39; ---- Hier die Verzeichnisse angeben ---- &#39;&#39;&#39;</span>
+<span class="n">download_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\landsatxplorer\download&quot;</span>
+<span class="n">working_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\landsatxplorer\working&quot;</span>
+<span class="n">geotiff_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\landsatxplorer\geotiff&quot;</span>
+<span class="n">csv_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\landsatxplorer\csv&quot;</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\landsatxplorer\output&quot;</span>
+<span class="sd">&#39;&#39;&#39; ----- Ende der Eingaben ---- &#39;&#39;&#39;</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">geotiff_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="download-and-extract-dataset">
+<h2>2. Download and Extract Dataset<a class="headerlink" href="#download-and-extract-dataset" title="Link to this heading"></a></h2>
+<section id="authentication">
+<h3>2.1 Authentication<a class="headerlink" href="#authentication" title="Link to this heading"></a></h3>
+<p>To authenticate with the USGS API, follow these steps:</p>
+<ol class="arabic simple">
+<li><p><strong>Register</strong>: Create an account at the <a class="reference external" href="https://ers.cr.usgs.gov/register/">USGS registration page</a>.</p></li>
+<li><p><strong>Obtain Credentials</strong>: After registering, SAVE your credentials as a <code class="docutils literal notranslate"><span class="pre">.json</span></code> file.</p></li>
+</ol>
+<section id="important-security-note">
+<h4>Important Security Note:<a class="headerlink" href="#important-security-note" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Keep the credentials file private</strong>: Ensure that the <code class="docutils literal notranslate"><span class="pre">.json</span></code> file containing your username and password is stored securely and cannot be accessed by unauthorized users.</p></li>
+<li><p><strong>Permissions</strong>: Do not upload the credentials file to public repositories or share it with others.</p></li>
+</ul>
+</section>
+<section id="example-format-of-the-credentials-file">
+<h4>Example Format of the Credentials File:<a class="headerlink" href="#example-format-of-the-credentials-file" title="Link to this heading"></a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">.json</span></code> file should have the following format:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your_username&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your_password&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">landsatxplore.api</span> <span class="kn">import</span> <span class="n">API</span>
-<span class="kn">from</span> <span class="nn">landsatxplore.earthexplorer</span> <span class="kn">import</span> <span class="n">EarthExplorer</span>
 
 <span class="c1"># Load credentials from a local JSON file</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;G:/usgs.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
@@ -130,67 +194,544 @@
 
 <span class="n">username</span> <span class="o">=</span> <span class="n">credentials</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span>
 <span class="n">password</span> <span class="o">=</span> <span class="n">credentials</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="search-for-the-available-scenes">
+<h3>2.2 Search for the available scenes<a class="headerlink" href="#search-for-the-available-scenes" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Search for Landsat TM scenes</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
+
 <span class="n">scenes</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
-    <span class="n">dataset</span><span class="o">=</span><span class="s1">&#39;landsat_tm_c2_l1&#39;</span><span class="p">,</span>
-    <span class="n">latitude</span><span class="o">=</span><span class="mf">50.85</span><span class="p">,</span>
-    <span class="n">longitude</span><span class="o">=-</span><span class="mf">4.35</span><span class="p">,</span>
-    <span class="n">start_date</span><span class="o">=</span><span class="s1">&#39;2000-01-01&#39;</span><span class="p">,</span>
-    <span class="n">end_date</span><span class="o">=</span><span class="s1">&#39;2000-10-01&#39;</span><span class="p">,</span>
+    <span class="n">dataset</span><span class="o">=</span><span class="s1">&#39;landsat_ot_c2_l2&#39;</span><span class="p">,</span>
+    <span class="n">latitude</span><span class="o">=</span><span class="mf">47.6780</span><span class="p">,</span>
+    <span class="n">longitude</span><span class="o">=</span><span class="mf">9.1737</span><span class="p">,</span>
+    <span class="n">start_date</span><span class="o">=</span><span class="s1">&#39;2020-01-01&#39;</span><span class="p">,</span>
+    <span class="n">end_date</span><span class="o">=</span><span class="s1">&#39;2020-10-01&#39;</span><span class="p">,</span>
     <span class="n">max_cloud_cover</span><span class="o">=</span><span class="mi">10</span>
 <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">scenes</span><span class="p">)</span><span class="si">}</span><span class="s2"> scenes found.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">scenes</span><span class="p">)</span><span class="si">}</span><span class="s2"> scenes found.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3 scenes found.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8 scenes found.
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Process the result</span>
-<span class="k">for</span> <span class="n">scene</span> <span class="ow">in</span> <span class="n">scenes</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">scene</span><span class="p">[</span><span class="s1">&#39;entity_id&#39;</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">scene</span><span class="p">[</span><span class="s1">&#39;acquisition_date&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LT52040252000200FUI00
-2000-07-18
-LT52040252000072FUI00
-2000-03-12
-LT52030252000033FUI02
-2000-02-02
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>Example code</strong></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># from landsatxplore.earthexplorer import EarthExplorer</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="c1"># ee = EarthExplorer(username, password)</span>
-<span class="c1"># ee.download(&#39;LT52040252000200FUI00&#39;, output_dir=&#39;./data&#39;)</span>
-<span class="c1"># ee.logout()</span>
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">scene</span> <span class="ow">in</span> <span class="n">scenes</span><span class="p">:</span>
+    <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;entity_id&quot;</span><span class="p">:</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&quot;entity_id&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;display_id&quot;</span><span class="p">:</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&quot;display_id&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;acq_date&quot;</span><span class="p">:</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&quot;acquisition_date&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;scene_cloud_cover&quot;</span><span class="p">:</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&quot;scene_cloud_cover&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;land_cloud_cover&quot;</span><span class="p">:</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&quot;land_cloud_cover&quot;</span><span class="p">],</span>
+            <span class="c1"># &quot;image_quality&quot;: scene[&quot;image_quality&quot;],</span>
+            <span class="c1"># &quot;day-night_indicator&quot;: scene[&quot;day-night_indicator&quot;]</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>entity_id</th>
+      <th>display_id</th>
+      <th>acq_date</th>
+      <th>scene_cloud_cover</th>
+      <th>land_cloud_cover</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>LC81950272020256LGN00</td>
+      <td>LC08_L2SP_195027_20200912_20200919_02_T1</td>
+      <td>2020-09-12</td>
+      <td>9.18</td>
+      <td>9.18</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>LC81940272020233LGN00</td>
+      <td>LC08_L2SP_194027_20200820_20200905_02_T1</td>
+      <td>2020-08-20</td>
+      <td>5.51</td>
+      <td>5.51</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>LC81950272020224LGN00</td>
+      <td>LC08_L2SP_195027_20200811_20200918_02_T1</td>
+      <td>2020-08-11</td>
+      <td>8.02</td>
+      <td>8.02</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>LC81950272020176LGN00</td>
+      <td>LC08_L2SP_195027_20200624_20200824_02_T1</td>
+      <td>2020-06-24</td>
+      <td>3.12</td>
+      <td>3.12</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LC81940272020153LGN00</td>
+      <td>LC08_L2SP_194027_20200601_20200824_02_T1</td>
+      <td>2020-06-01</td>
+      <td>5.08</td>
+      <td>5.08</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>LC81950272020128LGN00</td>
+      <td>LC08_L2SP_195027_20200507_20200820_02_T1</td>
+      <td>2020-05-07</td>
+      <td>1.80</td>
+      <td>1.80</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>LC81950272020096LGN00</td>
+      <td>LC08_L2SP_195027_20200405_20200822_02_T1</td>
+      <td>2020-04-05</td>
+      <td>2.01</td>
+      <td>2.01</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>LC81950272020016LGN00</td>
+      <td>LC08_L2SP_195027_20200116_20200823_02_T1</td>
+      <td>2020-01-16</td>
+      <td>1.56</td>
+      <td>1.56</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">folium</span>
+<span class="kn">from</span> <span class="nn">shapely</span> <span class="kn">import</span> <span class="n">wkt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s2">&quot;turbo&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">47.5</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">],</span>
+               <span class="n">zoom_start</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+               <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span>
+               <span class="n">scrollWheelZoom</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">scene</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scenes</span><span class="p">):</span>
+    <span class="n">entity_id</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s1">&#39;entity_id&#39;</span><span class="p">]</span>
+    <span class="n">polygon_wkt</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&quot;spatial_coverage&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">polygon_wkt</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">polygon</span> <span class="o">=</span> <span class="n">wkt</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">polygon_wkt</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">polygon</span> <span class="o">=</span> <span class="n">polygon_wkt</span>
+
+    <span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">c</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cmap</span><span class="p">(</span><span class="n">i</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]]</span>
+    <span class="n">polygon_fg</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">FeatureGroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;str</span><span class="si">{</span><span class="n">entity_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">folium</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span>
+        <span class="n">locations</span><span class="o">=</span><span class="p">[(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span> <span class="k">for</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span> <span class="ow">in</span> <span class="n">polygon</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">coords</span><span class="p">],</span>
+        <span class="n">color</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;rgb(</span><span class="si">{</span><span class="n">color</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">color</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">color</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+        <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">polygon_fg</span><span class="p">)</span>
+
+    <span class="n">polygon_fg</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="n">folium</span><span class="o">.</span><span class="n">LayerControl</span><span class="p">()</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    
+        &lt;script&gt;
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        &lt;/script&gt;
+    
+    &lt;style&gt;html, body {width: 100%;height: 100%;margin: 0;padding: 0;}&lt;/style&gt;
+    &lt;style&gt;#map {position:absolute;top:0;bottom:0;right:0;left:0;}&lt;/style&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_6bd9b735024b0b0547e06e55b1a247fe {
+                    position: relative;
+                    width: 100.0%;
+                    height: 450.0px;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+        
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_6bd9b735024b0b0547e06e55b1a247fe&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_6bd9b735024b0b0547e06e55b1a247fe = L.map(
+                &quot;map_6bd9b735024b0b0547e06e55b1a247fe&quot;,
+                {
+                    center: [47.5, 8.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  &quot;maxBounds&quot;: null,
+  &quot;zoom&quot;: 7,
+  &quot;zoomControl&quot;: true,
+  &quot;preferCanvas&quot;: false,
+  &quot;scrollWheelZoom&quot;: false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_417b0a6b92d707da6e9aa8ef85931e85 = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 19,
+  &quot;maxNativeZoom&quot;: 19,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_417b0a6b92d707da6e9aa8ef85931e85.addTo(map_6bd9b735024b0b0547e06e55b1a247fe);
+        
+    
+            var feature_group_19a2f1e9ac50f38bed57f8314f93ca24 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var polygon_5583cb8d67ec858d3b8b6dbad0d48d59 = L.polygon(
+                [[46.80577, 6.4291], [46.36914, 8.84615], [48.07038, 9.54652], [48.51237, 7.05177], [46.80577, 6.4291]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(48, 18, 59)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(48, 18, 59)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_19a2f1e9ac50f38bed57f8314f93ca24);
+        
+    
+            feature_group_19a2f1e9ac50f38bed57f8314f93ca24.addTo(map_6bd9b735024b0b0547e06e55b1a247fe);
+        
+    
+            var feature_group_59810bb19b1d208166800c5818eacc1c = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var polygon_fe6d4fc7deab7c392f55473635be01fd = L.polygon(
+                [[46.8056, 7.99131], [46.36892, 10.40793], [48.07023, 11.10851], [48.51226, 8.61421], [46.8056, 7.99131]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(61, 55, 145)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(61, 55, 145)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_59810bb19b1d208166800c5818eacc1c);
+        
+    
+            feature_group_59810bb19b1d208166800c5818eacc1c.addTo(map_6bd9b735024b0b0547e06e55b1a247fe);
+        
+    
+            var feature_group_f448a353d95c6ae923b20780203bf3bb = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var polygon_98c17a8c5c8c6801963c41587c3c7b5d = L.polygon(
+                [[46.80565, 6.45436], [46.36907, 8.8704], [48.07049, 9.571], [48.51243, 7.07728], [46.80565, 6.45436]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(69, 91, 206)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(69, 91, 206)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_f448a353d95c6ae923b20780203bf3bb);
+        
+    
+            feature_group_f448a353d95c6ae923b20780203bf3bb.addTo(map_6bd9b735024b0b0547e06e55b1a247fe);
+        
+    
+            var feature_group_c82f00e01f79973c9e5b83ad174ba91b = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var polygon_be8695a24096a1910f69edc743025266 = L.polygon(
+                [[46.80596, 6.4331], [46.3692, 8.84952], [48.07053, 9.5503], [48.51266, 7.05617], [46.80596, 6.4331]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(70, 127, 246)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(70, 127, 246)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_c82f00e01f79973c9e5b83ad174ba91b);
+        
+    
+            feature_group_c82f00e01f79973c9e5b83ad174ba91b.addTo(map_6bd9b735024b0b0547e06e55b1a247fe);
+        
+    
+            var feature_group_2eba96b822f4b69073544f5282c42bf6 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var polygon_36891e8ae185c49ffa9c49bd13ac81ca = L.polygon(
+                [[46.80604, 7.99023], [46.3691, 10.40725], [48.07029, 11.10803], [48.5126, 8.6133], [46.80604, 7.99023]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(59, 160, 252)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(59, 160, 252)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_2eba96b822f4b69073544f5282c42bf6);
+        
+    
+            feature_group_2eba96b822f4b69073544f5282c42bf6.addTo(map_6bd9b735024b0b0547e06e55b1a247fe);
+        
+    
+            var feature_group_230f9cb609f70328a4924d5f5da9f734 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var polygon_43562bb22c6da519403027b86915ab8f = L.polygon(
+                [[46.80476, 6.3759], [46.3697, 8.79304], [48.07143, 9.49114], [48.5118, 6.99625], [46.80476, 6.3759]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(35, 194, 228)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(35, 194, 228)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_230f9cb609f70328a4924d5f5da9f734);
+        
+    
+            feature_group_230f9cb609f70328a4924d5f5da9f734.addTo(map_6bd9b735024b0b0547e06e55b1a247fe);
+        
+    
+            var feature_group_a6c4137d37c95b3a181550968ace9d4e = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var polygon_1121d05eb5898324a1ade5d17def0add = L.polygon(
+                [[46.80459, 6.40358], [46.36947, 8.82002], [48.07129, 9.51843], [48.51172, 7.02425], [46.80459, 6.40358]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(23, 220, 194)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(23, 220, 194)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_a6c4137d37c95b3a181550968ace9d4e);
+        
+    
+            feature_group_a6c4137d37c95b3a181550968ace9d4e.addTo(map_6bd9b735024b0b0547e06e55b1a247fe);
+        
+    
+            var feature_group_910b7173752267cae4158fb26656c0eb = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var polygon_c334122ff570cfdcc24ed9f87101957f = L.polygon(
+                [[46.80518, 6.43038], [46.36934, 8.84755], [48.07084, 9.54674], [48.512, 7.05183], [46.80518, 6.43038]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(44, 239, 157)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(44, 239, 157)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_910b7173752267cae4158fb26656c0eb);
+        
+    
+            feature_group_910b7173752267cae4158fb26656c0eb.addTo(map_6bd9b735024b0b0547e06e55b1a247fe);
+        
+    
+            var layer_control_1be2f2126784c3956313569542c78b6b_layers = {
+                base_layers : {
+                    &quot;openstreetmap&quot; : tile_layer_417b0a6b92d707da6e9aa8ef85931e85,
+                },
+                overlays :  {
+                    &quot;strLC81950272020256LGN00&quot; : feature_group_19a2f1e9ac50f38bed57f8314f93ca24,
+                    &quot;strLC81940272020233LGN00&quot; : feature_group_59810bb19b1d208166800c5818eacc1c,
+                    &quot;strLC81950272020224LGN00&quot; : feature_group_f448a353d95c6ae923b20780203bf3bb,
+                    &quot;strLC81950272020176LGN00&quot; : feature_group_c82f00e01f79973c9e5b83ad174ba91b,
+                    &quot;strLC81940272020153LGN00&quot; : feature_group_2eba96b822f4b69073544f5282c42bf6,
+                    &quot;strLC81950272020128LGN00&quot; : feature_group_230f9cb609f70328a4924d5f5da9f734,
+                    &quot;strLC81950272020096LGN00&quot; : feature_group_a6c4137d37c95b3a181550968ace9d4e,
+                    &quot;strLC81950272020016LGN00&quot; : feature_group_910b7173752267cae4158fb26656c0eb,
+                },
+            };
+            let layer_control_1be2f2126784c3956313569542c78b6b = L.control.layers(
+                layer_control_1be2f2126784c3956313569542c78b6b_layers.base_layers,
+                layer_control_1be2f2126784c3956313569542c78b6b_layers.overlays,
+                {
+  &quot;position&quot;: &quot;topright&quot;,
+  &quot;collapsed&quot;: true,
+  &quot;autoZIndex&quot;: true,
+}
+            ).addTo(map_6bd9b735024b0b0547e06e55b1a247fe);
+
+        
+&lt;/script&gt;
+&lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
+</div>
+</section>
+<section id="download-the-scenes">
+<h3>2.3 Download the scenes<a class="headerlink" href="#download-the-scenes" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">landsatxplore.earthexplorer</span> <span class="kn">import</span> <span class="n">EarthExplorer</span>
+
+<span class="n">ee</span> <span class="o">=</span> <span class="n">EarthExplorer</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="n">identifier</span> <span class="o">=</span> <span class="s1">&#39;LC08_L2SP_195027_20200507_20200820_02_T1&#39;</span>
+<span class="n">download_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="s2">.tar&quot;</span>
+<span class="n">download_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">download_filename</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">download_filepath</span><span class="p">):</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="n">identifier</span><span class="p">,</span>
+                <span class="n">output_dir</span><span class="o">=</span><span class="n">download_folder</span><span class="p">,</span>
+                <span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The dataset, </span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="s2">, is already downloaded. Skipping Download.&quot;</span><span class="p">)</span>
+
+<span class="n">api</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
+<span class="n">ee</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The dataset, LC08_L2SP_195027_20200507_20200820_02_T1, is already downloaded. Skipping Download.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="extract-the-tar-file">
+<h3>2.4 Extract the tar file<a class="headerlink" href="#extract-the-tar-file" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tarfile</span>
+
+<span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">download_filepath</span><span class="p">)</span> <span class="k">as</span> <span class="n">tar</span><span class="p">:</span>
+    <span class="n">tar</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">working_folder</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="merge-rgb-bands-a-single-geotiff-file">
+<h2>3. Merge RGB bands a single GeoTIFF file<a class="headerlink" href="#merge-rgb-bands-a-single-geotiff-file" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">file_list</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">working_folder</span><span class="p">)</span>
+<span class="n">file_list</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;LC08_L2SP_195027_20200507_20200820_02_T1_ANG.txt&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_MTL.json&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_MTL.txt&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_MTL.xml&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_QA_PIXEL.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_QA_RADSAT.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_SR_B1.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_SR_B2.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_SR_B3.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_SR_B4.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_SR_B5.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_SR_B6.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_SR_B7.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_SR_QA_AEROSOL.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_SR_stac.json&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_ST_ATRAN.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_ST_B10.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_ST_CDIST.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_ST_DRAD.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_ST_EMIS.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_ST_EMSD.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_ST_QA.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_ST_stac.json&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_ST_TRAD.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_ST_URAD.TIF&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_thumb_large.jpeg&#39;,
+ &#39;LC08_L2SP_195027_20200507_20200820_02_T1_thumb_small.jpeg&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import rasterio</span>
+<span class="c1"># import os</span>
+<span class="c1"># from rasterio.merge import merge</span>
+
+<span class="c1"># files = [</span>
+<span class="c1">#     &#39;./data/landsatxplorer/working/LC08_L2SP_195027_20200507_20200820_02_T1_SR_B2.TIF&#39;,</span>
+<span class="c1">#     &#39;./data/landsatxplorer/working/LC08_L2SP_195027_20200507_20200820_02_T1_SR_B3.TIF&#39;,</span>
+<span class="c1">#     &#39;./data/landsatxplorer/working/LC08_L2SP_195027_20200507_20200820_02_T1_SR_B4.TIF&#39;</span>
+<span class="c1"># ]</span>
+
+<span class="c1"># datasets = [rasterio.open(f) for f in files]</span>
+
+<span class="c1"># merged_data, merged_transform = merge(datasets)</span>
+
+<span class="c1"># metadata = datasets[0].meta</span>
+<span class="c1"># metadata.update({</span>
+<span class="c1">#     &#39;count&#39;: len(datasets),  # Number of bands in the merged file</span>
+<span class="c1">#     &#39;transform&#39;: merged_transform</span>
+<span class="c1"># })</span>
+
+<span class="c1"># output_file = r&#39;G:/merged.tif&#39;</span>
+
+<span class="c1"># with rasterio.open(output_file, &#39;w&#39;, **metadata) as dst:</span>
+<span class="c1">#     # Loop through each band in the merged data</span>
+<span class="c1">#     for i in range(len(datasets)):</span>
+<span class="c1">#         dst.write(merged_data[i], i+1)  # i+1 because band indexes in GeoTIFF start from 1</span>
+
+<span class="c1"># print(f&quot;Merged GeoTIFF file saved as {output_file}&quot;)</span>
 </pre></div>
 </div>
 </div>

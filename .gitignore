@@ -4,6 +4,10 @@ myenv/
 env/
 cds_venv/
 
+# Ignore everything in the folder and add the folder
+source/notebooks/kurs_not_defined/data/landsatxplorer/working/*
+!source/notebooks/kurs_not_defined/data/landsatxplorer/working/*
+
 
 # Secrets and API keys
 source/secrets/

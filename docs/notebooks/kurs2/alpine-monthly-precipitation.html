@@ -11,7 +11,7 @@
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=3b187e9f" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=7fcdb88d" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -228,17 +228,17 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 17:26:08,897 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-12 15:02:30,152 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
 [feedback](https://jira.ecmwf.int/plugins/servlet/desk/portal/1/create/202) is key to improve the user experience on the new CDS for the benefit of everyone. Thank you.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 17:26:08,899 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-12 15:02:30,157 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 17:26:08,900 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-12 15:02:30,159 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-11 17:26:08,900 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-12 15:02:30,160 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset already downloaded.
@@ -306,9 +306,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;LAPrec1871.v1.2.nc&#39;, &#39;LAPrec1901.v1.2.nc&#39;]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Available variables: [&#39;X&#39;, &#39;Y&#39;, &#39;time&#39;, &#39;LAPrec1871&#39;, &#39;lon&#39;, &#39;lat&#39;, &#39;dem&#39;, &#39;lambert_azimuthal_equal_area&#39;]
+Available variables: [&#39;X&#39;, &#39;Y&#39;, &#39;time&#39;, &#39;LAPrec1871&#39;, &#39;lon&#39;, &#39;lat&#39;, &#39;dem&#39;, &#39;lambert_azimuthal_equal_area&#39;]
 </pre></div>
 </div>
 </div>
@@ -508,21 +506,21 @@
     <span class="n">filtered_df</span> <span class="o">=</span> <span class="n">filtered_data</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
     
     <span class="c1"># Generate the CSV file path</span>
-    <span class="n">csv_file_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s2">_filtered_data.csv&quot;</span>
-    <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">csv_file_name</span><span class="p">)</span>
+    <span class="n">csv_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s2">_filtered_data.csv&quot;</span>
+    <span class="n">csv_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">csv_filename</span><span class="p">)</span>
 
     <span class="c1"># Export the filtered data to a CSV file if it doesn&#39;t already exist</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">csv_path</span><span class="p">):</span>
-        <span class="n">filtered_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filtered data exported successfully to </span><span class="si">{</span><span class="n">csv_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">):</span>
+        <span class="n">filtered_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Filtered data exported successfully to </span><span class="si">{</span><span class="n">csv_filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File already exists at </span><span class="si">{</span><span class="n">csv_path</span><span class="si">}</span><span class="s2">. Skipping export.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File already exists at </span><span class="si">{</span><span class="n">csv_filepath</span><span class="si">}</span><span class="s2">. Skipping export.&quot;</span><span class="p">)</span>
 
 <span class="c1"># Modify display format for numbers in the DataFrames</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
 
 <span class="c1"># Display the filtered DataFrame</span>
-<span class="n">filtered_df</span>
+<span class="n">filtered_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -590,51 +588,8 @@
       <td>4,255,000.00</td>
       <td>37.00</td>
     </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>21595</th>
-      <td>2020-12-01</td>
-      <td>2,735,000.00</td>
-      <td>4,255,000.00</td>
-      <td>54.00</td>
-    </tr>
-    <tr>
-      <th>21596</th>
-      <td>2020-12-01</td>
-      <td>2,735,000.00</td>
-      <td>4,260,000.00</td>
-      <td>52.00</td>
-    </tr>
-    <tr>
-      <th>21597</th>
-      <td>2020-12-01</td>
-      <td>2,740,000.00</td>
-      <td>4,250,000.00</td>
-      <td>55.00</td>
-    </tr>
-    <tr>
-      <th>21598</th>
-      <td>2020-12-01</td>
-      <td>2,740,000.00</td>
-      <td>4,255,000.00</td>
-      <td>56.00</td>
-    </tr>
-    <tr>
-      <th>21599</th>
-      <td>2020-12-01</td>
-      <td>2,740,000.00</td>
-      <td>4,260,000.00</td>
-      <td>56.00</td>
-    </tr>
   </tbody>
 </table>
-<p>21600 rows × 4 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -672,15 +627,15 @@
 <span class="n">pivot_table</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;Yearly_Sum&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pivot_table</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Generate the output file path</span>
-<span class="n">csv_file_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s2">_monthly_means.csv&quot;</span>
-<span class="n">csv_path_area_mean</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">csv_file_name</span><span class="p">)</span>
+<span class="n">csv_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s2">_monthly_means.csv&quot;</span>
+<span class="n">csv_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">csv_filename</span><span class="p">)</span>
 
 <span class="c1"># Export the pivot table to CSV if it doesn&#39;t already exist</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">csv_path_area_mean</span><span class="p">):</span>
-    <span class="n">pivot_table</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_path_area_mean</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Monthly mean data exported successfully to </span><span class="si">{</span><span class="n">csv_path_area_mean</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">):</span>
+    <span class="n">pivot_table</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Monthly mean data exported successfully to </span><span class="si">{</span><span class="n">csv_filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File already exists at </span><span class="si">{</span><span class="n">csv_path_area_mean</span><span class="si">}</span><span class="s2">. Skipping export.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File already exists at </span><span class="si">{</span><span class="n">csv_filepath</span><span class="si">}</span><span class="s2">. Skipping export.&quot;</span><span class="p">)</span>
 
 <span class="c1"># Display the pivot table for verification</span>
 <span class="n">pivot_table</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -1108,7 +1063,9 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Folder is not empty. Skipping export.
-Folder is not empty. Skipping export.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Folder is not empty. Skipping export.
 </pre></div>
 </div>
 </div>
@@ -1281,58 +1238,112 @@ Folder is not empty. Skipping export.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:   0%|                                                                                                                                                                                                     | 0/72 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:   0%|                                                                                                                                                                         | 0/72 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  12%|███████████████████████▋                                                                                                                                                                     | 9/72 [00:00&lt;00:00, 86.30it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:   1%|██▏                                                                                                                                                              | 1/72 [00:00&lt;00:13,  5.39it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  32%|███████████████████████████████████████████████████████████▋                                                                                                                               | 23/72 [00:00&lt;00:00, 113.06it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:   8%|█████████████▍                                                                                                                                                   | 6/72 [00:00&lt;00:02, 23.15it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  50%|█████████████████████████████████████████████████████████████████████████████████████████████▌                                                                                             | 36/72 [00:00&lt;00:00, 118.96it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  15%|████████████████████████▍                                                                                                                                       | 11/72 [00:00&lt;00:01, 32.38it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  67%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋                                                              | 48/72 [00:00&lt;00:00, 114.71it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  22%|███████████████████████████████████▌                                                                                                                            | 16/72 [00:00&lt;00:01, 37.33it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  85%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍                            | 61/72 [00:00&lt;00:00, 118.13it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  29%|██████████████████████████████████████████████▋                                                                                                                 | 21/72 [00:00&lt;00:01, 38.36it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 72/72 [00:00&lt;00:00, 112.98it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  36%|█████████████████████████████████████████████████████████▊                                                                                                      | 26/72 [00:00&lt;00:01, 38.55it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  42%|██████████████████████████████████████████████████████████████████▋                                                                                             | 30/72 [00:00&lt;00:01, 38.47it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  47%|███████████████████████████████████████████████████████████████████████████▌                                                                                    | 34/72 [00:00&lt;00:01, 37.49it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  53%|████████████████████████████████████████████████████████████████████████████████████▍                                                                           | 38/72 [00:01&lt;00:00, 37.38it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  58%|█████████████████████████████████████████████████████████████████████████████████████████████▎                                                                  | 42/72 [00:01&lt;00:00, 35.99it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  64%|██████████████████████████████████████████████████████████████████████████████████████████████████████▏                                                         | 46/72 [00:01&lt;00:00, 34.68it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  69%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████                                                 | 50/72 [00:01&lt;00:00, 33.62it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  75%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████                                        | 54/72 [00:01&lt;00:00, 29.08it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  81%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▉                               | 58/72 [00:01&lt;00:00, 28.77it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  85%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▌                        | 61/72 [00:01&lt;00:00, 28.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  90%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▍               | 65/72 [00:02&lt;00:00, 29.01it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files:  96%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎      | 69/72 [00:02&lt;00:00, 30.25it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting individual GeoTIFF files: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 72/72 [00:02&lt;00:00, 32.08it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:   0%|                                                                                                                                                                                      | 0/1800 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:   0%|                                                                                                                                                          | 0/1800 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:  28%|███████████████████████████████████████████████▏                                                                                                                          | 499/1800 [00:00&lt;00:00, 4941.80it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:  12%|████████████████▌                                                                                                                             | 210/1800 [00:00&lt;00:00, 2099.46it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:  55%|█████████████████████████████████████████████████████████████████████████████████████████████▉                                                                            | 994/1800 [00:00&lt;00:00, 3798.42it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:  23%|█████████████████████████████████▏                                                                                                            | 421/1800 [00:00&lt;00:00, 2098.53it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:  77%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▌                                      | 1390/1800 [00:00&lt;00:00, 3852.74it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:  35%|█████████████████████████████████████████████████▊                                                                                            | 631/1800 [00:00&lt;00:00, 2095.44it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:  99%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▌ | 1785/1800 [00:00&lt;00:00, 3578.96it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:  47%|██████████████████████████████████████████████████████████████████▎                                                                           | 841/1800 [00:00&lt;00:00, 2048.88it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1800/1800 [00:00&lt;00:00, 3724.82it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:  58%|██████████████████████████████████████████████████████████████████████████████████                                                           | 1047/1800 [00:00&lt;00:00, 1893.98it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:  69%|█████████████████████████████████████████████████████████████████████████████████████████████████                                            | 1239/1800 [00:00&lt;00:00, 1678.80it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:  78%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████▌                              | 1412/1800 [00:00&lt;00:00, 1636.23it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:  89%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▋               | 1604/1800 [00:00&lt;00:00, 1716.07it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020:  99%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎ | 1779/1800 [00:00&lt;00:00, 1691.73it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1871 to 2020: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1800/1800 [00:01&lt;00:00, 1793.22it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1950 to 2005:   0%|                                                                                                                                                                                       | 0/672 [00:00&lt;?, ?it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1950 to 2005:   0%|                                                                                                                                                           | 0/672 [00:00&lt;?, ?it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1950 to 2005:  84%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▎                           | 563/672 [00:00&lt;00:00, 5574.60it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1950 to 2005:  37%|████████████████████████████████████████████████████▌                                                                                          | 247/672 [00:00&lt;00:00, 2453.55it/s]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1950 to 2005: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 672/672 [00:00&lt;00:00, 4690.18it/s]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1950 to 2005:  77%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████▏                                | 518/672 [00:00&lt;00:00, 2594.53it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Exporting merged GeoTIFF file from 1950 to 2005: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 672/672 [00:00&lt;00:00, 2455.11it/s]
 </pre></div>
 </div>
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
