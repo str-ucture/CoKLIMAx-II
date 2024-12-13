@@ -36,5 +36,8 @@ source/secrets/
 *.tiff
 *.tif
 
+# Image files
 *.png
+# add all png files inside docs
+!docs/**/*.png
 *.gif
