@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=7fcdb88d" />
 
   
@@ -24,7 +24,8 @@
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Landsat Dataset Downloader using Landsatxplorer" href="landsat_with_landsatxplore.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,12 +50,12 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Erste Schritte:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../rst_intro/einf%C3%BChrung_cds.html">Der Copernicus Climate Data Store (CDS)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../rst_intro/einf%C3%BChrung_jupyter_notebooks.html">Einführung in die CoKLIMAx II Jupyter Notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../rst_intro/einf%C3%BChrung_kurz_elemente.html">Die Kurz Elemente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_intro/einfuhrung_cds.html">Der Copernicus Climate Data Store (CDS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_intro/einfuhrung_jupyter.html">Die CoKLIMAx II Jupyter Notebook Bibliothek</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_intro/kurz_elemente.html">Die Kurz Elemente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_intro/software_und_kenntnisse.html">Required Software and Knowledge</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../rst_intro/notwendige_software_und_kenntnisse.html">Required Software and Knowledge</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../setup_verification.html">Setup Verification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../rst_intro/introduction_cds.html">The Copernicus Climate Data Store (CDS)</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kurs 1:</span></p>
 <ul>
@@ -74,10 +75,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../kurs3/senthub_downloader.html">SentinelHub Downloader</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kurs Note Defined:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="era5_land_hourly.html">ERA5-Land Hourly Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="era5_land_monthly.html">ERA5-Land Monthly Averaged</a></li>
 <li class="toctree-l1"><a class="reference internal" href="landsat_with_landsatxplore.html">Landsat Dataset Downloader using Landsatxplorer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Climate Indicators for Europe</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#authentication">2.1 Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#request-definition-and-download">2.2 Request Definition and Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -255,17 +266,17 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-16 10:45:57,699 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-17 10:14:57,786 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
 [feedback](https://jira.ecmwf.int/plugins/servlet/desk/portal/1/create/202) is key to improve the user experience on the new CDS for the benefit of everyone. Thank you.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-16 10:45:57,702 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-17 10:14:57,788 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-16 10:45:57,703 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-17 10:14:57,789 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-16 10:45:57,704 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-17 10:14:57,789 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset already downloaded.
@@ -316,7 +327,9 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="landsat_with_landsatxplore.html" class="btn btn-neutral float-left" title="Landsat Dataset Downloader using Landsatxplorer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
 
   <hr/>
 

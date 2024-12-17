@@ -11,6 +11,7 @@ Welcome to the official documentation for CoKLIMAx II. Here you'll find everythi
   ./rst_intro/einfuhrung_jupyter
   ./rst_intro/kurz_elemente
   ./rst_intro/software_und_kenntnisse
+  ./rst_intro/notwendige_software_und_kenntnisse
   ./notebooks/setup_verification
 
 .. toctree::
@@ -43,6 +44,7 @@ Welcome to the official documentation for CoKLIMAx II. Here you'll find everythi
   ./notebooks/kurs_not_defined/era5_land_hourly
   ./notebooks/kurs_not_defined/era5_land_monthly
   ./notebooks/kurs_not_defined/landsat_with_landsatxplore
+  ./notebooks/kurs_not_defined/climate_indicators
 
 Before you begin
 ----------------
