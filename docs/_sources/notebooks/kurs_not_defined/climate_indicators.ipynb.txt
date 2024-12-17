@@ -1,0 +1,307 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "88c246cb-1c4c-49ee-adaf-6893c13d403b",
+   "metadata": {},
+   "source": [
+    "# Climate Indicators for Europe\n",
+    "\n",
+    "Dieses Datenset enthält Klimadaten, die aus Reanalyse- und Modellsimulationen stammen und im Copernicus Climate Data Store (CDS) verfügbar sind. Es bietet Klimaindizes, die die Auswirkungen von Klimavariabilität und -wandel auf Sektoren wie Gesundheit, Landwirtschaft, Energie und Wasserwirtschaft beschreiben. Diese Indizes sind wichtig für die Anpassungsplanung auf europäischer und nationaler Ebene und wurden von der Europäischen Umweltagentur (EEA) entwickelt, um die Bedürfnisse nationaler Klimaanpassungsinitiativen in der EU zu erfüllen.\n",
+    "\n",
+    "Die Indizes basieren auf Daten aus verschiedenen CDS-Datensätzen und umfassen Temperatur-, Niederschlags- und Windindikatoren. Sie wurden aus den Datensätzen „Climate and energy indicators for Europe from 2005 to 2100“ und „ERA5 hourly data on single levels from 1940 to present“ berechnet. Weitere Indizes stammen aus thematischen Projekten des CDS.\n",
+    "\n",
+    "\n",
+    "\n",
+    "**Informationen zum Datensatz:**\n",
+    "* Source: [Climate Indicators](https://cds-beta.climate.copernicus.eu/datasets/sis-ecde-climate-indicators?tab=overview)\n",
+    "* Author: T. Tewes (City of Konstanz)\n",
+    "* Notebook Version: 1.2 (Updated: December 13, 2024)\n",
+    "\n",
+    "> Zitieren: Copernicus Climate Change Service (C3S), Climate Data Store (CDS), (2024): Climate indicators for Europe from 1940 to 2100 derived from reanalysis and climate projections, Copernicus Climate Change Service (C3S) Climate Data Store (CDS). (Accessed on DD-MMM-YYYY)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "fea0ed5c",
+   "metadata": {},
+   "source": [
+    "## 1. Specifying the paths and working directories"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import os\n",
+    "\n",
+    "''' ---- Hier die Verzeichnisse angeben ---- '''\n",
+    "download_folder = r\".\\data\\climate-indicators\\download\"\n",
+    "working_folder = r\".\\data\\climate-indicators\\working\"\n",
+    "geotiff_folder = r\".\\data\\climate-indicators\\geotiff\"\n",
+    "csv_folder = r\".\\data\\climate-indicators\\csv\"\n",
+    "output_folder = r\".\\data\\climate-indicators\\output\"\n",
+    "''' ----- Ende der Eingaben ---- '''\n",
+    "\n",
+    "os.makedirs(download_folder, exist_ok=True)\n",
+    "os.makedirs(working_folder, exist_ok=True)\n",
+    "os.makedirs(geotiff_folder, exist_ok=True)\n",
+    "os.makedirs(csv_folder, exist_ok=True)\n",
+    "os.makedirs(output_folder, exist_ok=True)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2c345401",
+   "metadata": {},
+   "source": [
+    "## 2. Download and Extract Dataset"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "96a179fd",
+   "metadata": {},
+   "source": [
+    "### 2.1 Authentication"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "id": "9e224adf",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import cdsapi\n",
+    "\n",
+    "def main():\n",
+    "    api_key = \"fdae60fd-35d4-436f-825c-c63fedab94a4\"\n",
+    "    api_url = \"https://cds.climate.copernicus.eu/api\"\n",
+    "    client = cdsapi.Client(url=api_url, key=api_key)\n",
+    "    return client"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "465476da",
+   "metadata": {},
+   "source": [
+    "### 2.2 Request Definition and Download"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "d3292922",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "[55.2, 5.7, 47.1, 15.2]"
+      ]
+     },
+     "execution_count": 3,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "# Define additional request fields to ensure the request stays within the file size limit.\n",
+    "# These coordinates were obtained using the BBox Extractor tool:\n",
+    "# https://str-ucture.github.io/bbox-extractor/\n",
+    "\n",
+    "bbox_wgs84_deutschland = [56.0, 5.8, 47.2, 15.0]\n",
+    "bbox_wgs84_konstanz = [47.9, 8.9, 47.6, 9.3]\n",
+    "\n",
+    "# Alternatively, use a shapefile for precise geographic filtering\n",
+    "import geopandas as gpd\n",
+    "import math\n",
+    "\n",
+    "# Example: Load shapefile of Konstanz (WGS84 projection)\n",
+    "de_shapefile = r\"./shapefiles/de_boundary.shp\"\n",
+    "de_gdf = gpd.read_file(de_shapefile)\n",
+    "de_bounds = de_gdf.total_bounds\n",
+    "\n",
+    "# Adjust and buffer\n",
+    "de_bounds_adjusted = [(math.floor(de_bounds[0]* 10)/10)-0.1,\n",
+    "                      (math.floor(de_bounds[1]* 10)/10)-0.1,\n",
+    "                      (math.ceil(de_bounds[2]* 10)/10)+0.1,\n",
+    "                      (math.ceil(de_bounds[3]* 10)/10)+0.1]\n",
+    "\n",
+    "bbox_de_bounds_adjusted = [de_bounds_adjusted[3], de_bounds_adjusted[0],\n",
+    "                           de_bounds_adjusted[1], de_bounds_adjusted[2]]\n",
+    "\n",
+    "bbox_de_bounds_adjusted"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "6c0cc4e1",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dataset = \"sis-ecde-climate-indicators\"\n",
+    "request = {\n",
+    "    \"variable\": [\n",
+    "        \"mean_temperature\",\n",
+    "        \"growing_degree_days\",\n",
+    "        \"heating_degree_days\",\n",
+    "        \"cooling_degree_days\",\n",
+    "        \"tropical_nights\",\n",
+    "        \"hot_days\",\n",
+    "        \"warmest_three_day_period\",\n",
+    "        \"heatwave_days\",\n",
+    "        \"high_utci_days\",\n",
+    "        \"frost_days\",\n",
+    "        \"daily_maximum_temperature\",\n",
+    "        \"daily_minimum_temperature\"\n",
+    "    ],\n",
+    "    \"origin\": \"reanalysis\",\n",
+    "    \"temporal_aggregation\": [\"monthly\"],\n",
+    "    \"spatial_aggregation\": \"gridded\",\n",
+    "    \"other_parameters\": [\n",
+    "        \"30_c\",\n",
+    "        \"35_c\",\n",
+    "        \"40_c\",\n",
+    "        \"max\",\n",
+    "        \"mean\",\n",
+    "        \"min\"\n",
+    "    ],\n",
+    "    \"area\": bbox_de_bounds_adjusted\n",
+    "}"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "b44085e3",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "2024-12-16 10:13:55,476 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your \n",
+      "[feedback](https://jira.ecmwf.int/plugins/servlet/desk/portal/1/create/202) is key to improve the user experience on the new CDS for the benefit of everyone. Thank you.\n",
+      "2024-12-16 10:13:55,479 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.\n",
+      "2024-12-16 10:13:55,482 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**\n",
+      "2024-12-16 10:13:55,485 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the \"Show API request code\" tool on the dataset Download Form to check you are using the correct syntax for your API request.\n"
+     ]
+    },
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Dataset already downloaded.\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Uncomment and run this cell to download the dataset:\n",
+    "\n",
+    "def main_retrieve():\n",
+    "    dataset_filename = f\"{dataset}_heat_and_cold_monthly.zip\"\n",
+    "    dataset_filepath = os.path.join(download_folder, dataset_filename)\n",
+    "\n",
+    "    # Download the dataset only if the dataset has not been downloaded before\n",
+    "    if not os.path.isfile(dataset_filepath):\n",
+    "        # Download the dataset with the defined request parameters\n",
+    "        client.retrieve(dataset, request, dataset_filepath)\n",
+    "    else:\n",
+    "        print(\"Dataset already downloaded.\")\n",
+    "\n",
+    "if __name__ == \"__main__\":\n",
+    "    client = main()\n",
+    "    main_retrieve()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c62b6960",
+   "metadata": {},
+   "source": [
+    "### 2.3 Extract the Zip folder"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "id": "86e2ca0a",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Successfully extracted files to: .\\data\\climate-indicators\\working\\heat_and_cold_monthly\n"
+     ]
+    }
+   ],
+   "source": [
+    "import zipfile\n",
+    "\n",
+    "dataset_filename = f\"{dataset}_heat_and_cold_monthly.zip\"\n",
+    "dataset_filepath = os.path.join(download_folder, dataset_filename)\n",
+    "\n",
+    "extract_folder = os.path.join(working_folder, \"heat_and_cold_monthly\")\n",
+    "# Extract the zip file\n",
+    "try:\n",
+    "    os.makedirs(extract_folder, exist_ok=True)\n",
+    "    \n",
+    "    if not os.listdir(extract_folder):\n",
+    "        with zipfile.ZipFile(dataset_filepath, 'r') as zip_ref:\n",
+    "            zip_ref.extractall(extract_folder)\n",
+    "            print(f\"Successfully extracted files to: {extract_folder}\")\n",
+    "    else:\n",
+    "        print(\"Folder is not empty. Skipping extraction.\")\n",
+    "except FileNotFoundError:\n",
+    "    print(f\"Error: The file {dataset_filepath} was not found.\")\n",
+    "except zipfile.BadZipFile:\n",
+    "    print(f\"Error: The file {dataset_filepath} is not a valid zip file.\")\n",
+    "except Exception as e:\n",
+    "    print(f\"An unexpected error occurred: {e}\")"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f9e3b489",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "myenv",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.0"
+  },
+  "widgets": {
+   "application/vnd.jupyter.widget-state+json": {
+    "state": {},
+    "version_major": 2,
+    "version_minor": 0
+   }
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

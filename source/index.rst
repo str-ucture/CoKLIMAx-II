@@ -7,12 +7,11 @@ Welcome to the official documentation for CoKLIMAx II. Here you'll find everythi
   :maxdepth: 2
   :caption: Erste Schritte:
 
-  ./rst_intro/einführung_cds
-  ./rst_intro/einführung_jupyter_notebooks
-  ./rst_intro/einführung_kurz_elemente
-  ./rst_intro/notwendige_software_und_kenntnisse
+  ./rst_intro/einfuhrung_cds
+  ./rst_intro/einfuhrung_jupyter
+  ./rst_intro/kurz_elemente
+  ./rst_intro/software_und_kenntnisse
   ./notebooks/setup_verification
-  ./rst_intro/introduction_cds
 
 .. toctree::
   :maxdepth: 2
@@ -36,7 +35,6 @@ Welcome to the official documentation for CoKLIMAx II. Here you'll find everythi
   :caption: Kurs 3:
 
   ./notebooks/kurs3/senthub_downloader
-  .. ./notebooks/kurs3/sis-heat-and-cold-spells
 
 .. toctree::
   :maxdepth: 2
