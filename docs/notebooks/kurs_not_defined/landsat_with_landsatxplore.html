@@ -11,7 +11,7 @@
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=7fcdb88d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=a1fa38c2" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -244,6 +244,9 @@
             <span class="p">}</span>
         <span class="p">)</span>
     
+<span class="c1"># Modify pandas display options</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_colwidth</span> <span class="o">=</span> <span class="mi">30</span>
+
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
 <span class="n">df</span>
 </pre></div>
@@ -279,7 +282,7 @@
     <tr>
       <th>0</th>
       <td>LC81950272020256LGN00</td>
-      <td>LC08_L2SP_195027_20200912_20200919_02_T1</td>
+      <td>LC08_L2SP_195027_20200912_...</td>
       <td>2020-09-12</td>
       <td>9.18</td>
       <td>9.18</td>
@@ -287,7 +290,7 @@
     <tr>
       <th>1</th>
       <td>LC81940272020233LGN00</td>
-      <td>LC08_L2SP_194027_20200820_20200905_02_T1</td>
+      <td>LC08_L2SP_194027_20200820_...</td>
       <td>2020-08-20</td>
       <td>5.51</td>
       <td>5.51</td>
@@ -295,7 +298,7 @@
     <tr>
       <th>2</th>
       <td>LC81950272020224LGN00</td>
-      <td>LC08_L2SP_195027_20200811_20200918_02_T1</td>
+      <td>LC08_L2SP_195027_20200811_...</td>
       <td>2020-08-11</td>
       <td>8.02</td>
       <td>8.02</td>
@@ -303,7 +306,7 @@
     <tr>
       <th>3</th>
       <td>LC81950272020176LGN00</td>
-      <td>LC08_L2SP_195027_20200624_20200824_02_T1</td>
+      <td>LC08_L2SP_195027_20200624_...</td>
       <td>2020-06-24</td>
       <td>3.12</td>
       <td>3.12</td>
@@ -311,7 +314,7 @@
     <tr>
       <th>4</th>
       <td>LC81940272020153LGN00</td>
-      <td>LC08_L2SP_194027_20200601_20200824_02_T1</td>
+      <td>LC08_L2SP_194027_20200601_...</td>
       <td>2020-06-01</td>
       <td>5.08</td>
       <td>5.08</td>
@@ -319,7 +322,7 @@
     <tr>
       <th>5</th>
       <td>LC81950272020128LGN00</td>
-      <td>LC08_L2SP_195027_20200507_20200820_02_T1</td>
+      <td>LC08_L2SP_195027_20200507_...</td>
       <td>2020-05-07</td>
       <td>1.80</td>
       <td>1.80</td>
@@ -327,7 +330,7 @@
     <tr>
       <th>6</th>
       <td>LC81950272020096LGN00</td>
-      <td>LC08_L2SP_195027_20200405_20200822_02_T1</td>
+      <td>LC08_L2SP_195027_20200405_...</td>
       <td>2020-04-05</td>
       <td>2.01</td>
       <td>2.01</td>
@@ -335,7 +338,7 @@
     <tr>
       <th>7</th>
       <td>LC81950272020016LGN00</td>
-      <td>LC08_L2SP_195027_20200116_20200823_02_T1</td>
+      <td>LC08_L2SP_195027_20200116_...</td>
       <td>2020-01-16</td>
       <td>1.56</td>
       <td>1.56</td>
@@ -409,7 +412,7 @@
             &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
             &lt;style&gt;
-                #map_0852f8149abc86e297145c820ffffab9 {
+                #map_ca92aea8e4956b201efa29353bd276b8 {
                     position: relative;
                     width: 100.0%;
                     height: 450.0px;
@@ -423,14 +426,14 @@
 &lt;body&gt;
     
     
-            &lt;div class=&quot;folium-map&quot; id=&quot;map_0852f8149abc86e297145c820ffffab9&quot; &gt;&lt;/div&gt;
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_ca92aea8e4956b201efa29353bd276b8&quot; &gt;&lt;/div&gt;
         
 &lt;/body&gt;
 &lt;script&gt;
     
     
-            var map_0852f8149abc86e297145c820ffffab9 = L.map(
-                &quot;map_0852f8149abc86e297145c820ffffab9&quot;,
+            var map_ca92aea8e4956b201efa29353bd276b8 = L.map(
+                &quot;map_ca92aea8e4956b201efa29353bd276b8&quot;,
                 {
                     center: [47.5, 8.0],
                     crs: L.CRS.EPSG3857,
@@ -449,7 +452,7 @@
 
         
     
-            var tile_layer_91fb5bf58dd1e711e7353cb82966dcab = L.tileLayer(
+            var tile_layer_507c163fc9809ba0c499232c44d5a993 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {
   &quot;minZoom&quot;: 0,
@@ -466,153 +469,153 @@
             );
         
     
-            tile_layer_91fb5bf58dd1e711e7353cb82966dcab.addTo(map_0852f8149abc86e297145c820ffffab9);
+            tile_layer_507c163fc9809ba0c499232c44d5a993.addTo(map_ca92aea8e4956b201efa29353bd276b8);
         
     
-            var feature_group_52d1d4beab6d3be341dcf649528b65eb = L.featureGroup(
+            var feature_group_5517e874ebaf184cfeb9147b2ae926d8 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_60a2055aad43aca8eebb4070afcb4d67 = L.polygon(
+            var polygon_133fb9dc70c8c7bd3c74668230e03b94 = L.polygon(
                 [[46.80577, 6.4291], [46.36914, 8.84615], [48.07038, 9.54652], [48.51237, 7.05177], [46.80577, 6.4291]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(48, 18, 59)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(48, 18, 59)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_52d1d4beab6d3be341dcf649528b65eb);
+            ).addTo(feature_group_5517e874ebaf184cfeb9147b2ae926d8);
         
     
-            feature_group_52d1d4beab6d3be341dcf649528b65eb.addTo(map_0852f8149abc86e297145c820ffffab9);
+            feature_group_5517e874ebaf184cfeb9147b2ae926d8.addTo(map_ca92aea8e4956b201efa29353bd276b8);
         
     
-            var feature_group_40645861162aa3ca592bf4e1e6a76b88 = L.featureGroup(
+            var feature_group_73220b0a417467b511bd4857e530f3af = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_6de30bacec4174c683ccc842ab0bb569 = L.polygon(
+            var polygon_43362cf1040c01df1e37ee6e2e32bb7a = L.polygon(
                 [[46.8056, 7.99131], [46.36892, 10.40793], [48.07023, 11.10851], [48.51226, 8.61421], [46.8056, 7.99131]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(61, 55, 145)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(61, 55, 145)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_40645861162aa3ca592bf4e1e6a76b88);
+            ).addTo(feature_group_73220b0a417467b511bd4857e530f3af);
         
     
-            feature_group_40645861162aa3ca592bf4e1e6a76b88.addTo(map_0852f8149abc86e297145c820ffffab9);
+            feature_group_73220b0a417467b511bd4857e530f3af.addTo(map_ca92aea8e4956b201efa29353bd276b8);
         
     
-            var feature_group_42042a158ae9947ce32560818c0c7909 = L.featureGroup(
+            var feature_group_4570cf6c34e9afebe3319f969e459ad3 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_8926f02ea5941191d65fde1c252ba868 = L.polygon(
+            var polygon_1ee4b145c3a66ab3cff235ba78c06cea = L.polygon(
                 [[46.80565, 6.45436], [46.36907, 8.8704], [48.07049, 9.571], [48.51243, 7.07728], [46.80565, 6.45436]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(69, 91, 206)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(69, 91, 206)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_42042a158ae9947ce32560818c0c7909);
+            ).addTo(feature_group_4570cf6c34e9afebe3319f969e459ad3);
         
     
-            feature_group_42042a158ae9947ce32560818c0c7909.addTo(map_0852f8149abc86e297145c820ffffab9);
+            feature_group_4570cf6c34e9afebe3319f969e459ad3.addTo(map_ca92aea8e4956b201efa29353bd276b8);
         
     
-            var feature_group_67045720684b5a85ee9c9cbfbd889268 = L.featureGroup(
+            var feature_group_1560c0efa4c16dd787051d3970ae0c9c = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_aca86f96964aa4dff48f26a69ee7980c = L.polygon(
+            var polygon_73babd7d469317e97707f7ae0b5f13d8 = L.polygon(
                 [[46.80596, 6.4331], [46.3692, 8.84952], [48.07053, 9.5503], [48.51266, 7.05617], [46.80596, 6.4331]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(70, 127, 246)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(70, 127, 246)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_67045720684b5a85ee9c9cbfbd889268);
+            ).addTo(feature_group_1560c0efa4c16dd787051d3970ae0c9c);
         
     
-            feature_group_67045720684b5a85ee9c9cbfbd889268.addTo(map_0852f8149abc86e297145c820ffffab9);
+            feature_group_1560c0efa4c16dd787051d3970ae0c9c.addTo(map_ca92aea8e4956b201efa29353bd276b8);
         
     
-            var feature_group_90bc62fa00c6d14a12005f265a38ebd9 = L.featureGroup(
+            var feature_group_320aca5ae2d3c5ff9c3f0fcdee4d0584 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_27301a7877937a39f376f171f21bcb26 = L.polygon(
+            var polygon_880cfc6dcd170142afaf857d5960f08f = L.polygon(
                 [[46.80604, 7.99023], [46.3691, 10.40725], [48.07029, 11.10803], [48.5126, 8.6133], [46.80604, 7.99023]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(59, 160, 252)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(59, 160, 252)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_90bc62fa00c6d14a12005f265a38ebd9);
+            ).addTo(feature_group_320aca5ae2d3c5ff9c3f0fcdee4d0584);
         
     
-            feature_group_90bc62fa00c6d14a12005f265a38ebd9.addTo(map_0852f8149abc86e297145c820ffffab9);
+            feature_group_320aca5ae2d3c5ff9c3f0fcdee4d0584.addTo(map_ca92aea8e4956b201efa29353bd276b8);
         
     
-            var feature_group_d0c5a3b4a24e9fa88c76f1c85249ceb8 = L.featureGroup(
+            var feature_group_195e06c50f7dd231e91435837ecde63f = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_0f850e972014d731621ffdfca50ee5ff = L.polygon(
+            var polygon_63b4c667618429d06f78fdc97af749e8 = L.polygon(
                 [[46.80476, 6.3759], [46.3697, 8.79304], [48.07143, 9.49114], [48.5118, 6.99625], [46.80476, 6.3759]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(35, 194, 228)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(35, 194, 228)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_d0c5a3b4a24e9fa88c76f1c85249ceb8);
+            ).addTo(feature_group_195e06c50f7dd231e91435837ecde63f);
         
     
-            feature_group_d0c5a3b4a24e9fa88c76f1c85249ceb8.addTo(map_0852f8149abc86e297145c820ffffab9);
+            feature_group_195e06c50f7dd231e91435837ecde63f.addTo(map_ca92aea8e4956b201efa29353bd276b8);
         
     
-            var feature_group_b82f6e09f5c263b78f7c78f5c8afd88e = L.featureGroup(
+            var feature_group_b1bcb76d3626e1f693f4296a61e91f09 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_3c90ced14ca2c06643aa49d2d2915582 = L.polygon(
+            var polygon_45f350b6daa273fd4426a9d7871c51ec = L.polygon(
                 [[46.80459, 6.40358], [46.36947, 8.82002], [48.07129, 9.51843], [48.51172, 7.02425], [46.80459, 6.40358]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(23, 220, 194)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(23, 220, 194)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_b82f6e09f5c263b78f7c78f5c8afd88e);
+            ).addTo(feature_group_b1bcb76d3626e1f693f4296a61e91f09);
         
     
-            feature_group_b82f6e09f5c263b78f7c78f5c8afd88e.addTo(map_0852f8149abc86e297145c820ffffab9);
+            feature_group_b1bcb76d3626e1f693f4296a61e91f09.addTo(map_ca92aea8e4956b201efa29353bd276b8);
         
     
-            var feature_group_01ecf8703330145f3df15b9b497ea98d = L.featureGroup(
+            var feature_group_ae6653cfd59c6775354f35b1efbab417 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_961e6006b2f480957bd5e649f1d848b4 = L.polygon(
+            var polygon_13f3f070d7ae845ec8ae629b870be9fb = L.polygon(
                 [[46.80518, 6.43038], [46.36934, 8.84755], [48.07084, 9.54674], [48.512, 7.05183], [46.80518, 6.43038]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(44, 239, 157)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(44, 239, 157)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_01ecf8703330145f3df15b9b497ea98d);
+            ).addTo(feature_group_ae6653cfd59c6775354f35b1efbab417);
         
     
-            feature_group_01ecf8703330145f3df15b9b497ea98d.addTo(map_0852f8149abc86e297145c820ffffab9);
+            feature_group_ae6653cfd59c6775354f35b1efbab417.addTo(map_ca92aea8e4956b201efa29353bd276b8);
         
     
-            var layer_control_1538970199bbf18e46c87b2ec9dbbd88_layers = {
+            var layer_control_e959b080469872adb9dee7ef809d81ea_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_91fb5bf58dd1e711e7353cb82966dcab,
+                    &quot;openstreetmap&quot; : tile_layer_507c163fc9809ba0c499232c44d5a993,
                 },
                 overlays :  {
-                    &quot;strLC81950272020256LGN00 (CC: 9)&quot; : feature_group_52d1d4beab6d3be341dcf649528b65eb,
-                    &quot;strLC81940272020233LGN00 (CC: 6)&quot; : feature_group_40645861162aa3ca592bf4e1e6a76b88,
-                    &quot;strLC81950272020224LGN00 (CC: 8)&quot; : feature_group_42042a158ae9947ce32560818c0c7909,
-                    &quot;strLC81950272020176LGN00 (CC: 3)&quot; : feature_group_67045720684b5a85ee9c9cbfbd889268,
-                    &quot;strLC81940272020153LGN00 (CC: 5)&quot; : feature_group_90bc62fa00c6d14a12005f265a38ebd9,
-                    &quot;strLC81950272020128LGN00 (CC: 2)&quot; : feature_group_d0c5a3b4a24e9fa88c76f1c85249ceb8,
-                    &quot;strLC81950272020096LGN00 (CC: 2)&quot; : feature_group_b82f6e09f5c263b78f7c78f5c8afd88e,
-                    &quot;strLC81950272020016LGN00 (CC: 2)&quot; : feature_group_01ecf8703330145f3df15b9b497ea98d,
+                    &quot;strLC81950272020256LGN00 (CC: 9)&quot; : feature_group_5517e874ebaf184cfeb9147b2ae926d8,
+                    &quot;strLC81940272020233LGN00 (CC: 6)&quot; : feature_group_73220b0a417467b511bd4857e530f3af,
+                    &quot;strLC81950272020224LGN00 (CC: 8)&quot; : feature_group_4570cf6c34e9afebe3319f969e459ad3,
+                    &quot;strLC81950272020176LGN00 (CC: 3)&quot; : feature_group_1560c0efa4c16dd787051d3970ae0c9c,
+                    &quot;strLC81940272020153LGN00 (CC: 5)&quot; : feature_group_320aca5ae2d3c5ff9c3f0fcdee4d0584,
+                    &quot;strLC81950272020128LGN00 (CC: 2)&quot; : feature_group_195e06c50f7dd231e91435837ecde63f,
+                    &quot;strLC81950272020096LGN00 (CC: 2)&quot; : feature_group_b1bcb76d3626e1f693f4296a61e91f09,
+                    &quot;strLC81950272020016LGN00 (CC: 2)&quot; : feature_group_ae6653cfd59c6775354f35b1efbab417,
                 },
             };
-            let layer_control_1538970199bbf18e46c87b2ec9dbbd88 = L.control.layers(
-                layer_control_1538970199bbf18e46c87b2ec9dbbd88_layers.base_layers,
-                layer_control_1538970199bbf18e46c87b2ec9dbbd88_layers.overlays,
+            let layer_control_e959b080469872adb9dee7ef809d81ea = L.control.layers(
+                layer_control_e959b080469872adb9dee7ef809d81ea_layers.base_layers,
+                layer_control_e959b080469872adb9dee7ef809d81ea_layers.overlays,
                 {
   &quot;position&quot;: &quot;topright&quot;,
   &quot;collapsed&quot;: true,
   &quot;autoZIndex&quot;: true,
 }
-            ).addTo(map_0852f8149abc86e297145c820ffffab9);
+            ).addTo(map_ca92aea8e4956b201efa29353bd276b8);
 
         
 &lt;/script&gt;

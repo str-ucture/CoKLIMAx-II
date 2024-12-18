@@ -11,7 +11,7 @@
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=7fcdb88d" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=a1fa38c2" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -287,17 +287,17 @@ Selected Period: year
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-17 23:05:27,685 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-18 09:59:32,973 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
 [feedback](https://jira.ecmwf.int/plugins/servlet/desk/portal/1/create/202) is key to improve the user experience on the new CDS for the benefit of everyone. Thank you.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-17 23:05:27,685 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-18 09:59:32,974 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-17 23:05:27,685 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-18 09:59:32,975 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-17 23:05:27,685 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-12-18 09:59:32,976 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset already downloaded.
@@ -1032,6 +1032,7 @@ Selected Period: year
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
 
 <span class="n">csv_filename</span> <span class="o">=</span> <span class="s2">&quot;sis-temperature-statistics.csv.zip&quot;</span>
 <span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">csv_filename</span><span class="p">)</span>
@@ -1044,8 +1045,17 @@ Selected Period: year
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File already exists at </span><span class="si">{</span><span class="n">csv_path</span><span class="si">}</span><span class="s2">. Skipping export.&quot;</span><span class="p">)</span>
     <span class="n">df_merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">])</span>
     
+<span class="k">def</span> <span class="nf">wrap_column_names</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">width</span><span class="p">):</span>
+    <span class="n">wrapped_columns</span> <span class="o">=</span> <span class="p">{</span><span class="n">col</span><span class="p">:</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">textwrap</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">width</span><span class="p">))</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">wrapped_columns</span><span class="p">)</span>
+    
+<span class="c1"># Modify pandas display options</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_colwidth</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
+    
 <span class="c1"># Display DataFrame</span>
-<span class="n">df_merged</span>
+<span class="n">df_wrapped</span> <span class="o">=</span> <span class="n">wrap_column_names</span><span class="p">(</span><span class="n">df_merged</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">df_wrapped</span>
 </pre></div>
 </div>
 </div>
@@ -1073,26 +1083,26 @@ Selected Period: year
       <th></th>
       <th></th>
       <th></th>
-      <th>Yearly_Tmax_mean_rcp45_mean</th>
-      <th>Yearly_Tmax_mean_rcp45_stdev</th>
-      <th>Yearly_Tmax_mean_rcp85_mean</th>
-      <th>Yearly_Tmax_mean_rcp85_stdev</th>
-      <th>Yearly_Tmean_mean_rcp45_mean</th>
-      <th>Yearly_Tmean_mean_rcp45_stdev</th>
-      <th>Yearly_Tmean_mean_rcp85_mean</th>
-      <th>Yearly_Tmean_mean_rcp85_stdev</th>
-      <th>Yearly_Tmean_p10_rcp45_mean</th>
-      <th>Yearly_Tmean_p10_rcp45_stdev</th>
-      <th>Yearly_Tmean_p10_rcp85_mean</th>
-      <th>Yearly_Tmean_p10_rcp85_stdev</th>
-      <th>Yearly_Tmean_p90_rcp45_mean</th>
-      <th>Yearly_Tmean_p90_rcp45_stdev</th>
-      <th>Yearly_Tmean_p90_rcp85_mean</th>
-      <th>Yearly_Tmean_p90_rcp85_stdev</th>
-      <th>Yearly_Tmin_mean_rcp45_mean</th>
-      <th>Yearly_Tmin_mean_rcp45_stdev</th>
-      <th>Yearly_Tmin_mean_rcp85_mean</th>
-      <th>Yearly_Tmin_mean_rcp85_stdev</th>
+      <th>Yearly_Tmax _mean_rcp45 _mean</th>
+      <th>Yearly_Tmax _mean_rcp45 _stdev</th>
+      <th>Yearly_Tmax _mean_rcp85 _mean</th>
+      <th>Yearly_Tmax _mean_rcp85 _stdev</th>
+      <th>Yearly_Tmea n_mean_rcp4 5_mean</th>
+      <th>Yearly_Tmea n_mean_rcp4 5_stdev</th>
+      <th>Yearly_Tmea n_mean_rcp8 5_mean</th>
+      <th>Yearly_Tmea n_mean_rcp8 5_stdev</th>
+      <th>Yearly_Tmea n_p10_rcp45 _mean</th>
+      <th>Yearly_Tmea n_p10_rcp45 _stdev</th>
+      <th>Yearly_Tmea n_p10_rcp85 _mean</th>
+      <th>Yearly_Tmea n_p10_rcp85 _stdev</th>
+      <th>Yearly_Tmea n_p90_rcp45 _mean</th>
+      <th>Yearly_Tmea n_p90_rcp45 _stdev</th>
+      <th>Yearly_Tmea n_p90_rcp85 _mean</th>
+      <th>Yearly_Tmea n_p90_rcp85 _stdev</th>
+      <th>Yearly_Tmin _mean_rcp45 _mean</th>
+      <th>Yearly_Tmin _mean_rcp45 _stdev</th>
+      <th>Yearly_Tmin _mean_rcp85 _mean</th>
+      <th>Yearly_Tmin _mean_rcp85 _stdev</th>
     </tr>
     <tr>
       <th>time</th>
@@ -1123,120 +1133,120 @@ Selected Period: year
   <tbody>
     <tr>
       <th rowspan="5" valign="top">1986-01-01</th>
-      <th rowspan="5" valign="top">47.1</th>
-      <th>5.7</th>
-      <td>15.120951</td>
-      <td>0.152071</td>
-      <td>15.120951</td>
-      <td>0.152222</td>
-      <td>10.768780</td>
-      <td>0.235325</td>
-      <td>10.768780</td>
-      <td>0.224792</td>
-      <td>1.005748</td>
-      <td>0.263874</td>
-      <td>1.005748</td>
-      <td>0.239380</td>
-      <td>20.235330</td>
-      <td>0.338345</td>
-      <td>20.235330</td>
-      <td>0.318809</td>
-      <td>6.603446</td>
-      <td>0.389397</td>
-      <td>6.603446</td>
-      <td>0.370019</td>
+      <th rowspan="5" valign="top">47.10</th>
+      <th>5.70</th>
+      <td>15.12</td>
+      <td>0.15</td>
+      <td>15.12</td>
+      <td>0.15</td>
+      <td>10.77</td>
+      <td>0.24</td>
+      <td>10.77</td>
+      <td>0.22</td>
+      <td>1.01</td>
+      <td>0.26</td>
+      <td>1.01</td>
+      <td>0.24</td>
+      <td>20.24</td>
+      <td>0.34</td>
+      <td>20.24</td>
+      <td>0.32</td>
+      <td>6.60</td>
+      <td>0.39</td>
+      <td>6.60</td>
+      <td>0.37</td>
     </tr>
     <tr>
-      <th>5.8</th>
-      <td>14.910078</td>
-      <td>0.113431</td>
-      <td>14.910078</td>
-      <td>0.102336</td>
-      <td>10.568228</td>
-      <td>0.225237</td>
-      <td>10.568228</td>
-      <td>0.222283</td>
-      <td>0.820628</td>
-      <td>0.245507</td>
-      <td>0.820628</td>
-      <td>0.237274</td>
-      <td>20.066036</td>
-      <td>0.328781</td>
-      <td>20.066036</td>
-      <td>0.317933</td>
-      <td>6.417229</td>
-      <td>0.406068</td>
-      <td>6.417229</td>
-      <td>0.398072</td>
+      <th>5.80</th>
+      <td>14.91</td>
+      <td>0.11</td>
+      <td>14.91</td>
+      <td>0.10</td>
+      <td>10.57</td>
+      <td>0.23</td>
+      <td>10.57</td>
+      <td>0.22</td>
+      <td>0.82</td>
+      <td>0.25</td>
+      <td>0.82</td>
+      <td>0.24</td>
+      <td>20.07</td>
+      <td>0.33</td>
+      <td>20.07</td>
+      <td>0.32</td>
+      <td>6.42</td>
+      <td>0.41</td>
+      <td>6.42</td>
+      <td>0.40</td>
     </tr>
     <tr>
-      <th>5.9</th>
-      <td>14.444681</td>
-      <td>0.140488</td>
-      <td>14.444681</td>
-      <td>0.127091</td>
-      <td>10.202229</td>
-      <td>0.158560</td>
-      <td>10.202229</td>
-      <td>0.151266</td>
-      <td>0.552755</td>
-      <td>0.209239</td>
-      <td>0.552755</td>
-      <td>0.202924</td>
-      <td>19.661780</td>
-      <td>0.260792</td>
-      <td>19.661780</td>
-      <td>0.254812</td>
-      <td>6.144354</td>
-      <td>0.307193</td>
-      <td>6.144354</td>
-      <td>0.292839</td>
+      <th>5.90</th>
+      <td>14.44</td>
+      <td>0.14</td>
+      <td>14.44</td>
+      <td>0.13</td>
+      <td>10.20</td>
+      <td>0.16</td>
+      <td>10.20</td>
+      <td>0.15</td>
+      <td>0.55</td>
+      <td>0.21</td>
+      <td>0.55</td>
+      <td>0.20</td>
+      <td>19.66</td>
+      <td>0.26</td>
+      <td>19.66</td>
+      <td>0.25</td>
+      <td>6.14</td>
+      <td>0.31</td>
+      <td>6.14</td>
+      <td>0.29</td>
     </tr>
     <tr>
-      <th>6.0</th>
-      <td>13.965413</td>
-      <td>0.213235</td>
-      <td>13.965413</td>
-      <td>0.201410</td>
-      <td>9.743344</td>
-      <td>0.215348</td>
-      <td>9.743344</td>
-      <td>0.205612</td>
-      <td>0.187260</td>
-      <td>0.269148</td>
-      <td>0.187260</td>
-      <td>0.255193</td>
-      <td>19.152573</td>
-      <td>0.253804</td>
-      <td>19.152573</td>
-      <td>0.236893</td>
-      <td>5.692410</td>
-      <td>0.331262</td>
-      <td>5.692410</td>
-      <td>0.312642</td>
+      <th>6.00</th>
+      <td>13.97</td>
+      <td>0.21</td>
+      <td>13.97</td>
+      <td>0.20</td>
+      <td>9.74</td>
+      <td>0.22</td>
+      <td>9.74</td>
+      <td>0.21</td>
+      <td>0.19</td>
+      <td>0.27</td>
+      <td>0.19</td>
+      <td>0.26</td>
+      <td>19.15</td>
+      <td>0.25</td>
+      <td>19.15</td>
+      <td>0.24</td>
+      <td>5.69</td>
+      <td>0.33</td>
+      <td>5.69</td>
+      <td>0.31</td>
     </tr>
     <tr>
-      <th>6.1</th>
-      <td>13.423471</td>
-      <td>0.224684</td>
-      <td>13.423471</td>
-      <td>0.208183</td>
-      <td>9.231763</td>
-      <td>0.213139</td>
-      <td>9.231763</td>
-      <td>0.203974</td>
-      <td>-0.302477</td>
-      <td>0.232850</td>
-      <td>-0.302477</td>
-      <td>0.226820</td>
-      <td>18.674124</td>
-      <td>0.266804</td>
-      <td>18.674124</td>
-      <td>0.250322</td>
-      <td>5.201129</td>
-      <td>0.382862</td>
-      <td>5.201129</td>
-      <td>0.366070</td>
+      <th>6.10</th>
+      <td>13.42</td>
+      <td>0.22</td>
+      <td>13.42</td>
+      <td>0.21</td>
+      <td>9.23</td>
+      <td>0.21</td>
+      <td>9.23</td>
+      <td>0.20</td>
+      <td>-0.30</td>
+      <td>0.23</td>
+      <td>-0.30</td>
+      <td>0.23</td>
+      <td>18.67</td>
+      <td>0.27</td>
+      <td>18.67</td>
+      <td>0.25</td>
+      <td>5.20</td>
+      <td>0.38</td>
+      <td>5.20</td>
+      <td>0.37</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1265,120 +1275,120 @@ Selected Period: year
     </tr>
     <tr>
       <th rowspan="5" valign="top">2085-01-01</th>
-      <th rowspan="5" valign="top">55.2</th>
-      <th>14.7</th>
-      <td>13.948444</td>
-      <td>0.474240</td>
-      <td>15.219458</td>
-      <td>0.366860</td>
-      <td>9.910995</td>
-      <td>0.545287</td>
-      <td>11.214604</td>
-      <td>0.442595</td>
-      <td>0.218722</td>
-      <td>0.899802</td>
-      <td>1.683859</td>
-      <td>0.812074</td>
-      <td>19.610245</td>
-      <td>0.528781</td>
-      <td>20.835072</td>
-      <td>0.419922</td>
-      <td>6.008667</td>
-      <td>0.877768</td>
-      <td>7.353578</td>
-      <td>0.790407</td>
+      <th rowspan="5" valign="top">55.20</th>
+      <th>14.70</th>
+      <td>13.95</td>
+      <td>0.47</td>
+      <td>15.22</td>
+      <td>0.37</td>
+      <td>9.91</td>
+      <td>0.55</td>
+      <td>11.21</td>
+      <td>0.44</td>
+      <td>0.22</td>
+      <td>0.90</td>
+      <td>1.68</td>
+      <td>0.81</td>
+      <td>19.61</td>
+      <td>0.53</td>
+      <td>20.84</td>
+      <td>0.42</td>
+      <td>6.01</td>
+      <td>0.88</td>
+      <td>7.35</td>
+      <td>0.79</td>
     </tr>
     <tr>
-      <th>14.8</th>
-      <td>14.119750</td>
-      <td>0.468124</td>
-      <td>15.389576</td>
-      <td>0.352643</td>
-      <td>9.740071</td>
-      <td>0.535297</td>
-      <td>11.057458</td>
-      <td>0.439172</td>
-      <td>-0.216917</td>
-      <td>0.960186</td>
-      <td>1.263995</td>
-      <td>0.879039</td>
-      <td>19.664570</td>
-      <td>0.517702</td>
-      <td>20.890070</td>
-      <td>0.417657</td>
-      <td>5.528337</td>
-      <td>0.933898</td>
-      <td>6.903546</td>
-      <td>0.855117</td>
+      <th>14.80</th>
+      <td>14.12</td>
+      <td>0.47</td>
+      <td>15.39</td>
+      <td>0.35</td>
+      <td>9.74</td>
+      <td>0.54</td>
+      <td>11.06</td>
+      <td>0.44</td>
+      <td>-0.22</td>
+      <td>0.96</td>
+      <td>1.26</td>
+      <td>0.88</td>
+      <td>19.66</td>
+      <td>0.52</td>
+      <td>20.89</td>
+      <td>0.42</td>
+      <td>5.53</td>
+      <td>0.93</td>
+      <td>6.90</td>
+      <td>0.86</td>
     </tr>
     <tr>
-      <th>14.9</th>
-      <td>14.119610</td>
-      <td>0.486920</td>
-      <td>15.394135</td>
-      <td>0.372972</td>
-      <td>9.598280</td>
-      <td>0.496425</td>
-      <td>10.927850</td>
-      <td>0.404170</td>
-      <td>-0.461368</td>
-      <td>0.863642</td>
-      <td>1.030694</td>
-      <td>0.782519</td>
-      <td>19.614447</td>
-      <td>0.522562</td>
-      <td>20.861654</td>
-      <td>0.449814</td>
-      <td>5.252343</td>
-      <td>0.803925</td>
-      <td>6.648636</td>
-      <td>0.732422</td>
+      <th>14.90</th>
+      <td>14.12</td>
+      <td>0.49</td>
+      <td>15.39</td>
+      <td>0.37</td>
+      <td>9.60</td>
+      <td>0.50</td>
+      <td>10.93</td>
+      <td>0.40</td>
+      <td>-0.46</td>
+      <td>0.86</td>
+      <td>1.03</td>
+      <td>0.78</td>
+      <td>19.61</td>
+      <td>0.52</td>
+      <td>20.86</td>
+      <td>0.45</td>
+      <td>5.25</td>
+      <td>0.80</td>
+      <td>6.65</td>
+      <td>0.73</td>
     </tr>
     <tr>
-      <th>15.0</th>
-      <td>14.059088</td>
-      <td>0.462216</td>
-      <td>15.333551</td>
-      <td>0.330266</td>
-      <td>9.665852</td>
-      <td>0.493948</td>
-      <td>10.989685</td>
-      <td>0.392008</td>
-      <td>-0.301334</td>
-      <td>0.768905</td>
-      <td>1.186376</td>
-      <td>0.693664</td>
-      <td>19.650105</td>
-      <td>0.538851</td>
-      <td>20.899890</td>
-      <td>0.461169</td>
-      <td>5.443778</td>
-      <td>0.689393</td>
-      <td>6.826317</td>
-      <td>0.608994</td>
+      <th>15.00</th>
+      <td>14.06</td>
+      <td>0.46</td>
+      <td>15.33</td>
+      <td>0.33</td>
+      <td>9.67</td>
+      <td>0.49</td>
+      <td>10.99</td>
+      <td>0.39</td>
+      <td>-0.30</td>
+      <td>0.77</td>
+      <td>1.19</td>
+      <td>0.69</td>
+      <td>19.65</td>
+      <td>0.54</td>
+      <td>20.90</td>
+      <td>0.46</td>
+      <td>5.44</td>
+      <td>0.69</td>
+      <td>6.83</td>
+      <td>0.61</td>
     </tr>
     <tr>
-      <th>15.1</th>
-      <td>14.125922</td>
-      <td>0.518357</td>
-      <td>15.388093</td>
-      <td>0.420306</td>
-      <td>9.969801</td>
-      <td>0.456746</td>
-      <td>11.273244</td>
-      <td>0.341382</td>
-      <td>0.201159</td>
-      <td>0.692301</td>
-      <td>1.669773</td>
-      <td>0.571728</td>
-      <td>19.781280</td>
-      <td>0.528204</td>
-      <td>21.030598</td>
-      <td>0.451578</td>
-      <td>5.969852</td>
-      <td>0.672908</td>
-      <td>7.317832</td>
-      <td>0.581176</td>
+      <th>15.10</th>
+      <td>14.13</td>
+      <td>0.52</td>
+      <td>15.39</td>
+      <td>0.42</td>
+      <td>9.97</td>
+      <td>0.46</td>
+      <td>11.27</td>
+      <td>0.34</td>
+      <td>0.20</td>
+      <td>0.69</td>
+      <td>1.67</td>
+      <td>0.57</td>
+      <td>19.78</td>
+      <td>0.53</td>
+      <td>21.03</td>
+      <td>0.45</td>
+      <td>5.97</td>
+      <td>0.67</td>
+      <td>7.32</td>
+      <td>0.58</td>
     </tr>
   </tbody>
 </table>
@@ -1410,7 +1420,8 @@ Selected Period: year
     <span class="n">df_merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">])</span>
     
 <span class="c1"># Display DataFrame</span>
-<span class="n">df_merged</span>
+<span class="n">df_wrapped</span> <span class="o">=</span> <span class="n">wrap_column_names</span><span class="p">(</span><span class="n">df_merged</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">df_wrapped</span>
 </pre></div>
 </div>
 </div>
@@ -1438,26 +1449,26 @@ Selected Period: year
       <th></th>
       <th></th>
       <th></th>
-      <th>Yearly_Tmax_mean_rcp45_mean</th>
-      <th>Yearly_Tmax_mean_rcp45_stdev</th>
-      <th>Yearly_Tmax_mean_rcp85_mean</th>
-      <th>Yearly_Tmax_mean_rcp85_stdev</th>
-      <th>Yearly_Tmean_mean_rcp45_mean</th>
-      <th>Yearly_Tmean_mean_rcp45_stdev</th>
-      <th>Yearly_Tmean_mean_rcp85_mean</th>
-      <th>Yearly_Tmean_mean_rcp85_stdev</th>
-      <th>Yearly_Tmean_p10_rcp45_mean</th>
-      <th>Yearly_Tmean_p10_rcp45_stdev</th>
-      <th>Yearly_Tmean_p10_rcp85_mean</th>
-      <th>Yearly_Tmean_p10_rcp85_stdev</th>
-      <th>Yearly_Tmean_p90_rcp45_mean</th>
-      <th>Yearly_Tmean_p90_rcp45_stdev</th>
-      <th>Yearly_Tmean_p90_rcp85_mean</th>
-      <th>Yearly_Tmean_p90_rcp85_stdev</th>
-      <th>Yearly_Tmin_mean_rcp45_mean</th>
-      <th>Yearly_Tmin_mean_rcp45_stdev</th>
-      <th>Yearly_Tmin_mean_rcp85_mean</th>
-      <th>Yearly_Tmin_mean_rcp85_stdev</th>
+      <th>Yearly_Tmax _mean_rcp45 _mean</th>
+      <th>Yearly_Tmax _mean_rcp45 _stdev</th>
+      <th>Yearly_Tmax _mean_rcp85 _mean</th>
+      <th>Yearly_Tmax _mean_rcp85 _stdev</th>
+      <th>Yearly_Tmea n_mean_rcp4 5_mean</th>
+      <th>Yearly_Tmea n_mean_rcp4 5_stdev</th>
+      <th>Yearly_Tmea n_mean_rcp8 5_mean</th>
+      <th>Yearly_Tmea n_mean_rcp8 5_stdev</th>
+      <th>Yearly_Tmea n_p10_rcp45 _mean</th>
+      <th>Yearly_Tmea n_p10_rcp45 _stdev</th>
+      <th>Yearly_Tmea n_p10_rcp85 _mean</th>
+      <th>Yearly_Tmea n_p10_rcp85 _stdev</th>
+      <th>Yearly_Tmea n_p90_rcp45 _mean</th>
+      <th>Yearly_Tmea n_p90_rcp45 _stdev</th>
+      <th>Yearly_Tmea n_p90_rcp85 _mean</th>
+      <th>Yearly_Tmea n_p90_rcp85 _stdev</th>
+      <th>Yearly_Tmin _mean_rcp45 _mean</th>
+      <th>Yearly_Tmin _mean_rcp45 _stdev</th>
+      <th>Yearly_Tmin _mean_rcp85 _mean</th>
+      <th>Yearly_Tmin _mean_rcp85 _stdev</th>
     </tr>
     <tr>
       <th>time</th>
@@ -1488,121 +1499,121 @@ Selected Period: year
   <tbody>
     <tr>
       <th rowspan="5" valign="top">1986-01-01</th>
-      <th rowspan="3" valign="top">47.6</th>
-      <th>9.0</th>
-      <td>14.331696</td>
-      <td>0.367926</td>
-      <td>14.331696</td>
-      <td>0.327256</td>
-      <td>9.969560</td>
-      <td>0.197087</td>
-      <td>9.969560</td>
-      <td>0.170345</td>
-      <td>-0.129010</td>
-      <td>0.353363</td>
-      <td>-0.129010</td>
-      <td>0.338264</td>
-      <td>20.145437</td>
-      <td>0.313090</td>
-      <td>20.145437</td>
-      <td>0.266228</td>
-      <td>5.737940</td>
-      <td>0.212152</td>
-      <td>5.737940</td>
-      <td>0.206423</td>
+      <th rowspan="3" valign="top">47.60</th>
+      <th>9.00</th>
+      <td>14.33</td>
+      <td>0.37</td>
+      <td>14.33</td>
+      <td>0.33</td>
+      <td>9.97</td>
+      <td>0.20</td>
+      <td>9.97</td>
+      <td>0.17</td>
+      <td>-0.13</td>
+      <td>0.35</td>
+      <td>-0.13</td>
+      <td>0.34</td>
+      <td>20.15</td>
+      <td>0.31</td>
+      <td>20.15</td>
+      <td>0.27</td>
+      <td>5.74</td>
+      <td>0.21</td>
+      <td>5.74</td>
+      <td>0.21</td>
     </tr>
     <tr>
-      <th>9.1</th>
-      <td>14.445174</td>
-      <td>0.360613</td>
-      <td>14.445174</td>
-      <td>0.318268</td>
-      <td>10.089812</td>
-      <td>0.194873</td>
-      <td>10.089812</td>
-      <td>0.163032</td>
-      <td>-0.042739</td>
-      <td>0.318802</td>
-      <td>-0.042739</td>
-      <td>0.302732</td>
-      <td>20.317759</td>
-      <td>0.323794</td>
-      <td>20.317759</td>
-      <td>0.271609</td>
-      <td>5.856429</td>
-      <td>0.201906</td>
-      <td>5.856429</td>
-      <td>0.192904</td>
+      <th>9.10</th>
+      <td>14.45</td>
+      <td>0.36</td>
+      <td>14.45</td>
+      <td>0.32</td>
+      <td>10.09</td>
+      <td>0.19</td>
+      <td>10.09</td>
+      <td>0.16</td>
+      <td>-0.04</td>
+      <td>0.32</td>
+      <td>-0.04</td>
+      <td>0.30</td>
+      <td>20.32</td>
+      <td>0.32</td>
+      <td>20.32</td>
+      <td>0.27</td>
+      <td>5.86</td>
+      <td>0.20</td>
+      <td>5.86</td>
+      <td>0.19</td>
     </tr>
     <tr>
-      <th>9.2</th>
-      <td>14.473366</td>
-      <td>0.292059</td>
-      <td>14.473366</td>
-      <td>0.252910</td>
-      <td>10.179042</td>
-      <td>0.204742</td>
-      <td>10.179042</td>
-      <td>0.181399</td>
-      <td>0.114491</td>
-      <td>0.323799</td>
-      <td>0.114491</td>
-      <td>0.306196</td>
-      <td>20.345865</td>
-      <td>0.266876</td>
-      <td>20.345865</td>
-      <td>0.223692</td>
-      <td>5.982708</td>
-      <td>0.241907</td>
-      <td>5.982708</td>
-      <td>0.237161</td>
+      <th>9.20</th>
+      <td>14.47</td>
+      <td>0.29</td>
+      <td>14.47</td>
+      <td>0.25</td>
+      <td>10.18</td>
+      <td>0.20</td>
+      <td>10.18</td>
+      <td>0.18</td>
+      <td>0.11</td>
+      <td>0.32</td>
+      <td>0.11</td>
+      <td>0.31</td>
+      <td>20.35</td>
+      <td>0.27</td>
+      <td>20.35</td>
+      <td>0.22</td>
+      <td>5.98</td>
+      <td>0.24</td>
+      <td>5.98</td>
+      <td>0.24</td>
     </tr>
     <tr>
-      <th rowspan="2" valign="top">47.7</th>
-      <th>9.0</th>
-      <td>14.462224</td>
-      <td>0.248100</td>
-      <td>14.462224</td>
-      <td>0.228836</td>
-      <td>10.037110</td>
-      <td>0.132729</td>
-      <td>10.037110</td>
-      <td>0.132351</td>
-      <td>-0.132800</td>
-      <td>0.351744</td>
-      <td>-0.132800</td>
-      <td>0.334977</td>
-      <td>20.276878</td>
-      <td>0.237635</td>
-      <td>20.276878</td>
-      <td>0.206161</td>
-      <td>5.749771</td>
-      <td>0.172277</td>
-      <td>5.749771</td>
-      <td>0.179768</td>
+      <th rowspan="2" valign="top">47.70</th>
+      <th>9.00</th>
+      <td>14.46</td>
+      <td>0.25</td>
+      <td>14.46</td>
+      <td>0.23</td>
+      <td>10.04</td>
+      <td>0.13</td>
+      <td>10.04</td>
+      <td>0.13</td>
+      <td>-0.13</td>
+      <td>0.35</td>
+      <td>-0.13</td>
+      <td>0.33</td>
+      <td>20.28</td>
+      <td>0.24</td>
+      <td>20.28</td>
+      <td>0.21</td>
+      <td>5.75</td>
+      <td>0.17</td>
+      <td>5.75</td>
+      <td>0.18</td>
     </tr>
     <tr>
-      <th>9.1</th>
-      <td>14.613771</td>
-      <td>0.275597</td>
-      <td>14.613771</td>
-      <td>0.249408</td>
-      <td>10.159163</td>
-      <td>0.136263</td>
-      <td>10.159163</td>
-      <td>0.123785</td>
-      <td>-0.127978</td>
-      <td>0.306949</td>
-      <td>-0.127978</td>
-      <td>0.289142</td>
-      <td>20.515713</td>
-      <td>0.287676</td>
-      <td>20.515713</td>
-      <td>0.244613</td>
-      <td>5.848050</td>
-      <td>0.167173</td>
-      <td>5.848050</td>
-      <td>0.164890</td>
+      <th>9.10</th>
+      <td>14.61</td>
+      <td>0.28</td>
+      <td>14.61</td>
+      <td>0.25</td>
+      <td>10.16</td>
+      <td>0.14</td>
+      <td>10.16</td>
+      <td>0.12</td>
+      <td>-0.13</td>
+      <td>0.31</td>
+      <td>-0.13</td>
+      <td>0.29</td>
+      <td>20.52</td>
+      <td>0.29</td>
+      <td>20.52</td>
+      <td>0.24</td>
+      <td>5.85</td>
+      <td>0.17</td>
+      <td>5.85</td>
+      <td>0.16</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1631,121 +1642,121 @@ Selected Period: year
     </tr>
     <tr>
       <th rowspan="5" valign="top">2085-01-01</th>
-      <th rowspan="2" valign="top">47.7</th>
-      <th>9.1</th>
-      <td>16.738144</td>
-      <td>0.448282</td>
-      <td>18.435940</td>
-      <td>0.585367</td>
-      <td>12.292133</td>
-      <td>0.327352</td>
-      <td>13.986012</td>
-      <td>0.431585</td>
-      <td>2.179368</td>
-      <td>0.405776</td>
-      <td>3.832271</td>
-      <td>0.468495</td>
-      <td>22.783861</td>
-      <td>0.618649</td>
-      <td>24.897171</td>
-      <td>1.033617</td>
-      <td>8.019099</td>
-      <td>0.239511</td>
-      <td>9.714018</td>
-      <td>0.282824</td>
+      <th rowspan="2" valign="top">47.70</th>
+      <th>9.10</th>
+      <td>16.74</td>
+      <td>0.45</td>
+      <td>18.44</td>
+      <td>0.59</td>
+      <td>12.29</td>
+      <td>0.33</td>
+      <td>13.99</td>
+      <td>0.43</td>
+      <td>2.18</td>
+      <td>0.41</td>
+      <td>3.83</td>
+      <td>0.47</td>
+      <td>22.78</td>
+      <td>0.62</td>
+      <td>24.90</td>
+      <td>1.03</td>
+      <td>8.02</td>
+      <td>0.24</td>
+      <td>9.71</td>
+      <td>0.28</td>
     </tr>
     <tr>
-      <th>9.2</th>
-      <td>16.790102</td>
-      <td>0.435207</td>
-      <td>18.491148</td>
-      <td>0.565896</td>
-      <td>12.381050</td>
-      <td>0.327880</td>
-      <td>14.077535</td>
-      <td>0.429868</td>
-      <td>2.243479</td>
-      <td>0.388891</td>
-      <td>3.911699</td>
-      <td>0.444539</td>
-      <td>22.888561</td>
-      <td>0.642582</td>
-      <td>24.996714</td>
-      <td>1.047297</td>
-      <td>8.143120</td>
-      <td>0.246540</td>
-      <td>9.841093</td>
-      <td>0.286129</td>
+      <th>9.20</th>
+      <td>16.79</td>
+      <td>0.44</td>
+      <td>18.49</td>
+      <td>0.57</td>
+      <td>12.38</td>
+      <td>0.33</td>
+      <td>14.08</td>
+      <td>0.43</td>
+      <td>2.24</td>
+      <td>0.39</td>
+      <td>3.91</td>
+      <td>0.44</td>
+      <td>22.89</td>
+      <td>0.64</td>
+      <td>25.00</td>
+      <td>1.05</td>
+      <td>8.14</td>
+      <td>0.25</td>
+      <td>9.84</td>
+      <td>0.29</td>
     </tr>
     <tr>
-      <th rowspan="3" valign="top">47.8</th>
-      <th>9.0</th>
-      <td>15.870772</td>
-      <td>0.412527</td>
-      <td>17.584803</td>
-      <td>0.535101</td>
-      <td>11.779332</td>
-      <td>0.428921</td>
-      <td>13.486767</td>
-      <td>0.472268</td>
-      <td>1.970922</td>
-      <td>0.405307</td>
-      <td>3.617135</td>
-      <td>0.429932</td>
-      <td>21.863422</td>
-      <td>0.616352</td>
-      <td>23.961403</td>
-      <td>0.972253</td>
-      <td>7.831337</td>
-      <td>0.521602</td>
-      <td>9.535279</td>
-      <td>0.512175</td>
+      <th rowspan="3" valign="top">47.80</th>
+      <th>9.00</th>
+      <td>15.87</td>
+      <td>0.41</td>
+      <td>17.58</td>
+      <td>0.54</td>
+      <td>11.78</td>
+      <td>0.43</td>
+      <td>13.49</td>
+      <td>0.47</td>
+      <td>1.97</td>
+      <td>0.41</td>
+      <td>3.62</td>
+      <td>0.43</td>
+      <td>21.86</td>
+      <td>0.62</td>
+      <td>23.96</td>
+      <td>0.97</td>
+      <td>7.83</td>
+      <td>0.52</td>
+      <td>9.54</td>
+      <td>0.51</td>
     </tr>
     <tr>
-      <th>9.1</th>
-      <td>16.073100</td>
-      <td>0.512709</td>
-      <td>17.783950</td>
-      <td>0.576360</td>
-      <td>11.782446</td>
-      <td>0.395966</td>
-      <td>13.484940</td>
-      <td>0.431787</td>
-      <td>1.851335</td>
-      <td>0.424747</td>
-      <td>3.503872</td>
-      <td>0.483110</td>
-      <td>22.078798</td>
-      <td>0.567791</td>
-      <td>24.174349</td>
-      <td>0.896124</td>
-      <td>7.654391</td>
-      <td>0.361682</td>
-      <td>9.353566</td>
-      <td>0.355475</td>
+      <th>9.10</th>
+      <td>16.07</td>
+      <td>0.51</td>
+      <td>17.78</td>
+      <td>0.58</td>
+      <td>11.78</td>
+      <td>0.40</td>
+      <td>13.48</td>
+      <td>0.43</td>
+      <td>1.85</td>
+      <td>0.42</td>
+      <td>3.50</td>
+      <td>0.48</td>
+      <td>22.08</td>
+      <td>0.57</td>
+      <td>24.17</td>
+      <td>0.90</td>
+      <td>7.65</td>
+      <td>0.36</td>
+      <td>9.35</td>
+      <td>0.36</td>
     </tr>
     <tr>
-      <th>9.2</th>
-      <td>16.035357</td>
-      <td>0.529596</td>
-      <td>17.742834</td>
-      <td>0.577433</td>
-      <td>11.716166</td>
-      <td>0.376457</td>
-      <td>13.411451</td>
-      <td>0.419708</td>
-      <td>1.777431</td>
-      <td>0.442262</td>
-      <td>3.436891</td>
-      <td>0.514722</td>
-      <td>22.045452</td>
-      <td>0.517211</td>
-      <td>24.120579</td>
-      <td>0.831949</td>
-      <td>7.554606</td>
-      <td>0.291706</td>
-      <td>9.246411</td>
-      <td>0.295616</td>
+      <th>9.20</th>
+      <td>16.04</td>
+      <td>0.53</td>
+      <td>17.74</td>
+      <td>0.58</td>
+      <td>11.72</td>
+      <td>0.38</td>
+      <td>13.41</td>
+      <td>0.42</td>
+      <td>1.78</td>
+      <td>0.44</td>
+      <td>3.44</td>
+      <td>0.51</td>
+      <td>22.05</td>
+      <td>0.52</td>
+      <td>24.12</td>
+      <td>0.83</td>
+      <td>7.55</td>
+      <td>0.29</td>
+      <td>9.25</td>
+      <td>0.30</td>
     </tr>
   </tbody>
 </table>
