@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Landsat Dataset Downloader using Landsatxplorer &mdash; Coklimax 1.0.0 documentation</title>
+  <title>Landsat Downloader &mdash; Coklimax 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -79,7 +79,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="era5_land_hourly.html">ERA5-Land Hourly Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="era5_land_monthly.html">ERA5-Land Monthly Averaged</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Landsat Dataset Downloader using Landsatxplorer</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Landsat Downloader</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#authentication">2.1 Authentication</a><ul>
@@ -112,7 +112,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Landsat Dataset Downloader using Landsatxplorer</li>
+      <li class="breadcrumb-item active">Landsat Downloader</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/notebooks/kurs_not_defined/landsat_with_landsatxplore.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -122,8 +122,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="landsat-dataset-downloader-using-landsatxplorer">
-<h1>Landsat Dataset Downloader using Landsatxplorer<a class="headerlink" href="#landsat-dataset-downloader-using-landsatxplorer" title="Link to this heading"></a></h1>
+  <section id="landsat-downloader">
+<h1>Landsat Downloader<a class="headerlink" href="#landsat-downloader" title="Link to this heading"></a></h1>
 <p><strong>landsatxplorer</strong> is a Python library designed for searching and downloading Landsat imagery from the USGS EarthExplorer platform. It allows users to query Landsat datasets by various parameters like location, date, and cloud cover, and download the corresponding images. This tool simplifies the process of accessing and working with satellite imagery for analysis and visualization in Python</p>
 <p><strong>Information on Library:</strong></p>
 <ul class="simple">
@@ -358,6 +358,7 @@
 
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">scene</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scenes</span><span class="p">):</span>
     <span class="n">entity_id</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s1">&#39;entity_id&#39;</span><span class="p">]</span>
+    <span class="n">entity_cc</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s1">&#39;cloud_cover&#39;</span><span class="p">]</span>
     <span class="n">polygon_wkt</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&quot;spatial_coverage&quot;</span><span class="p">]</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">polygon_wkt</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">polygon</span> <span class="o">=</span> <span class="n">wkt</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">polygon_wkt</span><span class="p">)</span>
@@ -365,7 +366,7 @@
         <span class="n">polygon</span> <span class="o">=</span> <span class="n">polygon_wkt</span>
 
     <span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">c</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cmap</span><span class="p">(</span><span class="n">i</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]]</span>
-    <span class="n">polygon_fg</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">FeatureGroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;str</span><span class="si">{</span><span class="n">entity_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">polygon_fg</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">FeatureGroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;str</span><span class="si">{</span><span class="n">entity_id</span><span class="si">}</span><span class="s2"> (CC: </span><span class="si">{</span><span class="n">entity_cc</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
     <span class="n">folium</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span>
         <span class="n">locations</span><span class="o">=</span><span class="p">[(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span> <span class="k">for</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span> <span class="ow">in</span> <span class="n">polygon</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">coords</span><span class="p">],</span>
         <span class="n">color</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;rgb(</span><span class="si">{</span><span class="n">color</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">color</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">color</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
@@ -408,7 +409,7 @@
             &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
             &lt;style&gt;
-                #map_55274c2bafb43fa2ae48ec5f2b95d4b1 {
+                #map_0852f8149abc86e297145c820ffffab9 {
                     position: relative;
                     width: 100.0%;
                     height: 450.0px;
@@ -422,14 +423,14 @@
 &lt;body&gt;
     
     
-            &lt;div class=&quot;folium-map&quot; id=&quot;map_55274c2bafb43fa2ae48ec5f2b95d4b1&quot; &gt;&lt;/div&gt;
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_0852f8149abc86e297145c820ffffab9&quot; &gt;&lt;/div&gt;
         
 &lt;/body&gt;
 &lt;script&gt;
     
     
-            var map_55274c2bafb43fa2ae48ec5f2b95d4b1 = L.map(
-                &quot;map_55274c2bafb43fa2ae48ec5f2b95d4b1&quot;,
+            var map_0852f8149abc86e297145c820ffffab9 = L.map(
+                &quot;map_0852f8149abc86e297145c820ffffab9&quot;,
                 {
                     center: [47.5, 8.0],
                     crs: L.CRS.EPSG3857,
@@ -448,7 +449,7 @@
 
         
     
-            var tile_layer_3184062d5577f4fdb2c99d9ec29e0e49 = L.tileLayer(
+            var tile_layer_91fb5bf58dd1e711e7353cb82966dcab = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {
   &quot;minZoom&quot;: 0,
@@ -465,153 +466,153 @@
             );
         
     
-            tile_layer_3184062d5577f4fdb2c99d9ec29e0e49.addTo(map_55274c2bafb43fa2ae48ec5f2b95d4b1);
+            tile_layer_91fb5bf58dd1e711e7353cb82966dcab.addTo(map_0852f8149abc86e297145c820ffffab9);
         
     
-            var feature_group_934a4015215541692d08f0e685ead94b = L.featureGroup(
+            var feature_group_52d1d4beab6d3be341dcf649528b65eb = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_9c5f3a1c35c9d7039add7f264de51340 = L.polygon(
+            var polygon_60a2055aad43aca8eebb4070afcb4d67 = L.polygon(
                 [[46.80577, 6.4291], [46.36914, 8.84615], [48.07038, 9.54652], [48.51237, 7.05177], [46.80577, 6.4291]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(48, 18, 59)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(48, 18, 59)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_934a4015215541692d08f0e685ead94b);
+            ).addTo(feature_group_52d1d4beab6d3be341dcf649528b65eb);
         
     
-            feature_group_934a4015215541692d08f0e685ead94b.addTo(map_55274c2bafb43fa2ae48ec5f2b95d4b1);
+            feature_group_52d1d4beab6d3be341dcf649528b65eb.addTo(map_0852f8149abc86e297145c820ffffab9);
         
     
-            var feature_group_e0bf249f3f523767ea6062a67c3d2fd9 = L.featureGroup(
+            var feature_group_40645861162aa3ca592bf4e1e6a76b88 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_9acab150345b9bfd1a8a3116468861ed = L.polygon(
+            var polygon_6de30bacec4174c683ccc842ab0bb569 = L.polygon(
                 [[46.8056, 7.99131], [46.36892, 10.40793], [48.07023, 11.10851], [48.51226, 8.61421], [46.8056, 7.99131]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(61, 55, 145)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(61, 55, 145)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_e0bf249f3f523767ea6062a67c3d2fd9);
+            ).addTo(feature_group_40645861162aa3ca592bf4e1e6a76b88);
         
     
-            feature_group_e0bf249f3f523767ea6062a67c3d2fd9.addTo(map_55274c2bafb43fa2ae48ec5f2b95d4b1);
+            feature_group_40645861162aa3ca592bf4e1e6a76b88.addTo(map_0852f8149abc86e297145c820ffffab9);
         
     
-            var feature_group_a2273aa190ef9a2e8844bd8af73060b6 = L.featureGroup(
+            var feature_group_42042a158ae9947ce32560818c0c7909 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_c6c918d1fd57969d80ced10b4497f18d = L.polygon(
+            var polygon_8926f02ea5941191d65fde1c252ba868 = L.polygon(
                 [[46.80565, 6.45436], [46.36907, 8.8704], [48.07049, 9.571], [48.51243, 7.07728], [46.80565, 6.45436]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(69, 91, 206)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(69, 91, 206)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_a2273aa190ef9a2e8844bd8af73060b6);
+            ).addTo(feature_group_42042a158ae9947ce32560818c0c7909);
         
     
-            feature_group_a2273aa190ef9a2e8844bd8af73060b6.addTo(map_55274c2bafb43fa2ae48ec5f2b95d4b1);
+            feature_group_42042a158ae9947ce32560818c0c7909.addTo(map_0852f8149abc86e297145c820ffffab9);
         
     
-            var feature_group_7f9d931a32094ac091179c076ca2fbcb = L.featureGroup(
+            var feature_group_67045720684b5a85ee9c9cbfbd889268 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_1e2c29d6f3e2527e1c1f2f3d7f0624e0 = L.polygon(
+            var polygon_aca86f96964aa4dff48f26a69ee7980c = L.polygon(
                 [[46.80596, 6.4331], [46.3692, 8.84952], [48.07053, 9.5503], [48.51266, 7.05617], [46.80596, 6.4331]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(70, 127, 246)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(70, 127, 246)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_7f9d931a32094ac091179c076ca2fbcb);
+            ).addTo(feature_group_67045720684b5a85ee9c9cbfbd889268);
         
     
-            feature_group_7f9d931a32094ac091179c076ca2fbcb.addTo(map_55274c2bafb43fa2ae48ec5f2b95d4b1);
+            feature_group_67045720684b5a85ee9c9cbfbd889268.addTo(map_0852f8149abc86e297145c820ffffab9);
         
     
-            var feature_group_ecb33d0f90f2ae138e8c19ac431a5666 = L.featureGroup(
+            var feature_group_90bc62fa00c6d14a12005f265a38ebd9 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_e5a7563a9063ebb9dd4742e155ad2a2b = L.polygon(
+            var polygon_27301a7877937a39f376f171f21bcb26 = L.polygon(
                 [[46.80604, 7.99023], [46.3691, 10.40725], [48.07029, 11.10803], [48.5126, 8.6133], [46.80604, 7.99023]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(59, 160, 252)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(59, 160, 252)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_ecb33d0f90f2ae138e8c19ac431a5666);
+            ).addTo(feature_group_90bc62fa00c6d14a12005f265a38ebd9);
         
     
-            feature_group_ecb33d0f90f2ae138e8c19ac431a5666.addTo(map_55274c2bafb43fa2ae48ec5f2b95d4b1);
+            feature_group_90bc62fa00c6d14a12005f265a38ebd9.addTo(map_0852f8149abc86e297145c820ffffab9);
         
     
-            var feature_group_25aa1990bb68e3a8a942cf09ba25b83c = L.featureGroup(
+            var feature_group_d0c5a3b4a24e9fa88c76f1c85249ceb8 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_5258c7e98048d9ac499ef4cfe482f364 = L.polygon(
+            var polygon_0f850e972014d731621ffdfca50ee5ff = L.polygon(
                 [[46.80476, 6.3759], [46.3697, 8.79304], [48.07143, 9.49114], [48.5118, 6.99625], [46.80476, 6.3759]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(35, 194, 228)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(35, 194, 228)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_25aa1990bb68e3a8a942cf09ba25b83c);
+            ).addTo(feature_group_d0c5a3b4a24e9fa88c76f1c85249ceb8);
         
     
-            feature_group_25aa1990bb68e3a8a942cf09ba25b83c.addTo(map_55274c2bafb43fa2ae48ec5f2b95d4b1);
+            feature_group_d0c5a3b4a24e9fa88c76f1c85249ceb8.addTo(map_0852f8149abc86e297145c820ffffab9);
         
     
-            var feature_group_415e64b02402afd19f1020e97224b91e = L.featureGroup(
+            var feature_group_b82f6e09f5c263b78f7c78f5c8afd88e = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_95da48b6fd1e8c16a49d8c7db68dcb3e = L.polygon(
+            var polygon_3c90ced14ca2c06643aa49d2d2915582 = L.polygon(
                 [[46.80459, 6.40358], [46.36947, 8.82002], [48.07129, 9.51843], [48.51172, 7.02425], [46.80459, 6.40358]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(23, 220, 194)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(23, 220, 194)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_415e64b02402afd19f1020e97224b91e);
+            ).addTo(feature_group_b82f6e09f5c263b78f7c78f5c8afd88e);
         
     
-            feature_group_415e64b02402afd19f1020e97224b91e.addTo(map_55274c2bafb43fa2ae48ec5f2b95d4b1);
+            feature_group_b82f6e09f5c263b78f7c78f5c8afd88e.addTo(map_0852f8149abc86e297145c820ffffab9);
         
     
-            var feature_group_d886e268a01bc68eb45646db948ac5ca = L.featureGroup(
+            var feature_group_01ecf8703330145f3df15b9b497ea98d = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_de783757cec27bb4ff8ad56ca4f065a6 = L.polygon(
+            var polygon_961e6006b2f480957bd5e649f1d848b4 = L.polygon(
                 [[46.80518, 6.43038], [46.36934, 8.84755], [48.07084, 9.54674], [48.512, 7.05183], [46.80518, 6.43038]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(44, 239, 157)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(44, 239, 157)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_d886e268a01bc68eb45646db948ac5ca);
+            ).addTo(feature_group_01ecf8703330145f3df15b9b497ea98d);
         
     
-            feature_group_d886e268a01bc68eb45646db948ac5ca.addTo(map_55274c2bafb43fa2ae48ec5f2b95d4b1);
+            feature_group_01ecf8703330145f3df15b9b497ea98d.addTo(map_0852f8149abc86e297145c820ffffab9);
         
     
-            var layer_control_7137657f4e73ee62bb08bc5b9eddf56e_layers = {
+            var layer_control_1538970199bbf18e46c87b2ec9dbbd88_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_3184062d5577f4fdb2c99d9ec29e0e49,
+                    &quot;openstreetmap&quot; : tile_layer_91fb5bf58dd1e711e7353cb82966dcab,
                 },
                 overlays :  {
-                    &quot;strLC81950272020256LGN00&quot; : feature_group_934a4015215541692d08f0e685ead94b,
-                    &quot;strLC81940272020233LGN00&quot; : feature_group_e0bf249f3f523767ea6062a67c3d2fd9,
-                    &quot;strLC81950272020224LGN00&quot; : feature_group_a2273aa190ef9a2e8844bd8af73060b6,
-                    &quot;strLC81950272020176LGN00&quot; : feature_group_7f9d931a32094ac091179c076ca2fbcb,
-                    &quot;strLC81940272020153LGN00&quot; : feature_group_ecb33d0f90f2ae138e8c19ac431a5666,
-                    &quot;strLC81950272020128LGN00&quot; : feature_group_25aa1990bb68e3a8a942cf09ba25b83c,
-                    &quot;strLC81950272020096LGN00&quot; : feature_group_415e64b02402afd19f1020e97224b91e,
-                    &quot;strLC81950272020016LGN00&quot; : feature_group_d886e268a01bc68eb45646db948ac5ca,
+                    &quot;strLC81950272020256LGN00 (CC: 9)&quot; : feature_group_52d1d4beab6d3be341dcf649528b65eb,
+                    &quot;strLC81940272020233LGN00 (CC: 6)&quot; : feature_group_40645861162aa3ca592bf4e1e6a76b88,
+                    &quot;strLC81950272020224LGN00 (CC: 8)&quot; : feature_group_42042a158ae9947ce32560818c0c7909,
+                    &quot;strLC81950272020176LGN00 (CC: 3)&quot; : feature_group_67045720684b5a85ee9c9cbfbd889268,
+                    &quot;strLC81940272020153LGN00 (CC: 5)&quot; : feature_group_90bc62fa00c6d14a12005f265a38ebd9,
+                    &quot;strLC81950272020128LGN00 (CC: 2)&quot; : feature_group_d0c5a3b4a24e9fa88c76f1c85249ceb8,
+                    &quot;strLC81950272020096LGN00 (CC: 2)&quot; : feature_group_b82f6e09f5c263b78f7c78f5c8afd88e,
+                    &quot;strLC81950272020016LGN00 (CC: 2)&quot; : feature_group_01ecf8703330145f3df15b9b497ea98d,
                 },
             };
-            let layer_control_7137657f4e73ee62bb08bc5b9eddf56e = L.control.layers(
-                layer_control_7137657f4e73ee62bb08bc5b9eddf56e_layers.base_layers,
-                layer_control_7137657f4e73ee62bb08bc5b9eddf56e_layers.overlays,
+            let layer_control_1538970199bbf18e46c87b2ec9dbbd88 = L.control.layers(
+                layer_control_1538970199bbf18e46c87b2ec9dbbd88_layers.base_layers,
+                layer_control_1538970199bbf18e46c87b2ec9dbbd88_layers.overlays,
                 {
   &quot;position&quot;: &quot;topright&quot;,
   &quot;collapsed&quot;: true,
   &quot;autoZIndex&quot;: true,
 }
-            ).addTo(map_55274c2bafb43fa2ae48ec5f2b95d4b1);
+            ).addTo(map_0852f8149abc86e297145c820ffffab9);
 
         
 &lt;/script&gt;
