@@ -1,0 +1,106 @@
+Traceback (most recent call last):
+  File "F:\_str.ucture\CoKLIMAx (Phase2)\CoKLIMAx-II\cds_venv\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "F:\_str.ucture\CoKLIMAx (Phase2)\CoKLIMAx-II\cds_venv\lib\site-packages\nbclient\client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "F:\_str.ucture\CoKLIMAx (Phase2)\CoKLIMAx-II\cds_venv\lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "C:\Users\Shailesh\AppData\Local\Programs\Python\Python310\lib\asyncio\base_events.py", line 641, in run_until_complete
+    return future.result()
+  File "F:\_str.ucture\CoKLIMAx (Phase2)\CoKLIMAx-II\cds_venv\lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "F:\_str.ucture\CoKLIMAx (Phase2)\CoKLIMAx-II\cds_venv\lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "F:\_str.ucture\CoKLIMAx (Phase2)\CoKLIMAx-II\cds_venv\lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import seaborn as sns
+
+def plot_precipitation_heatmap(start_year=2010,
+                               end_year=None):
+    """
+    Creates a heatmap of monthly average precipitation from a CSV file.
+
+    Parameters:
+        start_year (int, optional): The starting year to filter the data. Default is 2010.
+        end_year (int, optional): The ending year to filter the data. If not provided, filters up to the maximum year.
+    """
+    
+    # Load data and preprocess
+    csv_path = os.path.join(csv_folder, 'LAPrec1871_monthly_means.csv')
+    df = pd.read_csv(csv_path)
+    df = df.drop(columns=['Yearly_Sum'])
+    df = df.set_index('Year')
+    
+    # Determine the effective end year
+    max_year_in_data = df.index.max()
+    if end_year is not None:
+        end_year = min(max_year_in_data, end_year)
+    else:
+        end_year = max_year_in_data
+    
+    # Filter data based on start and end year
+    df_filtered = df.loc[start_year:end_year]
+    
+    # Create the heatmap
+    fig, ax = plt.subplots(figsize=(12, 8))
+    cmap = plt.get_cmap('Blues', 11)
+    
+    sns.heatmap(
+        df_filtered,
+        cmap=cmap,
+        annot=True,
+        annot_kws={"fontsize": 10},
+        fmt=".0f",
+        cbar_kws={
+            "label": f"Precipitation ({summary.get('Units', 'mm')})",
+            "ticks": range(0, 221, 20),
+            "pad": 0.015,
+        },
+        vmin=0,
+        vmax=220
+    )
+    
+    # Customize x-axis with month names
+    month_labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    ax.set_xticks(range(1, 13))
+    ax.set_xticklabels(month_labels, rotation=0, fontsize=10)
+
+    # Add labels and title
+    ax.set_title("Monthly Average Precipitation", fontsize=16, fontweight='bold')
+    ax.set_xlabel("Month", fontsize=12)
+    ax.set_ylabel("Year", fontsize=12)
+
+    # Adjust layout and display the plot
+    plt.tight_layout()
+    plt.show()
+    
+# Example usage
+if __name__ == "__main__":
+    plot_precipitation_heatmap(
+        start_year=2010,
+        end_year=2020
+    )
+    
+    plot_precipitation_heatmap(
+        start_year=2005,
+    )
+------------------
+
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [1;32mIn[17], line 1[0m
+[1;32m----> 1[0m [38;5;28;01mimport[39;00m [38;5;21;01mseaborn[39;00m [38;5;28;01mas[39;00m [38;5;21;01msns[39;00m
+[0;32m      3[0m [38;5;28;01mdef[39;00m [38;5;21mplot_precipitation_heatmap[39m(start_year[38;5;241m=[39m[38;5;241m2010[39m,
+[0;32m      4[0m                                end_year[38;5;241m=[39m[38;5;28;01mNone[39;00m):
+[0;32m      5[0m [38;5;250m    [39m[38;5;124;03m"""[39;00m
+[0;32m      6[0m [38;5;124;03m    Creates a heatmap of monthly average precipitation from a CSV file.[39;00m
+[0;32m      7[0m 
+[1;32m   (...)[0m
+[0;32m     10[0m [38;5;124;03m        end_year (int, optional): The ending year to filter the data. If not provided, filters up to the maximum year.[39;00m
+[0;32m     11[0m [38;5;124;03m    """[39;00m
+
+[1;31mModuleNotFoundError[0m: No module named 'seaborn'
+
