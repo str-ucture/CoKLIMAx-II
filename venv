@@ -1,1 +1,7 @@
 py -3.10 -m venv myenv
+
+pip install matplotlib numpy pandas geopandas netCDF4 cdsapi sentinelhub rasterio xarray ipywidgets cartopy seaborn landsatxplore folium shapely contextily
+
+pip install shapely --upgrade (to fix issue ifL AttributeError: module 'shapely' has no attribute 'strtree')
+
+pip install sphinx sphinx-copybutton myst-nb nbsphinx sphinx-rtd-theme

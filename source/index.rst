@@ -5,14 +5,12 @@ Welcome to the official documentation for CoKLIMAx II. Here you'll find everythi
 
 .. toctree::
   :maxdepth: 2
-  :caption: Erste Schritte:
+  :caption: INHALTE:
 
-  ./rst_intro/einfuhrung_cds
-  ./rst_intro/einfuhrung_jupyter
-  ./rst_intro/kurz_elemente
-  ./rst_intro/software_und_kenntnisse
   ./rst_intro/notwendige_software_und_kenntnisse
-  ./notebooks/setup_verification
+  ./rst_intro/der_kurz_elemente
+  ./rst_intro/der_cds
+  ./rst_intro/der_jupyter
 
 .. toctree::
   :maxdepth: 2
@@ -25,26 +23,28 @@ Welcome to the official documentation for CoKLIMAx II. Here you'll find everythi
   :maxdepth: 2
   :caption: Kurs 2:
 
-  ./notebooks/kurs2/satellite-lake-water-level
-  ./notebooks/kurs2/satellite-lake-water-temperature
-  ./notebooks/kurs2/sis-health-vector
-  ./notebooks/kurs2/sis-temperature-statistics
-  ./notebooks/kurs2/alpine-monthly-precipitation
+  ./notebooks/kurs2/01 satellite-lake-water-level
+  ./notebooks/kurs2/02 satellite-lake-water-temperature
+  ./notebooks/kurs2/03 sis-temperature-statistics
 
 .. toctree::
   :maxdepth: 2
   :caption: Kurs 3:
 
-  ./notebooks/kurs3/senthub_downloader
+  ./notebooks/kurs3/01 senthub_downloader
 
 .. toctree::
   :maxdepth: 2
   :caption: Kurs Note Defined:
 
-  ./notebooks/kurs_not_defined/era5_land_hourly
-  ./notebooks/kurs_not_defined/era5_land_monthly
-  ./notebooks/kurs_not_defined/landsat_with_landsatxplore
-  ./notebooks/kurs_not_defined/climate_indicators
+  ./notebooks/kurs_not_defined/01 alpine-monthly-precipitation
+  ./notebooks/kurs_not_defined/02 sis-heat-wave-and-cold-spells
+  ./notebooks/kurs_not_defined/03 sis-health-vector
+  ./notebooks/kurs_not_defined/04 climate-indicators
+  ./notebooks/kurs_not_defined/05 sis-biodiversity-era5-regional
+  ./notebooks/kurs_not_defined/06 era5_land_hourly
+  ./notebooks/kurs_not_defined/07 era5-land-monthly
+  ./notebooks/kurs_not_defined/08 landsat_with_landsatxplore
 
 Before you begin
 ----------------
