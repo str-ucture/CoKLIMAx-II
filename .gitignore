@@ -21,6 +21,7 @@ source/secrets/
 *.7z
 *.rar
 *.gz
+*.SAFE
 
 *.csv
 *.xls
@@ -35,6 +36,8 @@ source/secrets/
 *.nc
 *.tiff
 *.tif
+*.TIF
+*.TIFF
 
 # Image files
 *.png

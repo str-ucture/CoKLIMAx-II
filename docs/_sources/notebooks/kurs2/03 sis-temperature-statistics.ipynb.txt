@@ -193,12 +193,12 @@
      "name": "stderr",
      "output_type": "stream",
      "text": [
-      "2025-01-08 11:45:10,583 WARNING [2025-01-08T00:00:00] Please be informed that Beta URL (cds-beta) have been now discontinued. If you still need to migrate, please follow [available instructions here](https://forum.ecmwf.int/t/goodbye-legacy-climate-data-store-hello-new-climate-data-store-cds/6380)\n",
-      "2025-01-08 11:45:10,584 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your \n",
+      "2025-01-10 11:17:28,114 WARNING [2025-01-08T00:00:00] Please be informed that Beta URL (cds-beta) have been now discontinued. If you still need to migrate, please follow [available instructions here](https://forum.ecmwf.int/t/goodbye-legacy-climate-data-store-hello-new-climate-data-store-cds/6380)\n",
+      "2025-01-10 11:17:28,114 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your \n",
       "[feedback](https://jira.ecmwf.int/plugins/servlet/desk/portal/1/create/202) is key to improve the user experience on the new CDS for the benefit of everyone. Thank you.\n",
-      "2025-01-08 11:45:10,584 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.\n",
-      "2025-01-08 11:45:10,584 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**\n",
-      "2025-01-08 11:45:10,585 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the \"Show API request code\" tool on the dataset Download Form to check you are using the correct syntax for your API request.\n"
+      "2025-01-10 11:17:28,114 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.\n",
+      "2025-01-10 11:17:28,114 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**\n",
+      "2025-01-10 11:17:28,114 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the \"Show API request code\" tool on the dataset Download Form to check you are using the correct syntax for your API request.\n"
      ]
     },
     {
@@ -2655,7 +2655,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "ba5d4535ce7f449bb955c03ca7e2e303",
+       "model_id": "1c53f28c464a45bf81dd5049f1734079",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2669,7 +2669,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "18a7e347dc304c5aa1ba974da7eaeec6",
+       "model_id": "562482cf63504d2e888e68ec19defc83",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2683,7 +2683,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "897aba6b7bf64193a057b2d309f8d666",
+       "model_id": "3be8c92d635642099bf0831820f04e69",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2697,7 +2697,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "dc9532829dcb401485d34eed25e01d6b",
+       "model_id": "ac2661365cdc4300a6d5e26e02026aa1",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2711,7 +2711,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "04af3923cdc44aef9be3bd1850a7d5a2",
+       "model_id": "47353b576d14442d9b6a0025eee80bfb",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2725,7 +2725,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "98b1dfd3c0be43988f6c7e321b82c34f",
+       "model_id": "b1353d382ec543b7957a22427e06dcc2",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2739,7 +2739,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "ddf7f3489f544d139251f46b9f62e0a9",
+       "model_id": "23885c39ec154162a543c2d9ac1dfc20",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2753,7 +2753,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "8bea6a5e994d4465a0dc21376bc7576b",
+       "model_id": "048e36e7aa104641835bb8cd70ba6db6",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2767,7 +2767,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "9ecf22ea2bb646458872c0faeb8a6dee",
+       "model_id": "4b32680b52dd4eb5abd69c3ef55d6c1b",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2781,7 +2781,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "6e69fe6e69e54431a3f4b86a2d59593d",
+       "model_id": "97fc133441a64880ace1d5b42ea15199",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2795,7 +2795,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "8d7311627bca45179f78089ab18f7060",
+       "model_id": "ad0578e148f54872873f12b82e7ab256",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2809,7 +2809,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "675f2447d80e4b679075dc125e44300f",
+       "model_id": "a456476a90404056bb487792e0959690",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2823,7 +2823,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "4790000ac44e4e5f9cb1ee41e4b2f8a8",
+       "model_id": "7e97ec59c9df496289de809e4877a40c",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2837,7 +2837,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "5e030afccc1b4b64bc731a02287d258b",
+       "model_id": "e447a1bc0e5b41f8ae09420c186fa29e",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2851,7 +2851,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "80b69761ee194f0bb78f0f759547f0ef",
+       "model_id": "b87427c9f5414b95a0517725b3dc4d36",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2865,7 +2865,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "4b7f1842a24a4bf09b6b7449a3fe947a",
+       "model_id": "95a73fa0a9004d62a8fa5218ea0aa459",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2879,7 +2879,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "f0f07f320fc4416cb5116da0120a771c",
+       "model_id": "23b10df19c874dbdbc4cd239e32a1d7e",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2893,7 +2893,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "e596af5fb95644b8b4ef3ed0aeacf1ea",
+       "model_id": "2a3e677d02224e7fa09e149e5097dccf",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2907,7 +2907,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "cdcea37b659f4c51a91723b5fcc3245a",
+       "model_id": "c8556caa4e3e47dfa5ae8e0d639efa21",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2921,7 +2921,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "8ea4fe8348c64872b1a350570b023392",
+       "model_id": "5bd9e46725cb4f1b9fa81155c0913f2f",
        "version_major": 2,
        "version_minor": 0
       },
@@ -2972,7 +2972,7 @@
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "1719fe6ddc274cd4a0898d52afbc3424",
+       "model_id": "0dc361660cc84eeea2a3dcd62b157c2d",
        "version_major": 2,
        "version_minor": 0
       },

@@ -2,6 +2,11 @@ py -3.10 -m venv myenv
 
 pip install matplotlib numpy pandas geopandas netCDF4 cdsapi sentinelhub rasterio xarray ipywidgets cartopy seaborn landsatxplore folium shapely contextily
 
+pip install argostranslate
+    (download: https://www.argosopentech.com/argospm/index/)
+    (install: argostranslate.package.install_from_path(f"./path/to/model.argosmodel"))
+pip install --upgrade stanze (to fix issue/warning during translation)
+
 pip install shapely --upgrade (to fix issue ifL AttributeError: module 'shapely' has no attribute 'strtree')
 
 pip install sphinx sphinx-copybutton myst-nb nbsphinx sphinx-rtd-theme

@@ -44,7 +44,7 @@ Welcome to the official documentation for CoKLIMAx II. Here you'll find everythi
   ./notebooks/kurs_not_defined/05 sis-biodiversity-era5-regional
   ./notebooks/kurs_not_defined/06 era5_land_hourly
   ./notebooks/kurs_not_defined/07 era5-land-monthly
-  ./notebooks/kurs_not_defined/08 landsat_with_landsatxplore
+  ./notebooks/kurs_not_defined/08 landsat-with-landsatxplore
 
 Before you begin
 ----------------

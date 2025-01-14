@@ -13,74 +13,74 @@
         "https://stac-extensions.github.io/card4l/v0.1.0/optical/schema.json",
         "https://stac-extensions.github.io/classification/v1.0.0/schema.json"
     ],
-    "id": "LC08_L2SP_195027_20200507_20200820_02_T1_ST",
+    "id": "LC08_L2SP_195027_20200624_20200824_02_T1_ST",
     "description": "Landsat Collection 2 Level-2 Surface Temperature Product Product",
     "bbox": [
-        6.3986225263275465,
-        46.37784478259338,
-        9.451250908354199,
-        48.50815667301345
+        6.458739525020157,
+        46.37687951132686,
+        9.513669040131328,
+        48.50841425454064
     ],
     "geometry": {
         "type": "Polygon",
         "coordinates": [
             [
                 [
-                    7.0175529296583585,
-                    48.50815667301345
+                    7.080504568462593,
+                    48.50841425454064
                 ],
                 [
-                    6.3986225263275465,
-                    46.8010325100461
+                    6.458739525020157,
+                    46.801843993585194
                 ],
                 [
-                    8.751636932480755,
-                    46.37784478259338
+                    8.81171551698489,
+                    46.37687951132686
                 ],
                 [
-                    9.451250908354199,
-                    48.07873650247387
+                    9.513669040131328,
+                    48.07739477743209
                 ],
                 [
-                    7.0175529296583585,
-                    48.50815667301345
+                    7.080504568462593,
+                    48.50841425454064
                 ]
             ]
         ]
     },
     "properties": {
-        "datetime": "2020-05-07T10:15:54.602664Z",
-        "eo:cloud_cover": 1.8,
-        "view:sun_azimuth": 149.17996665,
-        "view:sun_elevation": 56.40880502,
+        "datetime": "2020-06-24T10:16:14.186367Z",
+        "eo:cloud_cover": 3.12,
+        "view:sun_azimuth": 141.81766161,
+        "view:sun_elevation": 61.72888647,
         "platform": "LANDSAT_8",
         "instruments": [
             "OLI",
             "TIRS"
         ],
         "view:off_nadir": 0,
-        "landsat:cloud_cover_land": 1.8,
+        "landsat:cloud_cover_land": 3.12,
         "landsat:wrs_type": "2",
         "landsat:wrs_path": "195",
         "landsat:wrs_row": "027",
-        "landsat:scene_id": "LC81950272020128LGN00",
+        "landsat:scene_id": "LC81950272020176LGN00",
         "landsat:collection_category": "T1",
         "landsat:collection_number": "02",
         "landsat:correction": "L2SP",
         "accuracy:geometric_x_bias": 0,
         "accuracy:geometric_y_bias": 0,
-        "accuracy:geometric_x_stddev": 4.321,
-        "accuracy:geometric_y_stddev": 4.068,
-        "accuracy:geometric_rmse": 5.935,
+        "accuracy:geometric_x_stddev": 4.564,
+        "accuracy:geometric_y_stddev": 4.829,
+        "accuracy:geometric_rmse": 6.644,
         "proj:epsg": 32632,
         "proj:shape": [
-            8011,
-            7901
+            8021,
+            7911
         ],
         "proj:transform": [
             30.0,
             0.0,
-            299685.0,
+            303885.0,
             0.0,
             -30.0,
             5375415.0
@@ -95,15 +95,15 @@
             "roles": [
                 "thumbnail"
             ],
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_thumb_small.jpeg",
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_thumb_small.jpeg",
             "alternate": {
                 "s3": {
                     "storage:platform": "AWS",
                     "storage:requester_pays": true,
-                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_thumb_small.jpeg"
+                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_thumb_small.jpeg"
                 }
             },
-            "file:checksum": "1340da95d65609eeabe3bb5b450b3f3901c3fd713dc67503562cdd31066e900711bdacd2a0f2dfc8205fc4b408254fd34b85b8cf85b988b869855db1d4950c67ce63"
+            "file:checksum": "13403d4851f68083725b21ea665514d4c62742961e35d3b893d80070028d28e4df3e63993b46d9038956dcfb704c08f14b846e3b0b0d7272c2f85e4ce08b9e7b28f3"
         },
         "reduced_resolution_browse": {
             "title": "Reduced resolution browse image",
@@ -111,15 +111,15 @@
             "roles": [
                 "overview"
             ],
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_thumb_large.jpeg",
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_thumb_large.jpeg",
             "alternate": {
                 "s3": {
                     "storage:platform": "AWS",
                     "storage:requester_pays": true,
-                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_thumb_large.jpeg"
+                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_thumb_large.jpeg"
                 }
             },
-            "file:checksum": "13401d85b62defa2e7c303b7f06b78baea10320ca988165f140e959a409d6dedc21a677bd29178ee208ffe2f087eed819b46a5f851ffdd3f010c429ecf64a9aa6eee"
+            "file:checksum": "1340e0dec76fccaf5212a59501b7f533e9ea189efc5825fb102730d50c11b24900ed09fd80aa9debd01ae44a09a04aeb688cfe55780540055bacc265ed8c288255d8"
         },
         "index": {
             "title": "HTML index page",
@@ -127,7 +127,7 @@
             "roles": [
                 "metadata"
             ],
-            "href": "https://landsatlook.usgs.gov/stac-browser/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1"
+            "href": "https://landsatlook.usgs.gov/stac-browser/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1"
         },
         "MTL.json": {
             "title": "Product Metadata File (json)",
@@ -136,15 +136,15 @@
             "roles": [
                 "metadata"
             ],
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_MTL.json",
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_MTL.json",
             "alternate": {
                 "s3": {
                     "storage:platform": "AWS",
                     "storage:requester_pays": true,
-                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_MTL.json"
+                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_MTL.json"
                 }
             },
-            "file:checksum": "13405503bc98b800e1aeef278bedeb791cbf6f92a9f00df2a3c564e2908cf0f6d804b66944f07ccc04dc3c306287da7253b39959ca156b129a3ae3f2b712634f461a"
+            "file:checksum": "1340137ca16da92e7ca9eab0dfee149d3af6cf9555a29a9cd6605e8dcc3f153dc08e890f995a0221841823b7377e456c774c57f1b8ff5bc86e5a35527f03f4b1c51f"
         },
         "TRAD": {
             "title": "Thermal Radiance Band",
@@ -153,15 +153,15 @@
             "roles": [
                 "data"
             ],
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_TRAD.TIF",
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_TRAD.TIF",
             "alternate": {
                 "s3": {
                     "storage:platform": "AWS",
                     "storage:requester_pays": true,
-                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_TRAD.TIF"
+                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_TRAD.TIF"
                 }
             },
-            "file:checksum": "13409997b41e73e8f9ee9c1f0091d98b256ce55890b803cf80f6e75ab7d80aa02397b9ce757c30662df9ce8e42cfbfc2e03d02a42d24595b1fc23489d5520ee8448b"
+            "file:checksum": "1340e65dcfd7cdb71226730fea29832ebaa770142b1ce39551c24e5decd9782938ccf0f2a6742de236323221d0c702a1c0438bd2f5411f46fa21e8cf990fa6c7ff70"
         },
         "URAD": {
             "title": "Upwelled Radiance Band",
@@ -170,15 +170,15 @@
             "roles": [
                 "data"
             ],
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_URAD.TIF",
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_URAD.TIF",
             "alternate": {
                 "s3": {
                     "storage:platform": "AWS",
                     "storage:requester_pays": true,
-                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_URAD.TIF"
+                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_URAD.TIF"
                 }
             },
-            "file:checksum": "13404c7c9bf3d690d6bfbdbd932d725b4fc9b5d6f8996b2be51c96b0934cc8fa2ae514f8f11d13b89e4dcfbc2ad9ba282e75f12df10784abd954530b20864b6643f1"
+            "file:checksum": "134081acf9c36f3a6f46a163f57a985c9c6739adfc47aeb6eb2946db2b5ef183da75019dccd01c4c220ba08b4c1cdb602a404c1bd998496ba479eac8ebcf505906c5"
         },
         "DRAD": {
             "title": "Downwelled Radiance Band",
@@ -187,15 +187,15 @@
             "roles": [
                 "data"
             ],
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_DRAD.TIF",
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_DRAD.TIF",
             "alternate": {
                 "s3": {
                     "storage:platform": "AWS",
                     "storage:requester_pays": true,
-                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_DRAD.TIF"
+                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_DRAD.TIF"
                 }
             },
-            "file:checksum": "13401eb5f2052219a02dafafff2cd886090460e63d3bbd6e37cb5b04a177fb82578a5e8372d419fd0981a5d74620023a6e9777aa13d32d1ab165ac20d270ba6d8bfd"
+            "file:checksum": "1340d0e313adf584d73f1616f369b2ba71971bf9a562e5bb45bb65a4001fd05449e158d6278de0bae562280b296c6d2c9dd3260172bf5830a3a38473a7d5a3cc7051"
         },
         "ATRAN": {
             "title": "Atmospheric Transmittance Band",
@@ -204,15 +204,15 @@
             "roles": [
                 "data"
             ],
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_ATRAN.TIF",
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_ATRAN.TIF",
             "alternate": {
                 "s3": {
                     "storage:platform": "AWS",
                     "storage:requester_pays": true,
-                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_ATRAN.TIF"
+                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_ATRAN.TIF"
                 }
             },
-            "file:checksum": "1340a4181c567d3a3b03eb57b469d1bbb018b0bfd7f3981e4a4ec942d7ca3533358d2c94dceaef5383cbfbd7734c7c9569d8b45c3f63cd383098a6c9a4be7509389d"
+            "file:checksum": "134086488e094c14c69371c79d867da894b155983f1f672f493fca288fe1275164c83b7b654dc4fb3e18a6fb2f85fa856b123ac298d2208b2552b7fbf8115e26da1b"
         },
         "EMIS": {
             "title": "Emissivity Band",
@@ -221,15 +221,15 @@
             "roles": [
                 "data"
             ],
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_EMIS.TIF",
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_EMIS.TIF",
             "alternate": {
                 "s3": {
                     "storage:platform": "AWS",
                     "storage:requester_pays": true,
-                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_EMIS.TIF"
+                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_EMIS.TIF"
                 }
             },
-            "file:checksum": "1340957fd0bf3635dbd3246862c67a5019c77cf766de9aa861477e7d47825a4a372fae8e0000d6448564ab2f2f6e57e4a8f2cde379c329e5c2bb60b52f895ef30abe"
+            "file:checksum": "1340a89572806c085dd732b137ca517a1f1257f271bf7d994245288419317123922d24f89d86a752a8844b69743b6ed00802f76ec293ce2cf4fc563bab4729fb7711"
         },
         "EMSD": {
             "title": "Emissivity Standard Deviation Band",
@@ -238,15 +238,15 @@
             "roles": [
                 "data"
             ],
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_EMSD.TIF",
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_EMSD.TIF",
             "alternate": {
                 "s3": {
                     "storage:platform": "AWS",
                     "storage:requester_pays": true,
-                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_EMSD.TIF"
+                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_EMSD.TIF"
                 }
             },
-            "file:checksum": "1340b978a984bd92484b76a89c422faec04551ab14f5581644f11cff60101c85fb4d8f76ac7f802def20c954757ef452af6648d7420bd880268c0be45ebe231a1332"
+            "file:checksum": "1340dfbedb80ffc9f9f9fe0533e5c6741af48cf5c6d4bc1159bc17d3aa87e3089e4a4ccd7a3c7618e42dba3187b10066cbc41afff9e2c0e48d86569b0a1c4cdacfb0"
         },
         "CDIST": {
             "title": "Cloud Distance Band",
@@ -255,15 +255,15 @@
             "roles": [
                 "data"
             ],
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_CDIST.TIF",
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_CDIST.TIF",
             "alternate": {
                 "s3": {
                     "storage:platform": "AWS",
                     "storage:requester_pays": true,
-                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_CDIST.TIF"
+                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_CDIST.TIF"
                 }
             },
-            "file:checksum": "1340d797c305178551e65efe8673b49f603b88f9af90d0d76c16cf0685d5676dcc037c5943e440e1803bccc11c7a2400029c2d59e950bb68ea54e5f3b2c10a56f6d1"
+            "file:checksum": "1340db65edeb9901612685b2cdf094719d15fef17d34df5353fdb83bad1642b51b22294c2d1d412c5f27d621259838e8d88b55ad4991c97f90c94a73d056ba774b0f"
         },
         "qa": {
             "title": "Surface Temperature Quality Assessment Band",
@@ -272,15 +272,15 @@
             "roles": [
                 "data"
             ],
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_QA.TIF",
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_QA.TIF",
             "alternate": {
                 "s3": {
                     "storage:platform": "AWS",
                     "storage:requester_pays": true,
-                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_QA.TIF"
+                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_QA.TIF"
                 }
             },
-            "file:checksum": "1340f391276847ccbfe2061e18d6b4ee74d99599a031b96c21e0770fe41d9e783b417973f2d0b4e1e984e92b19db7d2d91bfe1c41e277699a1f8161b042e76c43cf5"
+            "file:checksum": "134008c765655ee20f929fd458a44c850f0e5a70f219bbe1040568932453d0ffc16ceec45e8ed0a11e90b4534b4dd7d5279d8cc62fd314a0269ebd8e082aceb24a3a"
         },
         "qa_pixel": {
             "title": "Pixel Quality Assessment Band",
@@ -550,15 +550,15 @@
                     ]
                 }
             ],
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_QA_PIXEL.TIF",
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_QA_PIXEL.TIF",
             "alternate": {
                 "s3": {
                     "storage:platform": "AWS",
                     "storage:requester_pays": true,
-                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_QA_PIXEL.TIF"
+                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_QA_PIXEL.TIF"
                 }
             },
-            "file:checksum": "1340338ae3abc768154675a73976eb59bfbb173e32a34af7c1ae00cda7cc8f3086492d3b09733dd8eaa0144452fe838d957309e9e7f9bd4bce330ac8d94bb297a414"
+            "file:checksum": "1340717b3f168018a0712e98becf2929719979255266e36cc318617fc0b0ea0f4f6fdc0cc3be6cfddc5204124e5dedd8b1f8fb6ac4988573d2b463089a081c124bf2"
         },
         "qa_radsat": {
             "title": "Radiometric Saturation Quality Assessment Band",
@@ -822,15 +822,15 @@
                     ]
                 }
             ],
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_QA_RADSAT.TIF",
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_QA_RADSAT.TIF",
             "alternate": {
                 "s3": {
                     "storage:platform": "AWS",
                     "storage:requester_pays": true,
-                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_QA_RADSAT.TIF"
+                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_QA_RADSAT.TIF"
                 }
             },
-            "file:checksum": "1340af06ee03e6510a587ed17bacfb6452a2f09634e2dd4820235ca7642b1a97885e467ea0238d590c149b4aab3f79ecc9aef66c6a928167b9095a8fbaa51122468f"
+            "file:checksum": "1340d8b2f551eabb510d556a45fa6cece89b1c1d9dd3facf24a0aee8a86d7a36793173b6d45bcc521a75ace02ff8107feda2fa25ccfa7281d693aa819b41c9cbc792"
         },
         "ANG.txt": {
             "title": "Angle Coefficients File",
@@ -839,15 +839,15 @@
             "roles": [
                 "metadata"
             ],
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ANG.txt",
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ANG.txt",
             "alternate": {
                 "s3": {
                     "storage:platform": "AWS",
                     "storage:requester_pays": true,
-                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ANG.txt"
+                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ANG.txt"
                 }
             },
-            "file:checksum": "13402e5ed33b73f20a251392caec5b8f738ca44a6f1c6d77e0ef9e59574545a8239f386efc0bc1bde98364c1f2bef4af02f80d27c924aaa57a0f2c36e7454a0fd59c"
+            "file:checksum": "13409ee603df57a187298757894de6c6518972d53bad1213bda3629052248328ced3c7d43f7ec3c703d7c1106ab697b5727eab2b607176e20a0597a7cb2e84c09316"
         },
         "MTL.txt": {
             "title": "Product Metadata File",
@@ -856,15 +856,15 @@
             "roles": [
                 "metadata"
             ],
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_MTL.txt",
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_MTL.txt",
             "alternate": {
                 "s3": {
                     "storage:platform": "AWS",
                     "storage:requester_pays": true,
-                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_MTL.txt"
+                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_MTL.txt"
                 }
             },
-            "file:checksum": "13406e8f0495d54c059aa3d743f01b48f891b349124e8b13affdb90984f5f5b6eb7942b5e76b3dc76a41e1a342294b99af1522b85a2f5d8160d8172a17347bf90ff5"
+            "file:checksum": "1340a01282f63a3ac8de894985cf52abb1e9b6e544a1f9c3c5533615ac1167a16b967a7f75ff9bd5c7c7a9c6fc6002e15f0b1d8705c2459c33656bc9815d628234aa"
         },
         "MTL.xml": {
             "title": "Product Metadata File (xml)",
@@ -873,15 +873,15 @@
             "roles": [
                 "metadata"
             ],
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_MTL.xml",
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_MTL.xml",
             "alternate": {
                 "s3": {
                     "storage:platform": "AWS",
                     "storage:requester_pays": true,
-                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_MTL.xml"
+                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_MTL.xml"
                 }
             },
-            "file:checksum": "1340ff6f8a3fefe88a8358a7846f87bf6d2b80fa37b2a52695dc44faaa8cac3555267bdb39d87c63611a59ede149546dd291e271704dcd53cce1421483b9c10b3c0d"
+            "file:checksum": "1340c33063fb1026d777fd73edbb8d287362724b75aba444de5fc6344578222c7b4ad57308d32f0757c7a0f147beddaf623e5281314d10aa13cf86cf3d16e5572ed9"
         },
         "lwir11": {
             "title": "Surface Temperature Band (B10)",
@@ -899,12 +899,12 @@
                     "center_wavelength": 10.9
                 }
             ],
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_B10.TIF",
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_B10.TIF",
             "alternate": {
                 "s3": {
                     "storage:platform": "AWS",
                     "storage:requester_pays": true,
-                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_B10.TIF"
+                    "href": "s3://usgs-landsat/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_B10.TIF"
                 }
             }
         }
@@ -924,7 +924,7 @@
         },
         {
             "rel": "self",
-            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200507_20200820_02_T1/LC08_L2SP_195027_20200507_20200820_02_T1_ST_stac.json"
+            "href": "https://landsatlook.usgs.gov/data/collection02/level-2/standard/oli-tirs/2020/195/027/LC08_L2SP_195027_20200624_20200824_02_T1/LC08_L2SP_195027_20200624_20200824_02_T1_ST_stac.json"
         }
     ],
     "collection": "landsat-c2l2-st"
