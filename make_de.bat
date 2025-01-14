@@ -8,7 +8,7 @@ if "%SPHINXBUILD%" == "" (
     set SPHINXBUILD=sphinx-build
 )
 set SOURCEDIR="./source_de"
-set BUILDDIR="./docs_de"
+set BUILDDIR="./docs/docs_de"
 
 REM Check if sphinx-build is available
 %SPHINXBUILD% >NUL 2>NUL
