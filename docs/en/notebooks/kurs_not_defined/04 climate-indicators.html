@@ -434,17 +434,17 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-15 15:20:32,716 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-15 15:29:26,257 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
 [feedback](https://jira.ecmwf.int/plugins/servlet/desk/portal/1/create/202) is key to improve the user experience on the new CDS for the benefit of everyone. Thank you.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-15 15:20:32,722 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-15 15:29:26,270 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-15 15:20:32,722 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-15 15:29:26,270 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-15 15:20:32,724 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-15 15:29:26,270 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset already downloaded.
@@ -946,18 +946,11 @@
 <span class="g g-Whitespace">   </span><span class="mi">1016</span> <span class="k">if</span> <span class="n">created_buffer</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1017</span>     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path_or_buf</span><span class="p">,</span> <span class="n">StringIO</span><span class="p">)</span>
 
-<span class="nn">File ~\anaconda3\envs\myenv\lib\site-packages\pandas\io\formats\csvs.py:251,</span> in <span class="ni">CSVFormatter.save</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">247</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">248</span><span class="sd"> Create the writer &amp; save.</span>
-<span class="g g-Whitespace">    </span><span class="mi">249</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">250</span> <span class="c1"># apply compression and byte/text conversion</span>
-<span class="ne">--&gt; </span><span class="mi">251</span> <span class="k">with</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="nn">File ~\anaconda3\envs\myenv\lib\site-packages\pandas\io\formats\csvs.py:270,</span> in <span class="ni">CSVFormatter.save</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">251</span> <span class="k">with</span> <span class="n">get_handle</span><span class="p">(</span>
 <span class="g g-Whitespace">    </span><span class="mi">252</span>     <span class="bp">self</span><span class="o">.</span><span class="n">filepath_or_buffer</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">253</span>     <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">254</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">255</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">errors</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">256</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">compression</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">storage_options</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">258</span> <span class="p">)</span> <span class="k">as</span> <span class="n">handles</span><span class="p">:</span>
 <span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="c1"># Note: self.encoding is irrelevant here</span>
 <span class="g g-Whitespace">    </span><span class="mi">260</span>     <span class="bp">self</span><span class="o">.</span><span class="n">writer</span> <span class="o">=</span> <span class="n">csvlib</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span>
@@ -966,43 +959,30 @@
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">267</span>         <span class="n">quotechar</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">quotechar</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">268</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">270</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_save</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">270</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_save</span><span class="p">()</span>
 
-<span class="nn">File ~\anaconda3\envs\myenv\lib\site-packages\pandas\io\common.py:749,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
-<span class="g g-Whitespace">    </span><span class="mi">747</span> <span class="c1"># Only for write methods</span>
-<span class="g g-Whitespace">    </span><span class="mi">748</span> <span class="k">if</span> <span class="s2">&quot;r&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span> <span class="ow">and</span> <span class="n">is_path</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">749</span>     <span class="n">check_parent_directory</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">handle</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">751</span> <span class="k">if</span> <span class="n">compression</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">752</span>     <span class="k">if</span> <span class="n">compression</span> <span class="o">!=</span> <span class="s2">&quot;zstd&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">753</span>         <span class="c1"># compression libraries do not like an explicit text-mode</span>
+<span class="nn">File ~\anaconda3\envs\myenv\lib\site-packages\pandas\io\formats\csvs.py:275,</span> in <span class="ni">CSVFormatter._save</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">273</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_need_to_save_header</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">274</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_save_header</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">275</span> <span class="bp">self</span><span class="o">.</span><span class="n">_save_body</span><span class="p">()</span>
 
-<span class="nn">File ~\anaconda3\envs\myenv\lib\site-packages\pandas\io\common.py:615,</span> in <span class="ni">check_parent_directory</span><span class="nt">(path)</span>
-<span class="g g-Whitespace">    </span><span class="mi">606</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">607</span><span class="sd"> Check if parent directory of a file exists, raise OSError if it does not</span>
-<span class="g g-Whitespace">    </span><span class="mi">608</span><span class="sd"> </span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">612</span><span class="sd">     Path to check parent directory of</span>
-<span class="g g-Whitespace">    </span><span class="mi">613</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">614</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
-<span class="ne">--&gt; </span><span class="mi">615</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">parent</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
-<span class="g g-Whitespace">    </span><span class="mi">616</span>     <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="sa">rf</span><span class="s2">&quot;Cannot save file into a non-existent directory: &#39;</span><span class="si">{</span><span class="n">parent</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+<span class="nn">File ~\anaconda3\envs\myenv\lib\site-packages\pandas\io\formats\csvs.py:313,</span> in <span class="ni">CSVFormatter._save_body</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">311</span> <span class="k">if</span> <span class="n">start_i</span> <span class="o">&gt;=</span> <span class="n">end_i</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span>     <span class="k">break</span>
+<span class="ne">--&gt; </span><span class="mi">313</span> <span class="bp">self</span><span class="o">.</span><span class="n">_save_chunk</span><span class="p">(</span><span class="n">start_i</span><span class="p">,</span> <span class="n">end_i</span><span class="p">)</span>
 
-<span class="nn">File ~\anaconda3\envs\myenv\lib\pathlib.py:1305,</span> in <span class="ni">Path.is_dir</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1301</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1302</span><span class="sd"> Whether this path is a directory.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1303</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1304</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1305</span>     <span class="k">return</span> <span class="n">S_ISDIR</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_mode</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1306</span> <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1307</span>     <span class="k">if</span> <span class="ow">not</span> <span class="n">_ignore_error</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+<span class="nn">File ~\anaconda3\envs\myenv\lib\site-packages\pandas\io\formats\csvs.py:324,</span> in <span class="ni">CSVFormatter._save_chunk</span><span class="nt">(self, start_i, end_i)</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span> <span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">_iter_column_arrays</span><span class="p">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span> <span class="n">ix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_index</span><span class="p">[</span><span class="n">slicer</span><span class="p">]</span><span class="o">.</span><span class="n">_get_values_for_csv</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_number_format</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">324</span> <span class="n">libwriters</span><span class="o">.</span><span class="n">write_csv_rows</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">325</span>     <span class="n">data</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span>     <span class="n">ix</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">327</span>     <span class="bp">self</span><span class="o">.</span><span class="n">nlevels</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">328</span>     <span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">329</span>     <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">330</span> <span class="p">)</span>
 
-<span class="nn">File ~\anaconda3\envs\myenv\lib\pathlib.py:1097,</span> in <span class="ni">Path.stat</span><span class="nt">(self, follow_symlinks)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1092</span> <span class="k">def</span><span class="w"> </span><span class="nf">stat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">follow_symlinks</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-<span class="g g-Whitespace">   </span><span class="mi">1093</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">   </span><span class="mi">1094</span><span class="sd">     Return the result of the stat() system call on this path, like</span>
-<span class="g g-Whitespace">   </span><span class="mi">1095</span><span class="sd">     os.stat() does.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1096</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">-&gt; </span><span class="mi">1097</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_accessor</span><span class="o">.</span><span class="n">stat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">follow_symlinks</span><span class="o">=</span><span class="n">follow_symlinks</span><span class="p">)</span>
+<span class="nn">File writers.pyx:65,</span> in <span class="ni">pandas._libs.writers.write_csv_rows</span><span class="nt">()</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

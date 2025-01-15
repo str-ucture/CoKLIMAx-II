@@ -20,14 +20,14 @@ for root, _, files in os.walk(directory):
             replacement_html_snippet_en = f'''
 <a href="_sources/{file[:-5]}.rst.txt" rel="nofollow"> View page source</a>
 <div id="language-switcher" style="text-align: right; margin-top: 10px;">
-  <a href="/en/{file}">English</a> | <a href="/de/{file}">Deutsch</a>
+  <a href="/CoKLIMAx-II/en/{file}">English</a> | <a href="/CoKLIMAx-II/de/{file}">Deutsch</a>
 </div>
 '''
 
             replacement_html_snippet_de = f'''
 <a href="_sources/{file[:-5]}.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
 <div id="language-switcher" style="text-align: right; margin-top: 10px;">
-  <a href="/en/{file}">English</a> | <a href="/de/{file}">Deutsch</a>
+  <a href="/CoKLIMAx-II/en/{file}">English</a> | <a href="/CoKLIMAx-II/de/{file}">Deutsch</a>
 </div>
 '''
             
