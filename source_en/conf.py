@@ -32,3 +32,5 @@ html_static_path = ['_static']
 
 html_css_files = ['css/custom.css']
 html_logo = "_static/coklimax_logo_new.png"
+
+language='en'

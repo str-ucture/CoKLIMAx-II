@@ -1,0 +1,8 @@
+run
+
+.\make.bat html
+.\make_en.bat html
+.\make_de.bat html
+python .\update_html.py
+
+The dual language doesnot work on local machine but works with Github repo.
