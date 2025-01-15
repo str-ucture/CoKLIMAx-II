@@ -44,3 +44,12 @@ source/secrets/
 # add all png files inside docs
 !docs/**/*.png
 *.gif
+
+
+# Specific files
+copy_images.bat
+setup_env.bat
+update_buttons.ipynb
+update_dropdown.py
+update_html.py
+update_imates.py
