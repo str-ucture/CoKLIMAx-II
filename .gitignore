@@ -8,6 +8,9 @@ cds_venv/
 source/notebooks/kurs_not_defined/data/landsatxplorer/working/*
 !source/notebooks/kurs_not_defined/data/landsatxplorer/working/*
 
+kurs_backups/
+kurs_ArcGIS/
+sentinel2-without-esri/
 
 # Secrets and API keys
 source/secrets/
@@ -49,7 +52,8 @@ source/secrets/
 # Specific files
 copy_images.bat
 setup_env.bat
+update_buttons.py
 update_buttons.ipynb
 update_dropdown.py
 update_html.py
-update_imates.py
+update_images.py
