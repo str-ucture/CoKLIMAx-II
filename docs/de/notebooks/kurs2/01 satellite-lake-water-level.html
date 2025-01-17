@@ -1,0 +1,496 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Satelliten-Wasserstände von Seen &mdash; Coklimax 1.0.0 Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=a1fa38c2" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f029ec32"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/translations.js?v=9bf55d28"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
+    <link rel="search" title="Suche" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Coklimax
+              <img src="../../_static/coklimax_logo_new.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Inhalte:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/SoftwareKenntnisse.html">Notwendige Software und Kenntnisse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/Kurs-Elemente.html">Die Kurs-Elemente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/CDS.html">Der Copernicus Climate Data Store (CDS)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kurs 1:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/Element_1.html">Element 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/Element_2.html">Element 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/Element_3.html">Element 3</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Die Jupyter-Notebook Bibliothek:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter/Einfuehrung_Jupyter.html">CoKLIMAx-II Jupyter Notebooks</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Coklimax</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Satelliten-Wasserstände von Seen</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/notebooks/kurs2/01 satellite-lake-water-level.ipynb.txt" rel="nofollow"> Quelltext anzeigen</a>
+<div id='language-switcher' style='text-align: right; margin-top: 10px;'>
+    <select onchange="location = this.value;">
+        <option value='/CoKLIMAx-II/en/01 satellite-lake-water-level.html'>English</option>
+        <option value='/CoKLIMAx-II/de/01 satellite-lake-water-level.html' selected>Deutsch</option>
+    </select>
+</div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="satelliten-wasserstande-von-seen">
+<h1>Satelliten-Wasserstände von Seen<a class="headerlink" href="#satelliten-wasserstande-von-seen" title="Link to this heading"></a></h1>
+<p>Dieses Datenset liefert Wasserstandsmessungen für 251 Seen auf vier Kontinenten, abgeleitet aus satellitenbasierter Radaraltimetrie. Diese Messungen stellen eine kostengünstige Alternative zu traditionellen bodengestützten Systemen dar und werden als wesentliche Klimavariable (Essential Climate Variable, ECV) eingestuft. Die Daten werden von CLS für den Copernicus Climate Change Service erstellt, um die hydrologische und klimatische Überwachung auf kontinentaler Ebene zu verbessern.</p>
+<p><strong>Informationen zum Datensatz:</strong></p>
+<ul class="simple">
+<li><p>Quelle: <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/satellite-lake-water-level?tab=overview">Satellite Lake Water Levels</a></p></li>
+<li><p>Autor: T. Tewes (Stadt Konstanz)</p></li>
+<li><p>Notebook-Version: 1.4 (Aktualisiert: 17. Januar 2025)</p></li>
+</ul>
+<section id="festlegen-der-pfade-und-arbeitsverzeichnisse">
+<h2>1. Festlegen der Pfade und Arbeitsverzeichnisse<a class="headerlink" href="#festlegen-der-pfade-und-arbeitsverzeichnisse" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="sd">&#39;&#39;&#39; ---- Verzeichnisse hier angeben ---- &#39;&#39;&#39;</span>
+<span class="n">download_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-level\download&quot;</span>
+<span class="n">working_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-level\working&quot;</span>
+<span class="n">geotiff_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-level\geotiff&quot;</span>
+<span class="n">csv_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-level\csv&quot;</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-level\output&quot;</span>
+<span class="sd">&#39;&#39;&#39; ----- Ende der Angaben ---- &#39;&#39;&#39;</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">geotiff_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="herunterladen-und-entpacken-des-datensatzes">
+<h2>2. Herunterladen und Entpacken des Datensatzes<a class="headerlink" href="#herunterladen-und-entpacken-des-datensatzes" title="Link to this heading"></a></h2>
+<section id="authentifizierung">
+<h3>2.1 Authentifizierung<a class="headerlink" href="#authentifizierung" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cdsapi</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># API-Schlüssel für die Authentifizierung</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;fdae60fd-35d4-436f-825c-c63fedab94a4&quot;</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;https://cds.climate.copernicus.eu/api&quot;</span>
+    
+    <span class="c1"># Erstellung des CDS-API-Clients</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">cdsapi</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">api_url</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">client</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="anforderungsdefinition-und-download-der-daten">
+<h3>2.2 Anforderungsdefinition und Download der Daten<a class="headerlink" href="#anforderungsdefinition-und-download-der-daten" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definition des Datensatzes und der Anfrageparameter</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="s2">&quot;satellite-lake-water-level&quot;</span>
+<span class="n">request</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;variable&quot;</span><span class="p">:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;region&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;southern_europe&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;lake&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;bodensee&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Kommentiere diese Zelle ein und führe sie aus, um den Datensatz herunterzuladen:</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main_retrieve</span><span class="p">():</span>
+    <span class="n">dataset_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">_bodensee.zip&quot;</span>
+    <span class="n">dataset_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">dataset_filename</span><span class="p">)</span>
+
+    <span class="c1"># Den Datensatz nur herunterladen, wenn er noch nicht heruntergeladen wurde</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dataset_filepath</span><span class="p">):</span>
+        <span class="c1"># Den Datensatz mit den definierten Anforderungsparametern herunterladen</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">dataset_filepath</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Datensatz bereits heruntergeladen.&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">main</span><span class="p">()</span>
+    <span class="n">main_retrieve</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-17 09:53:27,618 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
+[feedback](https://jira.ecmwf.int/plugins/servlet/desk/portal/1/create/202) is key to improve the user experience on the new CDS for the benefit of everyone. Thank you.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-17 09:53:27,620 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-17 09:53:27,620 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-17 09:53:27,621 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Datensatz bereits heruntergeladen.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="entpacken-des-zip-ordners">
+<h3>2.3 Entpacken des Zip-Ordners<a class="headerlink" href="#entpacken-des-zip-ordners" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+
+<span class="c1"># Erstellen des Dateinamens und des Dateipfads für die ZIP-Datei des Datensatzes</span>
+<span class="n">dataset_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">_bodensee.zip&quot;</span>
+<span class="n">dataset_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">dataset_filename</span><span class="p">)</span>
+<span class="n">extract_folder</span> <span class="o">=</span> <span class="n">working_folder</span>
+
+<span class="c1"># Entpacken der ZIP-Datei</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">dataset_filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+            <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dateien erfolgreich extrahiert nach: </span><span class="si">{</span><span class="n">extract_folder</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ordner ist nicht leer. Entpacken überspringen.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fehler: Die Datei </span><span class="si">{</span><span class="n">dataset_filepath</span><span class="si">}</span><span class="s2"> wurde nicht gefunden.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">BadZipFile</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fehler: Die Datei </span><span class="si">{</span><span class="n">dataset_filepath</span><span class="si">}</span><span class="s2"> ist keine gültige ZIP-Datei.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ein unerwarteter Fehler ist aufgetreten: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ordner ist nicht leer. Entpacken überspringen.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="lesen-der-netcdf4-datei-und-ausdrucken-der-metadaten">
+<h2>3. Lesen der netCDF4-Datei und Ausdrucken der Metadaten<a class="headerlink" href="#lesen-der-netcdf4-datei-und-ausdrucken-der-metadaten" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
+
+<span class="c1"># Öffnen der NetCDF-Datei im Lesemodus</span>
+<span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="c1"># Auflisten aller Variablen im Datensatz</span>
+<span class="n">variables_list</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Verfügbare Variablen: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">variables_list</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Verfügbare Variablen: [&#39;time&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;water_surface_height_above_reference_datum&#39;, &#39;water_surface_height_uncertainty&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;water_surface_height_above_reference_datum&#39;</span>
+<span class="n">variable_data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
+
+<span class="c1"># Erstellen einer Zusammenfassung der Hauptvariablen</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Variablenname&quot;</span><span class="p">:</span> <span class="n">variable_name</span><span class="p">,</span>
+    <span class="s2">&quot;Daten Typ&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+    <span class="s2">&quot;Form&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+    <span class="s2">&quot;Variableninfo&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">variable_data</span><span class="o">.</span><span class="n">dimensions</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Einheiten&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Langer Name&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;long_name&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="c1"># Anzeigen der Zusammenfassung des Datensatzes als DataFrame zur besseren Visualisierung</span>
+<span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Beschreibung&#39;</span><span class="p">,</span> <span class="s1">&#39;Details&#39;</span><span class="p">])</span>
+
+<span class="c1"># Anzeigen des Zusammenfassungs-DataFrames</span>
+<span class="n">nc_summary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Beschreibung</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Variablenname</td>
+      <td>water_surface_height_above_reference_datum</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Daten Typ</td>
+      <td>float64</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Form</td>
+      <td>(101,)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Variableninfo</td>
+      <td>water_surface_height_above_reference_datum(time)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Einheiten</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Langer Name</td>
+      <td>water surface height above geoid</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="exportieren-als-csv">
+<h2>4. Exportieren als CSV<a class="headerlink" href="#exportieren-als-csv" title="Link to this heading"></a></h2>
+<section id="erstellen-des-dataframes-und-exportieren-als-csv">
+<h3>4.1 Erstellen des DataFrames und Exportieren als CSV<a class="headerlink" href="#erstellen-des-dataframes-und-exportieren-als-csv" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
+
+<span class="c1"># Funktion zum Umwandeln von netCDF in CSV (nur Zeit und eine Variable)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_file</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">nc_dataset</span><span class="p">:</span>
+        <span class="c1"># Extrahiere die Daten und die Zeit</span>
+        <span class="n">time</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">][:]</span>
+        <span class="n">time_units</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">units</span>
+        <span class="n">time_calendar</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="s1">&#39;calendar&#39;</span><span class="p">,</span> <span class="s1">&#39;standard&#39;</span><span class="p">)</span>
+        <span class="n">cftime</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">time_units</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="n">time_calendar</span><span class="p">)</span>
+        
+        <span class="c1"># Extrahiere die Daten</span>
+        <span class="n">water_surface_height</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;water_surface_height_above_reference_datum&#39;</span><span class="p">][:]</span>
+        <span class="n">wsh_units</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;water_surface_height_above_reference_datum&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">units</span>
+        <span class="n">wsh_uncertainty</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;water_surface_height_uncertainty&#39;</span><span class="p">][:]</span>
+        
+        <span class="c1"># Erstelle eine Liste von Einträgen für das DataFrame (nur Zeit und die Variable)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;Zeit&quot;</span><span class="p">:</span> <span class="n">cftime</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">&quot;Wasserstandshöhe (</span><span class="si">{</span><span class="n">wsh_units</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">:</span> <span class="n">water_surface_height</span><span class="p">,</span>
+                <span class="sa">f</span><span class="s2">&quot;Unsicherheit&quot;</span><span class="p">:</span> <span class="n">wsh_uncertainty</span><span class="p">,</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+       
+        <span class="c1"># Setze den Index auf die Zeit</span>
+        <span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Zeit&#39;</span><span class="p">)</span>
+
+<span class="c1"># Rufe die Funktion auf und erhalte das DataFrame</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_filepath</span><span class="p">)</span>
+
+<span class="c1"># Generiere den Ausgabe-Dateipfad</span>
+<span class="n">csv_filename</span> <span class="o">=</span> <span class="s1">&#39;satellite-lake-water-level.csv&#39;</span>
+<span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">csv_filename</span><span class="p">)</span>
+
+<span class="c1"># Exportiere die Pivot-Tabelle als CSV, falls sie noch nicht existiert</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">csv_path</span><span class="p">):</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Zusammenfassungsdaten wurden nach </span><span class="si">{</span><span class="n">csv_path</span><span class="si">}</span><span class="s2"> exportiert.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Die Datei </span><span class="si">{</span><span class="n">csv_path</span><span class="si">}</span><span class="s2"> existiert bereits. Export wird übersprungen.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Zeige das DataFrame an</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Die Datei .\data\satellite-lake-water-level\csv\satellite-lake-water-level.csv existiert bereits. Export wird übersprungen.
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Wasserstandshöhe (m)</th>
+      <th>Unsicherheit</th>
+    </tr>
+    <tr>
+      <th>Zeit</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2016-03-23 20:43:59.997482</th>
+      <td>394.44</td>
+      <td>0.29</td>
+    </tr>
+    <tr>
+      <th>2016-04-19 20:43:59.997482</th>
+      <td>394.62</td>
+      <td>0.49</td>
+    </tr>
+    <tr>
+      <th>2016-05-16 20:44:59.998284</th>
+      <td>395.41</td>
+      <td>0.21</td>
+    </tr>
+    <tr>
+      <th>2016-06-12 20:44:59.998284</th>
+      <td>395.72</td>
+      <td>0.58</td>
+    </tr>
+    <tr>
+      <th>2016-07-09 20:44:59.998284</th>
+      <td>396.13</td>
+      <td>0.13</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, str.ucture GmbH.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
