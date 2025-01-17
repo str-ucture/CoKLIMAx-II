@@ -25,3 +25,9 @@ Herzlich willkommen in der CoKLIMAx II Dokumentation. Hier finden Sie Informatio
    :caption: Die Jupyter-Notebook Bibliothek:
 
    ./rst_jupyter/Einfuehrung_Jupyter
+
+.. toctree::
+  :maxdepth: 2
+  :caption: Kurs 2:
+
+  ./notebooks/kurs2/01 satellite-lake-water-level
