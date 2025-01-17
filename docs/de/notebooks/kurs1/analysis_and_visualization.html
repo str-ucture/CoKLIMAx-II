@@ -54,15 +54,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/Kurs-Elemente.html">Die Kurs-Elemente</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/CDS.html">Der Copernicus Climate Data Store (CDS)</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Kurs 1:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/Element_1.html">Element 1</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/Element_2.html">Element 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/Element_3.html">Element 3</a></li>
-</ul>
 <p class="caption" role="heading"><span class="caption-text">Die Jupyter-Notebook Bibliothek:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter/Einfuehrung_Jupyter.html">CoKLIMAx-II Jupyter Notebooks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kurs 1:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/Element_1.html">Element 1</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kurs 2:</span></p>
 <ul>
@@ -88,8 +86,8 @@
             <a href="../../_sources/notebooks/kurs1/analysis_and_visualization.ipynb.txt" rel="nofollow"> Quelltext anzeigen</a>
 <div id='language-switcher' style='text-align: right; margin-top: 10px;'>
     <select onchange="location = this.value;">
-        <option value='/CoKLIMAx-II/en/analysis_and_visualization.html'>English</option>
-        <option value='/CoKLIMAx-II/de/analysis_and_visualization.html' selected>Deutsch</option>
+        <option value='/./CoKLIMAx-II-i18n/en\notebooks\kurs1\analysis_and_visualization.html'>EN</option>
+        <option value='/./CoKLIMAx-II-i18n/de\notebooks\kurs1\analysis_and_visualization.html' selected>DE</option>
     </select>
 </div>
       </li>
@@ -172,20 +170,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Open the NetCDF file in read mode</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="n">dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="c1"># List all variables in the dataset</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">variables_list</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-
-<span class="nn">File src\\netCDF4\\_netCDF4.pyx:2521,</span> in <span class="ni">netCDF4._netCDF4.Dataset.__init__</span><span class="nt">()</span>
-
-<span class="nn">File src\\netCDF4\\_netCDF4.pyx:2158,</span> in <span class="ni">netCDF4._netCDF4._ensure_nc_success</span><span class="nt">()</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;.\\data\\era5-land-monthly\\download\\reanalysis-era5-land-monthly-means_2m_temperature_1950_2024.nc&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Available variables: [&#39;number&#39;, &#39;valid_time&#39;, &#39;latitude&#39;, &#39;longitude&#39;, &#39;expver&#39;, &#39;t2m&#39;]
 </pre></div>
 </div>
 </div>

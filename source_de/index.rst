@@ -2,7 +2,9 @@
 CoKLIMAx II Ressourcen zur Datenverarbeitung
 ============================================
 
-Herzlich willkommen in der CoKLIMAx II Dokumentation. Hier finden Sie Informationen und Werkzeuge, die Ihnen den Umgang mit großen Klimadatensätzen in der städischen Verwaltungspraxis erleichtern können. Die Ressourcen sind innerhalb von :ref:`Jupyter Notebooks <einfuehrung-jupyter>` aufgebaut, mit deren Hilfe Sie Klimadaten aus dem Angebot des :ref:`Copernicus Climate Data Store (CDS) <cds>` herunterladen, bearbeiten und visualisieren können. Im ersten Teil der Dokumentation geht es um die Vorbereitung Ihres Computers auf die Arbeit mit den Daten. Sobald Sie der Anleitung gefolgt sind können Sie loslegen. Um den Umgang mit den CDS-Daten zu lernen können Sie die vorbereiteten Kurs-Elemente durcharbeiten. Für fortgeschritte Nutzende haben wir eine Reihe verschiedener :ref:`Notebooks <einfuehrung-jupyter>` vorbereitet, die Sie mit entsprechenden Fähigkeiten nach Belieben modifizieren können. Die Notebooks befassen sich über den CDS hinaus auch mit der Verarbeitung von Satellitendaten, wie zum Beispiel den hochaufgelösten Bildern des Sentinel-II Satelliten. 
+Herzlich willkommen in der CoKLIMAx II Dokumentation. Hier finden Sie Informationen und Werkzeuge, die Ihnen den Umgang mit großen Klimadatensätzen in der städischen Verwaltungspraxis erleichtern können. Die Ressourcen sind innerhalb von :ref:`Jupyter Notebooks <einfuehrung-jupyter>` aufgebaut, mit deren Hilfe Sie Klimadaten aus dem Angebot des :ref:`Copernicus Climate Data Store (CDS) <cds>` herunterladen, bearbeiten und visualisieren können.
+
+Im ersten Teil der Dokumentation geht es um die Vorbereitung Ihres Computers auf die Arbeit mit den Daten. Sobald Sie der Anleitung gefolgt sind können Sie loslegen. Um den Umgang mit den CDS-Daten zu lernen können Sie die vorbereiteten Kurs-Elemente durcharbeiten. Für fortgeschritte Nutzende haben wir eine Reihe verschiedener :ref:`Notebooks <einfuehrung-jupyter>` vorbereitet, die Sie mit entsprechenden Fähigkeiten nach Belieben modifizieren können. Die Notebooks befassen sich über den CDS hinaus auch mit der Verarbeitung von Satellitendaten, wie zum Beispiel den hochaufgelösten Bildern des Sentinel-II Satelliten. 
 
 .. toctree::
   :maxdepth: 2
@@ -13,18 +15,16 @@ Herzlich willkommen in der CoKLIMAx II Dokumentation. Hier finden Sie Informatio
   ./rst_inhalte/CDS
 
 .. toctree::
-  :maxdepth: 2
-  :caption: Kurs 1:
-
-  ./rst_kurs1/Element_1
-  ./rst_kurs1/Element_2
-  ./rst_kurs1/Element_3
-
-.. toctree::
    :maxdepth: 2
    :caption: Die Jupyter-Notebook Bibliothek:
 
    ./rst_jupyter/Einfuehrung_Jupyter
+
+.. toctree::
+  :maxdepth: 2
+  :caption: Kurs 1:
+
+  ./rst_kurs1/Element_1
 
 .. toctree::
   :maxdepth: 2

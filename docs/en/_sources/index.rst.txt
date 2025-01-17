@@ -1,60 +1,34 @@
-Welcome to CoKLIMAx II
-======================
+============================================
+CoKLIMAx II Resources for Data Processing
+============================================
 
-Welcome to the official documentation for CoKLIMAx II. Here you'll find everything you need to get started, explore features, and dive deep into functionalities.
+Welcome to the CoKLIMAx II documentation. Here you will find information and tools that can facilitate working with large climate datasets in urban administration practice. The resources are structured within :ref:`Jupyter Notebooks <einfuehrung-jupyter>`, which allow you to download, process, and visualize climate data from the :ref:`Copernicus Climate Data Store (CDS) <cds>`. 
 
-.. toctree::
-  :maxdepth: 2
-  :caption: INHALTE:
-
-  ./rst_intro/notwendige_software_und_kenntnisse
-  ./rst_intro/der_kurz_elemente
-  ./rst_intro/der_cds
-  ./rst_intro/der_jupyter
+The first part of the documentation focuses on preparing your computer for working with the data. Once you have followed the instructions, you can get started. To learn how to work with CDS data, you can go through the prepared course elements. For advanced users, we have prepared a range of different :ref:`Notebooks <einfuehrung-jupyter>` that you can modify as needed based on your skills. The notebooks also cover processing satellite data, such as high-resolution images from the Sentinel-II satellite, beyond the scope of CDS.
 
 .. toctree::
   :maxdepth: 2
-  :caption: Kurs 1:
+  :caption: Contents:
+
+  ./rst_inhalte/SoftwareKenntnisse
+  ./rst_inhalte/Kurs-Elemente
+  ./rst_inhalte/CDS
+
+.. toctree::
+   :maxdepth: 2
+   :caption: The Jupyter-Notebook Library:
+
+   ./rst_jupyter/Einfuehrung_Jupyter
+
+.. toctree::
+  :maxdepth: 2
+  :caption: Course 1:
 
   ./notebooks/kurs1/herunterladen_ersten_datensatzes
   ./notebooks/kurs1/analysis_and_visualization
 
 .. toctree::
   :maxdepth: 2
-  :caption: Kurs 2:
+  :caption: Course 2:
 
   ./notebooks/kurs2/01 satellite-lake-water-level
-  ./notebooks/kurs2/02 satellite-lake-water-temperature
-  ./notebooks/kurs2/03 sis-temperature-statistics
-
-.. toctree::
-  :maxdepth: 2
-  :caption: Kurs 3:
-
-  ./notebooks/kurs3/01 senthub_downloader
-
-.. toctree::
-  :maxdepth: 2
-  :caption: Kurs Note Defined:
-
-  ./notebooks/kurs_not_defined/01 alpine-monthly-precipitation
-  ./notebooks/kurs_not_defined/02 sis-heat-wave-and-cold-spells
-  ./notebooks/kurs_not_defined/03 sis-health-vector
-  ./notebooks/kurs_not_defined/04 climate-indicators
-  ./notebooks/kurs_not_defined/05 sis-biodiversity-era5-regional
-  ./notebooks/kurs_not_defined/06 era5_land_hourly
-  ./notebooks/kurs_not_defined/07 era5-land-monthly
-  ./notebooks/kurs_not_defined/08 landsat-with-landsatxplore
-  ./setup_verification
-
-Before you begin
-----------------
-
-Prerequisites (For a better experience)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-- **Python 3.7 or higher**. (`Python 3.10 <https://www.python.org/downloads/release/python-31015/>`_ is recommended)
-- An **Integrated Development Environment (IDE)**. (e.g., `Visual Studio Code <https://code.visualstudio.com/>`_)
-- **Jupyter Notebook** is installed and accessible within your IDE.
-- An active **CDS Account** with API credentials.
-    - If you don't have one, register at `CDS Registration Page <https://cds.climate.copernicus.eu/>`_.
