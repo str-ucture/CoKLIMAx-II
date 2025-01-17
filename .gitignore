@@ -55,5 +55,7 @@ setup_env.bat
 update_buttons.py
 update_buttons.ipynb
 update_dropdown.py
+update_dropdown.ipynb
+update_dropdown_v2.py
 update_html.py
 update_images.py
