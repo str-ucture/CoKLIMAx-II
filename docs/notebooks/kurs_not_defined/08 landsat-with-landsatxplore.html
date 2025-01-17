@@ -24,7 +24,9 @@
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Sentinel 2 - Workflow" href="09%20Sentinel2-without-esri.html" />
+    <link rel="prev" title="ERA5-Land Monthly Averaged" href="07%20era5-land-monthly.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -65,6 +67,46 @@
 <p class="caption" role="heading"><span class="caption-text">Course 2:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../kurs2/01%20satellite-lake-water-level.html">Satellite Lake Water Levels</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kurs2/02%20satellite-lake-water-temperature.html">Satellite Lake Water Temperature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kurs2/03%20sis-temperature-statistics.html">Temperature Statistics for Europe</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Course 3:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../kurs3/01%20senthub_downloader.html">SentinelHub Downloader</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Course Not Defined:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01%20alpine-monthly-precipitation.html">Alpine monatliche Niederschlagsdaten</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02%20sis-heat-wave-and-cold-spells.html">Heat Wave and Cold Spells</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03%20sis-health-vector.html">SIS Health Vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04%20climate-indicators.html">Climate Indicators for Europe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05%20sis-biodiversity-era5-regional.html">Downscaled bioclimatic indicators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06%20era5_land_hourly.html">ERA5-Land Hourly Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07%20era5-land-monthly.html">ERA5-Land Monthly Averaged</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Landsat Downloader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#specifying-the-paths-and-working-directories">1. Specifying the Paths and Working Directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#authentication">2.1 Authentication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example-format-of-the-credentials-file">Example Format of the Credentials File:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#important-security-note">Important Security Note:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#search-for-available-scenes">2.2 Search for Available Scenes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualizing-scene-polygons-on-a-map">2.3 Visualizing Scene Polygons on a Map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download-scenes-using-display-id">2.4 Download Scenes Using Display ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extract-the-tar-file">2.5 Extract the TAR File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#merge-rgb-bands-into-a-single-geotiff-file">3. Merge RGB Bands into a Single GeoTIFF File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#calculate-indices">4. Calculate Indices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="09%20Sentinel2-without-esri.html">Sentinel 2 - Workflow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20Sentinel2-without-esri.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20Sentinel2-without-esri.html#download-the-datasets">2. Download the datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20Sentinel2-without-esri.html#extract-scenes">3. Extract scenes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20Sentinel2-without-esri.html#select-scene-from-extracted-for-processing">4. Select scene from extracted for processing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="09%20Sentinel2-without-esri.html#process">Process</a></li>
 </ul>
 
         </div>
@@ -460,7 +502,7 @@
             &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
             &lt;style&gt;
-                #map_230a9d6f108a4fef9540937e360f0192 {
+                #map_ead61e07aabcfc0f50da9563019524e2 {
                     position: relative;
                     width: 100.0%;
                     height: 450.0px;
@@ -474,14 +516,14 @@
 &lt;body&gt;
     
     
-            &lt;div class=&quot;folium-map&quot; id=&quot;map_230a9d6f108a4fef9540937e360f0192&quot; &gt;&lt;/div&gt;
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_ead61e07aabcfc0f50da9563019524e2&quot; &gt;&lt;/div&gt;
         
 &lt;/body&gt;
 &lt;script&gt;
     
     
-            var map_230a9d6f108a4fef9540937e360f0192 = L.map(
-                &quot;map_230a9d6f108a4fef9540937e360f0192&quot;,
+            var map_ead61e07aabcfc0f50da9563019524e2 = L.map(
+                &quot;map_ead61e07aabcfc0f50da9563019524e2&quot;,
                 {
                     center: [47.5, 8.0],
                     crs: L.CRS.EPSG3857,
@@ -499,7 +541,7 @@
 
         
     
-            var tile_layer_4ffc3297d332492f0339303b7e666c16 = L.tileLayer(
+            var tile_layer_10f2c7b42138a5bb721dbcdf00fad116 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {
   &quot;minZoom&quot;: 0,
@@ -516,153 +558,153 @@
             );
         
     
-            tile_layer_4ffc3297d332492f0339303b7e666c16.addTo(map_230a9d6f108a4fef9540937e360f0192);
+            tile_layer_10f2c7b42138a5bb721dbcdf00fad116.addTo(map_ead61e07aabcfc0f50da9563019524e2);
         
     
-            var feature_group_400c1ea92587e8170f2c74aeb253dc9a = L.featureGroup(
+            var feature_group_9f07c5d66a37ee440dfefbce670b4c8f = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_29a8022d8cdb77a682d8de8c1f23196a = L.polygon(
+            var polygon_045b581633a8283227048a0a10cf22b5 = L.polygon(
                 [[46.80577, 6.4291], [46.36914, 8.84615], [48.07038, 9.54652], [48.51237, 7.05177], [46.80577, 6.4291]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(48, 18, 59)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(48, 18, 59)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_400c1ea92587e8170f2c74aeb253dc9a);
+            ).addTo(feature_group_9f07c5d66a37ee440dfefbce670b4c8f);
         
     
-            feature_group_400c1ea92587e8170f2c74aeb253dc9a.addTo(map_230a9d6f108a4fef9540937e360f0192);
+            feature_group_9f07c5d66a37ee440dfefbce670b4c8f.addTo(map_ead61e07aabcfc0f50da9563019524e2);
         
     
-            var feature_group_3b9fbfd64eaf4855ce2c7ba5af1f237a = L.featureGroup(
+            var feature_group_ec23edb62c95452f1ccf1386b8972e75 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_5849c2a8bc3ab4157575155a8df08331 = L.polygon(
+            var polygon_8d64a6b5cf07a5ee832684f02100e347 = L.polygon(
                 [[46.8056, 7.99131], [46.36892, 10.40793], [48.07023, 11.10851], [48.51226, 8.61421], [46.8056, 7.99131]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(61, 55, 145)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(61, 55, 145)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_3b9fbfd64eaf4855ce2c7ba5af1f237a);
+            ).addTo(feature_group_ec23edb62c95452f1ccf1386b8972e75);
         
     
-            feature_group_3b9fbfd64eaf4855ce2c7ba5af1f237a.addTo(map_230a9d6f108a4fef9540937e360f0192);
+            feature_group_ec23edb62c95452f1ccf1386b8972e75.addTo(map_ead61e07aabcfc0f50da9563019524e2);
         
     
-            var feature_group_89d2df89004d60e4350014d66780fcdd = L.featureGroup(
+            var feature_group_e8f239e50a90be85b1b8195e78503ae0 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_adc6f19c44269229eae19f464b55f428 = L.polygon(
+            var polygon_cf3a2eacca76fd534462f8c05281df2a = L.polygon(
                 [[46.80565, 6.45436], [46.36907, 8.8704], [48.07049, 9.571], [48.51243, 7.07728], [46.80565, 6.45436]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(69, 91, 206)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(69, 91, 206)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_89d2df89004d60e4350014d66780fcdd);
+            ).addTo(feature_group_e8f239e50a90be85b1b8195e78503ae0);
         
     
-            feature_group_89d2df89004d60e4350014d66780fcdd.addTo(map_230a9d6f108a4fef9540937e360f0192);
+            feature_group_e8f239e50a90be85b1b8195e78503ae0.addTo(map_ead61e07aabcfc0f50da9563019524e2);
         
     
-            var feature_group_3ecd8fcc79445823dc168a4683ee2cab = L.featureGroup(
+            var feature_group_dae3b71fd995d859ffa952dfac896f93 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_7df9731dca9081ceea813d76fe226d5e = L.polygon(
+            var polygon_8a4ba05bdae0e697147eb36d05e0cb9a = L.polygon(
                 [[46.80596, 6.4331], [46.3692, 8.84952], [48.07053, 9.5503], [48.51266, 7.05617], [46.80596, 6.4331]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(70, 127, 246)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(70, 127, 246)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_3ecd8fcc79445823dc168a4683ee2cab);
+            ).addTo(feature_group_dae3b71fd995d859ffa952dfac896f93);
         
     
-            feature_group_3ecd8fcc79445823dc168a4683ee2cab.addTo(map_230a9d6f108a4fef9540937e360f0192);
+            feature_group_dae3b71fd995d859ffa952dfac896f93.addTo(map_ead61e07aabcfc0f50da9563019524e2);
         
     
-            var feature_group_f638f4f590fb315bbeb330be3ac8a6c6 = L.featureGroup(
+            var feature_group_fc262e3470e1e408e404daa432fccc82 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_679d03f6b0b63accbc92c802181f19f6 = L.polygon(
+            var polygon_dd0d1c1a0507fb97034b45913e7d9895 = L.polygon(
                 [[46.80604, 7.99023], [46.3691, 10.40725], [48.07029, 11.10803], [48.5126, 8.6133], [46.80604, 7.99023]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(59, 160, 252)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(59, 160, 252)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_f638f4f590fb315bbeb330be3ac8a6c6);
+            ).addTo(feature_group_fc262e3470e1e408e404daa432fccc82);
         
     
-            feature_group_f638f4f590fb315bbeb330be3ac8a6c6.addTo(map_230a9d6f108a4fef9540937e360f0192);
+            feature_group_fc262e3470e1e408e404daa432fccc82.addTo(map_ead61e07aabcfc0f50da9563019524e2);
         
     
-            var feature_group_7bf676fa29386214a266fa00fae1f838 = L.featureGroup(
+            var feature_group_9bc1235df81ed53a4c51e0945bc94360 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_acb44c67f321585f1bc7f0b8b7e4ec4b = L.polygon(
+            var polygon_c466443345bb6b802454920e65b93d57 = L.polygon(
                 [[46.80476, 6.3759], [46.3697, 8.79304], [48.07143, 9.49114], [48.5118, 6.99625], [46.80476, 6.3759]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(35, 194, 228)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(35, 194, 228)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_7bf676fa29386214a266fa00fae1f838);
+            ).addTo(feature_group_9bc1235df81ed53a4c51e0945bc94360);
         
     
-            feature_group_7bf676fa29386214a266fa00fae1f838.addTo(map_230a9d6f108a4fef9540937e360f0192);
+            feature_group_9bc1235df81ed53a4c51e0945bc94360.addTo(map_ead61e07aabcfc0f50da9563019524e2);
         
     
-            var feature_group_8132c576714315c39817e4475a1ed574 = L.featureGroup(
+            var feature_group_384150b55a9a16bbb08c1a1c062c43d4 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_a141d0838747c470c719837027380e71 = L.polygon(
+            var polygon_6eca00ad1201be959dde987add9f6e27 = L.polygon(
                 [[46.80459, 6.40358], [46.36947, 8.82002], [48.07129, 9.51843], [48.51172, 7.02425], [46.80459, 6.40358]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(23, 220, 194)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(23, 220, 194)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_8132c576714315c39817e4475a1ed574);
+            ).addTo(feature_group_384150b55a9a16bbb08c1a1c062c43d4);
         
     
-            feature_group_8132c576714315c39817e4475a1ed574.addTo(map_230a9d6f108a4fef9540937e360f0192);
+            feature_group_384150b55a9a16bbb08c1a1c062c43d4.addTo(map_ead61e07aabcfc0f50da9563019524e2);
         
     
-            var feature_group_6b48d210ac4aa25a488140b2cb12a493 = L.featureGroup(
+            var feature_group_fffd8075cd74c2fc88ea9bd019977455 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_0ad154858a4250ee273caea5aa473bc2 = L.polygon(
+            var polygon_8b34b25e2c22e39644d584dc07fd1eb1 = L.polygon(
                 [[46.80518, 6.43038], [46.36934, 8.84755], [48.07084, 9.54674], [48.512, 7.05183], [46.80518, 6.43038]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(44, 239, 157)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(44, 239, 157)&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_6b48d210ac4aa25a488140b2cb12a493);
+            ).addTo(feature_group_fffd8075cd74c2fc88ea9bd019977455);
         
     
-            feature_group_6b48d210ac4aa25a488140b2cb12a493.addTo(map_230a9d6f108a4fef9540937e360f0192);
+            feature_group_fffd8075cd74c2fc88ea9bd019977455.addTo(map_ead61e07aabcfc0f50da9563019524e2);
         
     
-            var layer_control_5fd7f8ca3b6ce09b79efd02dbbddf945_layers = {
+            var layer_control_65227b6dafea77f58816be0d8ab52ec3_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_4ffc3297d332492f0339303b7e666c16,
+                    &quot;openstreetmap&quot; : tile_layer_10f2c7b42138a5bb721dbcdf00fad116,
                 },
                 overlays :  {
-                    &quot;ID: LC81950272020256LGN00 (CC: 9)&quot; : feature_group_400c1ea92587e8170f2c74aeb253dc9a,
-                    &quot;ID: LC81940272020233LGN00 (CC: 6)&quot; : feature_group_3b9fbfd64eaf4855ce2c7ba5af1f237a,
-                    &quot;ID: LC81950272020224LGN00 (CC: 8)&quot; : feature_group_89d2df89004d60e4350014d66780fcdd,
-                    &quot;ID: LC81950272020176LGN00 (CC: 3)&quot; : feature_group_3ecd8fcc79445823dc168a4683ee2cab,
-                    &quot;ID: LC81940272020153LGN00 (CC: 5)&quot; : feature_group_f638f4f590fb315bbeb330be3ac8a6c6,
-                    &quot;ID: LC81950272020128LGN00 (CC: 2)&quot; : feature_group_7bf676fa29386214a266fa00fae1f838,
-                    &quot;ID: LC81950272020096LGN00 (CC: 2)&quot; : feature_group_8132c576714315c39817e4475a1ed574,
-                    &quot;ID: LC81950272020016LGN00 (CC: 2)&quot; : feature_group_6b48d210ac4aa25a488140b2cb12a493,
+                    &quot;ID: LC81950272020256LGN00 (CC: 9)&quot; : feature_group_9f07c5d66a37ee440dfefbce670b4c8f,
+                    &quot;ID: LC81940272020233LGN00 (CC: 6)&quot; : feature_group_ec23edb62c95452f1ccf1386b8972e75,
+                    &quot;ID: LC81950272020224LGN00 (CC: 8)&quot; : feature_group_e8f239e50a90be85b1b8195e78503ae0,
+                    &quot;ID: LC81950272020176LGN00 (CC: 3)&quot; : feature_group_dae3b71fd995d859ffa952dfac896f93,
+                    &quot;ID: LC81940272020153LGN00 (CC: 5)&quot; : feature_group_fc262e3470e1e408e404daa432fccc82,
+                    &quot;ID: LC81950272020128LGN00 (CC: 2)&quot; : feature_group_9bc1235df81ed53a4c51e0945bc94360,
+                    &quot;ID: LC81950272020096LGN00 (CC: 2)&quot; : feature_group_384150b55a9a16bbb08c1a1c062c43d4,
+                    &quot;ID: LC81950272020016LGN00 (CC: 2)&quot; : feature_group_fffd8075cd74c2fc88ea9bd019977455,
                 },
             };
-            let layer_control_5fd7f8ca3b6ce09b79efd02dbbddf945 = L.control.layers(
-                layer_control_5fd7f8ca3b6ce09b79efd02dbbddf945_layers.base_layers,
-                layer_control_5fd7f8ca3b6ce09b79efd02dbbddf945_layers.overlays,
+            let layer_control_65227b6dafea77f58816be0d8ab52ec3 = L.control.layers(
+                layer_control_65227b6dafea77f58816be0d8ab52ec3_layers.base_layers,
+                layer_control_65227b6dafea77f58816be0d8ab52ec3_layers.overlays,
                 {
   &quot;position&quot;: &quot;topright&quot;,
   &quot;collapsed&quot;: true,
   &quot;autoZIndex&quot;: true,
 }
-            ).addTo(map_230a9d6f108a4fef9540937e360f0192);
+            ).addTo(map_ead61e07aabcfc0f50da9563019524e2);
 
         
 &lt;/script&gt;
@@ -1061,7 +1103,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="07%20era5-land-monthly.html" class="btn btn-neutral float-left" title="ERA5-Land Monthly Averaged" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="09%20Sentinel2-without-esri.html" class="btn btn-neutral float-right" title="Sentinel 2 - Workflow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
