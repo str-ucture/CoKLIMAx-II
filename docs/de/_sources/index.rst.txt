@@ -31,3 +31,9 @@ Im ersten Teil der Dokumentation geht es um die Vorbereitung Ihres Computers auf
   :caption: Kurs 2:
 
   ./notebooks/kurs2/01 satellite-lake-water-level
+
+.. toctree::
+  :maxdepth: 2
+  :caption: Kurs 3:
+
+  ./notebooks/kurs3/01 senthub_downloader

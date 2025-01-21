@@ -1,3 +1,8 @@
+Check-list:
+- Update Notebook
+- Update rst file (toctree)
+
+
 run
 
 .\make.bat clean
