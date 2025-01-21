@@ -69,17 +69,17 @@
 <li class="toctree-l1"><a class="reference internal" href="01%20satellite-lake-water-level.html">Satellite Lake Water Levels</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Satellite Lake Water Temperature</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#download-and-extract-the-dataset">2. Download and Extract the Dataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#authentication">2.1 Authentication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#request-definition-and-download">2.2 Request Definition and Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#define-the-request-and-download-the-dataset">2.2 Define the “request” and Download the Dataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#merge-netcdf4-files-into-a-single-netcdf4-file">3. Merge NetCDF4 Files into a Single NetCDF4 File</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#read-the-merged-netcdf4-file-and-print-the-metadata">4. Read the merged netCDF4 file and print the metadata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#compute-daily-average-and-export-as-csv">4.1 Compute Daily Average and Export as CSV</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#plot-daily-average">4.2 Plot Daily Average</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#export-dataset-to-csv">5. Export Dataset to CSV</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#compute-daily-average-and-export-as-csv">5.1 Compute Daily Average and Export as CSV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-daily-average">5.2 Plot Daily Average</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#plot-monthly-average">4.3 Plot Monthly Average</a></li>
 </ul>
 </li>
@@ -94,7 +94,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Course 3:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../kurs3/01%20senthub_downloader.html">SentinelHub Downloader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kurs3/01%20senthub_downloader.html">SentinelHub Satellite Data Explorer</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Course Not Defined:</span></p>
 <ul>
@@ -150,8 +150,8 @@
 <p><strong>Information on Dataset:</strong></p>
 <ul class="simple">
 <li><p>Source: <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/satellite-lake-water-temperature?tab=overview">Satellite Lake Water Temperature</a></p></li>
-<li><p>Author:</p></li>
-<li><p>Notebook Version: 1.3 (Updated: December 03, 2024)</p></li>
+<li><p>Author: T. Tewes (City of Konstanz)</p></li>
+<li><p>Notebook Version: 1.4 (Updated: January 20, 2025)</p></li>
 </ul>
 <section id="specifying-the-paths-and-working-directories">
 <h2>1. Specifying the paths and working directories<a class="headerlink" href="#specifying-the-paths-and-working-directories" title="Link to this heading"></a></h2>
@@ -159,13 +159,13 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="sd">&#39;&#39;&#39; ---- Hier die Verzeichnisse angeben ---- &#39;&#39;&#39;</span>
+<span class="sd">&#39;&#39;&#39; ---- Specify Directories Here ---- &#39;&#39;&#39;</span>
 <span class="n">download_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-temperature\download&quot;</span>
 <span class="n">working_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-temperature\working&quot;</span>
 <span class="n">geotiff_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-temperature\geotiff&quot;</span>
 <span class="n">csv_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-temperature\csv&quot;</span>
 <span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-temperature\output&quot;</span>
-<span class="sd">&#39;&#39;&#39; ----- Ende der Eingaben ---- &#39;&#39;&#39;</span>
+<span class="sd">&#39;&#39;&#39; ----- End of Declaration ---- &#39;&#39;&#39;</span>
 
 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -177,8 +177,8 @@
 </div>
 </div>
 </section>
-<section id="download-and-extract-dataset">
-<h2>2. Download and Extract Dataset<a class="headerlink" href="#download-and-extract-dataset" title="Link to this heading"></a></h2>
+<section id="download-and-extract-the-dataset">
+<h2>2. Download and Extract the Dataset<a class="headerlink" href="#download-and-extract-the-dataset" title="Link to this heading"></a></h2>
 <section id="authentication">
 <h3>2.1 Authentication<a class="headerlink" href="#authentication" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
@@ -186,8 +186,11 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cdsapi</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># API key for authentication</span>
     <span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;fdae60fd-35d4-436f-825c-c63fedab94a4&quot;</span>
     <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;https://cds.climate.copernicus.eu/api&quot;</span>
+
+    <span class="c1"># Creation of the CDS API client</span>
     <span class="n">client</span> <span class="o">=</span> <span class="n">cdsapi</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">api_url</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">client</span>
 </pre></div>
@@ -195,25 +198,51 @@
 </div>
 </div>
 </section>
-<section id="request-definition-and-download">
-<h3>2.2 Request Definition and Download<a class="headerlink" href="#request-definition-and-download" title="Link to this heading"></a></h3>
+<section id="define-the-request-and-download-the-dataset">
+<h3>2.2 Define the “request” and Download the Dataset<a class="headerlink" href="#define-the-request-and-download-the-dataset" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define additional request fields to ensure the request stays within the file size limit.</span>
-<span class="c1"># These coordinates were obtained using the BBox Extractor tool: https://str-ucture.github.io/bbox-extractor/</span>
+<span class="c1"># </span>
+<span class="c1"># When working with geospatial data or APIs that return map or satellite imagery,</span>
+<span class="c1"># limiting the geographical area of interest can prevent overly large requests</span>
+<span class="c1"># that exceed file size or processing limits. Bounding boxes are used to define</span>
+<span class="c1"># the geographic area for such requests.</span>
+<span class="c1"># </span>
+<span class="c1"># The coordinates below were obtained using the BBox Extractor tool:</span>
+<span class="c1"># https://str-ucture.github.io/bbox-extractor/</span>
+<span class="c1"># </span>
+<span class="c1"># BBox Extractor is a web-based tool that helps users interactively select and generate </span>
+<span class="c1"># bounding box coordinates in WGS84 format (latitude/longitude). This is especially </span>
+<span class="c1"># useful when working with APIs or datasets that require a geographic area input.</span>
 
-<span class="n">bbox_wgs84_constance</span> <span class="o">=</span> <span class="p">[</span><span class="mf">48.0</span><span class="p">,</span> <span class="mf">8.7</span><span class="p">,</span> <span class="mf">47.3</span><span class="p">,</span> <span class="mf">9.9</span><span class="p">]</span>  <span class="c1"># [North, West, South, East]</span>
-
-<span class="c1"># Different data versions are available depending on the year of interest.</span>
-<span class="n">year</span> <span class="o">=</span> <span class="mi">1998</span>
-<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;4_5_1&quot;</span> <span class="k">if</span> <span class="n">year</span> <span class="o">&lt;=</span> <span class="mi">2020</span> <span class="k">else</span> <span class="s2">&quot;4_5_2&quot;</span>
+<span class="c1"># Define the bounding box coordinates (WGS84 format) for the Lake Constance region.</span>
+<span class="c1"># The coordinates are in the format: [North, West, South, East]</span>
+<span class="n">bbox_wgs84_constance</span> <span class="o">=</span> <span class="p">[</span><span class="mf">48.0</span><span class="p">,</span> <span class="mf">8.7</span><span class="p">,</span> <span class="mf">47.3</span><span class="p">,</span> <span class="mf">9.9</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="s2">&quot;satellite-lake-water-temperature&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the year of interest for the data request.</span>
+<span class="c1"># The corresponding data version depends on the year.</span>
+<span class="n">year</span> <span class="o">=</span> <span class="mi">2009</span>
+
+<span class="c1"># Determine the data version based on the year:</span>
+<span class="c1"># Version &quot;4_5_1&quot; is used for years up to 2020, and &quot;4_5_2&quot; is used for later years.</span>
+<span class="k">if</span> <span class="mi">1900</span> <span class="o">&lt;=</span> <span class="n">year</span> <span class="o">&lt;=</span> <span class="mi">2100</span><span class="p">:</span>  <span class="c1"># Validate year range for robustness.</span>
+    <span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;4_5_1&quot;</span> <span class="k">if</span> <span class="n">year</span> <span class="o">&lt;=</span> <span class="mi">2020</span> <span class="k">else</span> <span class="s2">&quot;4_5_2&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid year: </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">. Please provide a year between 1900 and 2100.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definition of the dataset and the request parameters</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="s2">&quot;satellite-lake-water-temperature&quot;</span>
 <span class="n">request</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;variable&quot;</span><span class="p">:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span>
     <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">],</span>
@@ -245,7 +274,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uncomment and run this cell to download the dataset:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Uncomment this cell and execute it to download the dataset:</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">main_retrieve</span><span class="p">():</span>
     <span class="n">dataset_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">request</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">.zip&quot;</span>
@@ -265,17 +294,17 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-20 12:13:19,949 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-21 14:30:36,374 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
 [feedback](https://jira.ecmwf.int/plugins/servlet/desk/portal/1/create/202) is key to improve the user experience on the new CDS for the benefit of everyone. Thank you.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-20 12:13:19,951 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-21 14:30:36,374 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-20 12:13:19,951 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-21 14:30:36,374 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-20 12:13:19,951 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-21 14:30:36,374 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset already downloaded.
@@ -324,34 +353,44 @@
 </section>
 <section id="merge-netcdf4-files-into-a-single-netcdf4-file">
 <h2>3. Merge NetCDF4 Files into a Single NetCDF4 File<a class="headerlink" href="#merge-netcdf4-files-into-a-single-netcdf4-file" title="Link to this heading"></a></h2>
-<p>Most Yearly dataset is available for all 365days (366days for leap year).</p>
+<p>Many <strong>yearly datasets</strong> are provided as daily NetCDF4 files, where each file represents one day of the year <em>(365 files for regular years, 366 files for leap years)</em>. Managing these numerous files can be cumbersome, especially during data access or visualization.</p>
+<p>To simplify workflows and improve data handling efficiency, all daily datasets for a given year are merged into a <strong>single yearly NetCDF4 file</strong>. This consolidation streamlines data processing in later stages of analysis, such as visualization or statistical evaluation.</p>
 <blockquote>
-<div><p>Important: Daily dataset may have sparse or no data. Hence, merged netCDF, merged GeoTIFF or individual GeoTIFF files may comtain empty at some time instances.</p>
+<div><p>Important: Daily datasets may have sparse or missing data.  As a result, the merged NetCDF4, merged GeoTIFF, or individual GeoTIFF files may contain empty time instances.</p>
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
 
-<span class="c1"># Filter the list of filenames</span>
+<span class="c1"># Path for the merged NetCDF file</span>
 <span class="n">nc_filepath_merged</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">.nc&quot;</span><span class="p">)</span>
 
+<span class="c1"># Check if the merged file already exists</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">nc_filepath_merged</span><span class="p">):</span>
+    <span class="c1"># List all NetCDF files in the extract folder</span>
     <span class="n">filename_list</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)</span>
 
-    <span class="c1"># Load all NetCDF files into a list of datasets</span>
-    <span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">filename_list</span><span class="p">]</span>
-    <span class="n">merged_dataset</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
-
-    <span class="c1"># Save the merged dataset into a new NetCDF file</span>
-    <span class="n">merged_dataset</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">nc_filepath_merged</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;New NetCDF4 file created at </span><span class="si">{</span><span class="n">nc_filepath_merged</span><span class="si">}</span><span class="s2"> for year </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filename_list</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No NetCDF files found in </span><span class="si">{</span><span class="n">extract_folder</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Open and concatenate all NetCDF files along the &#39;time&#39; dimension</span>
+            <span class="n">datasets</span> <span class="o">=</span> <span class="p">[</span><span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">filename_list</span><span class="p">]</span>
+            <span class="n">merged_dataset</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">datasets</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+            
+            <span class="c1"># Save the merged dataset to the new NetCDF file</span>
+            <span class="n">merged_dataset</span><span class="o">.</span><span class="n">to_netcdf</span><span class="p">(</span><span class="n">nc_filepath_merged</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;New NetCDF4 file created at </span><span class="si">{</span><span class="n">nc_filepath_merged</span><span class="si">}</span><span class="s2"> for year </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error during file processing: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Merged netCDF file already exists. Skipping merge.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Merged NetCDF file already exists for </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">. Skipping merge.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Merged netCDF file already exists. Skipping merge.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Merged NetCDF file already exists for 2009. Skipping merge.
 </pre></div>
 </div>
 </div>
@@ -364,14 +403,10 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
 
 <span class="c1"># Open the NetCDF file in read mode</span>
-<span class="n">nc_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;satellite-lake-water-temperature_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">.nc&quot;</span>
-<span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">nc_filename</span><span class="p">)</span>
-
-<span class="c1"># Open the NetCDF file in read mode</span>
-<span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_filepath_merged</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_filepath_merged</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
 
 <span class="c1"># List all variables in the dataset</span>
-<span class="n">variables_list</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">variables_list</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Available variables: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">variables_list</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -388,20 +423,20 @@
 
 <span class="c1"># Define variable name from available variables and read variable data</span>
 <span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;lake_surface_water_temperature&#39;</span>
-<span class="n">variable_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
+<span class="n">variable_data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
 
-<span class="c1"># Generate summary of the primary variable</span>
+<span class="c1"># Create a summary of the primary variables</span>
 <span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;Variable Name&quot;</span><span class="p">:</span> <span class="n">variable_name</span><span class="p">,</span>
     <span class="s2">&quot;Data Type&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
     <span class="s2">&quot;Shape&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
-    <span class="s2">&quot;Variable Info&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">variable_data</span><span class="o">.</span><span class="n">dimensions</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Variable Info&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_data</span><span class="o">.</span><span class="n">dimensions</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="s2">&quot;Units&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
     <span class="s2">&quot;Long Name&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;long_name&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
 <span class="p">}</span>
 
-<span class="c1"># Display dataset summary as a DataFrame for better visualization</span>
-<span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">,</span> <span class="s1">&#39;Remarks&#39;</span><span class="p">])</span>
+<span class="c1"># Display the summary of the data set as a DataFrame for better visualisation</span>
+<span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">,</span> <span class="s1">&#39;Details&#39;</span><span class="p">])</span>
 
 <span class="c1"># Display the summary DataFrame</span>
 <span class="n">nc_summary</span>
@@ -428,7 +463,7 @@
     <tr style="text-align: right;">
       <th></th>
       <th>Description</th>
-      <th>Remarks</th>
+      <th>Details</th>
     </tr>
   </thead>
   <tbody>
@@ -445,12 +480,12 @@
     <tr>
       <th>2</th>
       <td>Shape</td>
-      <td>(360, 14, 24)</td>
+      <td>(364, 14, 24)</td>
     </tr>
     <tr>
       <th>3</th>
       <td>Variable Info</td>
-      <td>lake_surface_water_temperature(time, lat, lon)</td>
+      <td>('time', 'lat', 'lon')</td>
     </tr>
     <tr>
       <th>4</th>
@@ -468,9 +503,65 @@
 </div>
 </section>
 <section id="export-dataset-to-csv">
-<h2>4. Export Dataset to CSV<a class="headerlink" href="#export-dataset-to-csv" title="Link to this heading"></a></h2>
+<h2>5. Export Dataset to CSV<a class="headerlink" href="#export-dataset-to-csv" title="Link to this heading"></a></h2>
 <section id="compute-daily-average-and-export-as-csv">
-<h3>4.1 Compute Daily Average and Export as CSV<a class="headerlink" href="#compute-daily-average-and-export-as-csv" title="Link to this heading"></a></h3>
+<h3>5.1 Compute Daily Average and Export as CSV<a class="headerlink" href="#compute-daily-average-and-export-as-csv" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import xarray as xr</span>
+
+<span class="c1"># # Open the NetCDF dataset using xarray</span>
+<span class="c1"># def netcdf_to_dataframe(nc_file):</span>
+<span class="c1">#     with xr.open_dataset(nc_file) as nc_dataset:</span>
+<span class="c1">#         # Select variables and create a list</span>
+<span class="c1">#         variables = [&#39;lake_surface_water_temperature&#39;, &#39;lswt_uncertainty&#39;, &#39;lswt_quality_level&#39;]</span>
+
+<span class="c1">#         # Convert the selected variables to a DataFrame at once</span>
+<span class="c1">#         df = nc_dataset[variables].to_dataframe().reset_index()</span>
+
+<span class="c1">#         return df</span>
+
+<span class="c1"># # Create dataframe</span>
+<span class="c1"># dataframe_merged = netcdf_to_dataframe(nc_file=nc_filepath_merged)</span>
+<span class="c1"># dataframe_merged.head()</span>
+
+<span class="c1"># # Filter all the NaN values</span>
+<span class="c1"># dataframe_merged_filtered = dataframe_merged.dropna().reset_index(drop=True)</span>
+
+<span class="c1"># # Define csv filename and filepath for the output</span>
+<span class="c1"># csv_filename = f&quot;satellite-lake-water-temperature-complete-{year}.csv&quot;</span>
+<span class="c1"># csv_filepath = os.path.join(csv_folder, csv_filename)</span>
+
+<span class="c1"># # Export the pivot table as CSV if it does not already exist</span>
+<span class="c1"># if not os.path.isfile(csv_filepath):</span>
+<span class="c1">#     dataframe_merged_filtered.to_csv(csv_filepath, sep=&#39;,&#39;, encoding=&#39;utf8&#39;)</span>
+<span class="c1">#     print(f&quot;Filtered data exported successfully to {csv_filepath}&quot;)</span>
+<span class="c1"># else:</span>
+<span class="c1">#     print(f&quot;File already exists at {csv_filepath}.\nSkipping export.&quot;)</span>
+<span class="c1">#     print(&quot;Reading existing CSV file...&quot;)</span>
+<span class="c1">#     # Read the CSV file with datetime parsing</span>
+<span class="c1">#     dataframe = pd.read_csv(csv_filepath, parse_dates=[&#39;time&#39;], index_col=&#39;time&#39;)</span>
+
+<span class="c1"># # Modify pandas display options</span>
+<span class="c1"># pd.options.display.float_format = &#39;{:,.2f}&#39;.format</span>
+
+<span class="c1"># # Display DataFrame</span>
+<span class="c1"># dataframe_merged_filtered.head()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># dataframe_merged_filtered[&#39;time&#39;] = pd.to_datetime(dataframe_merged_filtered[&#39;time&#39;])</span>
+<span class="c1"># dataframe_merged_filtered.set_index(&#39;time&#39;, inplace=True)</span>
+
+<span class="c1"># filtered_df = dataframe_merged_filtered.groupby(pd.Grouper(freq=&#39;M&#39;)).mean().reset_index()</span>
+<span class="c1"># filtered_df</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
@@ -544,7 +635,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File already exists at .\data\satellite-lake-water-temperature\csv\satellite-lake-water-temperature_daily-mean-1998.csv. Skipping export.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File already exists at .\data\satellite-lake-water-temperature\csv\satellite-lake-water-temperature_daily-mean-2009.csv. Skipping export.
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -576,48 +667,48 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>1998-01-05 12:00:00</td>
-      <td>278.48</td>
-      <td>0.52</td>
-      <td>0.17</td>
-      <td>4.11</td>
-      <td>45.00</td>
+      <td>2009-01-01 12:00:00</td>
+      <td>278.10</td>
+      <td>0.77</td>
+      <td>0.42</td>
+      <td>4.55</td>
+      <td>38.00</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1998-01-08 12:00:00</td>
-      <td>278.56</td>
-      <td>0.29</td>
-      <td>0.17</td>
-      <td>4.20</td>
-      <td>46.00</td>
+      <td>2009-01-03 12:00:00</td>
+      <td>276.89</td>
+      <td>1.20</td>
+      <td>0.27</td>
+      <td>1.43</td>
+      <td>14.00</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1998-01-11 12:00:00</td>
-      <td>277.81</td>
-      <td>0.00</td>
-      <td>0.21</td>
-      <td>4.50</td>
-      <td>2.00</td>
+      <td>2009-01-06 12:00:00</td>
+      <td>274.77</td>
+      <td>0.89</td>
+      <td>0.29</td>
+      <td>2.25</td>
+      <td>4.00</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1998-01-14 12:00:00</td>
-      <td>277.93</td>
-      <td>0.11</td>
-      <td>0.24</td>
-      <td>4.00</td>
-      <td>5.00</td>
+      <td>2009-01-08 12:00:00</td>
+      <td>276.94</td>
+      <td>1.39</td>
+      <td>0.30</td>
+      <td>3.47</td>
+      <td>32.00</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1998-01-30 12:00:00</td>
-      <td>277.17</td>
-      <td>0.00</td>
-      <td>0.18</td>
-      <td>5.00</td>
-      <td>1.00</td>
+      <td>2009-01-13 12:00:00</td>
+      <td>276.83</td>
+      <td>0.13</td>
+      <td>0.22</td>
+      <td>3.67</td>
+      <td>3.00</td>
     </tr>
   </tbody>
 </table>
@@ -625,7 +716,7 @@
 </div>
 </section>
 <section id="plot-daily-average">
-<h3>4.2 Plot Daily Average<a class="headerlink" href="#plot-daily-average" title="Link to this heading"></a></h3>
+<h3>5.2 Plot Daily Average<a class="headerlink" href="#plot-daily-average" title="Link to this heading"></a></h3>
 <blockquote>
 <div><p>Note: Due to limited daily/monthly data for 2023 dataset, <strong>Plots</strong> do not work properly</p>
 </div></blockquote>
@@ -681,7 +772,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/3dd656845ff2a6d982415acee9e8b9288d1603ef2d7342cafb05d0bf4f4e4619.png" src="../../_images/3dd656845ff2a6d982415acee9e8b9288d1603ef2d7342cafb05d0bf4f4e4619.png" />
+<img alt="../../_images/ec22dce665154762fce42468b967323b40510ed4fd869464c86d3e739a7e396a.png" src="../../_images/ec22dce665154762fce42468b967323b40510ed4fd869464c86d3e739a7e396a.png" />
 </div>
 </div>
 </section>
@@ -724,7 +815,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File already exists at .\data\satellite-lake-water-temperature\csv\monthly means\satellite-lake-water-temperature_monthly-mean-1998.csv. Skipping export.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File already exists at .\data\satellite-lake-water-temperature\csv\monthly means\satellite-lake-water-temperature_monthly-mean-2009.csv. Skipping export.
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -755,43 +846,43 @@
   <tbody>
     <tr>
       <th>0</th>
-      <td>1998-01-01</td>
-      <td>277.99</td>
-      <td>0.27</td>
-      <td>0.20</td>
-      <td>4.36</td>
+      <td>2009-01-01</td>
+      <td>276.83</td>
+      <td>0.85</td>
+      <td>0.30</td>
+      <td>3.75</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1998-02-01</td>
-      <td>275.56</td>
-      <td>0.91</td>
-      <td>0.19</td>
-      <td>3.38</td>
+      <td>2009-02-01</td>
+      <td>274.93</td>
+      <td>1.04</td>
+      <td>0.36</td>
+      <td>3.07</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1998-03-01</td>
-      <td>277.13</td>
-      <td>0.59</td>
-      <td>0.21</td>
-      <td>4.00</td>
+      <td>2009-03-01</td>
+      <td>276.56</td>
+      <td>1.09</td>
+      <td>0.31</td>
+      <td>3.18</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1998-04-01</td>
-      <td>280.17</td>
-      <td>1.56</td>
-      <td>0.30</td>
-      <td>2.70</td>
+      <td>2009-04-01</td>
+      <td>282.55</td>
+      <td>1.29</td>
+      <td>0.31</td>
+      <td>3.71</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1998-05-01</td>
-      <td>288.90</td>
-      <td>1.17</td>
-      <td>0.36</td>
-      <td>3.79</td>
+      <td>2009-05-01</td>
+      <td>287.88</td>
+      <td>1.20</td>
+      <td>0.43</td>
+      <td>3.87</td>
     </tr>
   </tbody>
 </table>
@@ -844,7 +935,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/275d7755f4cb54e9100307f4efdfbdaeb025bc6e19a76360771d53ba7d58caf0.png" src="../../_images/275d7755f4cb54e9100307f4efdfbdaeb025bc6e19a76360771d53ba7d58caf0.png" />
+<img alt="../../_images/0b67cddc93008ba9521fe1faa039bd920ca67b9c5720a657fb09aa15c7957c2b.png" src="../../_images/0b67cddc93008ba9521fe1faa039bd920ca67b9c5720a657fb09aa15c7957c2b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -934,7 +1025,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/8de2bb4499321feab474869e15fb259bf04f4ef6798b2c9600a50955a1a67e04.png" src="../../_images/8de2bb4499321feab474869e15fb259bf04f4ef6798b2c9600a50955a1a67e04.png" />
+<img alt="../../_images/1df54fb08228b26c35f56ba693539a74e6fbab24a86073dc484ac1c347eaeca5.png" src="../../_images/1df54fb08228b26c35f56ba693539a74e6fbab24a86073dc484ac1c347eaeca5.png" />
 </div>
 </div>
 </section>
@@ -1005,7 +1096,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="s2">&#39; already exists. Skipping export.&quot;</span><span class="p">)</span>
 
 <span class="c1"># Export merged netCDF file to merged GeoTIFF file</span>
-<span class="n">nc_filename_merged</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;satellite-lake-water-temperature_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">.nc&quot;</span>
+<span class="n">nc_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;satellite-lake-water-temperature_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">.nc&quot;</span>
 <span class="n">nc_filepath_merged</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">nc_filename</span><span class="p">)</span>
 <span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;lake_surface_water_temperature&#39;</span>
 
@@ -1014,7 +1105,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;lake_surface_water_temperature_1998_merged.tif&#39; already exists. Skipping export.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;lake_surface_water_temperature_2009_merged.tif&#39; already exists. Skipping export.
 </pre></div>
 </div>
 </div>
