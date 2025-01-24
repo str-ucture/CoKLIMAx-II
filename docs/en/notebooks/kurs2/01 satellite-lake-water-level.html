@@ -71,7 +71,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#download-and-extract-the-dataset">2. Download and Extract the Dataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#authentication">2.1 Authentication</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#define-the-request-and-download-the-dataset">2.2 Define the “request” and Download the Dataset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#extract-zip-folder-s">2.3 Extract Zip Folder(s)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extract-the-zip-files-in-folder-s">2.3 Extract the ZIP files in folder(s)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#read-the-netcdf4-file-and-print-the-metadata">3. Read the netCDF4 file and print the Metadata</a></li>
@@ -217,39 +217,27 @@
 
     <span class="c1"># Download the dataset only if the dataset has not been downloaded before</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dataset_filepath</span><span class="p">):</span>
+        <span class="c1"># Call the CDS client only if the dataset has not been downloaded before</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">main</span><span class="p">()</span>
         <span class="c1"># Download the dataset with the defined request parameters</span>
         <span class="n">client</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">dataset_filepath</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dataset already downloaded.&quot;</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">client</span> <span class="o">=</span> <span class="n">main</span><span class="p">()</span>
     <span class="n">main_retrieve</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-24 14:05:33,654 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
-[feedback](https://jira.ecmwf.int/plugins/servlet/desk/portal/1/create/202) is key to improve the user experience on the new CDS for the benefit of everyone. Thank you.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-24 14:05:33,654 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-24 14:05:33,654 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-24 14:05:33,654 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset already downloaded.
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="extract-zip-folder-s">
-<h3>2.3 Extract Zip Folder(s)<a class="headerlink" href="#extract-zip-folder-s" title="Link to this heading"></a></h3>
+<section id="extract-the-zip-files-in-folder-s">
+<h3>2.3 Extract the ZIP files in folder(s)<a class="headerlink" href="#extract-the-zip-files-in-folder-s" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>

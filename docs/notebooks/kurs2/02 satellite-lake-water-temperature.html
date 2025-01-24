@@ -72,7 +72,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#download-and-extract-the-dataset">2. Download and Extract the Dataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#authentication">2.1 Authentication</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#define-the-request-and-download-the-dataset">2.2 Define the “request” and Download the Dataset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extract-the-zip-files-in-folder-s">2.3 Extract the ZIP files in folder(s)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#merge-netcdf4-files-into-a-single-netcdf4-file">3. Merge NetCDF4 Files into a Single NetCDF4 File</a></li>
@@ -301,22 +301,25 @@
 </div>
 </div>
 </section>
-<section id="extract-the-zip-folder">
-<h3>2.3 Extract the Zip folder<a class="headerlink" href="#extract-the-zip-folder" title="Link to this heading"></a></h3>
+<section id="extract-the-zip-files-in-folder-s">
+<h3>2.3 Extract the ZIP files in folder(s)<a class="headerlink" href="#extract-the-zip-files-in-folder-s" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
 
-<span class="c1"># Construct the dataset filename and path</span>
+<span class="c1"># Construct the filename and filepath for the ZIP file based on selected year</span>
 <span class="n">dataset_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">.zip&quot;</span>
 <span class="n">dataset_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">dataset_filename</span><span class="p">)</span>
+
+<span class="c1"># Create a folder to extract the ZIP file based on the selected year</span>
 <span class="n">extract_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">))</span>
 
-<span class="c1"># Extract the zip file</span>
+<span class="c1"># Extract the ZIP file only if the folder is empty</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">):</span>
+        <span class="c1"># Attempt to open and extract the ZIP file</span>
         <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">dataset_filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
             <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully extracted files to: </span><span class="si">{</span><span class="n">extract_folder</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -693,7 +696,6 @@
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File already exists at </span><span class="si">{</span><span class="n">csv_filepath</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">Skipping export.&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading existing CSV file...&quot;</span><span class="p">)</span>
-    <span class="c1"># Read the CSV file with datetime parsing</span>
     <span class="n">filtered_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">)</span>
 
 <span class="c1"># Modify pandas display options</span>
