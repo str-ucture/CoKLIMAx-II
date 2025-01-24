@@ -1276,6 +1276,7 @@ Reading existing CSV file...
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
+<span class="c1"># Function to extract metadata from a NetCDF file name</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">meta</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(.+?)_(\d</span><span class="si">{4}</span><span class="s2">)\.nc&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
@@ -1291,6 +1292,7 @@ Reading existing CSV file...
             
             <span class="k">return</span> <span class="n">primary_variable</span><span class="p">,</span> <span class="n">primary_variable_shape</span>
 
+    <span class="c1"># Return metadata as a dictionary</span>
     <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
         <span class="n">path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span><span class="n">filename</span><span class="p">),</span>
@@ -1299,12 +1301,14 @@ Reading existing CSV file...
         <span class="n">variable_shape</span><span class="o">=</span><span class="n">get_nc_variable</span><span class="p">()[</span><span class="mi">1</span><span class="p">],</span>
     <span class="p">)</span>
 
-<span class="c1"># Create DataFrame from the list of files inside the extracted directory</span>
+<span class="c1"># List and process all NetCDF files in the output folder and sort them by year</span>
 <span class="n">nc_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">meta</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">output_folder</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.nc&#39;</span><span class="p">)]</span>
-<span class="n">df_nc_files</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">nc_files</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+<span class="n">nc_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">nc_files</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">])</span>
 
-<span class="c1"># Display the DataFrame</span>
-<span class="n">df_nc_files</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">df_nc_files</span><span class="o">.</span><span class="n">columns</span> <span class="o">!=</span> <span class="s1">&#39;path&#39;</span><span class="p">]</span>
+<span class="n">df_nc_files</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">nc_files</span><span class="p">)</span>
+
+<span class="c1"># Display the DataFrame without displaying path</span>
+<span class="n">df_nc_files</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">df_nc_files</span><span class="o">.</span><span class="n">columns</span> <span class="o">!=</span> <span class="s1">&#39;path&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1369,153 +1373,6 @@ Reading existing CSV file...
       <td>lake_surface_water_temperature</td>
       <td>(352, 14, 24)</td>
     </tr>
-    <tr>
-      <th>5</th>
-      <td>satellite-lake-water-temperature_2000.nc</td>
-      <td>2000</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(362, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>satellite-lake-water-temperature_2001.nc</td>
-      <td>2001</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(365, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>satellite-lake-water-temperature_2002.nc</td>
-      <td>2002</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(363, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>satellite-lake-water-temperature_2003.nc</td>
-      <td>2003</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(365, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>satellite-lake-water-temperature_2004.nc</td>
-      <td>2004</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(366, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>satellite-lake-water-temperature_2005.nc</td>
-      <td>2005</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(365, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>24</th>
-      <td>satellite-lake-water-temperature_2006.nc</td>
-      <td>2006</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(365, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>25</th>
-      <td>satellite-lake-water-temperature_2007.nc</td>
-      <td>2007</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(365, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>satellite-lake-water-temperature_2008.nc</td>
-      <td>2008</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(366, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>satellite-lake-water-temperature_2009.nc</td>
-      <td>2009</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(364, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>22</th>
-      <td>satellite-lake-water-temperature_2010.nc</td>
-      <td>2010</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(365, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>satellite-lake-water-temperature_2011.nc</td>
-      <td>2011</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(365, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>20</th>
-      <td>satellite-lake-water-temperature_2012.nc</td>
-      <td>2012</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(366, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>satellite-lake-water-temperature_2013.nc</td>
-      <td>2013</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(365, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>satellite-lake-water-temperature_2014.nc</td>
-      <td>2014</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(365, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>satellite-lake-water-temperature_2015.nc</td>
-      <td>2015</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(365, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>satellite-lake-water-temperature_2016.nc</td>
-      <td>2016</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(366, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>satellite-lake-water-temperature_2017.nc</td>
-      <td>2017</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(365, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>satellite-lake-water-temperature_2018.nc</td>
-      <td>2018</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(365, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>satellite-lake-water-temperature_2019.nc</td>
-      <td>2019</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(365, 14, 24)</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>satellite-lake-water-temperature_2020.nc</td>
-      <td>2020</td>
-      <td>lake_surface_water_temperature</td>
-      <td>(366, 14, 24)</td>
-    </tr>
   </tbody>
 </table>
 </div></div></div>
@@ -1523,124 +1380,87 @@ Reading existing CSV file...
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
-<span class="n">year_list</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">df_nc_files</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">])</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">calmap</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ma</span>
 
-<span class="k">for</span> <span class="n">nc_file</span> <span class="ow">in</span> <span class="n">nc_files</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_calendarplot</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># Filter nc_files for the item where year == year</span>
+    <span class="n">nc_file</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">item</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">nc_files</span> <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">)),</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">nc_file</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">nc_file</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No NetCDF file found for the specified year.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Selecting the latest available year.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">nc_files</span><span class="p">:</span>
+            <span class="n">nc_file</span> <span class="o">=</span> <span class="n">nc_files</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Select the latest available year</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using data from the year </span><span class="si">{</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No NetCDF files available.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+    
+    <span class="c1"># Open the NetCDF file and process the specified variable</span>
     <span class="k">with</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span> <span class="k">as</span> <span class="n">nc_dataset</span><span class="p">:</span>
+        <span class="c1"># Extract the variable data as a DataFrame</span>
         <span class="n">variable_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;variable_name&#39;</span><span class="p">]]</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
-<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>  
+        <span class="n">df</span> <span class="o">=</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Convert &#39;time&#39; to datetime and derive &#39;day_of_year&#39; and &#39;date&#39; for grouping</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;day_of_year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofyear</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;day_of_year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%j&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Group by &#39;date&#39; and calculate daily mean for the variable</span>
+        <span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)[</span><span class="n">variable_name</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+    <span class="c1"># Ensure the index of the result is datetime</span>
+    <span class="n">df2</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> 
+
+    <span class="c1"># Plot a calendar heatmap of the mean temperature values</span>
+    <span class="c1"># Plot the calendar heatmap</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">calmap</span><span class="o">.</span><span class="n">calendarplot</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span>
+                                <span class="n">fig_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">)},</span>
+                                <span class="n">yearlabel_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">22</span><span class="p">},</span>
+                                <span class="n">subplot_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Calendar Heatmap of </span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s1"> for </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,},</span>
+                                <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;YlGnBu&#39;</span><span class="p">,</span>
+                                <span class="n">fillcolor</span><span class="o">=</span><span class="s1">&#39;#efefef&#39;</span><span class="p">,</span>
+                                <span class="n">daylabels</span><span class="o">=</span><span class="s1">&#39;MTWTFSS&#39;</span><span class="p">,</span>
+                                <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;#ffffff&#39;</span><span class="p">,</span>
+                                <span class="n">dayticks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="p">)</span>
+    
+    <span class="c1"># Add a colorbar to the right side of the plot</span>
+    <span class="n">cax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">1.005</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="n">ma</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">//</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="n">ma</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">//</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
+
+    <span class="n">sm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ScalarMappable</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;YlGnBu&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">))</span>
+    <span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sm</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cax</span><span class="p">)</span>
+
+    <span class="c1"># Customize the ticks on the colorbar</span>
+    <span class="n">tick_interval</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">ticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">tick_interval</span><span class="p">)</span>
+    <span class="n">cbar</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">ticks</span><span class="p">)</span>  <span class="c1"># Set the ticks</span>
+    <span class="n">cbar</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">(</span><span class="n">ticks</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Plot the calendar heatmap for the specified year</span>
+    <span class="n">plot_calendarplot</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">1990</span><span class="p">)</span>
+    <span class="n">plot_calendarplot</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2005</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th></th>
-      <th></th>
-      <th>lake_surface_water_temperature</th>
-    </tr>
-    <tr>
-      <th>time</th>
-      <th>lat</th>
-      <th>lon</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="5" valign="top">2007-01-01 12:00:00</th>
-      <th rowspan="5" valign="top">47.33</th>
-      <th>8.73</th>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>8.77</th>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>8.82</th>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>8.88</th>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>8.93</th>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">calmap</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
-
-<span class="n">nc_file</span> <span class="o">=</span> <span class="n">nc_files</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-<span class="c1"># Assuming nc_file and variable_name are defined and df2 is calculated</span>
-<span class="k">with</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span> <span class="k">as</span> <span class="n">nc_dataset</span><span class="p">:</span>
-    <span class="n">variable_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;variable_name&#39;</span><span class="p">]]</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
-
-    <span class="c1"># Add &#39;day_of_year&#39; and &#39;date&#39; columns</span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;day_of_year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">dayofyear</span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;-&#39;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;day_of_year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y-%j&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
-
-    <span class="c1"># Group by &#39;date&#39; and compute the mean for each day</span>
-    <span class="n">df2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)[</span><span class="n">variable_name</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-
-<span class="n">df2</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> 
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No NetCDF file found for the specified year.
+Selecting the latest available year.
+Using data from the year 2020.
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a calendar heatmap of the mean temperature values</span>
-<span class="n">calmap</span><span class="o">.</span><span class="n">calendarplot</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span>
-                    <span class="n">fig_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">)},</span>
-                    <span class="n">yearlabel_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">},</span>
-                    <span class="n">subplot_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Calendar Heatmap of </span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">},</span>
-                    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;YlGnBu&#39;</span><span class="p">,</span>
-                    <span class="n">fillcolor</span><span class="o">=</span><span class="s1">&#39;#eeeeee&#39;</span><span class="p">,</span>
-                    <span class="n">daylabels</span><span class="o">=</span><span class="s1">&#39;MTWTFSS&#39;</span><span class="p">,</span>
-                    <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;#ffffff&#39;</span><span class="p">,</span>
-                    <span class="n">dayticks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                    <span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 1200x800 with 1 Axes&gt;,
- array([&lt;Axes: title={&#39;center&#39;: &#39;Calendar Heatmap of lake_surface_water_temperature&#39;}, ylabel=&#39;2007&#39;&gt;],
-       dtype=object))
-</pre></div>
-</div>
-<img alt="../../_images/ddb705c959b77171e401b05671c5f3bffd6b3787b532f3423ab51435f2fdd059.png" src="../../_images/ddb705c959b77171e401b05671c5f3bffd6b3787b532f3423ab51435f2fdd059.png" />
+<img alt="../../_images/e741601af83cbf26653aec5d63ec7f8d9dd86bb0cd7d7ce66cb8b5fd421d7b21.png" src="../../_images/e741601af83cbf26653aec5d63ec7f8d9dd86bb0cd7d7ce66cb8b5fd421d7b21.png" />
+<img alt="../../_images/02aa620bb2c1a13176df63d6e0feac31944c6d6d6c7a8b816090c023c561e2c9.png" src="../../_images/02aa620bb2c1a13176df63d6e0feac31944c6d6d6c7a8b816090c023c561e2c9.png" />
 </div>
 </div>
 </section>
