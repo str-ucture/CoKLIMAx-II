@@ -78,13 +78,13 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Alpine monatliche Niederschlagsdaten</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#download-and-extract-the-dataset">2. Download and Extract the Dataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#authentication">2.1 Authentication</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#request-definition-and-download">2.2 Request Definition and Download</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#extract-zip-folder">2.3 Extract Zip folder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#define-the-request-and-download-the-dataset">2.2 Define the “request” and Download the Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extract-zip-folder-s">2.3 Extract Zip Folder(s)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the Metadata</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#print-netcdf-metadata">3.1 Print netCDF metadata</a></li>
 </ul>
 </li>
@@ -116,11 +116,6 @@
 <li class="toctree-l1"><a class="reference internal" href="07%20era5-land-monthly.html">ERA5-Land Monthly Averaged</a></li>
 <li class="toctree-l1"><a class="reference internal" href="08%20landsat-with-landsatxplore.html">Landsat Downloader</a></li>
 <li class="toctree-l1"><a class="reference internal" href="09%20Sentinel2-without-esri.html">Sentinel 2 - Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09%20Sentinel2-without-esri.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09%20Sentinel2-without-esri.html#download-the-datasets">2. Download the datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09%20Sentinel2-without-esri.html#extract-scenes">3. Extract scenes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09%20Sentinel2-without-esri.html#select-scene-from-extracted-for-processing">4. Select scene from extracted for processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="09%20Sentinel2-without-esri.html#process">Process</a></li>
 </ul>
 
         </div>
@@ -176,13 +171,13 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="sd">&#39;&#39;&#39; ---- Hier die Verzeichnisse angeben ---- &#39;&#39;&#39;</span>
+<span class="sd">&#39;&#39;&#39; ---- Specify Directories Here ---- &#39;&#39;&#39;</span>
 <span class="n">download_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\alpine-monthly-precipitation\download&quot;</span>
 <span class="n">working_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\alpine-monthly-precipitation\working&quot;</span>
 <span class="n">geotiff_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\alpine-monthly-precipitation\geotiff&quot;</span>
 <span class="n">csv_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\alpine-monthly-precipitation\csv&quot;</span>
 <span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\alpine-monthly-precipitation\output&quot;</span>
-<span class="sd">&#39;&#39;&#39; ----- Ende der Eingaben ---- &#39;&#39;&#39;</span>
+<span class="sd">&#39;&#39;&#39; ----- End of Declaration ---- &#39;&#39;&#39;</span>
 
 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -194,8 +189,8 @@
 </div>
 </div>
 </section>
-<section id="download-and-extract-dataset">
-<h2>2. Download and Extract Dataset<a class="headerlink" href="#download-and-extract-dataset" title="Link to this heading"></a></h2>
+<section id="download-and-extract-the-dataset">
+<h2>2. Download and Extract the Dataset<a class="headerlink" href="#download-and-extract-the-dataset" title="Link to this heading"></a></h2>
 <section id="authentication">
 <h3>2.1 Authentication<a class="headerlink" href="#authentication" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
@@ -203,8 +198,11 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cdsapi</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># API key for authentication</span>
     <span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;fdae60fd-35d4-436f-825c-c63fedab94a4&quot;</span>
     <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;https://cds.climate.copernicus.eu/api&quot;</span>
+
+    <span class="c1"># Creation of the CDS API client</span>
     <span class="n">client</span> <span class="o">=</span> <span class="n">cdsapi</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">api_url</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">client</span>
 </pre></div>
@@ -212,11 +210,12 @@
 </div>
 </div>
 </section>
-<section id="request-definition-and-download">
-<h3>2.2 Request Definition and Download<a class="headerlink" href="#request-definition-and-download" title="Link to this heading"></a></h3>
+<section id="define-the-request-and-download-the-dataset">
+<h3>2.2 Define the “request” and Download the Dataset<a class="headerlink" href="#define-the-request-and-download-the-dataset" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="s2">&quot;insitu-gridded-observations-alpine-precipitation&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definition of the dataset and the request parameters</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="s2">&quot;insitu-gridded-observations-alpine-precipitation&quot;</span>
 <span class="n">request</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;variable&quot;</span><span class="p">:</span> <span class="s2">&quot;precipitation&quot;</span><span class="p">,</span>
     <span class="s2">&quot;dataset_issue&quot;</span><span class="p">:</span> <span class="p">[</span>
@@ -231,7 +230,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run this cell to download the dataset:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Execute it to download the dataset:</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">main_retrieve</span><span class="p">():</span>
     <span class="n">dataset_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">.zip&quot;</span>
     <span class="n">dataset_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">dataset_filename</span><span class="p">)</span>
@@ -250,17 +249,17 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-21 14:41:47,718 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-24 12:07:17,481 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your 
 [feedback](https://jira.ecmwf.int/plugins/servlet/desk/portal/1/create/202) is key to improve the user experience on the new CDS for the benefit of everyone. Thank you.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-21 14:41:47,719 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-24 12:07:17,482 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-21 14:41:47,719 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-24 12:07:17,483 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-21 14:41:47,720 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-01-24 12:07:17,483 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset already downloaded.
@@ -269,12 +268,13 @@
 </div>
 </div>
 </section>
-<section id="extract-zip-folder">
-<h3>2.3 Extract Zip folder<a class="headerlink" href="#extract-zip-folder" title="Link to this heading"></a></h3>
+<section id="extract-zip-folder-s">
+<h3>2.3 Extract Zip Folder(s)<a class="headerlink" href="#extract-zip-folder-s" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
 
+<span class="c1"># Create the file name and file path for the dataset&#39;s ZIP file</span>
 <span class="n">dataset_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">.zip&quot;</span>
 <span class="n">dataset_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">dataset_filename</span><span class="p">)</span>
 <span class="n">extract_folder</span> <span class="o">=</span> <span class="n">working_folder</span>
@@ -307,12 +307,10 @@
 </section>
 </section>
 <section id="read-the-netcdf-file-and-print-the-metadata">
-<h2>3. Read the netCDF file and print the metadata<a class="headerlink" href="#read-the-netcdf-file-and-print-the-metadata" title="Link to this heading"></a></h2>
+<h2>3. Read the netCDF file and print the Metadata<a class="headerlink" href="#read-the-netcdf-file-and-print-the-metadata" title="Link to this heading"></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
-
-<span class="c1"># Print list of netCDF4 files inside the working/extracted folder</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print list of netCDF4 files inside the working/extracted folder</span>
 <span class="n">filename_list</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">filename_list</span><span class="p">)</span>
 </pre></div>
@@ -328,26 +326,124 @@
 <h3>3.1 Print netCDF metadata<a class="headerlink" href="#print-netcdf-metadata" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
 
 <span class="c1"># Open the NetCDF file in read mode</span>
-<span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1871.v1.2.nc&#39;</span><span class="p">)</span>
+<span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1901.v1.2.nc&#39;</span><span class="p">)</span>
 <span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
-<span class="n">variables_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
+<span class="c1"># List all variables in the dataset</span>
+<span class="n">variables_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Available variables: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">variables_list</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Available variables: [&#39;X&#39;, &#39;Y&#39;, &#39;time&#39;, &#39;LAPrec1901&#39;, &#39;lon&#39;, &#39;lat&#39;, &#39;dem&#39;, &#39;lambert_azimuthal_equal_area&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Define variable name from available variables and read variable data</span>
+<span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;LAPrec1901&#39;</span>
+<span class="n">variable_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
+
+<span class="c1"># Create a summary of the primary variables</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Variable Name&quot;</span><span class="p">:</span> <span class="n">variable_name</span><span class="p">,</span>
+    <span class="s2">&quot;Data Type&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+    <span class="s2">&quot;Shape&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+    <span class="s2">&quot;Variable Info&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_data</span><span class="o">.</span><span class="n">dimensions</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Units&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Long Name&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;long_name&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="c1"># Display the summary of the data set as a DataFrame for better visualisation</span>
+<span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">,</span> <span class="s1">&#39;Details&#39;</span><span class="p">])</span>
+
+<span class="c1"># Display the summary DataFrame</span>
+<span class="n">nc_summary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Description</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Variable Name</td>
+      <td>LAPrec1901</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Data Type</td>
+      <td>int32</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Shape</td>
+      <td>(1440, 138, 219)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Variable Info</td>
+      <td>('time', 'Y', 'X')</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Units</td>
+      <td>kg m-2</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Long Name</td>
+      <td>monthly precipitation sum</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print a summary of all the variables of the dataset</span>
 <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">test_var</span> <span class="ow">in</span> <span class="n">variables_list</span><span class="p">:</span>
+<span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables_list</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">var_obj</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">test_var</span><span class="p">]</span>
+        <span class="n">var_obj</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="n">variable</span><span class="p">]</span>
         <span class="n">unit</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">var_obj</span><span class="p">,</span> <span class="s1">&#39;units&#39;</span><span class="p">,</span> <span class="s1">&#39;N/A&#39;</span><span class="p">)</span>
         <span class="n">shape</span> <span class="o">=</span> <span class="n">var_obj</span><span class="o">.</span><span class="n">shape</span>
         <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-            <span class="s2">&quot;nc_variables&quot;</span><span class="p">:</span> <span class="n">test_var</span><span class="p">,</span>
+            <span class="s2">&quot;nc_variables&quot;</span><span class="p">:</span> <span class="n">variable</span><span class="p">,</span>
             <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="n">unit</span><span class="p">,</span>
             <span class="s2">&quot;shape&quot;</span><span class="p">:</span> <span class="n">shape</span>
         <span class="p">})</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error processing variable </span><span class="si">{</span><span class="n">test_var</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error processing variable </span><span class="si">{</span><span class="n">variable</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Create a DataFrame</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
@@ -395,14 +491,14 @@
     <tr>
       <th>2</th>
       <td>time</td>
-      <td>days since 1871-01-01 00:00:00</td>
-      <td>(1800,)</td>
+      <td>days since 1901-01-01 00:00:00</td>
+      <td>(1440,)</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>LAPrec1871</td>
+      <td>LAPrec1901</td>
       <td>kg m-2</td>
-      <td>(1800, 138, 219)</td>
+      <td>(1440, 138, 219)</td>
     </tr>
     <tr>
       <th>4</th>
@@ -432,125 +528,85 @@
 </table>
 </div></div></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define variable name from available variables and read variable data</span>
-<span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;LAPrec1871&#39;</span>
-<span class="n">variable_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
-
-<span class="c1"># Generate summary of the primary variable</span>
-<span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;Variable Name&quot;</span><span class="p">:</span> <span class="n">variable_name</span><span class="p">,</span>
-    <span class="s2">&quot;Data Type&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
-    <span class="s2">&quot;Shape&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
-    <span class="s2">&quot;Variable Info&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">variable_data</span><span class="o">.</span><span class="n">dimensions</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;Units&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Long Name&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;long_name&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
-<span class="p">}</span>
-
-<span class="c1"># Display dataset summary as a DataFrame for better visualization</span>
-<span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">,</span> <span class="s1">&#39;Remarks&#39;</span><span class="p">])</span>
-
-<span class="c1"># Display the summary DataFrame</span>
-<span class="n">nc_summary</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Description</th>
-      <th>Remarks</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Variable Name</td>
-      <td>LAPrec1871</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Data Type</td>
-      <td>int32</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Shape</td>
-      <td>(1800, 138, 219)</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Variable Info</td>
-      <td>LAPrec1871(time, Y, X)</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Units</td>
-      <td>kg m-2</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Long Name</td>
-      <td>monthly precipitation sum</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
 </section>
 </section>
 <section id="export-dataset-to-csv">
 <h2>4. Export Dataset to CSV<a class="headerlink" href="#export-dataset-to-csv" title="Link to this heading"></a></h2>
-<p>Export the processed dataset into a CSV file format, enabling easy data sharing, analysis, and integration with various tools and workflows.</p>
 <section id="define-bounding-box-to-filter-data-for-konstanz">
 <h3>4.1 Define Bounding Box to Filter Data for Konstanz<a class="headerlink" href="#define-bounding-box-to-filter-data-for-konstanz" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define additional request fields to ensure the request stays within the file size limit.</span>
-<span class="c1"># These coordinates were obtained using the BBox Extractor tool:</span>
+<span class="c1"># The coordinates below were obtained using the BBox Extractor tool:</span>
 <span class="c1"># https://str-ucture.github.io/bbox-extractor/</span>
 
-<span class="c1"># Bounding box for the Konstanz region (WGS84 projection):</span>
-<span class="n">bbox_wgs84_konstanz</span> <span class="o">=</span> <span class="p">[</span><span class="mf">47.9</span><span class="p">,</span> <span class="mf">8.9</span><span class="p">,</span> <span class="mf">47.6</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">]</span>  <span class="c1"># Format: [North, West, South, East]</span>
-<span class="n">bbox_wgs84_konstanz_standard</span> <span class="o">=</span> <span class="p">[</span><span class="mf">8.9</span><span class="p">,</span> <span class="mf">47.6</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">,</span> <span class="mf">47.9</span><span class="p">]</span>  <span class="c1"># Standard format: [West, South, East, North]</span>
-
-<span class="c1"># Alternatively, use a shapefile for precise geographic filtering</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">pyproj</span><span class="w"> </span><span class="kn">import</span> <span class="n">Proj</span><span class="p">,</span> <span class="n">CRS</span>
-
-<span class="c1"># Example: Load shapefile of Konstanz (WGS84 projection)</span>
-<span class="n">kn_shapefile</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;./shapefiles/kn_boundary.shp&quot;</span>
-<span class="n">kn_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">kn_shapefile</span><span class="p">)</span>
-<span class="n">kn_bounds</span> <span class="o">=</span> <span class="n">kn_gdf</span><span class="o">.</span><span class="n">total_bounds</span>  <span class="c1"># Retrieve bounding box from shapefile</span>
-
-<span class="c1"># Convert bounding box to LAEA projection (EPSG:3035)</span>
-<span class="n">proj_wgs84</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">CRS</span><span class="o">.</span><span class="n">from_epsg</span><span class="p">(</span><span class="mi">4326</span><span class="p">))</span>  <span class="c1"># WGS84 projection</span>
-<span class="n">proj_laea</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">CRS</span><span class="o">.</span><span class="n">from_epsg</span><span class="p">(</span><span class="mi">3035</span><span class="p">))</span>   <span class="c1"># LAEA projection</span>
-
-<span class="c1"># Convert coordinates to LAEA projection (X, Y format)</span>
-<span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span> <span class="o">=</span> <span class="n">proj_laea</span><span class="p">(</span><span class="n">kn_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">kn_bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Bottom-left corner</span>
-<span class="n">x_max</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">proj_laea</span><span class="p">(</span><span class="n">kn_bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">kn_bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>  <span class="c1"># Top-right corner</span>
-
-<span class="n">kn_bounds_laea</span> <span class="o">=</span> <span class="p">[</span><span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">y_max</span><span class="p">]</span>
+<span class="c1"># Define the bounding box coordinates (WGS84 format) for Konstanz.</span>
+<span class="c1"># The coordinates are in the format suitable for CDS: [North, West, South, East]</span>
+<span class="n">bbox_wgs84_konstanz</span> <span class="o">=</span> <span class="p">[</span><span class="mf">47.9</span><span class="p">,</span> <span class="mf">8.9</span><span class="p">,</span> <span class="mf">47.6</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">]</span>
+<span class="c1"># The coordinates in Standard format: [West, South, East, North]</span>
+<span class="n">bbox_wgs84_konstanz_standard</span> <span class="o">=</span> <span class="p">[</span><span class="mf">8.9</span><span class="p">,</span> <span class="mf">47.6</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">,</span> <span class="mf">47.9</span><span class="p">]</span> 
 </pre></div>
 </div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alternatively, use a shapefile for precise geographic filtering</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyproj</span><span class="w"> </span><span class="kn">import</span> <span class="n">Transformer</span>
+
+<span class="c1"># Example: Load shapefile of Konstanz (WGS84 projection)</span>
+<span class="n">shapefile</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;./shapefiles/kn_boundary.shp&quot;</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">shapefile</span><span class="p">)</span>
+
+<span class="c1"># Retrieve the EPSG code and bounding box from the shapefile</span>
+<span class="n">shapefile_epsg</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">to_epsg</span><span class="p">()</span>
+<span class="n">shapefile_bounds</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">total_bounds</span>
+
+<span class="c1"># Define the source and target projections</span>
+<span class="n">proj_shapefile</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;epsg:</span><span class="si">{</span><span class="n">shapefile_epsg</span><span class="si">}</span><span class="s2">&quot;</span> <span class="c1"># Source projection (shapefile&#39;s CRS)</span>
+<span class="n">proj_laea</span> <span class="o">=</span> <span class="s2">&quot;epsg:3035&quot;</span> <span class="c1"># Target projection (LAEA for Europe)</span>
+
+<span class="c1"># Create a transformer to convert coordinates from source to target projection</span>
+<span class="n">transformer</span> <span class="o">=</span> <span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span><span class="n">proj_shapefile</span><span class="p">,</span> <span class="n">proj_laea</span><span class="p">,</span> <span class="n">always_xy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Transform the bounding box coordinates to the target projection (LAEA)</span>
+<span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">shapefile_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">shapefile_bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Bottom-left corner</span>
+<span class="n">x_max</span><span class="p">,</span> <span class="n">y_max</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">shapefile_bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">shapefile_bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>  <span class="c1"># Top-right corner</span>
+<span class="n">shapefile_bounds_laea</span> <span class="o">=</span> <span class="p">[</span><span class="n">x_min</span><span class="p">,</span> <span class="n">y_min</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">y_max</span><span class="p">]</span> <span class="c1"># Bounding box in LAEA projection</span>
+
+<span class="c1"># Print the transformed bounding box</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bounding Box in LAEA:&quot;</span><span class="p">,</span> <span class="n">shapefile_bounds_laea</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Bounding Box in LAEA: [4252254.817823338, 2727132.614227563, 4262344.998739288, 2739095.48723691]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Koordinatensystem: EPSG(</span><span class="si">{</span><span class="n">shapefile_epsg</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bounding Box: </span><span class="si">{</span><span class="n">shapefile_bounds</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Optional: Quick plot of your Shapefile</span>
+<span class="n">gdf</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Shapefile Darstellung&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Longitude / X&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Latitude / Y&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Koordinatensystem: EPSG(4326)
+Bounding Box: [ 9.08545411 47.65398657  9.21804389 47.762681  ]
+</pre></div>
+</div>
+<img alt="../../_images/6b4b0154b45b72924768109a0bb288919f6eac301eb913353fbfa8075193dca4.png" src="../../_images/6b4b0154b45b72924768109a0bb288919f6eac301eb913353fbfa8075193dca4.png" />
 </div>
 </div>
 <blockquote>
@@ -575,11 +631,11 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open the NetCDF file in read mode</span>
-<span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1871.v1.2.nc&#39;</span><span class="p">)</span>
+<span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1901.v1.2.nc&#39;</span><span class="p">)</span>
 <span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 
 <span class="c1"># Define variable name from available variables and read variable data</span>
-<span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;LAPrec1871&#39;</span>
+<span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;LAPrec1901&#39;</span>
 <span class="n">variable_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
 
 <span class="n">x</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">][:]</span>
@@ -595,7 +651,13 @@
 <span class="n">y_min_adjusted</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">y_min</span> <span class="o">-</span> <span class="n">dy</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
 <span class="n">y_max_adjusted</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">y_max</span> <span class="o">+</span> <span class="n">dy</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
 
-<span class="n">kn_bounds_laea_adjusted</span> <span class="o">=</span> <span class="p">[</span><span class="n">x_min_adjusted</span><span class="p">,</span> <span class="n">y_min_adjusted</span><span class="p">,</span> <span class="n">x_max_adjusted</span><span class="p">,</span> <span class="n">y_max_adjusted</span><span class="p">]</span>
+<span class="n">shapefile_bounds_laea_adjusted</span> <span class="o">=</span> <span class="p">[</span><span class="n">x_min_adjusted</span><span class="p">,</span> <span class="n">y_min_adjusted</span><span class="p">,</span> <span class="n">x_max_adjusted</span><span class="p">,</span> <span class="n">y_max_adjusted</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">shapefile_bounds_laea_adjusted</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[np.float64(4249754.817823338), np.float64(2724632.614227563), np.float64(4264844.998739288), np.float64(2741595.48723691)]
 </pre></div>
 </div>
 </div>
@@ -606,10 +668,6 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
-
-<span class="c1"># Define filepath for netCDF4 file and variable name from Available variables</span>
-<span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="s1">&#39;LAPrec1871.v1.2.nc&#39;</span><span class="p">)</span>
-<span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;LAPrec1871&#39;</span>
 
 <span class="c1"># Open the NetCDF dataset using xarray</span>
 <span class="k">with</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">nc_filepath</span><span class="p">)</span> <span class="k">as</span> <span class="n">nc_dataset</span><span class="p">:</span>
@@ -646,7 +704,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File already exists at .\data\alpine-monthly-precipitation\csv\LAPrec1871_filtered_data.csv. Skipping export.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File already exists at .\data\alpine-monthly-precipitation\csv\LAPrec1901_filtered_data.csv. Skipping export.
 Reading existing CSV file...
 </pre></div>
 </div>
@@ -671,7 +729,7 @@ Reading existing CSV file...
       <th></th>
       <th></th>
       <th>index</th>
-      <th>LAPrec1871</th>
+      <th>LAPrec1901</th>
     </tr>
     <tr>
       <th>time</th>
@@ -683,32 +741,32 @@ Reading existing CSV file...
   </thead>
   <tbody>
     <tr>
-      <th rowspan="5" valign="top">1871-01-01</th>
+      <th rowspan="5" valign="top">1901-01-01</th>
       <th rowspan="3" valign="top">2,725,000.00</th>
       <th>4,250,000.00</th>
       <td>0</td>
-      <td>41.00</td>
+      <td>37.00</td>
     </tr>
     <tr>
       <th>4,255,000.00</th>
       <td>1</td>
-      <td>39.00</td>
+      <td>36.00</td>
     </tr>
     <tr>
       <th>4,260,000.00</th>
       <td>2</td>
-      <td>38.00</td>
+      <td>36.00</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">2,730,000.00</th>
       <th>4,250,000.00</th>
       <td>3</td>
-      <td>40.00</td>
+      <td>37.00</td>
     </tr>
     <tr>
       <th>4,255,000.00</th>
       <td>4</td>
-      <td>37.00</td>
+      <td>33.00</td>
     </tr>
     <tr>
       <th>...</th>
@@ -721,39 +779,38 @@ Reading existing CSV file...
       <th rowspan="5" valign="top">2020-12-01</th>
       <th rowspan="2" valign="top">2,735,000.00</th>
       <th>4,255,000.00</th>
-      <td>21595</td>
-      <td>54.00</td>
+      <td>17275</td>
+      <td>57.00</td>
     </tr>
     <tr>
       <th>4,260,000.00</th>
-      <td>21596</td>
-      <td>52.00</td>
+      <td>17276</td>
+      <td>56.00</td>
     </tr>
     <tr>
       <th rowspan="3" valign="top">2,740,000.00</th>
       <th>4,250,000.00</th>
-      <td>21597</td>
-      <td>55.00</td>
+      <td>17277</td>
+      <td>56.00</td>
     </tr>
     <tr>
       <th>4,255,000.00</th>
-      <td>21598</td>
-      <td>56.00</td>
+      <td>17278</td>
+      <td>57.00</td>
     </tr>
     <tr>
       <th>4,260,000.00</th>
-      <td>21599</td>
-      <td>56.00</td>
+      <td>17279</td>
+      <td>58.00</td>
     </tr>
   </tbody>
 </table>
-<p>21600 rows × 2 columns</p>
+<p>17280 rows × 2 columns</p>
 </div></div></div>
 </div>
 </section>
 <section id="compute-monthly-means-and-export-as-csv">
 <h3>4.3 Compute Monthly Means and Export as CSV<a class="headerlink" href="#compute-monthly-means-and-export-as-csv" title="Link to this heading"></a></h3>
-<p>(Monthly Means calculated for the filtered area)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate the output file path</span>
@@ -767,7 +824,6 @@ Reading existing CSV file...
     <span class="n">filtered_df_copy</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">filtered_df_copy</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
 
     <span class="c1"># Extract year and month from the &#39;time&#39; column</span>
-
     <span class="n">filtered_df_copy</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filtered_df_copy</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
     <span class="n">filtered_df_copy</span><span class="p">[</span><span class="s1">&#39;Month&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">filtered_df_copy</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">month</span>
 
@@ -792,13 +848,13 @@ Reading existing CSV file...
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading existing CSV file...&quot;</span><span class="p">)</span>
     <span class="n">df_monthly_means</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_filepath_monthly_means</span><span class="p">)</span>
 
-<span class="c1"># Display the pivot table for verification</span>
+<span class="c1"># Display the pivot table</span>
 <span class="n">df_monthly_means</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File already exists at .\data\alpine-monthly-precipitation\csv\LAPrec1871_filtered_data.csv. Skipping export.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File already exists at .\data\alpine-monthly-precipitation\csv\LAPrec1901_filtered_data.csv. Skipping export.
 Reading existing CSV file...
 </pre></div>
 </div>
@@ -839,88 +895,88 @@ Reading existing CSV file...
   <tbody>
     <tr>
       <th>0</th>
-      <td>1871</td>
-      <td>35.75</td>
-      <td>44.75</td>
-      <td>34.33</td>
-      <td>120.50</td>
-      <td>28.92</td>
-      <td>120.42</td>
-      <td>76.33</td>
-      <td>70.00</td>
-      <td>33.58</td>
-      <td>88.92</td>
-      <td>31.58</td>
-      <td>10.42</td>
-      <td>695.50</td>
+      <td>1901</td>
+      <td>31.17</td>
+      <td>26.00</td>
+      <td>65.42</td>
+      <td>124.58</td>
+      <td>16.50</td>
+      <td>129.33</td>
+      <td>84.33</td>
+      <td>88.00</td>
+      <td>88.08</td>
+      <td>36.17</td>
+      <td>25.33</td>
+      <td>44.50</td>
+      <td>759.41</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1872</td>
-      <td>36.08</td>
-      <td>37.50</td>
-      <td>37.67</td>
-      <td>71.83</td>
-      <td>206.67</td>
-      <td>133.17</td>
-      <td>83.92</td>
-      <td>115.25</td>
-      <td>30.75</td>
-      <td>69.58</td>
-      <td>70.00</td>
-      <td>65.75</td>
-      <td>958.17</td>
+      <td>1902</td>
+      <td>32.00</td>
+      <td>55.58</td>
+      <td>53.75</td>
+      <td>35.92</td>
+      <td>107.08</td>
+      <td>72.33</td>
+      <td>89.25</td>
+      <td>115.42</td>
+      <td>78.00</td>
+      <td>78.92</td>
+      <td>15.25</td>
+      <td>79.83</td>
+      <td>813.33</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1873</td>
-      <td>17.67</td>
-      <td>30.42</td>
-      <td>64.42</td>
-      <td>103.75</td>
-      <td>92.83</td>
-      <td>95.92</td>
-      <td>100.25</td>
-      <td>90.42</td>
-      <td>75.08</td>
-      <td>91.08</td>
-      <td>52.17</td>
-      <td>20.00</td>
-      <td>834.01</td>
+      <td>1903</td>
+      <td>35.00</td>
+      <td>27.83</td>
+      <td>37.00</td>
+      <td>53.17</td>
+      <td>39.83</td>
+      <td>88.50</td>
+      <td>131.33</td>
+      <td>100.67</td>
+      <td>45.00</td>
+      <td>76.00</td>
+      <td>81.08</td>
+      <td>16.58</td>
+      <td>731.99</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1874</td>
-      <td>17.08</td>
-      <td>14.00</td>
-      <td>34.00</td>
-      <td>66.42</td>
-      <td>104.08</td>
-      <td>97.17</td>
-      <td>105.33</td>
-      <td>66.25</td>
-      <td>37.75</td>
-      <td>24.33</td>
-      <td>72.83</td>
-      <td>73.75</td>
-      <td>712.99</td>
+      <td>1904</td>
+      <td>29.17</td>
+      <td>95.75</td>
+      <td>36.58</td>
+      <td>60.75</td>
+      <td>129.83</td>
+      <td>78.33</td>
+      <td>22.17</td>
+      <td>64.00</td>
+      <td>98.83</td>
+      <td>34.25</td>
+      <td>44.92</td>
+      <td>40.08</td>
+      <td>734.66</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1875</td>
-      <td>77.83</td>
-      <td>20.42</td>
-      <td>33.42</td>
-      <td>21.92</td>
-      <td>76.17</td>
-      <td>128.33</td>
-      <td>99.33</td>
-      <td>56.33</td>
-      <td>73.50</td>
-      <td>97.50</td>
-      <td>130.42</td>
-      <td>18.92</td>
-      <td>834.09</td>
+      <td>1905</td>
+      <td>44.08</td>
+      <td>24.33</td>
+      <td>84.17</td>
+      <td>83.67</td>
+      <td>75.58</td>
+      <td>64.33</td>
+      <td>76.42</td>
+      <td>178.92</td>
+      <td>117.50</td>
+      <td>101.50</td>
+      <td>47.33</td>
+      <td>37.58</td>
+      <td>935.41</td>
     </tr>
     <tr>
       <th>...</th>
@@ -940,93 +996,93 @@ Reading existing CSV file...
       <td>...</td>
     </tr>
     <tr>
-      <th>145</th>
+      <th>115</th>
       <td>2016</td>
-      <td>116.75</td>
-      <td>87.00</td>
-      <td>34.50</td>
-      <td>98.08</td>
-      <td>146.33</td>
-      <td>152.92</td>
-      <td>99.67</td>
-      <td>66.92</td>
-      <td>61.33</td>
-      <td>51.50</td>
-      <td>69.92</td>
-      <td>1.17</td>
-      <td>986.09</td>
+      <td>144.00</td>
+      <td>90.67</td>
+      <td>32.08</td>
+      <td>100.50</td>
+      <td>154.08</td>
+      <td>153.42</td>
+      <td>97.17</td>
+      <td>62.58</td>
+      <td>48.75</td>
+      <td>48.25</td>
+      <td>70.08</td>
+      <td>1.42</td>
+      <td>1,003.00</td>
     </tr>
     <tr>
-      <th>146</th>
+      <th>116</th>
       <td>2017</td>
-      <td>46.58</td>
-      <td>48.08</td>
-      <td>48.17</td>
-      <td>90.33</td>
+      <td>47.58</td>
+      <td>50.00</td>
+      <td>49.08</td>
+      <td>100.50</td>
+      <td>79.83</td>
+      <td>82.67</td>
+      <td>114.75</td>
+      <td>109.25</td>
       <td>75.17</td>
-      <td>76.17</td>
-      <td>102.50</td>
-      <td>110.75</td>
-      <td>71.92</td>
-      <td>43.17</td>
-      <td>82.75</td>
-      <td>82.17</td>
-      <td>877.76</td>
+      <td>42.17</td>
+      <td>84.50</td>
+      <td>89.00</td>
+      <td>924.50</td>
     </tr>
     <tr>
-      <th>147</th>
+      <th>117</th>
       <td>2018</td>
-      <td>116.75</td>
-      <td>39.75</td>
-      <td>48.17</td>
-      <td>13.75</td>
-      <td>92.83</td>
-      <td>58.83</td>
-      <td>40.92</td>
-      <td>74.83</td>
-      <td>62.00</td>
-      <td>35.92</td>
-      <td>15.67</td>
-      <td>90.92</td>
-      <td>690.34</td>
+      <td>108.92</td>
+      <td>41.92</td>
+      <td>44.33</td>
+      <td>13.25</td>
+      <td>84.83</td>
+      <td>62.08</td>
+      <td>44.75</td>
+      <td>69.17</td>
+      <td>64.75</td>
+      <td>38.25</td>
+      <td>13.08</td>
+      <td>94.92</td>
+      <td>680.25</td>
     </tr>
     <tr>
-      <th>148</th>
+      <th>118</th>
       <td>2019</td>
-      <td>51.08</td>
-      <td>31.08</td>
-      <td>51.00</td>
-      <td>47.17</td>
-      <td>126.67</td>
-      <td>69.33</td>
-      <td>94.17</td>
-      <td>120.17</td>
-      <td>55.83</td>
-      <td>105.00</td>
-      <td>45.50</td>
-      <td>52.50</td>
-      <td>849.50</td>
+      <td>55.67</td>
+      <td>35.50</td>
+      <td>51.50</td>
+      <td>43.50</td>
+      <td>140.00</td>
+      <td>68.00</td>
+      <td>99.58</td>
+      <td>117.67</td>
+      <td>64.33</td>
+      <td>101.58</td>
+      <td>43.58</td>
+      <td>48.25</td>
+      <td>869.16</td>
     </tr>
     <tr>
-      <th>149</th>
+      <th>119</th>
       <td>2020</td>
-      <td>24.08</td>
-      <td>111.50</td>
-      <td>51.75</td>
-      <td>27.42</td>
-      <td>60.00</td>
-      <td>118.00</td>
-      <td>50.33</td>
-      <td>144.58</td>
-      <td>41.67</td>
-      <td>89.50</td>
-      <td>20.58</td>
-      <td>57.08</td>
-      <td>796.49</td>
+      <td>28.33</td>
+      <td>110.08</td>
+      <td>53.50</td>
+      <td>24.75</td>
+      <td>63.17</td>
+      <td>115.33</td>
+      <td>49.08</td>
+      <td>150.50</td>
+      <td>41.25</td>
+      <td>85.58</td>
+      <td>21.75</td>
+      <td>60.92</td>
+      <td>804.24</td>
     </tr>
   </tbody>
 </table>
-<p>150 rows × 14 columns</p>
+<p>120 rows × 14 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -1127,15 +1183,14 @@ Reading existing CSV file...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/6c45533b35247b9338f5bd6fdee9223deb0d31cff61338ca362c4467ba29f01c.png" src="../../_images/6c45533b35247b9338f5bd6fdee9223deb0d31cff61338ca362c4467ba29f01c.png" />
-<img alt="../../_images/160f06ea974d6659fe3c6b6d92e7b89c5065e9078f40a1f15b8dceafb10ca78f.png" src="../../_images/160f06ea974d6659fe3c6b6d92e7b89c5065e9078f40a1f15b8dceafb10ca78f.png" />
+<img alt="../../_images/b709dc1a55337d0e88a8fb4cefb11173c5b006667d15574d577fa3b660042796.png" src="../../_images/b709dc1a55337d0e88a8fb4cefb11173c5b006667d15574d577fa3b660042796.png" />
+<img alt="../../_images/9c3658cf29f74c33913f17976e68d97705ca298eccfdb61027bfeddc3220ddca.png" src="../../_images/9c3658cf29f74c33913f17976e68d97705ca298eccfdb61027bfeddc3220ddca.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="export-dataset-to-geotiff">
 <h2>5. Export Dataset to GeoTIFF<a class="headerlink" href="#export-dataset-to-geotiff" title="Link to this heading"></a></h2>
-<p>Simplifies spatial data integration, enabling easier visualization and analysis in GIS platforms.</p>
 <section id="export-all-year-dataset-as-individual-geotiff-files">
 <h3>5.1 Export All-Year Dataset as Individual GeoTIFF Files<a class="headerlink" href="#export-all-year-dataset-as-individual-geotiff-files" title="Link to this heading"></a></h3>
 <div class="cell docutils container">

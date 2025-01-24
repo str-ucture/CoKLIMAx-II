@@ -95,11 +95,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../kurs_not_defined/07%20era5-land-monthly.html">ERA5-Land Monthly Averaged</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../kurs_not_defined/08%20landsat-with-landsatxplore.html">Landsat Downloader</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../kurs_not_defined/09%20Sentinel2-without-esri.html">Sentinel 2 - Workflow</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kurs_not_defined/09%20Sentinel2-without-esri.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kurs_not_defined/09%20Sentinel2-without-esri.html#download-the-datasets">2. Download the datasets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kurs_not_defined/09%20Sentinel2-without-esri.html#extract-scenes">3. Extract scenes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kurs_not_defined/09%20Sentinel2-without-esri.html#select-scene-from-extracted-for-processing">4. Select scene from extracted for processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../kurs_not_defined/09%20Sentinel2-without-esri.html#process">Process</a></li>
 </ul>
 
         </div>
@@ -142,10 +137,10 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="c1"># ---- Specify directories below ----</span>
-<span class="n">download_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\era5-land-monthly\download&quot;</span>  <span class="c1"># Folder for downloaded data</span>
-<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\era5-land-monthly\output&quot;</span>      <span class="c1"># Folder for final outputs</span>
-<span class="c1"># ---- End of user inputs ----</span>
+<span class="sd">&#39;&#39;&#39; ---- Specify Directories Here ---- &#39;&#39;&#39;</span>
+<span class="n">download_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\era5-land-monthly\download&quot;</span>  <span class="c1"># Folder to download data</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\era5-land-monthly\output&quot;</span>      <span class="c1"># Folder to save outputs</span>
+<span class="sd">&#39;&#39;&#39; ----- End of Declaration ---- &#39;&#39;&#39;</span>
 
 <span class="c1"># Create directories if they do not exist</span>
 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -157,7 +152,7 @@
 </section>
 <section id="read-the-dataset-file-type-netcdf4">
 <h2>2. Read the dataset (File type: netCDF4)<a class="headerlink" href="#read-the-dataset-file-type-netcdf4" title="Link to this heading"></a></h2>
-<p>In this section, we will access the recently downloaded dataset. Then visauzliate and analyse it. For the ease, the file is already requested, downloaded and made available in side the download folder</p>
+<p>In this section, we will work with the recently downloaded dataset to visualize and analyze it. To streamline the process, the file has already been requested, downloaded, and made available in the “Downloads” folder. Or download the dataset here <a class="reference external" href="https://github.com/username/repository/raw/branch/filename">Download File</a></p>
 <ol class="arabic simple">
 <li><p><strong>Read Variable</strong> data from the netCDF4 file</p></li>
 <li><p><strong>Create Basic Plot</strong> to visualize the dataset</p></li>

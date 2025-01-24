@@ -7,14 +7,11 @@
    "source": [
     "# Temperature Statistics for Europe\n",
     "\n",
-    "Deroived from climate projections\n",
-    "\n",
     "This dataset provides temperature exposure statistics for Europe, focusing on daily 2-meter air temperature (mean, minimum, and maximum) for entire years, as well as for winter (DJF) and summer (JJA) seasons. Derived using bias-adjusted EURO-CORDEX data, the statistics span a smoothed 30-year average from 1971 to 2100, resulting in a timeseries from 1986 to 2085, with model ensemble averages and associated standard deviations included. These temperature percentiles are crucial in public health and epidemiology for assessing health risks and impacts, enabling comparisons across regions under various climate change scenarios.\n",
     "\n",
     "**Information on Dataset:**\n",
     "* Source: [Temperature Statistics for Europe](https://cds.climate.copernicus.eu/datasets/sis-temperature-statistics?tab=overview)\n",
     "* Author: T. Tewes (Stadt Konstanz) \n",
-    "* Resolution: 0.1° x 0.1°\n",
     "* Notebook Version: 1.1 (Updated: December 17. 2024)"
    ]
   },
