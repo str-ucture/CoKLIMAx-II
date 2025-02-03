@@ -23,7 +23,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 34,
+   "execution_count": 2,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -60,7 +60,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 35,
+   "execution_count": 3,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -85,7 +85,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 36,
+   "execution_count": 4,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -117,7 +117,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 37,
+   "execution_count": 5,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -132,7 +132,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 38,
+   "execution_count": 6,
    "metadata": {},
    "outputs": [],
    "source": [
@@ -173,18 +173,18 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 39,
+   "execution_count": 7,
    "metadata": {},
    "outputs": [
     {
      "name": "stderr",
      "output_type": "stream",
      "text": [
-      "2025-01-21 16:07:54,825 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your \n",
+      "2025-01-24 14:46:55,134 INFO [2024-09-28T00:00:00] **Welcome to the New Climate Data Store (CDS)!** This new system is in its early days of full operations and still undergoing enhancements and fine tuning. Some disruptions are to be expected. Your \n",
       "[feedback](https://jira.ecmwf.int/plugins/servlet/desk/portal/1/create/202) is key to improve the user experience on the new CDS for the benefit of everyone. Thank you.\n",
-      "2025-01-21 16:07:54,825 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.\n",
-      "2025-01-21 16:07:54,825 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**\n",
-      "2025-01-21 16:07:54,825 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the \"Show API request code\" tool on the dataset Download Form to check you are using the correct syntax for your API request.\n"
+      "2025-01-24 14:46:55,134 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.\n",
+      "2025-01-24 14:46:55,136 INFO [2024-09-16T00:00:00] Remember that you need to have an ECMWF account to use the new CDS. **Your old CDS credentials will not work in new CDS!**\n",
+      "2025-01-24 14:46:55,136 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the \"Show API request code\" tool on the dataset Download Form to check you are using the correct syntax for your API request.\n"
      ]
     },
     {
@@ -222,7 +222,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 40,
+   "execution_count": 8,
    "metadata": {},
    "outputs": [
     {
@@ -275,7 +275,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 45,
+   "execution_count": 9,
    "metadata": {},
    "outputs": [
     {
@@ -442,7 +442,7 @@
        "[76 rows x 6 columns]"
       ]
      },
-     "execution_count": 45,
+     "execution_count": 9,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -454,15 +454,6 @@
     "import numpy as np\n",
     "\n",
     "def meta(filename):\n",
-    "    \"\"\"\n",
-    "    Extract metadata from a filename and corresponding NetCDF file.\n",
-    "    \n",
-    "    Args:\n",
-    "        filename (str): Name of the NetCDF file.\n",
-    "    Returns:\n",
-    "        dict: Metadata including variable names, shapes, and other attributes.\n",
-    "    \"\"\"\n",
-    "\n",
     "    # Match the filename against the expected pattern\n",
     "    match = re.search(\n",
     "        r\"(?P<ds_variable>BIO\\d{2})_(?P<ds_origin>[\\w-]+)-(?P<statistic>mean|median|q25|q75)_v(?P<version>\\d+\\.\\d+)\",\n",
@@ -518,7 +509,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 49,
+   "execution_count": null,
    "metadata": {},
    "outputs": [
     {
@@ -552,20 +543,20 @@
     "seen_variables = set()\n",
     "\n",
     "# List all variables in each NetCDF file\n",
-    "for index, nc_file in enumerate(nc_files):\n",
+    "for i, nc_file in enumerate(nc_files):\n",
     "    variable_name = nc_file['variable_name']\n",
     "    \n",
     "    # Skip if the variable has already been processed\n",
     "    if variable_name in seen_variables:\n",
     "        continue\n",
     "\n",
-    "    # Open the NetCDF file in read mode using a context manager\n",
+    "    # Open the NetCDF file in read \n",
     "    with nc.Dataset(nc_file['path'], mode='r') as nc_dataset:\n",
     "        # List all variables in the current dataset\n",
     "        variables_list = list(nc_dataset.variables.keys())\n",
     "        \n",
     "        # Print details of the file and its variables\n",
-    "        print(f\"{index + 1:<2} {variable_name:<8}: Available variables: {variables_list}\")\n",
+    "        print(f\"{i + 1:<2} {variable_name:<8}: Available variables: {variables_list}\")\n",
     "    \n",
     "    # Mark this variable as seen\n",
     "    seen_variables.add(variable_name)"
