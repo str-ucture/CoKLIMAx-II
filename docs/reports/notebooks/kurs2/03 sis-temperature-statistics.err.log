@@ -1,0 +1,72 @@
+Traceback (most recent call last):
+  File "C:\Users\ShaileshShrestha\anaconda3\envs\myenv\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\ShaileshShrestha\anaconda3\envs\myenv\lib\site-packages\nbclient\client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\ShaileshShrestha\anaconda3\envs\myenv\lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "C:\Users\ShaileshShrestha\anaconda3\envs\myenv\lib\asyncio\base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "C:\Users\ShaileshShrestha\anaconda3\envs\myenv\lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\ShaileshShrestha\anaconda3\envs\myenv\lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\ShaileshShrestha\anaconda3\envs\myenv\lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Define csv filename and filepath for the output
+csv_filename = f"{dataset}-{nc_files[0]['ds_period']}.csv.zip"
+csv_filepath = os.path.join(csv_folder, csv_filename)
+
+# Export the DataFrame as CSV if it does not already exist
+if not os.path.isfile(csv_filepath):
+    dataframes = [netcdf_to_dataframe(nc_file) for nc_file in tqdm(nc_files)]
+    df_merged = pd.concat(dataframes, axis=1).dropna().reset_index()
+    df_merged.to_csv(csv_filepath, sep=",", encoding='utf8', compression='zip', index=False)
+else:
+    print(f"File already exists at {csv_filepath}.\nSkipping export.")
+    print("Reading existing CSV file...")
+    df_merged = pd.read_csv(csv_filepath)
+
+def wrap_column_names(df, width):
+    wrapped_columns = {col: " ".join(textwrap.wrap(col, width)) for col in df.columns}
+    return df.rename(columns=wrapped_columns)
+
+# Modify pandas display options
+pd.options.display.max_colwidth = 20
+pd.options.display.float_format = '{:,.2f}'.format
+
+# Display DataFrame
+df_wrapped = wrap_column_names(df_merged, width=11)
+df_wrapped = df_wrapped.set_index(['time', 'lat', 'lon'])
+df_wrapped
+------------------
+
+----- stdout -----
+File already exists at .\data\sis-temperature-statistics\csv\sis-temperature-statistics-Summer.csv.zip.
+Skipping export.
+Reading existing CSV file...
+------------------
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mNameError[0m                                 Traceback (most recent call last)
+Cell [1;32mIn[15], line 24[0m
+[0;32m     21[0m pd[38;5;241m.[39moptions[38;5;241m.[39mdisplay[38;5;241m.[39mfloat_format [38;5;241m=[39m [38;5;124m'[39m[38;5;132;01m{:,.2f}[39;00m[38;5;124m'[39m[38;5;241m.[39mformat
+[0;32m     23[0m [38;5;66;03m# Display DataFrame[39;00m
+[1;32m---> 24[0m df_wrapped [38;5;241m=[39m [43mwrap_column_names[49m[43m([49m[43mdf_merged[49m[43m,[49m[43m [49m[43mwidth[49m[38;5;241;43m=[39;49m[38;5;241;43m11[39;49m[43m)[49m
+[0;32m     25[0m df_wrapped [38;5;241m=[39m df_wrapped[38;5;241m.[39mset_index([[38;5;124m'[39m[38;5;124mtime[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mlat[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mlon[39m[38;5;124m'[39m])
+[0;32m     26[0m df_wrapped
+
+Cell [1;32mIn[15], line 16[0m, in [0;36mwrap_column_names[1;34m(df, width)[0m
+[0;32m     15[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21mwrap_column_names[39m(df, width):
+[1;32m---> 16[0m     wrapped_columns [38;5;241m=[39m {col: [38;5;124m"[39m[38;5;124m [39m[38;5;124m"[39m[38;5;241m.[39mjoin(textwrap[38;5;241m.[39mwrap(col, width)) [38;5;28;01mfor[39;00m col [38;5;129;01min[39;00m df[38;5;241m.[39mcolumns}
+[0;32m     17[0m     [38;5;28;01mreturn[39;00m df[38;5;241m.[39mrename(columns[38;5;241m=[39mwrapped_columns)
+
+Cell [1;32mIn[15], line 16[0m, in [0;36m<dictcomp>[1;34m(.0)[0m
+[0;32m     15[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21mwrap_column_names[39m(df, width):
+[1;32m---> 16[0m     wrapped_columns [38;5;241m=[39m {col: [38;5;124m"[39m[38;5;124m [39m[38;5;124m"[39m[38;5;241m.[39mjoin([43mtextwrap[49m[38;5;241m.[39mwrap(col, width)) [38;5;28;01mfor[39;00m col [38;5;129;01min[39;00m df[38;5;241m.[39mcolumns}
+[0;32m     17[0m     [38;5;28;01mreturn[39;00m df[38;5;241m.[39mrename(columns[38;5;241m=[39mwrapped_columns)
+
+[1;31mNameError[0m: name 'textwrap' is not defined
+

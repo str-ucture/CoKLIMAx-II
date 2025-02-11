@@ -1,0 +1,868 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Satelliten-Wasserstände von Seen &mdash; Coklimax 1.0.0 Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=a1fa38c2" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f029ec32"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/translations.js?v=9bf55d28"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
+    <link rel="search" title="Suche" href="../../search.html" />
+    <link rel="next" title="SentinelHub Satellite Data Explorer" href="../kurs3/01%20senthub_downloader.html" />
+    <link rel="prev" title="Element 3" href="../../rst_kurs1/Element_3.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Coklimax
+              <img src="../../_static/coklimax_logo_new.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Inhalte:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/01%20SoftwareKenntnisse.html">Notwendige Software und Kenntnisse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/02%20Kurs-Elemente.html">Die Kurs-Elemente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/03%20CDS.html">Der Copernicus Climate Data Store (CDS)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kurs 1:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/Element_1.html">Element 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/Element_2.html">Element 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/Element_3.html">Element 3</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kurs 2:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Satelliten-Wasserstände von Seen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#festlegen-der-pfade-und-arbeitsverzeichnisse">1. Festlegen der Pfade und Arbeitsverzeichnisse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#herunterladen-und-entpacken-des-datensatzes">2. Herunterladen und Entpacken des Datensatzes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#authentifizierung">2.1 Authentifizierung</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#definieren-sie-die-request-und-laden-sie-den-datensatz-herunter">2.2 Definieren Sie die „request“ und laden Sie den Datensatz herunter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#entpacken-des-zip-ordners">2.3 Entpacken des Zip-Ordners</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#lesen-der-netcdf4-datei-und-ausdrucken-der-metadaten">3. Lesen der netCDF4-Datei und Ausdrucken der Metadaten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exportieren-als-csv">4. Exportieren als CSV</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#erstellen-des-dataframes-und-exportieren-als-csv">4.1 Erstellen des DataFrames und Exportieren als CSV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#analyse-und-visualisierung">5. Analyse und Visualisierung</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#visualisierung-aller-daten-ohne-karte">5.1 Visualisierung aller Daten (ohne Karte)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualisierung-der-monatlichen-durchschnittswerte-ohne-karte">5.2 Visualisierung der monatlichen Durchschnittswerte (ohne Karte)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualisierung-aller-daten-mit-einer-karte">5.3 Visualisierung aller Daten (mit einer Karte)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualisierung-der-monatlichen-durchschnittswerte-mit-einer-karte">5.4 Visualisierung der monatlichen Durchschnittswerte (mit einer Karte)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kurs 3:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../kurs3/01%20senthub_downloader.html">SentinelHub Satellite Data Explorer</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Die Jupyter-Notebook Bibliothek:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter/Einfuehrung_Jupyter.html">CoKLIMAx-II Jupyter Notebooks</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Coklimax</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Satelliten-Wasserstände von Seen</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/notebooks/kurs2/01 satellite-lake-water-level.ipynb.txt" rel="nofollow"> Quelltext anzeigen</a>
+<div id='language-switcher' style='text-align: right; margin-top: 10px;'>
+    <select onchange="location = this.value;">
+        <option value='/./CoKLIMAx-II/en\notebooks\kurs2\01 satellite-lake-water-level.html'>EN</option>
+        <option value='/./CoKLIMAx-II/de\notebooks\kurs2\01 satellite-lake-water-level.html' selected>DE</option>
+    </select>
+</div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="satelliten-wasserstande-von-seen">
+<h1>Satelliten-Wasserstände von Seen<a class="headerlink" href="#satelliten-wasserstande-von-seen" title="Link to this heading"></a></h1>
+<p>Dieses Datenset liefert Wasserstandsmessungen für 251 Seen auf vier Kontinenten, abgeleitet aus satellitenbasierter Radaraltimetrie. Diese Messungen stellen eine kostengünstige Alternative zu traditionellen bodengestützten Systemen dar und werden als wesentliche Klimavariable (Essential Climate Variable, ECV) eingestuft. Die Daten werden von CLS für den Copernicus Climate Change Service erstellt, um die hydrologische und klimatische Überwachung auf kontinentaler Ebene zu verbessern.</p>
+<p><strong>Informationen zum Datensatz:</strong></p>
+<ul class="simple">
+<li><p>Quelle: <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/satellite-lake-water-level?tab=overview">Satellite Lake Water Levels</a></p></li>
+<li><p>Autor: T. Tewes (Stadt Konstanz)</p></li>
+<li><p>Notebook-Version: 1.4 (Aktualisiert: 17. Januar 2025)</p></li>
+</ul>
+<section id="festlegen-der-pfade-und-arbeitsverzeichnisse">
+<h2>1. Festlegen der Pfade und Arbeitsverzeichnisse<a class="headerlink" href="#festlegen-der-pfade-und-arbeitsverzeichnisse" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="sd">&#39;&#39;&#39; ---- Verzeichnisse hier angeben ---- &#39;&#39;&#39;</span>
+<span class="n">download_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-level\download&quot;</span>
+<span class="n">working_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-level\working&quot;</span>
+<span class="n">geotiff_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-level\geotiff&quot;</span>
+<span class="n">csv_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-level\csv&quot;</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-level\output&quot;</span>
+<span class="sd">&#39;&#39;&#39; ----- Ende der Angaben ---- &#39;&#39;&#39;</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">geotiff_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="herunterladen-und-entpacken-des-datensatzes">
+<h2>2. Herunterladen und Entpacken des Datensatzes<a class="headerlink" href="#herunterladen-und-entpacken-des-datensatzes" title="Link to this heading"></a></h2>
+<section id="authentifizierung">
+<h3>2.1 Authentifizierung<a class="headerlink" href="#authentifizierung" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cdsapi</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># API-Schlüssel für die Authentifizierung</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;fdae60fd-35d4-436f-825c-c63fedab94a4&quot;</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;https://cds.climate.copernicus.eu/api&quot;</span>
+    
+    <span class="c1"># Erstellung des CDS-API-Clients</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">cdsapi</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">api_url</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">client</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="definieren-sie-die-request-und-laden-sie-den-datensatz-herunter">
+<h3>2.2 Definieren Sie die „request“ und laden Sie den Datensatz herunter<a class="headerlink" href="#definieren-sie-die-request-und-laden-sie-den-datensatz-herunter" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definition des Datensatzes und der Request-Parameter</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="s2">&quot;satellite-lake-water-level&quot;</span>
+<span class="n">request</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;variable&quot;</span><span class="p">:</span> <span class="s2">&quot;all&quot;</span><span class="p">,</span> 
+    <span class="s2">&quot;region&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;southern_europe&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;lake&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;bodensee&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Führen Sie es aus, um den Datensatz herunterzuladen:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main_retrieve</span><span class="p">():</span>
+    <span class="n">dataset_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">_bodensee.zip&quot;</span>
+    <span class="n">dataset_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">dataset_filename</span><span class="p">)</span>
+
+    <span class="c1"># Den Datensatz nur herunterladen, wenn er noch nicht heruntergeladen wurde</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dataset_filepath</span><span class="p">):</span>
+        <span class="c1"># Den Datensatz mit den definierten Anforderungsparametern herunterladen</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">dataset_filepath</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Datensatz bereits heruntergeladen.&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">main</span><span class="p">()</span>
+    <span class="n">main_retrieve</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-02-11 09:26:07,124 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-02-11 09:26:07,140 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Datensatz bereits heruntergeladen.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="entpacken-des-zip-ordners">
+<h3>2.3 Entpacken des Zip-Ordners<a class="headerlink" href="#entpacken-des-zip-ordners" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+
+<span class="c1"># Erstellen des Dateinamens und des Dateipfads für die ZIP-Datei des Datensatzes</span>
+<span class="n">dataset_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">_bodensee.zip&quot;</span>
+<span class="n">dataset_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">dataset_filename</span><span class="p">)</span>
+<span class="n">extract_folder</span> <span class="o">=</span> <span class="n">working_folder</span>
+
+<span class="c1"># Entpacken der ZIP-Datei</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">dataset_filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+            <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dateien erfolgreich extrahiert nach: </span><span class="si">{</span><span class="n">extract_folder</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ordner ist nicht leer. Entpacken überspringen.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fehler: Die Datei </span><span class="si">{</span><span class="n">dataset_filepath</span><span class="si">}</span><span class="s2"> wurde nicht gefunden.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">BadZipFile</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fehler: Die Datei </span><span class="si">{</span><span class="n">dataset_filepath</span><span class="si">}</span><span class="s2"> ist keine gültige ZIP-Datei.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ein unerwarteter Fehler ist aufgetreten: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ordner ist nicht leer. Entpacken überspringen.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="lesen-der-netcdf4-datei-und-ausdrucken-der-metadaten">
+<h2>3. Lesen der netCDF4-Datei und Ausdrucken der Metadaten<a class="headerlink" href="#lesen-der-netcdf4-datei-und-ausdrucken-der-metadaten" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
+
+<span class="c1"># Öffnen der NetCDF-Datei im Lesemodus</span>
+<span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="c1"># Auflisten aller Variablen im Datensatz</span>
+<span class="n">variables_list</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Verfügbare Variablen: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">variables_list</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Verfügbare Variablen: [&#39;time&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;water_surface_height_above_reference_datum&#39;, &#39;water_surface_height_uncertainty&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Variablennamen aus vorhandenen Variablen definieren und Variablendaten lesen</span>
+<span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;water_surface_height_above_reference_datum&#39;</span>
+<span class="n">variable_data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
+
+<span class="c1"># Erstellen einer Zusammenfassung der Hauptvariablen</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Variablenname&quot;</span><span class="p">:</span> <span class="n">variable_name</span><span class="p">,</span>
+    <span class="s2">&quot;Daten Typ&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+    <span class="s2">&quot;Form&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+    <span class="s2">&quot;Variableninfo&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_data</span><span class="o">.</span><span class="n">dimensions</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Einheiten&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Langer Name&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;long_name&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="c1"># Anzeigen der Zusammenfassung des Datensatzes als DataFrame zur besseren Visualisierung</span>
+<span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Beschreibung&#39;</span><span class="p">,</span> <span class="s1">&#39;Details&#39;</span><span class="p">])</span>
+
+<span class="c1"># Anzeigen des Zusammenfassungs-DataFrames</span>
+<span class="n">nc_summary</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Beschreibung</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Variablenname</td>
+      <td>water_surface_height_above_reference_datum</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Daten Typ</td>
+      <td>float64</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Form</td>
+      <td>(101,)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Variableninfo</td>
+      <td>('time',)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Einheiten</td>
+      <td>m</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Langer Name</td>
+      <td>water surface height above geoid</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="exportieren-als-csv">
+<h2>4. Exportieren als CSV<a class="headerlink" href="#exportieren-als-csv" title="Link to this heading"></a></h2>
+<section id="erstellen-des-dataframes-und-exportieren-als-csv">
+<h3>4.1 Erstellen des DataFrames und Exportieren als CSV<a class="headerlink" href="#erstellen-des-dataframes-und-exportieren-als-csv" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+
+<span class="c1"># Öffnen Sie den NetCDF-Datensatz mit xarray</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">nc_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">nc_dataset</span><span class="p">:</span>
+        <span class="n">variable_data_water_surface_height</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;water_surface_height_above_reference_datum&#39;</span><span class="p">]</span>
+        <span class="n">variable_data_water_surface_height_uncertainty</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;water_surface_height_uncertainty&#39;</span><span class="p">]</span>
+
+        <span class="c1"># Konvertiert den xarray-Datensatz in einen DataFrame</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">variable_data_water_surface_height</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;uncertainty&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable_data_water_surface_height_uncertainty</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;time&#39;</span><span class="p">])[</span><span class="s1">&#39;water_surface_height_uncertainty&#39;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CSV-Dateinamen und Dateipfad für die Ausgabe definieren</span>
+<span class="n">csv_filename</span> <span class="o">=</span> <span class="s1">&#39;satellite-lake-water-level.csv&#39;</span>
+<span class="n">csv_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">csv_filename</span><span class="p">)</span>
+
+<span class="c1"># Exportieren Sie die Pivot-Tabelle als CSV, falls sie noch nicht existiert</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">):</span>
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="o">=</span><span class="n">nc_filepath</span><span class="p">)</span>
+    <span class="n">dataframe</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gefilterte Daten erfolgreich nach </span><span class="si">{</span><span class="n">csv_filepath</span><span class="si">}</span><span class="s2"> exportiert&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Datei existiert bereits unter </span><span class="si">{</span><span class="n">csv_filepath</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">Überspringe Export.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lese vorhandene CSV-Datei ein...&quot;</span><span class="p">)</span>
+    <span class="c1"># Lesen Sie die CSV-Datei mit Datums-/Uhrzeitanalyse</span>
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+
+<span class="c1"># Pandas-Anzeigeoptionen anpassen</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
+    
+<span class="c1"># DataFrame anzeigen</span>
+<span class="n">dataframe</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Datei existiert bereits unter .\data\satellite-lake-water-level\csv\satellite-lake-water-level.csv.
+Überspringe Export.
+Lese vorhandene CSV-Datei ein...
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>water_surface_height_above_reference_datum</th>
+      <th>uncertainty</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2016-03-23 20:43:59.997482240</th>
+      <td>394.44</td>
+      <td>0.29</td>
+    </tr>
+    <tr>
+      <th>2016-04-19 20:43:59.997482240</th>
+      <td>394.62</td>
+      <td>0.49</td>
+    </tr>
+    <tr>
+      <th>2016-05-16 20:44:59.998283264</th>
+      <td>395.41</td>
+      <td>0.21</td>
+    </tr>
+    <tr>
+      <th>2016-06-12 20:44:59.998283264</th>
+      <td>395.72</td>
+      <td>0.58</td>
+    </tr>
+    <tr>
+      <th>2016-07-09 20:44:59.998283264</th>
+      <td>396.13</td>
+      <td>0.13</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="analyse-und-visualisierung">
+<h2>5. Analyse und Visualisierung<a class="headerlink" href="#analyse-und-visualisierung" title="Link to this heading"></a></h2>
+<section id="visualisierung-aller-daten-ohne-karte">
+<h3>5.1 Visualisierung aller Daten (ohne Karte)<a class="headerlink" href="#visualisierung-aller-daten-ohne-karte" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="kn">import</span> <span class="n">DateFormatter</span><span class="p">,</span> <span class="n">YearLocator</span><span class="p">,</span> <span class="n">MonthLocator</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ticker</span>
+
+<span class="c1"># Erstelle die Figur und Achsen</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#f1f1f1&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plotten der Wasserstandsdaten</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;water_surface_height_above_reference_datum&#39;</span><span class="p">],</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1877F2&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Wasserstand&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Formatieren der x-Achse für bessere Lesbarkeit</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">YearLocator</span><span class="p">())</span>  <span class="c1"># Haupt-Ticks für jedes Jahr</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">MonthLocator</span><span class="p">())</span>  <span class="c1"># Kleine Ticks für jeden Monat</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%Y&#39;</span><span class="p">))</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;inout&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;inout&#39;</span><span class="p">)</span>
+
+<span class="c1"># Setzen der y-Achsen-Grenzen</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">393.5</span><span class="p">,</span> <span class="mf">396.5</span><span class="p">)</span>
+
+<span class="c1"># Setzen der Achsenbeschriftungen und Titel des Diagramms</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Jahr&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Wasserstand (m)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Wasserstand des Bodensees&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="c1"># Hinzufügen eines Rasters zum Diagramm und Formatierung der y-Achse</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">FormatStrFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%0.2f</span><span class="s1">&#39;</span><span class="p">))</span>
+
+<span class="c1"># Hinzufügen einer Beschreibung und Quelleninformation</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span>
+    <span class="mf">0.5</span><span class="p">,</span>
+    <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="p">(</span>
+        <span class="s1">&#39;Beschreibung: Wasserstand des Bodensees, bestimmt aus Satellitendaten des CDS.</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;Quelle: Copernicus Climate Change Service, Climate Data Store, (2020): Seepegelstände von 1992 &#39;</span>
+        <span class="s1">&#39;bis heute, abgeleitet aus Satellitenbeobachtungen. Copernicus Climate Change Service (C3S) Climate Data &#39;</span>
+        <span class="s1">&#39;Store (CDS). DOI: 10.24381/cds.5714c668 (Zugriff am 16-10-2024)&#39;</span>
+    <span class="p">),</span>
+    <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+    <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+    <span class="n">wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Layout anpassen und das Diagramm anzeigen</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cfb5f6f20d7534e64f09d68ab04e0af1e1f95c0d73798bceeb60bcb773538066.png" src="../../_images/cfb5f6f20d7534e64f09d68ab04e0af1e1f95c0d73798bceeb60bcb773538066.png" />
+</div>
+</div>
+</section>
+<section id="visualisierung-der-monatlichen-durchschnittswerte-ohne-karte">
+<h3>5.2 Visualisierung der monatlichen Durchschnittswerte (ohne Karte)<a class="headerlink" href="#visualisierung-der-monatlichen-durchschnittswerte-ohne-karte" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gruppiere die Daten nach Monat und berechne den Mittelwert, die Standardabweichung und die Stichprobengröße</span>
+<span class="n">monthly_data</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">month</span><span class="o">=</span><span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span><span class="p">)</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;month&#39;</span><span class="p">)[</span><span class="s1">&#39;water_surface_height_above_reference_datum&#39;</span><span class="p">]</span>
+<span class="c1"># Berechne nun Mittelwert, Standardabweichung und Anzahl</span>
+<span class="n">monthly_mean</span> <span class="o">=</span> <span class="n">monthly_data</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">monthly_std</span> <span class="o">=</span> <span class="n">monthly_data</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+<span class="n">monthly_n</span> <span class="o">=</span> <span class="n">monthly_data</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+
+<span class="c1"># Definiere die Monatsbezeichner und den entsprechenden Zahlenbereich</span>
+<span class="n">month_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Jan&#39;</span><span class="p">,</span> <span class="s1">&#39;Feb&#39;</span><span class="p">,</span> <span class="s1">&#39;Mär&#39;</span><span class="p">,</span> <span class="s1">&#39;Apr&#39;</span><span class="p">,</span> <span class="s1">&#39;Mai&#39;</span><span class="p">,</span> <span class="s1">&#39;Jun&#39;</span><span class="p">,</span> <span class="s1">&#39;Jul&#39;</span><span class="p">,</span> <span class="s1">&#39;Aug&#39;</span><span class="p">,</span> <span class="s1">&#39;Sep&#39;</span><span class="p">,</span> <span class="s1">&#39;Okt&#39;</span><span class="p">,</span> <span class="s1">&#39;Nov&#39;</span><span class="p">,</span> <span class="s1">&#39;Dez&#39;</span><span class="p">]</span>
+<span class="n">months</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
+
+<span class="c1"># Erstelle das Balkendiagramm</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#f1f1f1&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plotte Balken mit der Standardabweichung als Fehlerbalken</span>
+<span class="n">bars</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+    <span class="n">months</span><span class="p">,</span> 
+    <span class="n">monthly_mean</span><span class="p">,</span> 
+    <span class="n">yerr</span><span class="o">=</span><span class="n">monthly_std</span><span class="p">,</span> 
+    <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> 
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> 
+    <span class="n">error_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">ecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Setze Achsenbezeichner und Diagrammtitel</span>
+<span class="n">y_min</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">monthly_mean</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="n">monthly_std</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">y_max</span> <span class="o">=</span> <span class="n">monthly_mean</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="n">monthly_std</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.5</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">)</span>
+
+<span class="c1"># Setze Achsenbezeichner und Diagrammtitel</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Monat&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Durchschnittlicher Wasserstand (m)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Monatsmittelwerte des Wasserstands des Bodensees mit Standardabweichung&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="c1"># Setze die X-Achsenbezeichner (1 = Januar, 12 = Dezember)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">months</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">month_labels</span><span class="p">)</span>
+
+<span class="c1"># Füge Stichprobengröße (n) Annotationen über jedem Balken hinzu</span>
+<span class="k">for</span> <span class="n">bar</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bars</span><span class="p">,</span> <span class="n">monthly_n</span><span class="p">):</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+        <span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="n">height</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s1">&#39;n=</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span>
+    <span class="p">)</span>
+    
+<span class="c1"># Füge ein Gitter zum Diagramm hinzu</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">FormatStrFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%0.2f</span><span class="s1">&#39;</span><span class="p">))</span>
+
+<span class="c1"># Füge eine Beschreibung und Quellenangabe hinzu</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span>
+    <span class="mf">0.5</span><span class="p">,</span>
+    <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="p">(</span>
+        <span class="s1">&#39;Beschreibung: Wasserstand des Bodensees, ermittelt aus Satellitendaten des CDS.</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;Quelle: Copernicus Climate Change Service, Climate Data Store, (2020): Wasserstände des Bodensees von 1992 &#39;</span>
+        <span class="s1">&#39;bis heute, abgeleitet aus Satellitenbeobachtungen. Copernicus Climate Change Service (C3S) Climate Data &#39;</span>
+        <span class="s1">&#39;Store (CDS). DOI: 10.24381/cds.5714c668 (Zugriff am 16-10-2024)&#39;</span>
+    <span class="p">),</span>
+    <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+    <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+    <span class="n">wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Passe das Layout an und zeige das Diagramm an</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/cae3c0a0979807e7e0f06f51d5361d8524fb654deee4984377d8202c7d18d189.png" src="../../_images/cae3c0a0979807e7e0f06f51d5361d8524fb654deee4984377d8202c7d18d189.png" />
+</div>
+</div>
+</section>
+<section id="visualisierung-aller-daten-mit-einer-karte">
+<h3>5.3 Visualisierung aller Daten (mit einer Karte)<a class="headerlink" href="#visualisierung-aller-daten-mit-einer-karte" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely.geometry</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">contextily</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ctx</span> 
+
+<span class="c1"># Definiere den Punkt für den Bodensee (ungefähre Koordinaten)</span>
+<span class="n">bodensee_point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">][:][</span><span class="mi">0</span><span class="p">],</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">][:][</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Erstelle ein GeoDataFrame mit dem Bodensee-Punkt</span>
+<span class="n">lake_bodensee</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
+    <span class="p">{</span><span class="s1">&#39;geometry&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">bodensee_point</span><span class="p">]},</span>
+    <span class="n">crs</span><span class="o">=</span><span class="s1">&#39;EPSG:4326&#39;</span> <span class="c1"># WGS84-Koordinatensystem</span>
+<span class="p">)</span>
+
+<span class="c1"># Projektiere in das Web Mercator Koordinatensystem</span>
+<span class="n">lake_bodensee</span> <span class="o">=</span> <span class="n">lake_bodensee</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">epsg</span><span class="o">=</span><span class="mi">3857</span><span class="p">)</span>
+
+<span class="c1"># Erstelle die Figur und Achsen</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#f1f1f1&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]})</span>
+
+<span class="c1"># --- 1. Karte des Bodensees ---</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">lake_bodensee</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">Esri</span><span class="o">.</span><span class="n">WorldImagery</span><span class="p">)</span>
+
+<span class="c1"># Passe den sichtbaren Bereich an (weiter herauszoomen)</span>
+<span class="c1"># Erweitere den Bereich für mehr Umgebung (hier auf 100 km in jede Richtung)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">lake_bodensee</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">80000</span><span class="p">,</span> <span class="n">lake_bodensee</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">80000</span><span class="p">)</span> <span class="c1"># Erweitere den Bereich in x-Richtung</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">lake_bodensee</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">80000</span><span class="p">,</span> <span class="n">lake_bodensee</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">80000</span><span class="p">)</span> <span class="c1"># Erweitere den Bereich in y-Richtung</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Bodensee (Satellitenbild)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span> <span class="c1"># Entferne Achsenbeschriftungen</span>
+
+<span class="c1"># --- 2. Diagramm des Wasserstands ---</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Plotten der Wasserstandsdaten</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;water_surface_height_above_reference_datum&#39;</span><span class="p">],</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1877F2&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Wasserstand&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Formatieren der x-Achse für bessere Lesbarkeit</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">YearLocator</span><span class="p">())</span>  <span class="c1"># Hauptmarkierungen für jedes Jahr</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">MonthLocator</span><span class="p">())</span>  <span class="c1"># Kleinere Markierungen für jeden Monat</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%Y&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;inout&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;inout&#39;</span><span class="p">)</span>
+
+<span class="c1"># Setzen der y-Achsen-Grenzen</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">393.5</span><span class="p">,</span> <span class="mf">396.5</span><span class="p">)</span>
+
+<span class="c1"># Setzen der Achsenbeschriftungen und Titel des Diagramms</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Jahr&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Wasserstand (m)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Wasserstand des Bodensees&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="c1"># Hinzufügen eines Rasters zum Diagramm und Formatierung der y-Achse</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">FormatStrFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%0.2f</span><span class="s1">&#39;</span><span class="p">))</span>
+
+<span class="c1"># Hinzufügen einer Beschreibung und Quelleninformation</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span>
+    <span class="mf">0.5</span><span class="p">,</span>
+    <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="p">(</span>
+        <span class="s1">&#39;Beschreibung: Wasserstand des Bodensees, bestimmt aus Satellitendaten des CDS.</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;Quelle: Copernicus Climate Change Service, Climate Data Store, (2020): Seepegelstände von 1992 &#39;</span>
+        <span class="s1">&#39;bis heute, abgeleitet aus Satellitenbeobachtungen. Copernicus Climate Change Service (C3S) Climate Data &#39;</span>
+        <span class="s1">&#39;Store (CDS). DOI: 10.24381/cds.5714c668 (Zugriff am 16-10-2024)&#39;</span>
+    <span class="p">),</span>
+    <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+    <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+    <span class="n">wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Layout anpassen und das Diagramm anzeigen</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c908c098297ce3b496d449f6ebc39d529390b118496f05573b65b70199325f51.png" src="../../_images/c908c098297ce3b496d449f6ebc39d529390b118496f05573b65b70199325f51.png" />
+</div>
+</div>
+</section>
+<section id="visualisierung-der-monatlichen-durchschnittswerte-mit-einer-karte">
+<h3>5.4 Visualisierung der monatlichen Durchschnittswerte (mit einer Karte)<a class="headerlink" href="#visualisierung-der-monatlichen-durchschnittswerte-mit-einer-karte" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Erstelle die Figur und Achsen</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#f1f1f1&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width_ratios&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]})</span>
+
+<span class="c1"># --- 1. Karte des Bodensees ---</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">lake_bodensee</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">ctx</span><span class="o">.</span><span class="n">add_basemap</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">ctx</span><span class="o">.</span><span class="n">providers</span><span class="o">.</span><span class="n">Esri</span><span class="o">.</span><span class="n">WorldImagery</span><span class="p">)</span>
+
+<span class="c1"># Passe den sichtbaren Bereich an (weiter herauszoomen)</span>
+<span class="c1"># Erweitere den Bereich für mehr Umgebung (hier auf 100 km in jede Richtung)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">lake_bodensee</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">80000</span><span class="p">,</span> <span class="n">lake_bodensee</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">80000</span><span class="p">)</span> <span class="c1"># Erweitere den Bereich in x-Richtung</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">lake_bodensee</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="mi">80000</span><span class="p">,</span> <span class="n">lake_bodensee</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mi">80000</span><span class="p">)</span> <span class="c1"># Erweitere den Bereich in y-Richtung</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Bodensee (Satellitenbild)&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_axis_off</span><span class="p">()</span> <span class="c1"># Entferne Achsenbeschriftungen</span>
+
+<span class="c1"># --- 2. Diagramm des Wasserstands ---</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Plotte Balken mit der Standardabweichung als Fehlerbalken</span>
+<span class="n">bars</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span>
+    <span class="n">months</span><span class="p">,</span> 
+    <span class="n">monthly_mean</span><span class="p">,</span> 
+    <span class="n">yerr</span><span class="o">=</span><span class="n">monthly_std</span><span class="p">,</span> 
+    <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span> 
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> 
+    <span class="n">error_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">ecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Setze Achsenbezeichner und Diagrammtitel</span>
+<span class="n">y_min</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">monthly_mean</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">-</span> <span class="n">monthly_std</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">y_max</span> <span class="o">=</span> <span class="n">monthly_mean</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="n">monthly_std</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">+</span> <span class="mf">0.5</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">y_min</span><span class="p">,</span> <span class="n">y_max</span><span class="p">)</span>
+
+<span class="c1"># Setze Achsenbezeichner und Diagrammtitel</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Monat&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Durchschnittlicher Wasserstand (m)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Monatsmittelwerte des Wasserstands des Bodensees mit Standardabweichung&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="c1"># Setze die X-Achsenbezeichner (1 = Januar, 12 = Dezember)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">months</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">month_labels</span><span class="p">)</span>
+
+<span class="c1"># Füge Stichprobengröße (n) Annotationen über jedem Balken hinzu</span>
+<span class="k">for</span> <span class="n">bar</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bars</span><span class="p">,</span> <span class="n">monthly_n</span><span class="p">):</span>
+    <span class="n">height</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+        <span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="n">height</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s1">&#39;n=</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span>
+    <span class="p">)</span>
+    
+<span class="c1"># Füge ein Gitter zum Diagramm hinzu</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">FormatStrFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%0.2f</span><span class="s1">&#39;</span><span class="p">))</span>
+
+<span class="c1"># Füge eine Beschreibung und Quellenangabe hinzu</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span>
+    <span class="mf">0.5</span><span class="p">,</span>
+    <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="p">(</span>
+        <span class="s1">&#39;Beschreibung: Wasserstand des Bodensees, ermittelt aus Satellitendaten des CDS.</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;Quelle: Copernicus Climate Change Service, Climate Data Store, (2020): Wasserstände des Bodensees von 1992 &#39;</span>
+        <span class="s1">&#39;bis heute, abgeleitet aus Satellitenbeobachtungen. Copernicus Climate Change Service (C3S) Climate Data &#39;</span>
+        <span class="s1">&#39;Store (CDS). DOI: 10.24381/cds.5714c668 (Zugriff am 16-10-2024)&#39;</span>
+    <span class="p">),</span>
+    <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+    <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+    <span class="n">wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Passe das Layout an und zeige das Diagramm an</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ec9a96c73e690239fe606a0ebde80ff064e2aa6c0f47ec35bdef17d892525d15.png" src="../../_images/ec9a96c73e690239fe606a0ebde80ff064e2aa6c0f47ec35bdef17d892525d15.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../rst_kurs1/Element_3.html" class="btn btn-neutral float-left" title="Element 3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="../kurs3/01%20senthub_downloader.html" class="btn btn-neutral float-right" title="SentinelHub Satellite Data Explorer" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, str.ucture GmbH.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
