@@ -4,7 +4,19 @@
 
 .wy-nav-content {
     max-width: 950px;
+    position: relative;
+    /* left: 50px; */
 }
+
+/* .wy-menu-vertical, 
+.wy-side-nav-search, 
+.wy-nav-side {
+    width: 350px;
+}
+
+.wy-side-scroll {
+    width: 370px;
+} */
 
 .rst-content div[class^=highlight] pre {
     white-space: pre-wrap
@@ -15,7 +27,7 @@ div.cell_output table {
 }
 
 .wy-side-nav-search .wy-dropdown>a img.logo, .wy-side-nav-search>a img.logo {
-    max-width: 80%;
+    max-width: 70%;
 }
 
 .dataframe {
