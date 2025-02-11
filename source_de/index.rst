@@ -10,15 +10,9 @@ Im ersten Teil der Dokumentation geht es um die Vorbereitung Ihres Computers auf
   :maxdepth: 2
   :caption: Inhalte:
 
-  ./rst_inhalte/SoftwareKenntnisse
-  ./rst_inhalte/Kurs-Elemente
-  ./rst_inhalte/CDS
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Die Jupyter-Notebook Bibliothek:
-
-   ./rst_jupyter/Einfuehrung_Jupyter
+  ./rst_inhalte/01 SoftwareKenntnisse
+  ./rst_inhalte/02 Kurs-Elemente
+  ./rst_inhalte/03 CDS
 
 .. toctree::
   :maxdepth: 2
@@ -39,3 +33,9 @@ Im ersten Teil der Dokumentation geht es um die Vorbereitung Ihres Computers auf
   :caption: Kurs 3:
 
   ./notebooks/kurs3/01 senthub_downloader
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Die Jupyter-Notebook Bibliothek:
+
+   ./rst_jupyter/Einfuehrung_Jupyter

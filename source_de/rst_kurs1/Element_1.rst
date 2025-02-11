@@ -1,19 +1,19 @@
 =========
 Element 1
 =========
+
 .. _kurs1-element1:
 
 ---------
 Lernziele
 ---------
 
- * :ref:`Einrichtung der API des Copernicus Climate Data Store (CDS API) <einrichtungapi>`
-  * :ref:`Persönlicher API-Key <persapikey>`
-  * :ref:`Installation der CDS API <installcdsapi>`
- * :ref:`Download des ersten Klima-Datensatzes <cdsdownload>`
-  * :ref:`Erstellen der API-Request <apirequest>`
-  * :ref:`Die API-Request im Jupyter Notebook <apijjupyter>`
-
+* :ref:`Einrichtung der API des Copernicus Climate Data Store (CDS API) <einrichtungapi>`
+	* :ref:`Persönlicher API-Key <persapikey>`
+	* :ref:`Installation der CDS API <installcdsapi>`
+* :ref:`Download des ersten Klima-Datensatzes <cdsdownload>`
+	* :ref:`Erstellen der API-Request <apirequest>`
+	* :ref:`Die API-Request im Jupyter Notebook <apijjupyter>`
 
 .. _einrichtungapi:
 
@@ -25,7 +25,7 @@ Zur Einrichtung der CDS API (Application Programming Interface, notwendige Insta
 
 Falls Sie noch keinen Nutzeraccount haben erstellen Sie sich einen Account über die Startseite. Oben rechts im Fenster klicken Sie auf "Login/Register". Das Dialogfenster erscheint wie unten angezeigt. Erstellen Sie sich einen ECMWF-Account wie beschrieben und loggen Sie sich dann mit Ihrem ECMWF-Nutzernamen und Passwort im Copernicus CDS ein.
 
-.. image:: C:/Users/vrein/OneDrive/Documents/2024_CoKLIMAx/Arbeitspakete/docs/_static/Screenshot-2024-12-30-073005.png
+.. image:: ../_static/Screenshot-2024-12-30-073005.png
 
 .. _persapikey:
 
@@ -35,31 +35,27 @@ Falls Sie noch keinen Nutzeraccount haben erstellen Sie sich einen Account über
 
 Nach dem Login können Sie sich in Ihrem Account Ihre API-Informationen ansehen. Den API-Key (oder API-Token) benötigen Sie im nächsten Schritt.
 
-.. image:: C:/Users/vrein/OneDrive/Documents/2024_CoKLIMAx/Arbeitspakete/docs/_static/Screenshot-2024-12-30-080151.png
-
+.. image:: ../_static/Screenshot-2024-12-30-080151.png
 
 Laden Sie sich die folgende Datei herunter, entpacken und öffnen Sie die Datei und ergänzen Sie Ihren persönlichen API-Key in der zweiten Zeile (anstelle von ####).
 
-:download:`cdsapirc <C:/Users/vrein/OneDrive/Documents/2024_CoKLIMAx/Arbeitspakete/docs/_static/Download.zip>`
+:download:`cdsapirc ../_static/Download.zip`
 
 .. _installcdsapi:
 
 Speichern Sie das Dokument. Legen sie das Dokument in Ihrem Benutzerlaufwerk ab (C:\Users\Nutzername\)
 
-
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2. Installation der CDS API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 
 Nun sind Sie bereit, die CDS API zu installieren. Öffnen Sie die CMD (Eingabeaufforderung) und geben Sie folgenden Befehl ein
 
 .. code-block::
 
-       pip install cdsapi
+    pip install cdsapi
 
 Sie sollten nun alle Voraussetzungen erfüllt haben um Daten aus dem CDS herunterzuladen. Im nächsten Schritt probieren wir dies mit einem Testdatensatz aus.
-
 
 .. _cdsdownload:
 
@@ -67,10 +63,10 @@ Sie sollten nun alle Voraussetzungen erfüllt haben um Daten aus dem CDS herunte
 Download von Klimadaten aus dem CDS
 -----------------------------------
 
-
 Unser Testdatensatz ist der Reanalyse-Datensatz ERA5. Falls Sie sich mit dem Datensatz gut auskennen, können Sie den Infokasten überspringen und gleich zum :ref:`nächsten Schritt <era5download>` übergehen.
 
 .. note:: Der ERA5-Klimadatensatz ist eine umfangreiche Sammlung von Wetter- und Klimadaten, die von der 	Europäischen Organisation für die Nutzung meteorologischer Satelliten (ECMWF) erstellt wurde. Es 	handelt sich dabei um eine historische Wetter- und Klimadatenbank, die auf modernen Rechenmodellen und 	Satellitenmessungen basiert. ERA5 umfasst kontinuierliche Wetterdaten der letzten Jahrzehnte, von 1950 	bis in die Gegenwart. Diese Daten umfassen unter anderem Temperatur, Luftfeuchtigkeit oder 	Windgeschwindigkeit.
+
 	In Wissenschaft und Klimaforschung wird der ERA5-Datensatz genutzt, um langfristige Klimatrends zu 	untersuchen. Zum Beispiel kann anhand der Daten analysiert werden, wie sich die Temperaturen im 	Verlauf von Jahrzehnten verändert haben oder wie sich die Frequenz von Extremwetterereignissen 	entwickelt.
 
 	Kurz gesagt, der ERA5-Datensatz ist eine wertvolle Wissensquelle für viele verschiedene Disziplinen 	und Bereiche, weil er fundierte und verlässliche Daten für die Analyse des globale Klimasystems 	bereitstellt. Der ERA5-Datensatz dient auch als Grundlage für die Entwicklung von Klimamodellen und 	Wettervorhersagen. Er hilft, genauere und realistischere Prognosen zu erstellen, was für zukünftiges 	Risikomanagement relevant ist.
@@ -82,23 +78,24 @@ Unser Testdatensatz ist der Reanalyse-Datensatz ERA5. Falls Sie sich mit dem Dat
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. _era5download:
+
 Die im CDS verfügbaren Datensätze können durch die räumliche und zeitliche Abdeckung schnell mehrere Gigabyte Größe erreichen. Im CDS haben Sie die Möglichkeit, individuell Variablen, Zeiträume und Regionen auszwählen, damit der Datensatz nicht unnötig Speicherplatz auf Ihrem Computer verbraucht. Für den Test laden wir nur einen kleinen Teil des Datensatzes herunter (eine Variable für einen Tag im Oktober 2024).
 
 Um die gewünschten Daten automatisiert über die CDS API herunterzuladen müssen Sie zunächst einen API request code erzeugen. Dafür gehen Sie in den Copernicus Climate Data store, loggen sich ein und suchen nach dem Datensatz `ERA5-Land hourly data from 1950 to present <https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=overview>`_
 
 Gehen Sie auf den `Download-Tab <https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=download>`_ und wählen Sie die Parameter wie folgt aus:
 
- * Temperature: 2m temperature
- * Year: 2024
- * Month: October
- * Day: 01
- * Time: Select all
+* Temperature: 2m temperature
+* Year: 2024
+* Month: October
+* Day: 01
+* Time: Select all
 
 Die Region Ihrer Wahl könnnen Sie im Bereich "Geographical Area" festlegen. Dies sollten Sie tun, damit der Datensatz nicht für den gesamten, verfügbaren Bereich heruntergeladen wird.
 
 wir haben für Sie die Koordinaten für die Region rund um den Bodensee vorbereitet, der Test-Region des CoKLIMAx-Projekts.
 
-.. image:: C:/Users/vrein/OneDrive/Documents/2024_CoKLIMAx/Arbeitspakete/docs/_static/Screenshot2025-01-01121530.png
+.. image:: ../_static/Screenshot2025-01-01121530.png
 
 .. note:: Ihre eigenen Wunschkoordinaten können Sie sich ganz einfach im von uns entwickelten `bbox-generator <https://str-ucture.github.io/bbox-extractor/>`_ erstellen. Kopieren Sie sich die Koordinaten in die Zwischenablage oder in ein Textdokument. Diese können später auch noch direkt im Jupyter-Notebook eingegeben werden.
 
@@ -156,6 +153,3 @@ Wir haben ein Jupyter Notebook für Sie vorbereitet, in dem Sie nur den Output-O
 :download:`Element1_API_Test.ipynb <C:/Users/vrein/OneDrive/Documents/2024_CoKLIMAx/Arbeitspakete/docs/_static/Element1_API_Test.ipynb>`
 
 Öffnen Sie das Notebook in Ihrem Jupyter lab und folgen Sie den Anweisungen.
- 
- 
-

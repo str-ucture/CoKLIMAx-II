@@ -1,31 +1,26 @@
-============================================
+=========================================
 CoKLIMAx II Resources for Data Processing
-============================================
+=========================================
 
-Welcome to the CoKLIMAx II documentation. Here you will find information and tools that can facilitate working with large climate datasets in urban administration practice. The resources are structured within :ref:`Jupyter Notebooks <einfuehrung-jupyter>`, which allow you to download, process, and visualize climate data from the :ref:`Copernicus Climate Data Store (CDS) <cds>`. 
+Welcome to the CoKLIMAx II Documentation. Here you will find information and tools that can help you deal with large climate datasets in urban management practice. The resources are structured within :ref:`Jupyter Notebooks <einfuehrung-jupyter>`, which allow you to download, edit, and visualize climate data from the :ref:`Copernicus Climate Data Store (CDS) <cds>`. 
 
-The first part of the documentation focuses on preparing your computer for working with the data. Once you have followed the instructions, you can get started. To learn how to work with CDS data, you can go through the prepared course elements. For advanced users, we have prepared a range of different :ref:`Notebooks <einfuehrung-jupyter>` that you can modify as needed based on your skills. The notebooks also cover processing satellite data, such as high-resolution images from the Sentinel-II satellite, beyond the scope of CDS.
+The first part of the documentation focuses on preparing your computer for working with the data. Once you have followed the instructions, you can get started. To learn how to work with CDS data, you can go through the prepared course elements. For advanced users, we have prepared a range of different :ref:`Notebooks <einfuehrung-jupyter>` that you can modify as needed based on your skills. In addition to CDS, the notebooks also cover processing satellite data, such as high-resolution images from the Sentinel-II satellite.
 
 .. toctree::
   :maxdepth: 2
   :caption: Contents:
 
-  ./rst_inhalte/SoftwareKenntnisse
-  ./rst_inhalte/Kurs-Elemente
-  ./rst_inhalte/CDS
-
-.. toctree::
-   :maxdepth: 2
-   :caption: The Jupyter-Notebook Library:
-
-   ./rst_jupyter/Einfuehrung_Jupyter
+  ./rst_inhalte/01 SoftwareKenntnisse
+  ./rst_inhalte/02 Kurs-Elemente
+  ./rst_inhalte/03 CDS
 
 .. toctree::
   :maxdepth: 2
   :caption: Course 1:
 
-  ./notebooks/kurs1/herunterladen_ersten_datensatzes
-  ./notebooks/kurs1/analysis_and_visualization
+  ./rst_kurs1/Element_1
+  ./rst_kurs1/Element_2
+  ./rst_kurs1/Element_3
 
 .. toctree::
   :maxdepth: 2
@@ -42,15 +37,7 @@ The first part of the documentation focuses on preparing your computer for worki
   ./notebooks/kurs3/01 senthub_downloader
 
 .. toctree::
-  :maxdepth: 2
-  :caption: Course Not Defined:
+   :maxdepth: 2
+   :caption: The Jupyter-Notebook Library:
 
-  ./notebooks/kurs_not_defined/01 alpine-monthly-precipitation
-  ./notebooks/kurs_not_defined/02 sis-heat-wave-and-cold-spells
-  ./notebooks/kurs_not_defined/03 sis-health-vector
-  ./notebooks/kurs_not_defined/04 climate-indicators
-  ./notebooks/kurs_not_defined/05 sis-biodiversity-era5-regional
-  ./notebooks/kurs_not_defined/06 era5_land_hourly
-  ./notebooks/kurs_not_defined/07 era5-land-monthly
-  ./notebooks/kurs_not_defined/08 landsat-with-landsatxplore
-  ./notebooks/kurs_not_defined/09 Sentinel2-without-esri
+   ./rst_jupyter/Einfuehrung_Jupyter
