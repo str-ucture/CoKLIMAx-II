@@ -139,6 +139,7 @@
 </dl>
 </li>
 </ul>
+<hr class="docutils" />
 </section>
 <section id="setting-up-the-cds-api">
 <span id="setup-api"></span><h2>Setting Up the CDS API<a class="headerlink" href="#setting-up-the-cds-api" title="Link to this heading"></a></h2>
@@ -157,10 +158,13 @@
 <section id="installation-of-the-cds-api">
 <span id="install-cds-api"></span><h3>2. Installation of the CDS API<a class="headerlink" href="#installation-of-the-cds-api" title="Link to this heading"></a></h3>
 <p>Now you are ready to install the CDS API. Open the command prompt (CMD) and enter the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">cdsapi</span>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">cdsapi</span>
 </pre></div>
 </div>
+</div></blockquote>
 <p>You should now have all the necessary prerequisites to download data from the CDS. In the next step, we will test this with a sample dataset.</p>
+<hr class="docutils" />
 </section>
 </section>
 <section id="downloading-climate-data-from-the-cds">
@@ -177,13 +181,15 @@
 <p id="era5-download">Datasets available in the CDS can quickly reach several gigabytes due to their spatial and temporal coverage. The CDS allows you to select specific variables, time periods, and regions to prevent unnecessary storage usage on your computer. For testing, we will download only a small portion of the dataset (one variable for a single day in October 2024).</p>
 <p>To automate the download of the desired data via the CDS API, you first need to generate an API request code. To do this, go to the Copernicus Climate Data Store, log in, and search for the dataset <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=overview">ERA5-Land hourly data from 1950 to present</a>.</p>
 <p>Go to the <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=download">Download Tab</a> and select the parameters as follows:</p>
-<ul class="simple">
+<blockquote>
+<div><ul class="simple">
 <li><p>Temperature: 2m temperature</p></li>
 <li><p>Year: 2024</p></li>
 <li><p>Month: October</p></li>
 <li><p>Day: 01</p></li>
 <li><p>Time: Select all</p></li>
 </ul>
+</div></blockquote>
 <p>You can define your preferred region in the “Geographical Area” section. This step is essential to avoid downloading data for the entire available area.</p>
 <p>We have prepared the coordinates for the region around Lake Constance, the test region for the CoKLIMAx project.</p>
 <img alt="Download region" class="no-scaled-link align-center" src="../_images/kurs_1_cds_3.png" style="width: 650px;" />
@@ -194,7 +200,8 @@
 <p>For the additional parameters (data format and compression), set the fields in the input form as shown in the following image.</p>
 <img alt="Data and download fromat" class="no-scaled-link align-center" src="../_images/kurs_1_cds_4.png" style="width: 650px;" />
 <p>Once you have accepted the terms of use, simply click “Show API request code,” and the automatically generated API request code will appear. For our test data, it looks as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cdsapi</span>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cdsapi</span>
 
 <span class="n">dataset</span> <span class="o">=</span> <span class="s2">&quot;reanalysis-era5-land&quot;</span>
 <span class="n">request</span> <span class="o">=</span> <span class="p">{</span>
@@ -221,13 +228,16 @@
 <span class="n">client</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span><span class="o">.</span><span class="n">download</span><span class="p">()</span>
 </pre></div>
 </div>
+</div></blockquote>
 </section>
 <section id="the-api-request-in-jupyter-notebook">
 <span id="apijupyter"></span><h3>2. The API Request in Jupyter Notebook<a class="headerlink" href="#the-api-request-in-jupyter-notebook" title="Link to this heading"></a></h3>
 <p>Open Jupyter Lab via the command prompt (cmd):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">lab</span>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">lab</span>
 </pre></div>
 </div>
+</div></blockquote>
 <p>If Jupyter Lab does not open, please review the instructions we have prepared for you <a class="reference internal" href="../rst_inhalte/01%20SoftwareKenntnisse.html#software-to-run-jupyter"><span class="std std-ref">here</span></a>.</p>
 <p>We have prepared a Jupyter Notebook for you, where you only need to adjust the output folder and your API key. You can download the notebook from the following link:</p>
 <div class="download-button">

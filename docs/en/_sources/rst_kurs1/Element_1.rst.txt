@@ -15,6 +15,8 @@ Learning Objectives
 	* :ref:`Creating the API request <api_request>`
 	* :ref:`The API request in Jupyter Notebook <api_jupyter>`
 
+----
+
 .. _setup_api:
 
 ----------------------
@@ -63,11 +65,13 @@ Save the document. Place the document in your user directory (C:\\Users\\Usernam
 
 Now you are ready to install the CDS API. Open the command prompt (CMD) and enter the following command:
 
-.. code-block::
-	
-	pip install cdsapi
+	.. code-block::
+		
+		pip install cdsapi
 
 You should now have all the necessary prerequisites to download data from the CDS. In the next step, we will test this with a sample dataset.
+
+----
 
 .. _cds_download:
 
@@ -98,11 +102,11 @@ To automate the download of the desired data via the CDS API, you first need to 
 
 Go to the `Download Tab <https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=download>`_ and select the parameters as follows:
 
-* Temperature: 2m temperature
-* Year: 2024
-* Month: October
-* Day: 01
-* Time: Select all
+	* Temperature: 2m temperature
+	* Year: 2024
+	* Month: October
+	* Day: 01
+	* Time: Select all
 
 You can define your preferred region in the "Geographical Area" section. This step is essential to avoid downloading data for the entire available area.
 
@@ -127,33 +131,33 @@ For the additional parameters (data format and compression), set the fields in t
 
 Once you have accepted the terms of use, simply click "Show API request code," and the automatically generated API request code will appear. For our test data, it looks as follows:
 
-.. code-block::
-	
-	import cdsapi
+	.. code-block::
+		
+		import cdsapi
 
-	dataset = "reanalysis-era5-land"
-	request = {
-		"variable": ["2m_temperature"],
-		"year": "2024",
-		"month": "10",
-		"day": ["01"],
-		"time": [
-			"00:00", "01:00", "02:00",
-			"03:00", "04:00", "05:00",
-			"06:00", "07:00", "08:00",
-			"09:00", "10:00", "11:00",
-			"12:00", "13:00", "14:00",
-			"15:00", "16:00", "17:00",
-			"18:00", "19:00", "20:00",
-			"21:00", "22:00", "23:00"
-		],
-		"data_format": "netcdf",
-		"download_format": "zip",
-		"area": [48.7, 7, 47.1, 11]
-	}
+		dataset = "reanalysis-era5-land"
+		request = {
+			"variable": ["2m_temperature"],
+			"year": "2024",
+			"month": "10",
+			"day": ["01"],
+			"time": [
+				"00:00", "01:00", "02:00",
+				"03:00", "04:00", "05:00",
+				"06:00", "07:00", "08:00",
+				"09:00", "10:00", "11:00",
+				"12:00", "13:00", "14:00",
+				"15:00", "16:00", "17:00",
+				"18:00", "19:00", "20:00",
+				"21:00", "22:00", "23:00"
+			],
+			"data_format": "netcdf",
+			"download_format": "zip",
+			"area": [48.7, 7, 47.1, 11]
+		}
 
-	client = cdsapi.Client()
-	client.retrieve(dataset, request).download()
+		client = cdsapi.Client()
+		client.retrieve(dataset, request).download()
 
 .. _apiJupyter:
 
@@ -163,9 +167,9 @@ Once you have accepted the terms of use, simply click "Show API request code," a
 
 Open Jupyter Lab via the command prompt (cmd):
 
-.. code-block::
+	.. code-block::
 
-	jupyter lab
+		jupyter lab
 
 If Jupyter Lab does not open, please review the instructions we have prepared for you :ref:`here <software-to-run-jupyter>`.
 
