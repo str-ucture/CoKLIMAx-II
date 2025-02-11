@@ -5,9 +5,29 @@
    "id": "23ebf1ed",
    "metadata": {},
    "source": [
-    "# Satellite Lake Water Levels\n",
+    "# Lake Water Levels derived from Satellite Data\n",
     "\n",
-    "This dataset provides water level measurements for 251 lakes across four continents, derived from satellite radar altimetry. These measurements serve as a cost-effective alternative to traditional ground-based systems and are classified as an Essential Climate Variable (ECV). The data is produced by CLS for the Copernicus Climate Change Service to enhance hydrological and climate monitoring on a continental scale.\n",
+    "The water levels of large lakes are an indicator of fluctuations in the hydrological balance of a region and are classified as an Essential Climate Variable (ECV).\n",
+    "\n",
+    "**The indicator is significant for many applications:**\n",
+    "\n",
+    "* **As an indicator of precipitation and evaporation changes**: Water levels respond to changes in a lake’s water balance, which is determined by precipitation, evaporation, and runoff.\n",
+    "* **Linking to temperature trends**: Rising temperatures increase evaporation, which can lead to declining water levels.\n",
+    "* **Storage in hydrological cycles and water resources**: Lakes are important freshwater reservoirs, and their levels influence drinking water supply, agriculture, and energy production (e.g., hydropower).\n",
+    "* **Direct impact on ecosystems**: Changes in water levels affect aquatic and terrestrial ecosystems, for example, by altering habitats for flora and fauna.\n",
+    "* **In connection with extreme events**: Water levels respond to droughts, heavy rainfall events, and glacier melt, making them important indicators of climatic extreme events.\n",
+    "\n",
+    "The dataset used in this notebook provides water level information for 251 lakes across four continents, derived from satellite-based radar altimetry. This data represents a cost-effective alternative to traditional ground-based systems. The data is produced by the Copernicus Land Service (CLS) for the Copernicus Climate Change Service to improve hydrological and climatic monitoring of lakes on a continental scale.\n",
+    "\n",
+    "**The learning objectives of this notebook are:**\n",
+    "\n",
+    "* [Download and extract the dataset](#download)\n",
+    "    * Extract data for Lake Constance\n",
+    "    * Unpack the downloaded file\n",
+    "* [Examine the metadata of the netCDF4 file](#netcdf_investigate)\n",
+    "* [Export the time series in CSV format](#netcdf_to_csv)\n",
+    "* [Analysis and visualization](#netcdf_visualization)\n",
+    "\n",
     "\n",
     "**Information on Dataset:**\n",
     "* Source: [Satellite Lake Water Levels](https://cds.climate.copernicus.eu/datasets/satellite-lake-water-level?tab=overview)\n",
@@ -25,7 +45,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 1,
+   "execution_count": null,
    "id": "a74e11ed",
    "metadata": {},
    "outputs": [],
@@ -52,7 +72,7 @@
    "id": "3c4fbb35",
    "metadata": {},
    "source": [
-    "## 2. Download and Extract the Dataset"
+    "## 2. Download and Extract the Dataset <a id='download'></a>"
    ]
   },
   {
@@ -65,7 +85,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 2,
+   "execution_count": null,
    "id": "507616bf",
    "metadata": {},
    "outputs": [],
@@ -92,7 +112,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 3,
+   "execution_count": null,
    "id": "a199e44d",
    "metadata": {},
    "outputs": [],
@@ -108,18 +128,10 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 4,
+   "execution_count": null,
    "id": "cff16f16",
    "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "Dataset already downloaded.\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "# Execute it to download the dataset:\n",
     "def main_retrieve():\n",
@@ -149,18 +161,10 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 5,
+   "execution_count": null,
    "id": "fbd55870",
    "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "Folder is not empty. Skipping extraction.\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "import zipfile\n",
     "\n",
@@ -190,23 +194,15 @@
    "id": "419d8a9d",
    "metadata": {},
    "source": [
-    "## 3. Read the netCDF4 file and print the Metadata"
+    "## 3. Read the netCDF4 file and print the Metadata <a id='netcdf_investigate'></a>"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 6,
+   "execution_count": null,
    "id": "b85e1dd0",
    "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "Available variables: ['time', 'lat', 'lon', 'water_surface_height_above_reference_datum', 'water_surface_height_uncertainty']\n"
-     ]
-    }
-   ],
+   "outputs": [],
    "source": [
     "import netCDF4 as nc\n",
     "\n",
@@ -221,85 +217,10 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 7,
+   "execution_count": null,
    "id": "3b2a6822",
    "metadata": {},
-   "outputs": [
-    {
-     "data": {
-      "text/html": [
-       "<div>\n",
-       "<style scoped>\n",
-       "    .dataframe tbody tr th:only-of-type {\n",
-       "        vertical-align: middle;\n",
-       "    }\n",
-       "\n",
-       "    .dataframe tbody tr th {\n",
-       "        vertical-align: top;\n",
-       "    }\n",
-       "\n",
-       "    .dataframe thead th {\n",
-       "        text-align: right;\n",
-       "    }\n",
-       "</style>\n",
-       "<table border=\"1\" class=\"dataframe\">\n",
-       "  <thead>\n",
-       "    <tr style=\"text-align: right;\">\n",
-       "      <th></th>\n",
-       "      <th>Description</th>\n",
-       "      <th>Details</th>\n",
-       "    </tr>\n",
-       "  </thead>\n",
-       "  <tbody>\n",
-       "    <tr>\n",
-       "      <th>0</th>\n",
-       "      <td>Variable Name</td>\n",
-       "      <td>water_surface_height_above_reference_datum</td>\n",
-       "    </tr>\n",
-       "    <tr>\n",
-       "      <th>1</th>\n",
-       "      <td>Data Type</td>\n",
-       "      <td>float64</td>\n",
-       "    </tr>\n",
-       "    <tr>\n",
-       "      <th>2</th>\n",
-       "      <td>Shape</td>\n",
-       "      <td>(101,)</td>\n",
-       "    </tr>\n",
-       "    <tr>\n",
-       "      <th>3</th>\n",
-       "      <td>Variable Info</td>\n",
-       "      <td>('time',)</td>\n",
-       "    </tr>\n",
-       "    <tr>\n",
-       "      <th>4</th>\n",
-       "      <td>Units</td>\n",
-       "      <td>m</td>\n",
-       "    </tr>\n",
-       "    <tr>\n",
-       "      <th>5</th>\n",
-       "      <td>Long Name</td>\n",
-       "      <td>water surface height above geoid</td>\n",
-       "    </tr>\n",
-       "  </tbody>\n",
-       "</table>\n",
-       "</div>"
-      ],
-      "text/plain": [
-       "     Description                                     Details\n",
-       "0  Variable Name  water_surface_height_above_reference_datum\n",
-       "1      Data Type                                     float64\n",
-       "2          Shape                                      (101,)\n",
-       "3  Variable Info                                   ('time',)\n",
-       "4          Units                                           m\n",
-       "5      Long Name            water surface height above geoid"
-      ]
-     },
-     "execution_count": 7,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
+   "outputs": [],
    "source": [
     "import pandas as pd\n",
     "\n",
@@ -325,113 +246,11 @@
    ]
   },
   {
-   "cell_type": "code",
-   "execution_count": 8,
-   "id": "9930efbb",
-   "metadata": {},
-   "outputs": [
-    {
-     "data": {
-      "text/html": [
-       "<div>\n",
-       "<style scoped>\n",
-       "    .dataframe tbody tr th:only-of-type {\n",
-       "        vertical-align: middle;\n",
-       "    }\n",
-       "\n",
-       "    .dataframe tbody tr th {\n",
-       "        vertical-align: top;\n",
-       "    }\n",
-       "\n",
-       "    .dataframe thead th {\n",
-       "        text-align: right;\n",
-       "    }\n",
-       "</style>\n",
-       "<table border=\"1\" class=\"dataframe\">\n",
-       "  <thead>\n",
-       "    <tr style=\"text-align: right;\">\n",
-       "      <th></th>\n",
-       "      <th>nc_variables</th>\n",
-       "      <th>unit</th>\n",
-       "      <th>shape</th>\n",
-       "    </tr>\n",
-       "  </thead>\n",
-       "  <tbody>\n",
-       "    <tr>\n",
-       "      <th>0</th>\n",
-       "      <td>time</td>\n",
-       "      <td>days since 1950-01-01</td>\n",
-       "      <td>(101,)</td>\n",
-       "    </tr>\n",
-       "    <tr>\n",
-       "      <th>1</th>\n",
-       "      <td>lat</td>\n",
-       "      <td>degrees_north</td>\n",
-       "      <td>(1,)</td>\n",
-       "    </tr>\n",
-       "    <tr>\n",
-       "      <th>2</th>\n",
-       "      <td>lon</td>\n",
-       "      <td>degrees_east</td>\n",
-       "      <td>(1,)</td>\n",
-       "    </tr>\n",
-       "    <tr>\n",
-       "      <th>3</th>\n",
-       "      <td>water_surface_height_above_reference_datum</td>\n",
-       "      <td>m</td>\n",
-       "      <td>(101,)</td>\n",
-       "    </tr>\n",
-       "    <tr>\n",
-       "      <th>4</th>\n",
-       "      <td>water_surface_height_uncertainty</td>\n",
-       "      <td>m</td>\n",
-       "      <td>(101,)</td>\n",
-       "    </tr>\n",
-       "  </tbody>\n",
-       "</table>\n",
-       "</div>"
-      ],
-      "text/plain": [
-       "                                 nc_variables                   unit   shape\n",
-       "0                                        time  days since 1950-01-01  (101,)\n",
-       "1                                         lat          degrees_north    (1,)\n",
-       "2                                         lon           degrees_east    (1,)\n",
-       "3  water_surface_height_above_reference_datum                      m  (101,)\n",
-       "4            water_surface_height_uncertainty                      m  (101,)"
-      ]
-     },
-     "execution_count": 8,
-     "metadata": {},
-     "output_type": "execute_result"
-    }
-   ],
-   "source": [
-    "# Print a summary of all the variables of the dataset\n",
-    "rows = []\n",
-    "for variable in variables_list:\n",
-    "    try:\n",
-    "        var_obj = nc_dataset.variables[variable]\n",
-    "        unit = getattr(var_obj, 'units', 'N/A')\n",
-    "        shape = var_obj.shape\n",
-    "        rows.append({\n",
-    "            \"nc_variables\": variable,\n",
-    "            \"unit\": unit,\n",
-    "            \"shape\": shape\n",
-    "        })\n",
-    "    except Exception as e:\n",
-    "        print(f\"Error processing variable {variable}: {e}\")\n",
-    "\n",
-    "# Create a DataFrame\n",
-    "df = pd.DataFrame(rows)\n",
-    "df"
-   ]
-  },
-  {
    "cell_type": "markdown",
    "id": "a3b47334",
    "metadata": {},
    "source": [
-    "## 4. Export Dataset to CSV"
+    "## 4. Export Dataset as CSV Format <a id='netcdf_to_csv'></a>"
    ]
   },
   {
@@ -444,7 +263,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 30,
+   "execution_count": null,
    "id": "6316175b",
    "metadata": {},
    "outputs": [],
@@ -486,7 +305,7 @@
    "id": "74bd8a82",
    "metadata": {},
    "source": [
-    "### 5.2 Create DataFrame and Export as CSV"
+    "### 4.2 Create DataFrame and Export as CSV"
    ]
   },
   {
@@ -516,7 +335,7 @@
     "pd.options.display.float_format = '{:,.2f}'.format\n",
     "    \n",
     "# Display DataFrame\n",
-    "dataframe"
+    "dataframe.head()"
    ]
   },
   {
@@ -526,19 +345,25 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Find the rows for the maximum and minum value of 'water_surface_height_above_reference_datum'\n",
+    "# Find the index labels for the maximum and minimum values\n",
     "max_index_label = dataframe['water_surface_height_above_reference_datum'].idxmax()\n",
     "min_index_label = dataframe['water_surface_height_above_reference_datum'].idxmin()\n",
     "\n",
-    "max_index_position = dataframe.index.get_loc(max_index_label)\n",
-    "min_index_position = dataframe.index.get_loc(min_index_label)\n",
+    "# Retrieve the rows corresponding to the maximum and minimum values\n",
+    "max_row = dataframe.loc[max_index_label]\n",
+    "min_row = dataframe.loc[min_index_label]\n",
     "\n",
-    "max_row = dataframe.iloc[max_index_position]\n",
-    "min_row = dataframe.iloc[min_index_position]\n",
+    "# Format the index labels to show only the date part\n",
+    "max_date_str = max_index_label.strftime('%Y-%m-%d')\n",
+    "min_date_str = min_index_label.strftime('%Y-%m-%d')\n",
     "\n",
+    "# Print the results\n",
+    "print(f\"1. Maximum Water Surface Height: ({max_date_str})\")\n",
+    "print(max_row.to_frame().T.to_string(index=False))\n",
+    "print()\n",
     "\n",
-    "# Display the row with the maximum water surface height\n",
-    "max_row, min_row"
+    "print(f\"2. Minimum Water Surface Height: ({min_date_str})\")\n",
+    "print(min_row.to_frame().T.to_string(index=False))"
    ]
   },
   {
@@ -546,7 +371,7 @@
    "id": "0a97ace6",
    "metadata": {},
    "source": [
-    "## 5. Analysis and Visualization"
+    "## 5. Analysis and Visualization Options <a id='netcdf_visualization'></a>"
    ]
   },
   {
@@ -695,7 +520,7 @@
     "\n",
     "# Add description and source information\n",
     "plt.figtext(\n",
-    "    0.5,\n",
+    "    0.4,\n",
     "    -0.05,\n",
     "    (\n",
     "        'Description: Water level of Lake Constance, determined from satellite data from the CDS.\\n'\n",
@@ -796,7 +621,7 @@
     "\n",
     "# Add description and source information\n",
     "plt.figtext(\n",
-    "    0.5,\n",
+    "    0.4,\n",
     "    -0.05,\n",
     "    (\n",
     "        'Description: Water level of Lake Constance, determined from satellite data from the CDS.\\n'\n",
@@ -894,7 +719,7 @@
     "    \n",
     "# Add description and source information\n",
     "plt.figtext(\n",
-    "    0.5,\n",
+    "    0.4,\n",
     "    -0.05,\n",
     "    (\n",
     "        'Description: Water level of Lake Constance, determined from satellite data from the CDS.\\n'\n",

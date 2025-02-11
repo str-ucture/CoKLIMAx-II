@@ -20,15 +20,12 @@ The first part of the documentation focuses on preparing your computer for worki
 
   ./rst_kurs1/Element_1
   ./rst_kurs1/Element_2
-  ./rst_kurs1/Element_3
 
 .. toctree::
   :maxdepth: 2
   :caption: Course 2:
 
   ./notebooks/kurs2/01 satellite-lake-water-level
-  ./notebooks/kurs2/02 satellite-lake-water-temperature
-  ./notebooks/kurs2/03 sis-temperature-statistics
 
 .. toctree::
   :maxdepth: 2

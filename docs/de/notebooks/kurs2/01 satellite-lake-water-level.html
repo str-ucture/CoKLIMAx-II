@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Satelliten-Wasserstände von Seen &mdash; Coklimax 1.0.0 Dokumentation</title>
+  <title>Wasserstände von Seen abgleitet aus Satellitendaten &mdash; Coklimax 1.0.0 Dokumentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -27,7 +27,7 @@
     <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
     <link rel="search" title="Suche" href="../../search.html" />
     <link rel="next" title="SentinelHub Satellite Data Explorer" href="../kurs3/01%20senthub_downloader.html" />
-    <link rel="prev" title="Element 3" href="../../rst_kurs1/Element_3.html" /> 
+    <link rel="prev" title="Element 2" href="../../rst_kurs1/Element_2.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,28 +60,28 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/Element_1.html">Element 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/Element_2.html">Element 2</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/Element_3.html">Element 3</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kurs 2:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Satelliten-Wasserstände von Seen</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Wasserstände von Seen abgleitet aus Satellitendaten</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#festlegen-der-pfade-und-arbeitsverzeichnisse">1. Festlegen der Pfade und Arbeitsverzeichnisse</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#herunterladen-und-entpacken-des-datensatzes">2. Herunterladen und Entpacken des Datensatzes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#herunterladen-und-entpacken-des-datensatzes">2. Herunterladen und Entpacken des Datensatzes <a id='download'></a></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#authentifizierung">2.1 Authentifizierung</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#definieren-sie-die-request-und-laden-sie-den-datensatz-herunter">2.2 Definieren Sie die „request“ und laden Sie den Datensatz herunter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#entpacken-des-zip-ordners">2.3 Entpacken des Zip-Ordners</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#lesen-der-netcdf4-datei-und-ausdrucken-der-metadaten">3. Lesen der netCDF4-Datei und Ausdrucken der Metadaten</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#exportieren-als-csv">4. Exportieren als CSV</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#erstellen-des-dataframes-und-exportieren-als-csv">4.1 Erstellen des DataFrames und Exportieren als CSV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#untersuchen-der-metadaten-der-netcdf4-datei">3. Untersuchen der Metadaten der netCDF4-Datei <a id='netcdf_investigate'></a></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exportieren-der-zeitreihe-im-csv-format">4. Exportieren der Zeitreihe im csv-Format <a id='netcdf_to_csv'></a></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#definieren-sie-eine-funktion-zur-berechnung-des-tagesdurchschnitts">4.1 Definieren Sie eine Funktion zur Berechnung des Tagesdurchschnitts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#erstellen-des-dataframes-und-export-als-csv">4.2 Erstellen des DataFrames und Export als CSV</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#analyse-und-visualisierung">5. Analyse und Visualisierung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#analyse-und-visualisierungsmoglichkeiten">5. Analyse und Visualisierungsmöglichkeiten <a id='netcdf_visualization'></a></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#visualisierung-aller-daten-ohne-karte">5.1 Visualisierung aller Daten (ohne Karte)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#visualisierung-der-monatlichen-durchschnittswerte-ohne-karte">5.2 Visualisierung der monatlichen Durchschnittswerte (ohne Karte)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#visualisierung-aller-daten-mit-einer-karte">5.3 Visualisierung aller Daten (mit einer Karte)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#visualisierung-der-monatlichen-durchschnittswerte-mit-einer-karte">5.4 Visualisierung der monatlichen Durchschnittswerte (mit einer Karte)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualisierung-der-monatlichen-mittelwerte-ohne-karte">5.2 Visualisierung der monatlichen Mittelwerte (ohne Karte)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualisierung-aller-daten-mit-karte">5.3 Visualisierung aller Daten (mit Karte)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#visualisierung-der-monatlichen-mittelwerte-mit-karte">5.4 Visualisierung der monatlichen Mittelwerte (mit Karte)</a></li>
 </ul>
 </li>
 </ul>
@@ -110,7 +110,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Satelliten-Wasserstände von Seen</li>
+      <li class="breadcrumb-item active">Wasserstände von Seen abgleitet aus Satellitendaten</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/notebooks/kurs2/01 satellite-lake-water-level.ipynb.txt" rel="nofollow"> Quelltext anzeigen</a>
 <div id='language-switcher' style='text-align: right; margin-top: 10px;'>
@@ -126,9 +126,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="satelliten-wasserstande-von-seen">
-<h1>Satelliten-Wasserstände von Seen<a class="headerlink" href="#satelliten-wasserstande-von-seen" title="Link to this heading"></a></h1>
-<p>Dieses Datenset liefert Wasserstandsmessungen für 251 Seen auf vier Kontinenten, abgeleitet aus satellitenbasierter Radaraltimetrie. Diese Messungen stellen eine kostengünstige Alternative zu traditionellen bodengestützten Systemen dar und werden als wesentliche Klimavariable (Essential Climate Variable, ECV) eingestuft. Die Daten werden von CLS für den Copernicus Climate Change Service erstellt, um die hydrologische und klimatische Überwachung auf kontinentaler Ebene zu verbessern.</p>
+  <section id="wasserstande-von-seen-abgleitet-aus-satellitendaten">
+<h1>Wasserstände von Seen abgleitet aus Satellitendaten<a class="headerlink" href="#wasserstande-von-seen-abgleitet-aus-satellitendaten" title="Link to this heading"></a></h1>
+<p>Die Wasserstände großer Seen sind ein Indikator für Schwankungen im hydrologischen Haushalt einer Region und werden als essentielle Klimavariable (Essential Climate Variable, ECV) eingestuft.</p>
+<p><strong>Der Indikator ist für viele Einsatzfelder bedeutsam:</strong></p>
+<ul class="simple">
+<li><p>als Indikator für Niederschlags- und Verdunstungsänderungen: Wasserstände reagieren auf Veränderungen in der Wasserbilanz eines Sees, die durch Niederschlag, Verdunstung und Abfluss bestimmt wird.</p></li>
+<li><p>Zur Verknüpfung mit Temperaturtrends: Steigende Temperaturen erhöhen die Verdunstung, was zu sinkenden Wasserständen führen kann.</p></li>
+<li><p>Speicher in hydrologischen Kreisläufen und Wasserressourcen: Seen sind bedeutende Süßwasserspeicher, und ihre Pegelstände beeinflussen die Trinkwasserversorgung, Landwirtschaft und Energieproduktion (z. B. Wasserkraft).</p></li>
+<li><p>Direkter Einfluss auf Ökosysteme: Änderungen der Wasserstände haben Auswirkungen auf aquatische und terrestrische Ökosysteme, z. B. durch veränderte Lebensräume für Flora und Fauna.</p></li>
+<li><p>in der Verbindung mit Extremereignissen: Wasserstände reagieren auf Dürren, Starkregenereignisse und Gletscherschmelze, was sie zu wichtigen Indikatoren für klimatische Extremereignisse macht.</p></li>
+</ul>
+<p>Der Datensatz, den Sie in diesem Notebook bearbeiten liefert Wasserstandsinformationen für 251 Seen auf vier Kontinenten, abgeleitet aus satellitenbasierter Radaraltimetrie. Die Informationen stellen eine kostengünstige Alternative zu traditionellen bodengestützten Systemen dar Die Daten werden vom Copernicus Land Service (CLS) für den Copernicus Climate Change Service erstellt, um die hydrologische und klimatische Überwachung von Seen auf kontinentaler Ebene zu verbessern.</p>
+<p><strong>In diesem Notebook sollen folgende Lernziele erarbeitet werden:</strong></p>
+<ul class="simple">
+<li><p>Herunterladen und Entpacken des Datensatzes</p>
+<ul>
+<li><p>Extrahieren der Daten für den Bodensee</p></li>
+<li><p>Entpacken der heruntergeladenen Datei</p></li>
+</ul>
+</li>
+<li><p>Untersuchen der Metadaten der netCDF4-Datei</p></li>
+<li><p>Exportieren der Zeitreihe im csv-Format</p></li>
+<li><p>Analyse und Visualisierung</p></li>
+</ul>
 <p><strong>Informationen zum Datensatz:</strong></p>
 <ul class="simple">
 <li><p>Quelle: <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/satellite-lake-water-level?tab=overview">Satellite Lake Water Levels</a></p></li>
@@ -160,7 +181,7 @@
 </div>
 </section>
 <section id="herunterladen-und-entpacken-des-datensatzes">
-<h2>2. Herunterladen und Entpacken des Datensatzes<a class="headerlink" href="#herunterladen-und-entpacken-des-datensatzes" title="Link to this heading"></a></h2>
+<h2>2. Herunterladen und Entpacken des Datensatzes <a id='download'></a><a class="headerlink" href="#herunterladen-und-entpacken-des-datensatzes" title="Link to this heading"></a></h2>
 <section id="authentifizierung">
 <h3>2.1 Authentifizierung<a class="headerlink" href="#authentifizierung" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
@@ -204,24 +225,19 @@
 
     <span class="c1"># Den Datensatz nur herunterladen, wenn er noch nicht heruntergeladen wurde</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dataset_filepath</span><span class="p">):</span>
+        <span class="c1"># Rufen Sie den CDS-Client nur auf, wenn der Datensatz noch nicht heruntergeladen wurde.</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">main</span><span class="p">()</span>
         <span class="c1"># Den Datensatz mit den definierten Anforderungsparametern herunterladen</span>
         <span class="n">client</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">dataset_filepath</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Datensatz bereits heruntergeladen.&quot;</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">client</span> <span class="o">=</span> <span class="n">main</span><span class="p">()</span>
     <span class="n">main_retrieve</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-02-11 09:37:29,925 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-02-11 09:37:29,925 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
-</pre></div>
-</div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Datensatz bereits heruntergeladen.
 </pre></div>
 </div>
@@ -264,18 +280,18 @@
 </div>
 </section>
 </section>
-<section id="lesen-der-netcdf4-datei-und-ausdrucken-der-metadaten">
-<h2>3. Lesen der netCDF4-Datei und Ausdrucken der Metadaten<a class="headerlink" href="#lesen-der-netcdf4-datei-und-ausdrucken-der-metadaten" title="Link to this heading"></a></h2>
+<section id="untersuchen-der-metadaten-der-netcdf4-datei">
+<h2>3. Untersuchen der Metadaten der netCDF4-Datei <a id='netcdf_investigate'></a><a class="headerlink" href="#untersuchen-der-metadaten-der-netcdf4-datei" title="Link to this heading"></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
 
 <span class="c1"># Öffnen der NetCDF-Datei im Lesemodus</span>
 <span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
 
 <span class="c1"># Auflisten aller Variablen im Datensatz</span>
-<span class="n">variables_list</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">variables_list</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Verfügbare Variablen: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">variables_list</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -292,7 +308,7 @@
 
 <span class="c1"># Variablennamen aus vorhandenen Variablen definieren und Variablendaten lesen</span>
 <span class="n">variable_name</span> <span class="o">=</span> <span class="s1">&#39;water_surface_height_above_reference_datum&#39;</span>
-<span class="n">variable_data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
+<span class="n">variable_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
 
 <span class="c1"># Erstellen einer Zusammenfassung der Hauptvariablen</span>
 <span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
@@ -371,58 +387,82 @@
 </div></div></div>
 </div>
 </section>
-<section id="exportieren-als-csv">
-<h2>4. Exportieren als CSV<a class="headerlink" href="#exportieren-als-csv" title="Link to this heading"></a></h2>
-<section id="erstellen-des-dataframes-und-exportieren-als-csv">
-<h3>4.1 Erstellen des DataFrames und Exportieren als CSV<a class="headerlink" href="#erstellen-des-dataframes-und-exportieren-als-csv" title="Link to this heading"></a></h3>
+<section id="exportieren-der-zeitreihe-im-csv-format">
+<h2>4. Exportieren der Zeitreihe im csv-Format <a id='netcdf_to_csv'></a><a class="headerlink" href="#exportieren-der-zeitreihe-im-csv-format" title="Link to this heading"></a></h2>
+<section id="definieren-sie-eine-funktion-zur-berechnung-des-tagesdurchschnitts">
+<h3>4.1 Definieren Sie eine Funktion zur Berechnung des Tagesdurchschnitts<a class="headerlink" href="#definieren-sie-eine-funktion-zur-berechnung-des-tagesdurchschnitts" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
 
-<span class="c1"># Öffnen Sie den NetCDF-Datensatz mit xarray</span>
+<span class="c1"># Funktion zur Konvertierung von NetCDF-Daten in ein Pandas DataFrame</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Konvertiert NetCDF-Daten, die die Höhe der Wasseroberfläche und deren Unsicherheit enthalten, </span>
+<span class="sd">    in ein Pandas DataFrame.</span>
+
+<span class="sd">    Parameter:</span>
+<span class="sd">    nc_file (str): Pfad zur NetCDF-Datei.</span>
+
+<span class="sd">    Rückgabe:</span>
+<span class="sd">    pd.DataFrame: Ein DataFrame mit der Höhe der Wasseroberfläche, der Unsicherheit </span>
+<span class="sd">                  und den zugehörigen Metadaten (z. B. Zeit- und Raumkoordinaten).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Öffnen der NetCDF-Datei als xarray Dataset</span>
     <span class="k">with</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">nc_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">nc_dataset</span><span class="p">:</span>
+        <span class="c1"># Extrahieren der Variablen für die Höhe der Wasseroberfläche über dem Referenzniveau</span>
         <span class="n">variable_data_water_surface_height</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;water_surface_height_above_reference_datum&#39;</span><span class="p">]</span>
+
+        <span class="c1"># Extrahieren der Variablen für die Unsicherheit der Wasseroberflächenhöhe</span>
         <span class="n">variable_data_water_surface_height_uncertainty</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;water_surface_height_uncertainty&#39;</span><span class="p">]</span>
 
-        <span class="c1"># Konvertiert den xarray-Datensatz in einen DataFrame</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">variable_data_water_surface_height</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;uncertainty&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable_data_water_surface_height_uncertainty</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;time&#39;</span><span class="p">])[</span><span class="s1">&#39;water_surface_height_uncertainty&#39;</span><span class="p">]</span>
+        <span class="c1"># Konvertieren des xarray Datasets in ein DataFrame</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">variable_data_water_surface_height</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+
+        <span class="c1"># Zusammenführen der Unsicherheitsdaten in das Haupt-DataFrame</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;uncertainty&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable_data_water_surface_height_uncertainty</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">df</span>
 </pre></div>
 </div>
 </div>
 </div>
+</section>
+<section id="erstellen-des-dataframes-und-export-als-csv">
+<h3>4.2 Erstellen des DataFrames und Export als CSV<a class="headerlink" href="#erstellen-des-dataframes-und-export-als-csv" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># CSV-Dateinamen und Dateipfad für die Ausgabe definieren</span>
-<span class="n">csv_filename</span> <span class="o">=</span> <span class="s1">&#39;satellite-lake-water-level.csv&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definiere den CSV-Dateinamen und den Dateipfad für die Ausgabe</span>
+<span class="n">csv_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">.csv&quot;</span>
 <span class="n">csv_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">csv_filename</span><span class="p">)</span>
 
-<span class="c1"># Exportieren Sie die Pivot-Tabelle als CSV, falls sie noch nicht existiert</span>
+<span class="c1"># Exportiere die Pivot-Tabelle als CSV, falls sie noch nicht existiert</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">):</span>
     <span class="n">dataframe</span> <span class="o">=</span> <span class="n">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="o">=</span><span class="n">nc_filepath</span><span class="p">)</span>
     <span class="n">dataframe</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf8&#39;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gefilterte Daten erfolgreich nach </span><span class="si">{</span><span class="n">csv_filepath</span><span class="si">}</span><span class="s2"> exportiert&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gefilterte Daten erfolgreich exportiert nach </span><span class="si">{</span><span class="n">csv_filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Datei existiert bereits unter </span><span class="si">{</span><span class="n">csv_filepath</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">Überspringe Export.&quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lese vorhandene CSV-Datei ein...&quot;</span><span class="p">)</span>
-    <span class="c1"># Lesen Sie die CSV-Datei mit Datums-/Uhrzeitanalyse</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Datei existiert bereits unter </span><span class="si">{</span><span class="n">csv_filepath</span><span class="si">}</span><span class="s2">.</span><span class="se">\n</span><span class="s2">Überspringe den Export.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lese bestehende CSV-Datei ein...&quot;</span><span class="p">)</span>
+    <span class="c1"># Lese die CSV-Datei mit Datums-Parsing</span>
     <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
 
-<span class="c1"># Pandas-Anzeigeoptionen anpassen</span>
+<span class="c1"># Modify pandas display options</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
     
-<span class="c1"># DataFrame anzeigen</span>
+<span class="c1"># Ändere die Pandas-Anzeigeoptionen</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
+    
+<span class="c1"># Zeige das DataFrame an</span>
 <span class="n">dataframe</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Datei existiert bereits unter .\data\satellite-lake-water-level\csv\satellite-lake-water-level.csv.
-Überspringe Export.
-Lese vorhandene CSV-Datei ein...
+Überspringe den Export.
+Lese bestehende CSV-Datei ein...
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -482,10 +522,46 @@ Lese vorhandene CSV-Datei ein...
 </table>
 </div></div></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Suchen Sie die Indexbeschriftungen für die Maximal- und Minimalwerte</span>
+<span class="n">max_index_label</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;water_surface_height_above_reference_datum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+<span class="n">min_index_label</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;water_surface_height_above_reference_datum&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()</span>
+
+<span class="c1"># Rufen Sie die Zeilen ab, die den Maximal- und Minimalwerten entsprechen</span>
+<span class="n">max_row</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">max_index_label</span><span class="p">]</span>
+<span class="n">min_row</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">min_index_label</span><span class="p">]</span>
+
+<span class="c1"># Formatieren Sie die Indexbeschriftungen so, dass nur der Datumsteil angezeigt wird</span>
+<span class="n">max_date_str</span> <span class="o">=</span> <span class="n">max_index_label</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">min_date_str</span> <span class="o">=</span> <span class="n">min_index_label</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Drucken Sie die Ergebnisse</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1. Maximum Water Surface Height: (</span><span class="si">{</span><span class="n">max_date_str</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">max_row</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2. Minimum Water Surface Height: (</span><span class="si">{</span><span class="n">min_date_str</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">min_row</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1. Maximum Water Surface Height: (2016-07-09)
+ water_surface_height_above_reference_datum  uncertainty
+                                     396.13         0.13
+
+2. Minimum Water Surface Height: (2017-02-10)
+ water_surface_height_above_reference_datum  uncertainty
+                                     393.69         1.08
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
-<section id="analyse-und-visualisierung">
-<h2>5. Analyse und Visualisierung<a class="headerlink" href="#analyse-und-visualisierung" title="Link to this heading"></a></h2>
+<section id="analyse-und-visualisierungsmoglichkeiten">
+<h2>5. Analyse und Visualisierungsmöglichkeiten <a id='netcdf_visualization'></a><a class="headerlink" href="#analyse-und-visualisierungsmoglichkeiten" title="Link to this heading"></a></h2>
 <section id="visualisierung-aller-daten-ohne-karte">
 <h3>5.1 Visualisierung aller Daten (ohne Karte)<a class="headerlink" href="#visualisierung-aller-daten-ohne-karte" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
@@ -528,12 +604,12 @@ Lese vorhandene CSV-Datei ein...
 
 <span class="c1"># Hinzufügen einer Beschreibung und Quelleninformation</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span>
-    <span class="mf">0.5</span><span class="p">,</span>
+    <span class="mf">0.4</span><span class="p">,</span>
     <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span>
     <span class="p">(</span>
-        <span class="s1">&#39;Beschreibung: Wasserstand des Bodensees, bestimmt aus Satellitendaten des CDS.</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;Beschreibung: Wasserstand des Bodensees, abgeleitet aus Satellitendaten des CDS.</span><span class="se">\n</span><span class="s1">&#39;</span>
         <span class="s1">&#39;Quelle: Copernicus Climate Change Service, Climate Data Store, (2020): Seepegelstände von 1992 &#39;</span>
-        <span class="s1">&#39;bis heute, abgeleitet aus Satellitenbeobachtungen. Copernicus Climate Change Service (C3S) Climate Data &#39;</span>
+        <span class="s1">&#39;bis heute, abgeleitet aus Satellitendaten. Copernicus Climate Change Service (C3S) Climate Data &#39;</span>
         <span class="s1">&#39;Store (CDS). DOI: 10.24381/cds.5714c668 (Zugriff am 16-10-2024)&#39;</span>
     <span class="p">),</span>
     <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
@@ -550,12 +626,12 @@ Lese vorhandene CSV-Datei ein...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/cfb5f6f20d7534e64f09d68ab04e0af1e1f95c0d73798bceeb60bcb773538066.png" src="../../_images/cfb5f6f20d7534e64f09d68ab04e0af1e1f95c0d73798bceeb60bcb773538066.png" />
+<img alt="../../_images/939a8ad28ddef3713cf5b3b5711fb0913a6cc2cb7ffe1d270b44d7491346aa19.png" src="../../_images/939a8ad28ddef3713cf5b3b5711fb0913a6cc2cb7ffe1d270b44d7491346aa19.png" />
 </div>
 </div>
 </section>
-<section id="visualisierung-der-monatlichen-durchschnittswerte-ohne-karte">
-<h3>5.2 Visualisierung der monatlichen Durchschnittswerte (ohne Karte)<a class="headerlink" href="#visualisierung-der-monatlichen-durchschnittswerte-ohne-karte" title="Link to this heading"></a></h3>
+<section id="visualisierung-der-monatlichen-mittelwerte-ohne-karte">
+<h3>5.2 Visualisierung der monatlichen Mittelwerte (ohne Karte)<a class="headerlink" href="#visualisierung-der-monatlichen-mittelwerte-ohne-karte" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gruppiere die Daten nach Monat und berechne den Mittelwert, die Standardabweichung und die Stichprobengröße</span>
@@ -616,7 +692,7 @@ Lese vorhandene CSV-Datei ein...
 
 <span class="c1"># Füge eine Beschreibung und Quellenangabe hinzu</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span>
-    <span class="mf">0.5</span><span class="p">,</span>
+    <span class="mf">0.4</span><span class="p">,</span>
     <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span>
     <span class="p">(</span>
         <span class="s1">&#39;Beschreibung: Wasserstand des Bodensees, ermittelt aus Satellitendaten des CDS.</span><span class="se">\n</span><span class="s1">&#39;</span>
@@ -638,12 +714,12 @@ Lese vorhandene CSV-Datei ein...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/cae3c0a0979807e7e0f06f51d5361d8524fb654deee4984377d8202c7d18d189.png" src="../../_images/cae3c0a0979807e7e0f06f51d5361d8524fb654deee4984377d8202c7d18d189.png" />
+<img alt="../../_images/cbaebb2e6a4289dd471d5813f346c689b4f05620b8bcd406fe91612b2a693625.png" src="../../_images/cbaebb2e6a4289dd471d5813f346c689b4f05620b8bcd406fe91612b2a693625.png" />
 </div>
 </div>
 </section>
-<section id="visualisierung-aller-daten-mit-einer-karte">
-<h3>5.3 Visualisierung aller Daten (mit einer Karte)<a class="headerlink" href="#visualisierung-aller-daten-mit-einer-karte" title="Link to this heading"></a></h3>
+<section id="visualisierung-aller-daten-mit-karte">
+<h3>5.3 Visualisierung aller Daten (mit Karte)<a class="headerlink" href="#visualisierung-aller-daten-mit-karte" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
@@ -651,7 +727,7 @@ Lese vorhandene CSV-Datei ein...
 <span class="kn">import</span><span class="w"> </span><span class="nn">contextily</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ctx</span> 
 
 <span class="c1"># Definiere den Punkt für den Bodensee (ungefähre Koordinaten)</span>
-<span class="n">bodensee_point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">][:][</span><span class="mi">0</span><span class="p">],</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">][:][</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">bodensee_point</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;lon&#39;</span><span class="p">][:][</span><span class="mi">0</span><span class="p">],</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="s1">&#39;lat&#39;</span><span class="p">][:][</span><span class="mi">0</span><span class="p">])</span>
 
 <span class="c1"># Erstelle ein GeoDataFrame mit dem Bodensee-Punkt</span>
 <span class="n">lake_bodensee</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoDataFrame</span><span class="p">(</span>
@@ -712,7 +788,7 @@ Lese vorhandene CSV-Datei ein...
 
 <span class="c1"># Hinzufügen einer Beschreibung und Quelleninformation</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span>
-    <span class="mf">0.5</span><span class="p">,</span>
+    <span class="mf">0.4</span><span class="p">,</span>
     <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span>
     <span class="p">(</span>
         <span class="s1">&#39;Beschreibung: Wasserstand des Bodensees, bestimmt aus Satellitendaten des CDS.</span><span class="se">\n</span><span class="s1">&#39;</span>
@@ -734,12 +810,12 @@ Lese vorhandene CSV-Datei ein...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/c908c098297ce3b496d449f6ebc39d529390b118496f05573b65b70199325f51.png" src="../../_images/c908c098297ce3b496d449f6ebc39d529390b118496f05573b65b70199325f51.png" />
+<img alt="../../_images/dfd6927dc661ffb51ec222baca8cc60356dd3c13ae28ef2d20effb3740e68d3c.png" src="../../_images/dfd6927dc661ffb51ec222baca8cc60356dd3c13ae28ef2d20effb3740e68d3c.png" />
 </div>
 </div>
 </section>
-<section id="visualisierung-der-monatlichen-durchschnittswerte-mit-einer-karte">
-<h3>5.4 Visualisierung der monatlichen Durchschnittswerte (mit einer Karte)<a class="headerlink" href="#visualisierung-der-monatlichen-durchschnittswerte-mit-einer-karte" title="Link to this heading"></a></h3>
+<section id="visualisierung-der-monatlichen-mittelwerte-mit-karte">
+<h3>5.4 Visualisierung der monatlichen Mittelwerte (mit Karte)<a class="headerlink" href="#visualisierung-der-monatlichen-mittelwerte-mit-karte" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Erstelle die Figur und Achsen</span>
@@ -805,7 +881,7 @@ Lese vorhandene CSV-Datei ein...
 
 <span class="c1"># Füge eine Beschreibung und Quellenangabe hinzu</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span>
-    <span class="mf">0.5</span><span class="p">,</span>
+    <span class="mf">0.4</span><span class="p">,</span>
     <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span>
     <span class="p">(</span>
         <span class="s1">&#39;Beschreibung: Wasserstand des Bodensees, ermittelt aus Satellitendaten des CDS.</span><span class="se">\n</span><span class="s1">&#39;</span>
@@ -827,7 +903,7 @@ Lese vorhandene CSV-Datei ein...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ec9a96c73e690239fe606a0ebde80ff064e2aa6c0f47ec35bdef17d892525d15.png" src="../../_images/ec9a96c73e690239fe606a0ebde80ff064e2aa6c0f47ec35bdef17d892525d15.png" />
+<img alt="../../_images/010e9937b60de736efea23ccbcac42ad03de179c67e587903046e9d50badf3ca.png" src="../../_images/010e9937b60de736efea23ccbcac42ad03de179c67e587903046e9d50badf3ca.png" />
 </div>
 </div>
 </section>
@@ -838,7 +914,7 @@ Lese vorhandene CSV-Datei ein...
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../../rst_kurs1/Element_3.html" class="btn btn-neutral float-left" title="Element 3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="../../rst_kurs1/Element_2.html" class="btn btn-neutral float-left" title="Element 2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
         <a href="../kurs3/01%20senthub_downloader.html" class="btn btn-neutral float-right" title="SentinelHub Satellite Data Explorer" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

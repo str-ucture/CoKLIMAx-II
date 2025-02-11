@@ -20,7 +20,6 @@ Im ersten Teil der Dokumentation geht es um die Vorbereitung Ihres Computers auf
 
   ./rst_kurs1/Element_1
   ./rst_kurs1/Element_2
-  ./rst_kurs1/Element_3
 
 .. toctree::
   :maxdepth: 2
