@@ -20,7 +20,7 @@ Learning Objectives
 .. _setup_api:
 
 ----------------------
-Setting Up the CDS API
+Setting Up the CDS API 
 ----------------------
 
 To set up the CDS API (Application Programming Interface, required installation to download data from the CDS), you need a user account in the Copernicus Climate Data Store (CDS). You can create this account directly via the `CDS <https://cds.climate.copernicus.eu/>`_.

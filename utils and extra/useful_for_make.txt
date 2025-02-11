@@ -7,10 +7,15 @@ run
 
 .\make.bat clean
 .\make.bat html
+
+
 .\make_en.bat html
 .\make_de.bat html
 python .\update_dropdown.py
 python .\update_images.py
+
+
+
 git add .
 git commit -m "updates"
 git push

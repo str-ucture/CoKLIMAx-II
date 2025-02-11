@@ -28,12 +28,6 @@ The first part of the documentation focuses on preparing your computer for worki
   ./notebooks/kurs2/01 satellite-lake-water-level
 
 .. toctree::
-  :maxdepth: 2
-  :caption: Course 3:
-
-  ./notebooks/kurs3/01 senthub_downloader
-
-.. toctree::
    :maxdepth: 2
    :caption: The Jupyter-Notebook Library:
 

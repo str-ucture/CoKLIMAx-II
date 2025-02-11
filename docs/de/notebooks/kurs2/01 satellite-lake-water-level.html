@@ -65,19 +65,19 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Wasserstände von Seen abgleitet aus Satellitendaten</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#festlegen-der-pfade-und-arbeitsverzeichnisse">1. Festlegen der Pfade und Arbeitsverzeichnisse</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#herunterladen-und-entpacken-des-datensatzes">2. Herunterladen und Entpacken des Datensatzes <a id='download'></a></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#herunterladen-und-entpacken-des-datensatzes">2. Herunterladen und Entpacken des Datensatzes</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#authentifizierung">2.1 Authentifizierung</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#definieren-sie-die-request-und-laden-sie-den-datensatz-herunter">2.2 Definieren Sie die „request“ und laden Sie den Datensatz herunter</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#entpacken-des-zip-ordners">2.3 Entpacken des Zip-Ordners</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#untersuchen-der-metadaten-der-netcdf4-datei">3. Untersuchen der Metadaten der netCDF4-Datei <a id='netcdf_investigate'></a></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#exportieren-der-zeitreihe-im-csv-format">4. Exportieren der Zeitreihe im csv-Format <a id='netcdf_to_csv'></a></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#untersuchen-der-metadaten-der-netcdf4-datei">3. Untersuchen der Metadaten der netCDF4-Datei</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exportieren-der-zeitreihe-im-csv-format">4. Exportieren der Zeitreihe im csv-Format</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#definieren-sie-eine-funktion-zur-berechnung-des-tagesdurchschnitts">4.1 Definieren Sie eine Funktion zur Berechnung des Tagesdurchschnitts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#erstellen-des-dataframes-und-export-als-csv">4.2 Erstellen des DataFrames und Export als CSV</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#analyse-und-visualisierungsmoglichkeiten">5. Analyse und Visualisierungsmöglichkeiten <a id='netcdf_visualization'></a></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#analyse-und-visualisierungsmoglichkeiten">5. Analyse und Visualisierungsmöglichkeiten</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#visualisierung-aller-daten-ohne-karte">5.1 Visualisierung aller Daten (ohne Karte)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visualisierung-der-monatlichen-mittelwerte-ohne-karte">5.2 Visualisierung der monatlichen Mittelwerte (ohne Karte)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visualisierung-aller-daten-mit-karte">5.3 Visualisierung aller Daten (mit Karte)</a></li>
@@ -115,8 +115,8 @@
             <a href="../../_sources/notebooks/kurs2/01 satellite-lake-water-level.ipynb.txt" rel="nofollow"> Quelltext anzeigen</a>
 <div id='language-switcher' style='text-align: right; margin-top: 10px;'>
     <select onchange="location = this.value;">
-        <option value='/./CoKLIMAx-II/en\notebooks\kurs2\01 satellite-lake-water-level.html'>EN</option>
-        <option value='/./CoKLIMAx-II/de\notebooks\kurs2\01 satellite-lake-water-level.html' selected>DE</option>
+        <option value='/./docs/en\notebooks\kurs2\01 satellite-lake-water-level.html'>EN</option>
+        <option value='/./docs/de\notebooks\kurs2\01 satellite-lake-water-level.html' selected>DE</option>
     </select>
 </div>
       </li>
@@ -131,23 +131,23 @@
 <p>Die Wasserstände großer Seen sind ein Indikator für Schwankungen im hydrologischen Haushalt einer Region und werden als essentielle Klimavariable (Essential Climate Variable, ECV) eingestuft.</p>
 <p><strong>Der Indikator ist für viele Einsatzfelder bedeutsam:</strong></p>
 <ul class="simple">
-<li><p>als Indikator für Niederschlags- und Verdunstungsänderungen: Wasserstände reagieren auf Veränderungen in der Wasserbilanz eines Sees, die durch Niederschlag, Verdunstung und Abfluss bestimmt wird.</p></li>
-<li><p>Zur Verknüpfung mit Temperaturtrends: Steigende Temperaturen erhöhen die Verdunstung, was zu sinkenden Wasserständen führen kann.</p></li>
-<li><p>Speicher in hydrologischen Kreisläufen und Wasserressourcen: Seen sind bedeutende Süßwasserspeicher, und ihre Pegelstände beeinflussen die Trinkwasserversorgung, Landwirtschaft und Energieproduktion (z. B. Wasserkraft).</p></li>
-<li><p>Direkter Einfluss auf Ökosysteme: Änderungen der Wasserstände haben Auswirkungen auf aquatische und terrestrische Ökosysteme, z. B. durch veränderte Lebensräume für Flora und Fauna.</p></li>
-<li><p>in der Verbindung mit Extremereignissen: Wasserstände reagieren auf Dürren, Starkregenereignisse und Gletscherschmelze, was sie zu wichtigen Indikatoren für klimatische Extremereignisse macht.</p></li>
+<li><p><strong>Als Indikator für Niederschlags- und Verdunstungsänderungen</strong>: Wasserstände reagieren auf Veränderungen in der Wasserbilanz eines Sees, die durch Niederschlag, Verdunstung und Abfluss bestimmt wird.</p></li>
+<li><p><strong>Zur Verknüpfung mit Temperaturtrends</strong>: Steigende Temperaturen erhöhen die Verdunstung, was zu sinkenden Wasserständen führen kann.</p></li>
+<li><p><strong>Speicher in hydrologischen Kreisläufen und Wasserressourcen</strong>: Seen sind bedeutende Süßwasserspeicher, und ihre Pegelstände beeinflussen die Trinkwasserversorgung, Landwirtschaft und Energieproduktion (z. B. Wasserkraft).</p></li>
+<li><p><strong>Direkter Einfluss auf Ökosysteme</strong>: Änderungen der Wasserstände haben Auswirkungen auf aquatische und terrestrische Ökosysteme, z. B. durch veränderte Lebensräume für Flora und Fauna.</p></li>
+<li><p><strong>In der Verbindung mit Extremereignissen</strong>: Wasserstände reagieren auf Dürren, Starkregenereignisse und Gletscherschmelze, was sie zu wichtigen Indikatoren für klimatische Extremereignisse macht.</p></li>
 </ul>
 <p>Der Datensatz, den Sie in diesem Notebook bearbeiten liefert Wasserstandsinformationen für 251 Seen auf vier Kontinenten, abgeleitet aus satellitenbasierter Radaraltimetrie. Die Informationen stellen eine kostengünstige Alternative zu traditionellen bodengestützten Systemen dar Die Daten werden vom Copernicus Land Service (CLS) für den Copernicus Climate Change Service erstellt, um die hydrologische und klimatische Überwachung von Seen auf kontinentaler Ebene zu verbessern.</p>
 <p><strong>In diesem Notebook sollen folgende Lernziele erarbeitet werden:</strong></p>
 <ul class="simple">
-<li><p>Herunterladen und Entpacken des Datensatzes</p>
+<li><p><a class="reference internal" href="#herunterladen-und-entpacken-des-datensatzes"><span class="std std-ref">Herunterladen und Entpacken des Datensatzes</span></a></p>
 <ul>
 <li><p>Extrahieren der Daten für den Bodensee</p></li>
 <li><p>Entpacken der heruntergeladenen Datei</p></li>
 </ul>
 </li>
-<li><p>Untersuchen der Metadaten der netCDF4-Datei</p></li>
-<li><p>Exportieren der Zeitreihe im csv-Format</p></li>
+<li><p><a class="reference internal" href="#untersuchen-der-metadaten-der-netcdf4-datei"><span class="std std-ref">Untersuchen der Metadaten der netCDF4-Datei</span></a></p></li>
+<li><p><a class="reference internal" href="#exportieren-der-zeitreihe-im-csv-format"><span class="std std-ref">Exportieren der Zeitreihe im csv-Format</span></a></p></li>
 <li><p>Analyse und Visualisierung</p></li>
 </ul>
 <p><strong>Informationen zum Datensatz:</strong></p>
@@ -181,7 +181,7 @@
 </div>
 </section>
 <section id="herunterladen-und-entpacken-des-datensatzes">
-<h2>2. Herunterladen und Entpacken des Datensatzes <a id='download'></a><a class="headerlink" href="#herunterladen-und-entpacken-des-datensatzes" title="Link to this heading"></a></h2>
+<h2>2. Herunterladen und Entpacken des Datensatzes<a class="headerlink" href="#herunterladen-und-entpacken-des-datensatzes" title="Link to this heading"></a></h2>
 <section id="authentifizierung">
 <h3>2.1 Authentifizierung<a class="headerlink" href="#authentifizierung" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
@@ -281,7 +281,7 @@
 </section>
 </section>
 <section id="untersuchen-der-metadaten-der-netcdf4-datei">
-<h2>3. Untersuchen der Metadaten der netCDF4-Datei <a id='netcdf_investigate'></a><a class="headerlink" href="#untersuchen-der-metadaten-der-netcdf4-datei" title="Link to this heading"></a></h2>
+<h2>3. Untersuchen der Metadaten der netCDF4-Datei<a class="headerlink" href="#untersuchen-der-metadaten-der-netcdf4-datei" title="Link to this heading"></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
@@ -388,7 +388,7 @@
 </div>
 </section>
 <section id="exportieren-der-zeitreihe-im-csv-format">
-<h2>4. Exportieren der Zeitreihe im csv-Format <a id='netcdf_to_csv'></a><a class="headerlink" href="#exportieren-der-zeitreihe-im-csv-format" title="Link to this heading"></a></h2>
+<h2>4. Exportieren der Zeitreihe im csv-Format<a class="headerlink" href="#exportieren-der-zeitreihe-im-csv-format" title="Link to this heading"></a></h2>
 <section id="definieren-sie-eine-funktion-zur-berechnung-des-tagesdurchschnitts">
 <h3>4.1 Definieren Sie eine Funktion zur Berechnung des Tagesdurchschnitts<a class="headerlink" href="#definieren-sie-eine-funktion-zur-berechnung-des-tagesdurchschnitts" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
@@ -561,7 +561,7 @@ Lese bestehende CSV-Datei ein...
 </section>
 </section>
 <section id="analyse-und-visualisierungsmoglichkeiten">
-<h2>5. Analyse und Visualisierungsmöglichkeiten <a id='netcdf_visualization'></a><a class="headerlink" href="#analyse-und-visualisierungsmoglichkeiten" title="Link to this heading"></a></h2>
+<h2>5. Analyse und Visualisierungsmöglichkeiten<a class="headerlink" href="#analyse-und-visualisierungsmoglichkeiten" title="Link to this heading"></a></h2>
 <section id="visualisierung-aller-daten-ohne-karte">
 <h3>5.1 Visualisierung aller Daten (ohne Karte)<a class="headerlink" href="#visualisierung-aller-daten-ohne-karte" title="Link to this heading"></a></h3>
 <div class="cell docutils container">

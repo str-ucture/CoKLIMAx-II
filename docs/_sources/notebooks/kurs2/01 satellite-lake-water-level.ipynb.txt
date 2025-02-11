@@ -21,13 +21,12 @@
     "\n",
     "**The learning objectives of this notebook are:**\n",
     "\n",
-    "* [Download and extract the dataset](#download)\n",
+    "* [Download and extract the dataset](#download-and-extract-the-dataset)\n",
     "    * Extract data for Lake Constance\n",
     "    * Unpack the downloaded file\n",
-    "* [Examine the metadata of the netCDF4 file](#netcdf_investigate)\n",
-    "* [Export the time series in CSV format](#netcdf_to_csv)\n",
-    "* [Analysis and visualization](#netcdf_visualization)\n",
-    "\n",
+    "* [Examine the metadata of the netCDF4 file](#read-the-netcdf4-file-and-print-the-metadata)\n",
+    "* [Export the time series in CSV format](#export-dataset-as-csv-format)\n",
+    "* [Analysis and Visualization](#analysis-and-visualization-options)\n",
     "\n",
     "**Information on Dataset:**\n",
     "* Source: [Satellite Lake Water Levels](https://cds.climate.copernicus.eu/datasets/satellite-lake-water-level?tab=overview)\n",
@@ -45,7 +44,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 1,
    "id": "a74e11ed",
    "metadata": {},
    "outputs": [],
@@ -69,10 +68,10 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3c4fbb35",
+   "id": "4aadd695",
    "metadata": {},
    "source": [
-    "## 2. Download and Extract the Dataset <a id='download'></a>"
+    "## 2. Download and Extract the Dataset"
    ]
   },
   {
@@ -194,7 +193,7 @@
    "id": "419d8a9d",
    "metadata": {},
    "source": [
-    "## 3. Read the netCDF4 file and print the Metadata <a id='netcdf_investigate'></a>"
+    "## 3. Read the netCDF4 file and print the Metadata"
    ]
   },
   {
@@ -250,7 +249,7 @@
    "id": "a3b47334",
    "metadata": {},
    "source": [
-    "## 4. Export Dataset as CSV Format <a id='netcdf_to_csv'></a>"
+    "## 4. Export Dataset as CSV Format"
    ]
   },
   {
@@ -371,7 +370,7 @@
    "id": "0a97ace6",
    "metadata": {},
    "source": [
-    "## 5. Analysis and Visualization Options <a id='netcdf_visualization'></a>"
+    "## 5. Analysis and Visualization Options"
    ]
   },
   {

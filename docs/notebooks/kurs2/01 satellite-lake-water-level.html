@@ -25,7 +25,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="SentinelHub Satellite Data Explorer" href="../kurs3/01%20senthub_downloader.html" />
+    <link rel="next" title="CoKLIMAx-II Jupyter Notebooks" href="../../rst_jupyter/Einfuehrung_Jupyter.html" />
     <link rel="prev" title="Element 2" href="../../rst_kurs1/Element_2.html" /> 
 </head>
 
@@ -64,19 +64,19 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Lake Water Levels derived from Satellite Data</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#download-and-extract-the-dataset">2. Download and Extract the Dataset <a id='download'></a></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#download-and-extract-the-dataset">2. Download and Extract the Dataset</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#authentication">2.1 Authentication</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#define-the-request-and-download-the-dataset">2.2 Define the “request” and Download the Dataset</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#extract-the-zip-files-in-folder-s">2.3 Extract the ZIP files in folder(s)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#read-the-netcdf4-file-and-print-the-metadata">3. Read the netCDF4 file and print the Metadata <a id='netcdf_investigate'></a></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#export-dataset-as-csv-format">4. Export Dataset as CSV Format <a id='netcdf_to_csv'></a></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#read-the-netcdf4-file-and-print-the-metadata">3. Read the netCDF4 file and print the Metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#export-dataset-as-csv-format">4. Export Dataset as CSV Format</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#define-a-function-to-compute-daily-average">4.1 Define a Function to Compute Daily Average</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#create-dataframe-and-export-as-csv">4.2 Create DataFrame and Export as CSV</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#analysis-and-visualization-options">5. Analysis and Visualization Options <a id='netcdf_visualization'></a></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#analysis-and-visualization-options">5. Analysis and Visualization Options</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#visualization-of-all-data-without-a-map">5.1 Visualization of all data (without a map)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visualization-of-monthly-averages-without-a-map">5.2 Visualization of monthly averages (without a map)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visualization-of-all-data-with-a-map">5.3 Visualization of all data (with a map)</a></li>
@@ -85,10 +85,6 @@
 </li>
 </ul>
 </li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Course 3:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../kurs3/01%20senthub_downloader.html">SentinelHub Satellite Data Explorer</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">The Jupyter-Notebook Library:</span></p>
 <ul>
@@ -114,8 +110,8 @@
             <a href="../../_sources/notebooks/kurs2/01 satellite-lake-water-level.ipynb.txt" rel="nofollow"> View page source</a>
 <div id='language-switcher' style='text-align: right; margin-top: 10px;'>
     <select onchange="location = this.value;">
-        <option value='/./CoKLIMAx-II/en/notebooks\kurs2\01 satellite-lake-water-level.html' selected>EN</option>
-        <option value='/./CoKLIMAx-II/de/notebooks\kurs2\01 satellite-lake-water-level.html'>DE</option>
+        <option value='/./docs/en/notebooks\kurs2\01 satellite-lake-water-level.html' selected>EN</option>
+        <option value='/./docs/de/notebooks\kurs2\01 satellite-lake-water-level.html'>DE</option>
     </select>
 </div>
       </li>
@@ -139,15 +135,15 @@
 <p>The dataset used in this notebook provides water level information for 251 lakes across four continents, derived from satellite-based radar altimetry. This data represents a cost-effective alternative to traditional ground-based systems. The data is produced by the Copernicus Land Service (CLS) for the Copernicus Climate Change Service to improve hydrological and climatic monitoring of lakes on a continental scale.</p>
 <p><strong>The learning objectives of this notebook are:</strong></p>
 <ul class="simple">
-<li><p>Download and extract the dataset</p>
+<li><p><a class="reference internal" href="#download-and-extract-the-dataset"><span class="std std-ref">Download and extract the dataset</span></a></p>
 <ul>
 <li><p>Extract data for Lake Constance</p></li>
 <li><p>Unpack the downloaded file</p></li>
 </ul>
 </li>
-<li><p>Examine the metadata of the netCDF4 file</p></li>
-<li><p>Export the time series in CSV format</p></li>
-<li><p>Analysis and visualization</p></li>
+<li><p><a class="reference internal" href="#read-the-netcdf4-file-and-print-the-metadata"><span class="std std-ref">Examine the metadata of the netCDF4 file</span></a></p></li>
+<li><p><a class="reference internal" href="#export-dataset-as-csv-format"><span class="std std-ref">Export the time series in CSV format</span></a></p></li>
+<li><p><a class="reference internal" href="#analysis-and-visualization-options"><span class="std std-ref">Analysis and Visualization</span></a></p></li>
 </ul>
 <p><strong>Information on Dataset:</strong></p>
 <ul class="simple">
@@ -180,7 +176,7 @@
 </div>
 </section>
 <section id="download-and-extract-the-dataset">
-<h2>2. Download and Extract the Dataset <a id='download'></a><a class="headerlink" href="#download-and-extract-the-dataset" title="Link to this heading"></a></h2>
+<h2>2. Download and Extract the Dataset<a class="headerlink" href="#download-and-extract-the-dataset" title="Link to this heading"></a></h2>
 <section id="authentication">
 <h3>2.1 Authentication<a class="headerlink" href="#authentication" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
@@ -280,7 +276,7 @@
 </section>
 </section>
 <section id="read-the-netcdf4-file-and-print-the-metadata">
-<h2>3. Read the netCDF4 file and print the Metadata <a id='netcdf_investigate'></a><a class="headerlink" href="#read-the-netcdf4-file-and-print-the-metadata" title="Link to this heading"></a></h2>
+<h2>3. Read the netCDF4 file and print the Metadata<a class="headerlink" href="#read-the-netcdf4-file-and-print-the-metadata" title="Link to this heading"></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
@@ -387,7 +383,7 @@
 </div>
 </section>
 <section id="export-dataset-as-csv-format">
-<h2>4. Export Dataset as CSV Format <a id='netcdf_to_csv'></a><a class="headerlink" href="#export-dataset-as-csv-format" title="Link to this heading"></a></h2>
+<h2>4. Export Dataset as CSV Format<a class="headerlink" href="#export-dataset-as-csv-format" title="Link to this heading"></a></h2>
 <section id="define-a-function-to-compute-daily-average">
 <h3>4.1 Define a Function to Compute Daily Average<a class="headerlink" href="#define-a-function-to-compute-daily-average" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
@@ -557,7 +553,7 @@ Reading existing CSV file...
 </section>
 </section>
 <section id="analysis-and-visualization-options">
-<h2>5. Analysis and Visualization Options <a id='netcdf_visualization'></a><a class="headerlink" href="#analysis-and-visualization-options" title="Link to this heading"></a></h2>
+<h2>5. Analysis and Visualization Options<a class="headerlink" href="#analysis-and-visualization-options" title="Link to this heading"></a></h2>
 <section id="visualization-of-all-data-without-a-map">
 <h3>5.1 Visualization of all data (without a map)<a class="headerlink" href="#visualization-of-all-data-without-a-map" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
@@ -911,7 +907,7 @@ Reading existing CSV file...
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../../rst_kurs1/Element_2.html" class="btn btn-neutral float-left" title="Element 2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../kurs3/01%20senthub_downloader.html" class="btn btn-neutral float-right" title="SentinelHub Satellite Data Explorer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../../rst_jupyter/Einfuehrung_Jupyter.html" class="btn btn-neutral float-right" title="CoKLIMAx-II Jupyter Notebooks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
