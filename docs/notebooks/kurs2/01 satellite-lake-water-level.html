@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4187d726" />
 
   
@@ -70,8 +70,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#extract-the-zip-files-in-folder-s">2.3 Extract the ZIP files in folder(s)</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#read-the-netcdf4-file-and-print-the-metadata">3. Read the netCDF4 file and print the Metadata</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#export-dataset-as-csv-format">4. Export Dataset as CSV Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#investigate-the-metadata-of-the-netcdf4-file">3. Investigate the Metadata of the NetCDF4 file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#export-the-time-series-in-csv-format">4. Export the time series in CSV Format</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#define-a-function-to-compute-daily-average">4.1 Define a Function to Compute Daily Average</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#create-dataframe-and-export-as-csv">4.2 Create DataFrame and Export as CSV</a></li>
 </ul>
@@ -108,12 +108,6 @@
       <li class="breadcrumb-item active">Lake Water Levels derived from Satellite Data</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/notebooks/kurs2/01 satellite-lake-water-level.ipynb.txt" rel="nofollow"> View page source</a>
-<div id='language-switcher' style='text-align: right; margin-top: 10px;'>
-    <select onchange="location = this.value;">
-        <option value='/./docs/en/notebooks\kurs2\01 satellite-lake-water-level.html' selected>EN</option>
-        <option value='/./docs/de/notebooks\kurs2\01 satellite-lake-water-level.html'>DE</option>
-    </select>
-</div>
       </li>
   </ul>
   <hr/>
@@ -135,14 +129,14 @@
 <p>The dataset used in this notebook provides water level information for 251 lakes across four continents, derived from satellite-based radar altimetry. This data represents a cost-effective alternative to traditional ground-based systems. The data is produced by the Copernicus Land Service (CLS) for the Copernicus Climate Change Service to improve hydrological and climatic monitoring of lakes on a continental scale.</p>
 <p><strong>The learning objectives of this notebook are:</strong></p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#download-and-extract-the-dataset"><span class="std std-ref">Download and extract the dataset</span></a></p>
+<li><p><a class="reference internal" href="#download-and-extract-the-dataset"><span class="std std-ref">Download and Extract the Dataset</span></a></p>
 <ul>
 <li><p>Extract data for Lake Constance</p></li>
 <li><p>Unpack the downloaded file</p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#read-the-netcdf4-file-and-print-the-metadata"><span class="std std-ref">Examine the metadata of the netCDF4 file</span></a></p></li>
-<li><p><a class="reference internal" href="#export-dataset-as-csv-format"><span class="std std-ref">Export the time series in CSV format</span></a></p></li>
+<li><p><a class="reference internal" href="#investigate-the-metadata-of-the-netcdf4-file"><span class="std std-ref">Examine the metadata of the netCDF4 file</span></a></p></li>
+<li><p><a class="reference internal" href="#export-the-time-series-in-csv-format"><span class="std std-ref">Export the time series in CSV format</span></a></p></li>
 <li><p><a class="reference internal" href="#analysis-and-visualization-options"><span class="std std-ref">Analysis and Visualization</span></a></p></li>
 </ul>
 <p><strong>Information on Dataset:</strong></p>
@@ -275,8 +269,8 @@
 </div>
 </section>
 </section>
-<section id="read-the-netcdf4-file-and-print-the-metadata">
-<h2>3. Read the netCDF4 file and print the Metadata<a class="headerlink" href="#read-the-netcdf4-file-and-print-the-metadata" title="Link to this heading"></a></h2>
+<section id="investigate-the-metadata-of-the-netcdf4-file">
+<h2>3. Investigate the Metadata of the NetCDF4 file<a class="headerlink" href="#investigate-the-metadata-of-the-netcdf4-file" title="Link to this heading"></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
@@ -382,8 +376,8 @@
 </div></div></div>
 </div>
 </section>
-<section id="export-dataset-as-csv-format">
-<h2>4. Export Dataset as CSV Format<a class="headerlink" href="#export-dataset-as-csv-format" title="Link to this heading"></a></h2>
+<section id="export-the-time-series-in-csv-format">
+<h2>4. Export the time series in CSV Format<a class="headerlink" href="#export-the-time-series-in-csv-format" title="Link to this heading"></a></h2>
 <section id="define-a-function-to-compute-daily-average">
 <h3>4.1 Define a Function to Compute Daily Average<a class="headerlink" href="#define-a-function-to-compute-daily-average" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
