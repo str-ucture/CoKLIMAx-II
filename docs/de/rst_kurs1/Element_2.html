@@ -1,0 +1,592 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Element 2 &mdash; Coklimax 1.0.0 Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=a1fa38c2" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f029ec32"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/translations.js?v=9bf55d28"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../genindex.html" />
+    <link rel="search" title="Suche" href="../search.html" />
+    <link rel="next" title="Wasserstände von Seen abgleitet aus Satellitendaten" href="../notebooks/kurs2/01%20satellite-lake-water-level.html" />
+    <link rel="prev" title="Element 1" href="Element_1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Coklimax
+              <img src="../_static/coklimax_logo_new.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Inhalte:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../rst_inhalte/01%20SoftwareKenntnisse.html">Notwendige Software und Kenntnisse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rst_inhalte/02%20Kurs-Elemente.html">Die Kurs-Elemente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rst_inhalte/03%20CDS.html">Der Copernicus Climate Data Store (CDS)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kurs 1:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Element_1.html">Element 1</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Element 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#lernziele">Lernziele</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#umgang-mit-netcdf-dateien">Umgang mit NetCDF-Dateien</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#netcdf-datei-entpacken">1. NetCDF-Datei entpacken</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#netcdf-datei-untersuchen">2. NetCDF-Datei untersuchen</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#visualisierung-und-auswahl-einer-region">Visualisierung und Auswahl einer Region</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#einlesen-und-kennenlernen-der-daten">Einlesen und Kennenlernen der Daten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#erstellen-eines-plots-fur-august-1980">Erstellen eines Plots für August 1980</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#erstellen-eines-plots-fur-eine-zeitserie">Erstellen eines Plots für eine Zeitserie</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kurs 2:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/kurs2/01%20satellite-lake-water-level.html">Wasserstände von Seen abgleitet aus Satellitendaten</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kurs 3:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/kurs3/01%20senthub_downloader.html">SentinelHub Satellite Data Explorer</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Die Jupyter-Notebook Bibliothek:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../rst_jupyter/Einfuehrung_Jupyter.html">CoKLIMAx-II Jupyter Notebooks</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Coklimax</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Element 2</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst_kurs1/Element_2.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+<div id='language-switcher' style='text-align: right; margin-top: 10px;'>
+    <select onchange="location = this.value;">
+        <option value='/./docs/en\rst_kurs1\Element_2.html'>EN</option>
+        <option value='/./docs/de\rst_kurs1\Element_2.html' selected>DE</option>
+    </select>
+</div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="element-2">
+<h1>Element 2<a class="headerlink" href="#element-2" title="Link to this heading"></a></h1>
+<section id="lernziele">
+<span id="kurs1-element2"></span><h2>Lernziele<a class="headerlink" href="#lernziele" title="Link to this heading"></a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#netcdf-how-to"><span class="std std-ref">Aufbau und Umgang mit einer Datei im NetCDF-Format</span></a></p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#netcdf-unzip"><span class="std std-ref">Entpacken der NetCDF zip-Datei</span></a></p></li>
+<li><p><a class="reference internal" href="#netcdf-investigate"><span class="std std-ref">Untersuchen der NetCDF-Datei</span></a></p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><a class="reference internal" href="#netcdf-visualize"><span class="std std-ref">Visualisierung einer Zeitreihe und einer gewählten Region</span></a></p></li>
+</ul>
+</div></blockquote>
+<hr class="docutils" />
+</section>
+<section id="umgang-mit-netcdf-dateien">
+<span id="netcdf-how-to"></span><h2>Umgang mit NetCDF-Dateien<a class="headerlink" href="#umgang-mit-netcdf-dateien" title="Link to this heading"></a></h2>
+<p>NetCDF (Network Common Data Form) ist ein Datenformat, das speziell für wissenschaftliche Daten entwickelt wurde. Es wurde in den späten 1980er-Jahren vom Unidata-Programm des University Corporation for Atmospheric Research (UCAR) entwickelt. Ziel war es, ein standardisiertes Format für die Speicherung und den Austausch von multidimensionalen Daten bereitzustellen, das besonders für Anwendungen in der Klimaforschung, Meteorologie und Ozeanographie geeignet ist. NetCDF hat sich seitdem zu einem zentralen Werkzeug für die Arbeit mit raum- und zeitbezogenen Daten entwickelt.</p>
+<p>Für weitere Informationen besuchen Sie die <a class="reference external" href="https://docs.unidata.ucar.edu/netcdf-c/current/faq.html">UCAR-Websites</a>.</p>
+<p>Um mit den NetCDF Dateien arbeiten zu können installieren Sie zunächst die notwendigen Python Bibliotheken</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">netCDF4</span> <span class="n">xarray</span> <span class="n">numpy</span> <span class="n">matplotlib</span>
+</pre></div>
+</div>
+</div></blockquote>
+<section id="netcdf-datei-entpacken">
+<span id="netcdf-unzip"></span><h3>1. NetCDF-Datei entpacken<a class="headerlink" href="#netcdf-datei-entpacken" title="Link to this heading"></a></h3>
+<p>Öffnen Sie Ihr Jupyter lab über die Eingabeaufforderung (cmd):</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">lab</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Öffnen Sie ein Notebook in einem Ordner Ihrer Wahl. Sie können den „CDSdata“ Ordner aus dem 1. Kurselement nehmen, in diesem befinden sich die Daten, mit denen wir arbeiten wollen.</p>
+<p>Die Datei die Sie im 1. Kurselement heruntergeladen haben ist im NetCDF Format, jedoch noch in einer Zip Datei komprimiert.Zunächst entpacken Sie die Daten, kopieren Sie sich folgenden Block in Ihr Notebook und modifizieren Sie die Zeilen wie benötigt:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="c1"># Pfad zur ZIP-Datei (im selben Verzeichnis oder absoluter Pfad)</span>
+<span class="n">zip_datei</span> <span class="o">=</span> <span class="s1">&#39;beispiel.zip&#39;</span>
+
+<span class="c1"># Zielverzeichnis zum Entpacken</span>
+<span class="n">zielverzeichnis</span> <span class="o">=</span> <span class="s1">&#39;Era5Data&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">zielverzeichnis</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Verzeichnis erstellen, falls nicht vorhanden</span>
+
+<span class="c1"># ZIP-Datei öffnen und extrahieren</span>
+        <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zip_datei</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+                <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">zielverzeichnis</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ZIP-Datei erfolgreich in &#39;</span><span class="si">{</span><span class="n">zielverzeichnis</span><span class="si">}</span><span class="s2">&#39; entpackt.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Nun schauen Sie sich die Datei genauer an.</p>
+</section>
+<section id="netcdf-datei-untersuchen">
+<span id="netcdf-investigate"></span><h3>2. NetCDF-Datei untersuchen<a class="headerlink" href="#netcdf-datei-untersuchen" title="Link to this heading"></a></h3>
+<p>NetCDF Dateien sind in Dimensionen, Variablen und Attributen aufgebaut. Dabei sind Dimensionen die Achsen, an denen sich die Variablen bewegen. Achsen können beispielsweise geographische Länge und Breite sein, oder verschiedene Höhenlevel. Variablen sind die meteorologischen Parameter, die in der Datei beinhaltet sind. Beispielsweise Temperatur, Luftdruck oder Windgeschwindigkeiten. Attribute einer NetCDF-Datei sind die Metadaten und beinhalten Einheiten der Variablen, Beschreibungen und die Quellen/Autoren der Daten.</p>
+<p>Zunächst verschaffen Sie sich einen Überblick über den Datensatz.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
+
+<span class="c1"># Datei öffnen</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="s1">&#39;ERA5Data/data_0.nc&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="c1"># Metadaten anzeigen</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Der <code class="docutils literal notranslate"><span class="pre">print</span></code>-Command gibt Ihnen die wichtigsten Informationen über die vorliegende Datei als lesbaren Text wieder. Sie können auf einen Blick sehen, welche Variablen enthalten sind, welche Formate diese Variablen haben oder auch wie viele Zeitschritte verfügbar sind.</p>
+<p>Es gibt viele weitere Möglichkeiten schnell mehr Informationen über eine NetCDF-Datei zu erhalten. Sie können sich die <strong>keys</strong>, also die Kurznamen der Variablen anzeigen lassen und dadurch den <code class="docutils literal notranslate"><span class="pre">print</span></code>-Command auf eine einzelne anwenden. Mit dem nächsten Code-Block können Sie auf einen Bloick sehen, ob die <code class="docutils literal notranslate"><span class="pre">2m-Temperatur</span></code>-Werte unseres Test-Datensatzes valide erscheinen.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Variablen auflisten</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+<span class="c1"># Zugriff auf eine Variable</span>
+<span class="n">temperatur</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;t2m&#39;</span><span class="p">][:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">temperatur</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Wenn Sie die verschiedenen Commands für den schnellen Überblick ausprobiert haben, können Sie mit den verschiedenen Visualisierungsmöglichkeiten weiter machen.</p>
+<p>Alle zuvor ausgeführten Schritte finden Sie auch fertigen Notebook zum Download:</p>
+<p><code class="xref download docutils literal notranslate"><span class="pre">Element1_API_Test.ipynb</span></code></p>
+</section>
+</section>
+<section id="visualisierung-und-auswahl-einer-region">
+<span id="netcdf-visualize"></span><h2>Visualisierung und Auswahl einer Region<a class="headerlink" href="#visualisierung-und-auswahl-einer-region" title="Link to this heading"></a></h2>
+<p>Um für die Visualisierung mehr Möglichkeiten zu haben benötigen Sie einen weiteren Datensatz. Diesen haben wir Ihnen bereits zum Download zur Verfügung gestellt. Es handelt sich genau wie im vorangegangenen Abschnitt um einen Datensatz aus der ERA-5 Reanalyse, die Monatsmittel der 2m-Temperatur für eine vordefinierte Region in Süddeutschland.</p>
+<p><code class="xref download docutils literal notranslate"><span class="pre">Datensatz</span> <span class="pre">Visualisierung</span></code></p>
+<p>Zunächst sollten Sie die Pfade für Ihren Output definieren. Damit sollen Sie jedes Notebook beginnen, um sicherzugehen, dass Sie Ihre erzeugten Daten und Plots wiederfinden. Es sorgt auch dafür, dass Ihr Code flexibler wird. Durch die Aliase (Bsp. „output_folder“) für die Speicherpfade ersparen Sie sich mühsames durchsuchen Ihres Notebooks, falls sich diese einmal ändern sollten. Sie müssen nur die Pfade im ersten Codeblock anpassen, der Rest erledigt sich durch die Aliase von alleine.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="c1"># ---- Specify directories below ----</span>
+<span class="n">download_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\era5-land-monthly\download&quot;</span>  <span class="c1"># Folder for downloaded data</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\era5-land-monthly\output&quot;</span>      <span class="c1"># Folder for final outputs</span>
+<span class="c1"># ---- End of user inputs ----</span>
+
+<span class="c1"># Create directories if they do not exist</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<section id="einlesen-und-kennenlernen-der-daten">
+<h3>Einlesen und Kennenlernen der Daten<a class="headerlink" href="#einlesen-und-kennenlernen-der-daten" title="Link to this heading"></a></h3>
+<p>Im Folgenden nutzen wir einige nützliche Python Bibliotheken, wie zum Beispiel die Datenanalyse-Bibliothek <strong>pandas</strong>. Weiterführende Informationen zu den einzelnen Bibliotheken finden Sie online, diese sind nicht in den Ressourcen von <strong>CoKLIMAx II</strong> inkludiert. Die Code-Böcke enthalten Kommentare, die die einzelnen Arbeitschritte in Textform dokumentieren.</p>
+<p>Definieren Sie zusätzlich zu den Speicherpfaden auch die Pfade zu den Dateien, mit denen Sie arbeiten möchten.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the dataset filename and construct its full path</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;reanalysis-era5-land-monthly-means_2m_temperature_1950_2024.nc&quot;</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+<span class="c1"># Display the constructed file path for verification</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset file path: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Nun verschaffen Sie sich einen Überblick über die Datei, die räumliche und zeitliche Ausdehnung, sowie die verfügbaren Variablen und Zeitschritte.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
+
+<span class="c1"># Open the NetCDF file in read mode</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="c1"># List all variables in the dataset</span>
+<span class="n">variables_list</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Available variables: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">variables_list</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Extract coordinate data and the primary variable&#39;s data</span>
+<span class="n">lon_list</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">][:]</span>  <span class="c1"># Extract longitude</span>
+<span class="n">lat_list</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">][:]</span>  <span class="c1"># Extract latitude</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>        <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+        <span class="n">test_variable</span> <span class="o">=</span> <span class="s1">&#39;t2m&#39;</span>
+        <span class="n">variable_data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">test_variable</span><span class="p">]</span>
+
+        <span class="c1"># Generate summary of the primary variable</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
+                        <span class="s2">&quot;Variable Name&quot;</span><span class="p">:</span> <span class="n">test_variable</span><span class="p">,</span>
+                        <span class="s2">&quot;Data Type&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+                        <span class="s2">&quot;Shape&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+                        <span class="s2">&quot;Variable Info&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">test_variable</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">variable_data</span><span class="o">.</span><span class="n">dimensions</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;Units&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+                        <span class="s2">&quot;Long Name&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;long_name&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+        <span class="p">}</span>
+
+<span class="c1"># Display dataset summary as a DataFrame for better visualization</span>
+<span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">,</span> <span class="s1">&#39;Remarks&#39;</span><span class="p">])</span>
+
+<span class="c1"># Display the summary DataFrame</span>
+<span class="n">nc_summary</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Configure pandas display settings for better readability</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># Create a summary of the dataset</span>
+<span class="n">ds_summary</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Institution&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">institution</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;institution&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;N/A&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Dimensions&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">dimensions</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+        <span class="s2">&quot;Variables&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+        <span class="s2">&quot;Variable dimensions&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="n">variable</span><span class="p">])</span> <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="p">],</span>
+<span class="p">}</span>
+
+<span class="c1"># Convert the summary dictionary into a DataFrame for better visualization</span>
+<span class="n">dataset_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">ds_summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">,</span>        <span class="s1">&#39;Remarks&#39;</span><span class="p">])</span>
+
+<span class="c1"># Display the summary DataFrame</span>
+<span class="n">dataset_summary</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Im erstellten Summary sehen Sie, dass die Datei 898 valide Zeitschritte enthält. Da es sich um monatliche Mittelwerte handelt un die Datei im Januar 1950 ihren ersten Zeitschritt hat, wissen wir nun, dass im Oktober 2024 der letzte Zeitschritt ist. (2024-1950)*12 + 10 = 898.</p>
+</section>
+<section id="erstellen-eines-plots-fur-august-1980">
+<h3>Erstellen eines Plots für August 1980<a class="headerlink" href="#erstellen-eines-plots-fur-august-1980" title="Link to this heading"></a></h3>
+<p>Mit dem folgenden Code-Blöcken können Sie sich ein flexibles Plotskript erstellen, mit dem Sie ind er Lage sind, schnell zwischen Visualisierungen verschiedener Monate zu switchen.</p>
+<p>Um dies zu erreichen definieren Sie Aliase für Jahr und Monat direkt zu Beginn, genau wie für die Speicherpfade und Dateipfade.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the target year and month for visualization</span>
+<span class="n">selected_year</span> <span class="o">=</span> <span class="mi">1980</span>
+<span class="n">selected_month</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="c1"># Calculate the band index for the selected year and month</span>
+<span class="c1"># Index is determined by the position in the time dimension</span>
+<span class="n">band_index</span> <span class="o">=</span> <span class="p">(</span><span class="n">selected_year</span> <span class="o">-</span> <span class="mi">1950</span><span class="p">)</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">+</span> <span class="p">(</span><span class="n">selected_month</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Extract the data slice corresponding to the selected year and month</span>
+<span class="c1"># This gives the spatial data (latitude x longitude) for the specified time</span>
+<span class="n">band_data</span> <span class="o">=</span> <span class="n">variable_data</span><span class="p">[</span><span class="n">band_index</span><span class="p">,:,:]</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Im folgenden Block legen Sie noch einige Visualisierungsoptionen fest, bevor Sie sich das Ergebnis anschauen können.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Plot the data using matplotlib</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Load predefined colormap</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s2">&quot;turbo&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create a pseudo-color plot for the data</span>
+<span class="n">pcm</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span>
+        <span class="n">lon_list</span><span class="p">,</span>
+        <span class="n">lat_list</span><span class="p">,</span>
+        <span class="n">band_data</span><span class="p">,</span>
+        <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+        <span class="n">shading</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Add colorbar with units</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s2">&quot;Long Name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s2">&quot;Units&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set plot title and labels</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s2">&quot;Long Name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s2">&quot;Units&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">) - </span><span class="si">{</span><span class="n">selected_year</span><span class="si">}</span><span class="s1">-                </span><span class="si">{</span><span class="n">selected_month</span><span class="si">:</span><span class="s1">02d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Longitude&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Latitude&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="c1"># Display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Sie können dem Plot weitere Informationen hinzufügen, wie zum Beispiel administrative Grenzen oder Gitterlinien. Zur besseren Lesbarkeit können Sie die Temperaturewerte von °Kelvin zu °Celsius konvertieren oder die Farbgebung anpassen. Einige Möglichkeiten haben wir Ihnen in den nächsten Code-Blöcken vorbereitet.</p>
+<p>Das benötigte Shapefile von Konstanz können Sie sich hier herunterladen:</p>
+<p><code class="xref download docutils literal notranslate"><span class="pre">Shapefile</span> <span class="pre">von</span> <span class="pre">Konstanz</span></code></p>
+<p>Denken Sie daran, im folgenden den Dateipfad zum Shapefile anzupassen, damit das Skript darauf zugreifen kann.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ma</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="kn">import</span> <span class="n">FuncFormatter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.axes_grid1</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_axes_locatable</span>
+
+<span class="c1"># Convert the temperature data from K to °C</span>
+<span class="n">band_data_C</span> <span class="o">=</span> <span class="n">variable_data</span><span class="p">[</span><span class="n">band_index</span><span class="p">,:,:]</span><span class="o">-</span><span class="mf">273.15</span>
+
+<span class="c1"># Calculate minimum and maxium value within the band data</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">band_data_C</span><span class="p">)</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">band_data_C</span><span class="p">)</span>
+
+<span class="n">vmin_floor</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">vmin</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span>
+<span class="n">vmax_ceil</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">vmax</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span>
+
+<span class="c1"># Compute interval for color bar</span>
+<span class="n">interval</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">vmax_ceil</span> <span class="o">-</span> <span class="n">vmin_floor</span><span class="p">)</span><span class="o">/</span><span class="n">interval</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to format latitude tick labels</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">format_latitude</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">°N&quot;</span>
+
+<span class="c1"># Function to format longitude tick labels</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">format_longitude</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">°E&quot;</span>
+
+<span class="c1"># Plot using matplotlib</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Load predefined Colormap with 10 discrete colors</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;turbo&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="p">)</span>
+
+<span class="n">pcm</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">lon_list</span><span class="p">,</span>
+                                <span class="n">lat_list</span><span class="p">,</span>
+                                <span class="n">band_data_C</span><span class="p">,</span>
+                                <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+                                <span class="n">vmin</span><span class="o">=</span><span class="n">vmin_floor</span><span class="p">,</span>
+                                <span class="n">vmax</span><span class="o">=</span><span class="n">vmax_ceil</span><span class="p">)</span>
+
+<span class="c1"># Add administrative boundary of Konstanz (Shapefile)</span>
+<span class="n">germany_shp</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\shapefiles\kn_boundary.shp&quot;</span>
+<span class="n">germany_boundary</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">germany_shp</span><span class="p">)</span>
+<span class="n">germany_boundary</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot color bar</span>
+<span class="n">divider</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">cax</span> <span class="o">=</span> <span class="n">divider</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;5%&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=-</span><span class="mf">0.95</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s2">&quot;Long Name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> (°C)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add grid lines</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#f0f0f0&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Set custom tick formatters for latitude and longitude</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">FuncFormatter</span><span class="p">(</span><span class="n">format_longitude</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">FuncFormatter</span><span class="p">(</span><span class="n">format_latitude</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s2">&quot;Long Name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> (°C)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Latitude&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Longitude&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Mit dem Plot können Sie sich einfach einen Überblick über die räumliche Ausprägung und Verteilung eines Paramenters verschaffen. Probieren Sie verschiedene Konfigurationen aus um herauszufinden, welche Farbgebung und Skala für Ihren Zweck am besten funktioniert.</p>
+</section>
+<section id="erstellen-eines-plots-fur-eine-zeitserie">
+<h3>Erstellen eines Plots für eine Zeitserie<a class="headerlink" href="#erstellen-eines-plots-fur-eine-zeitserie" title="Link to this heading"></a></h3>
+<p>Um den Verlauf der aggregierten monatlichen Temperatur-Mittelwerte für August aller Jahre einer Region zu betrachten eignet sich ein <strong>Linienplot</strong>. Diesen erstellen Sie mit dem foilgenden Code-Block. Dabei arbeiten Sie mit der dataframe-Struktur, einem Format, das (ähnlich einer Tabelle mit Zeilen und Spalten) sortierte Variablengruppen erstellt, welche sehr nützlich im Umgang mit großen Datenpaketen sein können.</p>
+<p>Mehr Informationen zum richtigen Einsatz von Listen, Arrays und Dataframes in Python finden Sie online.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize lists to store statistics</span>
+<span class="n">mean_values_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">median_values_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">std_values_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Calculate the total number of time bands</span>
+<span class="n">total_bands</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">variable_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Derive year and month lists based on the time index</span>
+<span class="n">year_list</span> <span class="o">=</span> <span class="p">[(</span><span class="n">band_index</span> <span class="o">//</span> <span class="mi">12</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1950</span> <span class="k">for</span> <span class="n">band_index</span> <span class="ow">in</span> <span class="n">total_bands</span><span class="p">]</span>
+<span class="n">month_list</span> <span class="o">=</span> <span class="p">[(</span><span class="n">band_index</span> <span class="o">%</span> <span class="mi">12</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">band_index</span> <span class="ow">in</span> <span class="n">total_bands</span><span class="p">]</span>
+
+<span class="c1"># Iterate over all bands to compute statistics</span>
+<span class="k">for</span> <span class="n">band_index</span> <span class="ow">in</span> <span class="n">total_bands</span><span class="p">:</span>
+        <span class="c1"># Convert Kelvin to Celsius</span>
+        <span class="n">band_data</span> <span class="o">=</span> <span class="n">variable_data</span><span class="p">[</span><span class="n">band_index</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">-</span> <span class="mf">273.15</span>
+
+        <span class="c1"># Compute and append statistics</span>
+        <span class="n">mean_values_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">band_data</span><span class="p">))</span>  <span class="c1"># Mean excluding NaNs</span>
+        <span class="n">median_values_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">band_data</span><span class="p">))</span>  <span class="c1"># Median for masked arrays</span>
+        <span class="n">std_values_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanstd</span><span class="p">(</span><span class="n">band_data</span><span class="p">))</span>  <span class="c1"># Standard deviation excluding NaNs</span>
+
+<span class="c1"># Create a dictionary to store results</span>
+<span class="n">df_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;Year&#39;</span><span class="p">:</span> <span class="n">year_list</span><span class="p">,</span>
+        <span class="s1">&#39;Month&#39;</span><span class="p">:</span> <span class="n">month_list</span><span class="p">,</span>
+        <span class="s1">&#39;Mean&#39;</span><span class="p">:</span> <span class="n">mean_values_list</span><span class="p">,</span>
+        <span class="s1">&#39;Median&#39;</span><span class="p">:</span> <span class="n">median_values_list</span><span class="p">,</span>
+        <span class="s2">&quot;Std Dev&quot;</span><span class="p">:</span> <span class="n">std_values_list</span>
+<span class="p">}</span>
+
+<span class="c1"># Convert dictionary to DataFrame</span>
+<span class="n">df_statistics</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+
+<span class="c1"># Display the first few rows of the DataFrame</span>
+<span class="n">df_statistics</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ticker</span>
+
+<span class="c1"># Filter the statistics DataFrame by the selected month (August)</span>
+<span class="n">selected_month</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># August</span>
+<span class="n">df_statistics_filtered</span> <span class="o">=</span> <span class="n">df_statistics</span><span class="p">[</span><span class="n">df_statistics</span><span class="p">[</span><span class="s1">&#39;Month&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">selected_month</span><span class="p">]</span>
+
+<span class="c1"># Initialize the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#f1f1f1&#39;</span><span class="p">)</span>
+
+<span class="c1"># Titles and labels</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s1">&#39;Average </span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s2">&quot;Long Name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> for August (°C)&#39;</span><span class="p">,</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+        <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span>
+        <span class="n">pad</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#555555&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s2">&quot;Long Name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> (°C)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#555555&#39;</span><span class="p">)</span>
+
+<span class="c1"># Update plot parameters for consistency</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;axes.labelsize&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+        <span class="s1">&#39;axes.titlesize&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
+        <span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+        <span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+<span class="c1"># Add grid and tick formatting</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">FormatStrFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%0.2f</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">)</span>
+
+<span class="c1"># Define yaxis limits</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">24</span><span class="p">)</span>
+
+<span class="c1"># Plot the mean temperature trend</span>
+<span class="n">line1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">df_statistics_filtered</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">],</span>
+        <span class="n">df_statistics_filtered</span><span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mean Temperature&#39;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#ff6f61&#39;</span><span class="p">,</span>
+        <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span>
+<span class="p">)</span>
+
+<span class="c1"># Fit a quadratic curve (degree 2) for the trend line</span>
+<span class="n">degree</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Quadratic fit</span>
+<span class="n">coefficients</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span>
+        <span class="n">df_statistics_filtered</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">],</span>
+        <span class="n">df_statistics_filtered</span><span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span>
+        <span class="n">degree</span>
+<span class="p">)</span>
+<span class="n">curve_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span>
+
+<span class="c1"># Plot the curve fit trend line</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">df_statistics_filtered</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">],</span>
+        <span class="n">curve_fit</span><span class="p">(</span><span class="n">df_statistics_filtered</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]),</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Curve Fit (Degree </span><span class="si">{</span><span class="n">degree</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+        <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span>
+<span class="p">)</span>
+
+<span class="c1"># Add legend</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#ffffff&#39;</span><span class="p">,</span>     <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Element_1.html" class="btn btn-neutral float-left" title="Element 1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="../notebooks/kurs2/01%20satellite-lake-water-level.html" class="btn btn-neutral float-right" title="Wasserstände von Seen abgleitet aus Satellitendaten" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, str.ucture GmbH.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
