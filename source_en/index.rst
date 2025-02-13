@@ -26,9 +26,18 @@ The first part of the documentation focuses on preparing your computer for worki
   :caption: Course 2:
 
   ./notebooks/kurs2/01 satellite-lake-water-level
+  ./notebooks/kurs2/01 satellite-lake-water-temperature
+  ./notebooks/kurs2/01 sis-temperature-statistics
+
+.. toctree::
+  :maxdepth: 2
+  :caption: Kurs 3:
+
+  ./notebooks/kurs3/01 senthub_downloader
 
 .. toctree::
    :maxdepth: 2
    :caption: The Jupyter-Notebook Library:
 
    ./rst_jupyter/Einfuehrung_Jupyter
+
