@@ -26,8 +26,8 @@ Im ersten Teil der Dokumentation geht es um die Vorbereitung Ihres Computers auf
   :caption: Kurs 2:
 
   ./notebooks/kurs2/01 satellite-lake-water-level
-  ./notebooks/kurs2/01 satellite-lake-water-temperature
-  ./notebooks/kurs2/01 sis-temperature-statistics
+  ./notebooks/kurs2/02 satellite-lake-water-temperature
+  ./notebooks/kurs2/03 sis-temperature-statistics
 
 .. toctree::
   :maxdepth: 2
