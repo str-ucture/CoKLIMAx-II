@@ -1,0 +1,184 @@
+=========
+Element 1
+=========
+
+.. _kurs1-element1:
+
+-------------------
+Learning Objectives
+-------------------
+
+* :ref:`Setting up the Copernicus Data Store API (CDS API) <setup_api>`
+	* :ref:`Personal API Key <personal_api_key>`
+	* :ref:`Installation of the CDS API <install_cds_api>`
+* :ref:`Downloading the first climate dataset <cds_download>`
+	* :ref:`Creating the API request <api_request>`
+	* :ref:`The API request in Jupyter Notebook <api_jupyter>`
+
+----
+
+.. _setup_api:
+
+----------------------
+Setting Up the CDS API 
+----------------------
+
+To set up the CDS API (Application Programming Interface, required installation to download data from the CDS), you need a user account in the Copernicus Climate Data Store (CDS). You can create this account directly via the `CDS <https://cds.climate.copernicus.eu/>`_.
+
+If you do not yet have a user account, create one via the homepage. In the top right corner of the window, click on "Login/Register." A dialog window will appear as shown below. Follow the instructions to create an ECMWF account, then log in to the Copernicus CDS using your ECMWF username and password.
+
+.. image:: ../_static/kurs_1_cds_1.png
+	:width: 650px
+	:align: center
+	:class: no-scaled-link
+	:alt: CDS API login screen
+
+.. _personal_api_key:
+
+^^^^^^^^^^^^^^^^^^^
+1. Personal API Key
+^^^^^^^^^^^^^^^^^^^
+
+After logging in, you can view your API information in your account. You will need the API key (or API token) in the next step.
+
+.. image:: ../_static/kurs_1_cds_2.png
+	:width: 650px
+	:align: center
+	:class: no-scaled-link
+	:alt: CDS API key
+
+Download the following file, extract it, open the file, and enter your personal API key in the second line (instead of ####).
+
+.. raw:: html
+
+   <div class="download-button">
+       <a href="../_static/_cdsapirc.zip" download>⇩ CDS API (zip)</a>
+   </div>
+
+Save the document. Place the document in your user directory (C:\\Users\\Username\).
+
+.. _install_cds_api:
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2. Installation of the CDS API
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Now you are ready to install the CDS API. Open the command prompt (CMD) and enter the following command:
+
+	.. code-block::
+		
+		pip install cdsapi
+
+You should now have all the necessary prerequisites to download data from the CDS. In the next step, we will test this with a sample dataset.
+
+----
+
+.. _cds_download:
+
+-------------------------------------
+Downloading Climate Data from the CDS
+-------------------------------------
+
+Our sample dataset is the **ERA5 reanalysis dataset**. If you are already familiar with this dataset, you can skip the info box and proceed directly to the :ref:`next step <era5_download>`.
+
+.. note::
+	The ERA5 climate dataset is a comprehensive collection of weather and climate data produced by the European Centre for Medium-Range Weather Forecasts (ECMWF). It is a historical weather and climate database based on modern computational models and satellite measurements. ERA5 provides continuous weather data from 1950 to the present. These data include temperature, humidity, wind speed, and more.
+	
+	In climate research, the ERA5 dataset is used to study long-term climate trends. For example, it can be analyzed to see how temperatures have changed over decades or how the frequency of extreme weather events has evolved.
+	
+	In short, the ERA5 dataset is a valuable resource for many different disciplines and fields because it provides reliable data for analyzing the global climate system. It also serves as the basis for developing climate models and weather forecasts, helping to create more accurate and realistic predictions, which are crucial for future risk management.
+
+.. _api_request:
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1. Creating the API Request
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. _era5_download:
+
+Datasets available in the CDS can quickly reach several gigabytes due to their spatial and temporal coverage. The CDS allows you to select specific variables, time periods, and regions to prevent unnecessary storage usage on your computer. For testing, we will download only a small portion of the dataset (one variable for a single day in October 2024).
+
+To automate the download of the desired data via the CDS API, you first need to generate an API request code. To do this, go to the Copernicus Climate Data Store, log in, and search for the dataset `ERA5-Land hourly data from 1950 to present <https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=overview>`_.
+
+Go to the `Download Tab <https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=download>`_ and select the parameters as follows:
+
+	* Temperature: 2m temperature
+	* Year: 2024
+	* Month: October
+	* Day: 01
+	* Time: Select all
+
+You can define your preferred region in the "Geographical Area" section. This step is essential to avoid downloading data for the entire available area.
+
+We have prepared the coordinates for the region around Lake Constance, the test region for the CoKLIMAx project.
+
+.. image:: ../_static/kurs_1_cds_3.png
+	:width: 650px
+	:align: center
+	:class: no-scaled-link
+	:alt: Download region
+
+.. note::
+	You can easily generate your own custom coordinates using our `Bbox-Generator <https://str-ucture.github.io/bbox-extractor/>`_. Copy the coordinates to your clipboard or a text document. These can also be entered directly into the Jupyter Notebook later.
+
+For the additional parameters (data format and compression), set the fields in the input form as shown in the following image.
+
+.. image:: ../_static/kurs_1_cds_4.png
+	:width: 650px
+	:align: center
+	:class: no-scaled-link
+	:alt: Data and download fromat
+
+Once you have accepted the terms of use, simply click "Show API request code," and the automatically generated API request code will appear. For our test data, it looks as follows:
+
+	.. code-block::
+		
+		import cdsapi
+
+		dataset = "reanalysis-era5-land"
+		request = {
+			"variable": ["2m_temperature"],
+			"year": "2024",
+			"month": "10",
+			"day": ["01"],
+			"time": [
+				"00:00", "01:00", "02:00",
+				"03:00", "04:00", "05:00",
+				"06:00", "07:00", "08:00",
+				"09:00", "10:00", "11:00",
+				"12:00", "13:00", "14:00",
+				"15:00", "16:00", "17:00",
+				"18:00", "19:00", "20:00",
+				"21:00", "22:00", "23:00"
+			],
+			"data_format": "netcdf",
+			"download_format": "zip",
+			"area": [48.7, 7, 47.1, 11]
+		}
+
+		client = cdsapi.Client()
+		client.retrieve(dataset, request).download()
+
+.. _apiJupyter:
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2. The API Request in Jupyter Notebook
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Open Jupyter Lab via the command prompt (cmd):
+
+	.. code-block::
+
+		jupyter lab
+
+If Jupyter Lab does not open, please review the instructions we have prepared for you :ref:`here <software-to-run-jupyter>`.
+
+We have prepared a Jupyter Notebook for you, where you only need to adjust the output folder and your API key. You can download the notebook from the following link:
+
+.. raw:: html
+
+   <div class="download-button">
+       <a href="../_static/element1_api_test.ipynb" download>⇩ Element1: Test Notebook</a>
+   </div>
+
+Open the notebook in Jupyter Lab and follow the instructions.
