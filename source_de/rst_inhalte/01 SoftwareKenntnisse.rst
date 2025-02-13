@@ -25,7 +25,7 @@ Während der Vorbereitung der Kurseinheiten arbeiten wir an einigen Stellen mit 
 Sie können die Eingabeaufforderung öffnen, indem Sie die Windows-Taste drücken (oder in der Suchzeile direkt), „cmd“ eingeben und Enter drücken (siehe Abbildung).
 
 .. image:: ../_static/Eingabeaufforderung.png
-    :width: 650px
+	:width: 650px
 	:align: center
 	:class: no-scaled-link
 	:alt: Eingabeaufforderung (Windows)
@@ -94,15 +94,15 @@ Es sollte sich ein Browserfenster öffnen, in dem Sie auf der linken Seite die *
 
 Falls der **Launcher-Tab** nicht automatisch geöffnet wird, klicken Sie auf das "+"-Zeichen oben links in der Ecke:
 
-.. image:: ../_static/Screenshot_2024-12-07.png
-    :width: 650px
+.. image:: ../_static/02_Jupyter.png
+	:width: 650px
 	:align: center
 	:class: no-scaled-link
 	:alt: Jupyter: neues Notizbuch hinzufügen
 
 Öffnen Sie nun ein neues Notebook:
 
-.. image:: ../_static/Screenshot_2024-12-13_134817.png
+.. image:: ../_static/02_Jupyter_2.png
 	:width: 650px
 	:align: center
 	:class: no-scaled-link

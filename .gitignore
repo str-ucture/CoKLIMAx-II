@@ -48,6 +48,9 @@ source/secrets/
 !docs/**/*.png
 *.gif
 
+# add all png files inside source/_static
+!source_en/_static/*.png
+!source_de/_static/*.png
 
 # Specific files
 copy_images.bat
