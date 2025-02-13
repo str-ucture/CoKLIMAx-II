@@ -290,7 +290,7 @@ The required shapefile for Konstanz can be downloaded here:
 .. raw:: html
 
    <div class="download-button">
-       <a href="../_static/kn_boundary.shp" download>⇩ Shapefile of Konstanz</a>
+       <a href="../_static/kn_boundary.zip" download>⇩ Shapefile of Konstanz</a>
    </div>
 
 Remember to adjust the file path to the shapefile in the following code so that the script can access it.
@@ -317,6 +317,7 @@ Remember to adjust the file path to the shapefile in the following code so that 
         # Compute interval for the color bar
         interval = 0.1
         bins = int((vmax_ceil - vmin_floor) / interval)
+
 
     .. code-block::
 
@@ -412,6 +413,7 @@ More information on the proper use of lists, arrays, and DataFrames in Python ca
 
 		# Display the first few rows of the DataFrame
 		df_statistics.head()
+
 
     .. code-block::
 

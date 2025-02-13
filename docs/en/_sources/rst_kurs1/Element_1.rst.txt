@@ -45,7 +45,7 @@ After logging in, you can view your API information in your account. You will ne
 	:width: 650px
 	:align: center
 	:class: no-scaled-link
-	:alt: CDS API key
+	:alt: CDS API keygit 
 
 Download the following file, extract it, open the file, and enter your personal API key in the second line (instead of ####).
 

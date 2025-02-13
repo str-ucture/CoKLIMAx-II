@@ -184,7 +184,8 @@
 <span id="netcdf-investigate"></span><h3>2. NetCDF-Datei untersuchen<a class="headerlink" href="#netcdf-datei-untersuchen" title="Link to this heading"></a></h3>
 <p>NetCDF Dateien sind in Dimensionen, Variablen und Attributen aufgebaut. Dabei sind Dimensionen die Achsen, an denen sich die Variablen bewegen. Achsen können beispielsweise geographische Länge und Breite sein, oder verschiedene Höhenlevel. Variablen sind die meteorologischen Parameter, die in der Datei beinhaltet sind. Beispielsweise Temperatur, Luftdruck oder Windgeschwindigkeiten. Attribute einer NetCDF-Datei sind die Metadaten und beinhalten Einheiten der Variablen, Beschreibungen und die Quellen/Autoren der Daten.</p>
 <p>Zunächst verschaffen Sie sich einen Überblick über den Datensatz.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
 
 <span class="c1"># Datei öffnen</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="s1">&#39;ERA5Data/data_0.nc&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
@@ -193,6 +194,7 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
 </pre></div>
 </div>
+</div></blockquote>
 <p>Der <code class="docutils literal notranslate"><span class="pre">print</span></code>-Command gibt Ihnen die wichtigsten Informationen über die vorliegende Datei als lesbaren Text wieder. Sie können auf einen Blick sehen, welche Variablen enthalten sind, welche Formate diese Variablen haben oder auch wie viele Zeitschritte verfügbar sind.</p>
 <p>Es gibt viele weitere Möglichkeiten schnell mehr Informationen über eine NetCDF-Datei zu erhalten. Sie können sich die <strong>keys</strong>, also die Kurznamen der Variablen anzeigen lassen und dadurch den <code class="docutils literal notranslate"><span class="pre">print</span></code>-Command auf eine einzelne anwenden. Mit dem nächsten Code-Block können Sie auf einen Bloick sehen, ob die <code class="docutils literal notranslate"><span class="pre">2m-Temperatur</span></code>-Werte unseres Test-Datensatzes valide erscheinen.</p>
 <blockquote>
@@ -207,14 +209,17 @@
 </div></blockquote>
 <p>Wenn Sie die verschiedenen Commands für den schnellen Überblick ausprobiert haben, können Sie mit den verschiedenen Visualisierungsmöglichkeiten weiter machen.</p>
 <p>Alle zuvor ausgeführten Schritte finden Sie auch fertigen Notebook zum Download:</p>
-<p><code class="xref download docutils literal notranslate"><span class="pre">Element1_API_Test.ipynb</span></code></p>
+<div class="download-button">
+    <a href="../_static/Element2_NetCDF.ipynb" download>⇩ Notebook: Element2_NetCDF</a>
+</div><hr class="docutils" />
 </section>
 </section>
 <section id="visualisierung-und-auswahl-einer-region">
 <span id="netcdf-visualize"></span><h2>Visualisierung und Auswahl einer Region<a class="headerlink" href="#visualisierung-und-auswahl-einer-region" title="Link to this heading"></a></h2>
 <p>Um für die Visualisierung mehr Möglichkeiten zu haben benötigen Sie einen weiteren Datensatz. Diesen haben wir Ihnen bereits zum Download zur Verfügung gestellt. Es handelt sich genau wie im vorangegangenen Abschnitt um einen Datensatz aus der ERA-5 Reanalyse, die Monatsmittel der 2m-Temperatur für eine vordefinierte Region in Süddeutschland.</p>
-<p><code class="xref download docutils literal notranslate"><span class="pre">Datensatz</span> <span class="pre">Visualisierung</span></code></p>
-<p>Zunächst sollten Sie die Pfade für Ihren Output definieren. Damit sollen Sie jedes Notebook beginnen, um sicherzugehen, dass Sie Ihre erzeugten Daten und Plots wiederfinden. Es sorgt auch dafür, dass Ihr Code flexibler wird. Durch die Aliase (Bsp. „output_folder“) für die Speicherpfade ersparen Sie sich mühsames durchsuchen Ihres Notebooks, falls sich diese einmal ändern sollten. Sie müssen nur die Pfade im ersten Codeblock anpassen, der Rest erledigt sich durch die Aliase von alleine.</p>
+<div class="download-button">
+    <a href="./data/era5-land-monthly/download/reanalysis-era5-land-monthly-means_2m_temperature_1950_2024.nc" download>⇩ Dataset for Visualization</a>
+</div><p>Zunächst sollten Sie die Pfade für Ihren Output definieren. Damit sollen Sie jedes Notebook beginnen, um sicherzugehen, dass Sie Ihre erzeugten Daten und Plots wiederfinden. Es sorgt auch dafür, dass Ihr Code flexibler wird. Durch die Aliase (Bsp. „output_folder“) für die Speicherpfade ersparen Sie sich mühsames durchsuchen Ihres Notebooks, falls sich diese einmal ändern sollten. Sie müssen nur die Pfade im ersten Codeblock anpassen, der Rest erledigt sich durch die Aliase von alleine.</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
@@ -364,8 +369,9 @@
 </div></blockquote>
 <p>Sie können dem Plot weitere Informationen hinzufügen, wie zum Beispiel administrative Grenzen oder Gitterlinien. Zur besseren Lesbarkeit können Sie die Temperaturewerte von °Kelvin zu °Celsius konvertieren oder die Farbgebung anpassen. Einige Möglichkeiten haben wir Ihnen in den nächsten Code-Blöcken vorbereitet.</p>
 <p>Das benötigte Shapefile von Konstanz können Sie sich hier herunterladen:</p>
-<p><code class="xref download docutils literal notranslate"><span class="pre">Shapefile</span> <span class="pre">von</span> <span class="pre">Konstanz</span></code></p>
-<p>Denken Sie daran, im folgenden den Dateipfad zum Shapefile anzupassen, damit das Skript darauf zugreifen kann.</p>
+<div class="download-button">
+    <a href="../_static/kn_boundary.zip" download>⇩ Shapefile of Konstanz</a>
+</div><p>Denken Sie daran, im folgenden den Dateipfad zum Shapefile anzupassen, damit das Skript darauf zugreifen kann.</p>
 <blockquote>
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ma</span>

@@ -76,15 +76,15 @@ NetCDF Dateien sind in Dimensionen, Variablen und Attributen aufgebaut. Dabei si
 
 Zunächst verschaffen Sie sich einen Überblick über den Datensatz.
 
-.. code-block::
-	
-	import netCDF4 as nc
+	.. code-block::
+		
+		import netCDF4 as nc
 
-	# Datei öffnen
-	dataset = nc.Dataset('ERA5Data/data_0.nc', 'r')
+		# Datei öffnen
+		dataset = nc.Dataset('ERA5Data/data_0.nc', 'r')
 
-	# Metadaten anzeigen
-	print(dataset)
+		# Metadaten anzeigen
+		print(dataset)
 
 Der ``print``-Command gibt Ihnen die wichtigsten Informationen über die vorliegende Datei als lesbaren Text wieder. Sie können auf einen Blick sehen, welche Variablen enthalten sind, welche Formate diese Variablen haben oder auch wie viele Zeitschritte verfügbar sind.
 
@@ -103,7 +103,13 @@ Wenn Sie die verschiedenen Commands für den schnellen Überblick ausprobiert ha
 
 Alle zuvor ausgeführten Schritte finden Sie auch fertigen Notebook zum Download:
 
-:download:`Element1_API_Test.ipynb </../_static/Element2_NetCDF.ipynb>`
+.. raw:: html
+
+   <div class="download-button">
+       <a href="../_static/Element2_NetCDF.ipynb" download>⇩ Notebook: Element2_NetCDF</a>
+   </div>
+
+----
 
 .. _netcdf_visualize:
 
@@ -113,7 +119,11 @@ Visualisierung und Auswahl einer Region
 
 Um für die Visualisierung mehr Möglichkeiten zu haben benötigen Sie einen weiteren Datensatz. Diesen haben wir Ihnen bereits zum Download zur Verfügung gestellt. Es handelt sich genau wie im vorangegangenen Abschnitt um einen Datensatz aus der ERA-5 Reanalyse, die Monatsmittel der 2m-Temperatur für eine vordefinierte Region in Süddeutschland.
 
-:download:`Datensatz Visualisierung <.\data\era5-land-monthly\download\reanalysis-era5-land-monthly-means_2m_temperature_1950_2024.nc>`
+.. raw:: html
+
+   <div class="download-button">
+       <a href="./data/era5-land-monthly/download/reanalysis-era5-land-monthly-means_2m_temperature_1950_2024.nc" download>⇩ Dataset for Visualization</a>
+   </div>
 
 Zunächst sollten Sie die Pfade für Ihren Output definieren. Damit sollen Sie jedes Notebook beginnen, um sicherzugehen, dass Sie Ihre erzeugten Daten und Plots wiederfinden. Es sorgt auch dafür, dass Ihr Code flexibler wird. Durch die Aliase (Bsp. "output_folder") für die Speicherpfade ersparen Sie sich mühsames durchsuchen Ihres Notebooks, falls sich diese einmal ändern sollten. Sie müssen nur die Pfade im ersten Codeblock anpassen, der Rest erledigt sich durch die Aliase von alleine.
 
@@ -165,6 +175,7 @@ Nun verschaffen Sie sich einen Überblick über die Datei, die räumliche und ze
 		lon_list = dataset['longitude'][:]  # Extract longitude
 		lat_list = dataset['latitude'][:]  # Extract latitude
 
+
 	.. code-block::
 
 			import pandas as pd
@@ -187,6 +198,7 @@ Nun verschaffen Sie sich einen Überblick über die Datei, die räumliche und ze
 
 		# Display the summary DataFrame
 		nc_summary
+
 
 	.. code-block::
 
@@ -276,7 +288,11 @@ Sie können dem Plot weitere Informationen hinzufügen, wie zum Beispiel adminis
 
 Das benötigte Shapefile von Konstanz können Sie sich hier herunterladen:
 
-:download:`Shapefile von Konstanz </../_static/kn_boundary.shp>`
+.. raw:: html
+
+   <div class="download-button">
+       <a href="../_static/kn_boundary.zip" download>⇩ Shapefile of Konstanz</a>
+   </div>
 
 Denken Sie daran, im folgenden den Dateipfad zum Shapefile anzupassen, damit das Skript darauf zugreifen kann.
 
@@ -302,6 +318,7 @@ Denken Sie daran, im folgenden den Dateipfad zum Shapefile anzupassen, damit das
 		# Compute interval for color bar
 		interval = 0.1
 		bins = int((vmax_ceil - vmin_floor)/interval)
+
 
 	.. code-block::
 
@@ -397,6 +414,7 @@ Mehr Informationen zum richtigen Einsatz von Listen, Arrays und Dataframes in Py
 
 		# Display the first few rows of the DataFrame
 		df_statistics.head()
+
 
 	.. code-block::
 
