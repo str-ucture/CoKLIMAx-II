@@ -10,34 +10,29 @@ The first part of the documentation focuses on preparing your computer for worki
   :maxdepth: 2
   :caption: Contents:
 
-  ./rst_inhalte/01 SoftwareKenntnisse
-  ./rst_inhalte/02 Kurs-Elemente
-  ./rst_inhalte/03 CDS
+  /rst_inhalte/01_SoftwareKenntnisse
+  /rst_inhalte/02_Kurs-Elemente
+  /rst_inhalte/03_CDS
 
 .. toctree::
   :maxdepth: 2
   :caption: Course 1:
 
-  ./rst_kurs1/Element_1
-  ./rst_kurs1/Element_2
+  /rst_kurs1/Element_1
+  /rst_kurs1/Element_2
 
 .. toctree::
   :maxdepth: 2
   :caption: Course 2:
 
-  ./notebooks/kurs2/01 satellite-lake-water-level
-  ./notebooks/kurs2/02 satellite-lake-water-temperature
-  ./notebooks/kurs2/03 sis-temperature-statistics
+  /notebooks/kurs2/02_satellite-lake-water-temperature
+  /notebooks/kurs2/03_sis-temperature-statistics
 
 .. toctree::
   :maxdepth: 2
-  :caption: Kurs 3:
-
-  ./notebooks/kurs3/01 senthub_downloader
-
-.. toctree::
-   :maxdepth: 2
-   :caption: The Jupyter-Notebook Library:
-
-   ./rst_jupyter/Einfuehrung_Jupyter
-
+  :caption: The Jupyter-Notebook Library:
+  
+  /rst_jupyter_bibliothek/index
+  /rst_jupyter_bibliothek/cds_data/index
+  /rst_jupyter_bibliothek/satellite_data/index
+  /rst_jupyter_bibliothek/visualization_options/index

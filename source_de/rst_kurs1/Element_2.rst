@@ -468,7 +468,7 @@ Mehr Informationen zum richtigen Einsatz von Listen, Arrays und Dataframes in Py
 
 		# Fit a quadratic curve (degree 2) for the trend line
 		degree = 2  # Quadratic fit
-		coefficients = np.polyfit(
+		coefficients = np.polyfit( 
 			df_statistics_filtered['Year'],
 			df_statistics_filtered['Mean'].astype(float),
 			degree

@@ -18,6 +18,7 @@ extensions = [
     'sphinx_copybutton',
     'myst_nb',
     'nbsphinx',
+    'sphinx_new_tab_link',
     # 'sphinx_intl'
 ]
 

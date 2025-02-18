@@ -6,7 +6,8 @@ pip install matplotlib numpy pandas geopandas netCDF4 cdsapi sentinelhub rasteri
 
 pip install shapely --upgrade (to fix issue if AttributeError: module 'shapely' has no attribute 'strtree')
 
-pip install sphinx sphinx-copybutton myst-nb nbsphinx sphinx-rtd-theme
+pip install sphinx sphinx-copybutton myst-nb nbsphinx sphinx-rtd-theme sphinx-hoverxref sphinx-new-tab-link
+
 
 # Extra
 pip install argostranslate

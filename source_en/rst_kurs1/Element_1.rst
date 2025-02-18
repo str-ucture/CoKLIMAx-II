@@ -1,8 +1,8 @@
+.. _kurs1-element1:
+
 =========
 Element 1
 =========
-
-.. _kurs1-element1:
 
 -------------------
 Learning Objectives
@@ -11,9 +11,21 @@ Learning Objectives
 * :ref:`Setting up the Copernicus Data Store API (CDS API) <setup_api>`
 	* :ref:`Personal API Key <personal_api_key>`
 	* :ref:`Installation of the CDS API <install_cds_api>`
-* :ref:`Downloading the first climate dataset <cds_download>`
+* :ref:`Downloading the first Climate Dataset <cds_download>`
 	* :ref:`Creating the API request <api_request>`
 	* :ref:`The API request in Jupyter Notebook <api_jupyter>`
+
+----
+
+We have prepared a Jupyter Notebook for you, where you only need to adjust the output folder and your API key. You can download the notebook from the following link:
+
+.. raw:: html
+
+   <div class="download-button">
+       <a href="../_static/notebooks/element1_api_test.ipynb" download>⇩ Element1: Notebook</a>
+   </div>
+
+Open the notebook in Jupyter Lab and follow the instructions.
 
 ----
 
@@ -28,7 +40,7 @@ To set up the CDS API (Application Programming Interface, required installation 
 If you do not yet have a user account, create one via the homepage. In the top right corner of the window, click on "Login/Register." A dialog window will appear as shown below. Follow the instructions to create an ECMWF account, then log in to the Copernicus CDS using your ECMWF username and password.
 
 .. image:: ../_static/kurs_1_cds_1.png
-	:width: 650px
+	:width: 600px
 	:align: center
 	:class: no-scaled-link
 	:alt: CDS API login screen
@@ -42,20 +54,26 @@ If you do not yet have a user account, create one via the homepage. In the top r
 After logging in, you can view your API information in your account. You will need the API key (or API token) in the next step.
 
 .. image:: ../_static/kurs_1_cds_2.png
-	:width: 650px
+	:width: 600px
 	:align: center
 	:class: no-scaled-link
-	:alt: CDS API keygit 
+	:alt: CSD Profile
 
-Download the following file, extract it, open the file, and enter your personal API key in the second line (instead of ####).
+Scroll down to the **API Token** section and click the copy button to copy your API key. Next, open the **element1 notebook** and replace the existing key at ``api_key = "Your Personal API Key"``.
 
-.. raw:: html
+.. image:: ../_static/kurs_1_cds_2_2.png
+	:width: 600px
+	:align: center
+	:class: no-scaled-link
+	:alt: CDS API key
 
-   <div class="download-button">
-       <a href="../_static/_cdsapirc.zip" download>⇩ CDS API (zip)</a>
-   </div>
+.. _personal_cds_api_key:
 
-Save the document. Place the document in your user directory (C:\\Users\\Username\).
+	.. code-block::
+		
+		import cdsapi
+		api_key = "Your Personal API Key"
+		api_url = "https://cds.climate.copernicus.eu/api"
 
 .. _install_cds_api:
 
@@ -113,28 +131,29 @@ You can define your preferred region in the "Geographical Area" section. This st
 We have prepared the coordinates for the region around Lake Constance, the test region for the CoKLIMAx project.
 
 .. image:: ../_static/kurs_1_cds_3.png
-	:width: 650px
+	:width: 600px
 	:align: center
 	:class: no-scaled-link
 	:alt: Download region
 
 .. note::
-	You can easily generate your own custom coordinates using our `Bbox-Generator <https://str-ucture.github.io/bbox-extractor/>`_. Copy the coordinates to your clipboard or a text document. These can also be entered directly into the Jupyter Notebook later.
+	You can easily generate your own custom coordinates using our `Bbox-Generator <https://str-ucture.github.io/bbox-extractor/>`_. Copy the coordinates to your clipboard or save them in a text document. You can also enter them directly into the Jupyter Notebook later. Alternatively, update the bounding box value in ``"area": [48.7, 7, 47.1, 11]`` to define the data extent, refer to :ref:`Sub-region Bounding Box <dataset_and_request_parameters>`.
 
 For the additional parameters (data format and compression), set the fields in the input form as shown in the following image.
 
 .. image:: ../_static/kurs_1_cds_4.png
-	:width: 650px
+	:width: 600px
 	:align: center
 	:class: no-scaled-link
 	:alt: Data and download fromat
 
 Once you have accepted the terms of use, simply click "Show API request code," and the automatically generated API request code will appear. For our test data, it looks as follows:
 
-	.. code-block::
-		
-		import cdsapi
+.. _dataset_and_request_parameters:
 
+	.. code-block::
+
+		# Define dataset and request parameters
 		dataset = "reanalysis-era5-land"
 		request = {
 			"variable": ["2m_temperature"],
@@ -156,29 +175,27 @@ Once you have accepted the terms of use, simply click "Show API request code," a
 			"area": [48.7, 7, 47.1, 11]
 		}
 
-		client = cdsapi.Client()
-		client.retrieve(dataset, request).download()
+	.. code-block::
 
-.. _apiJupyter:
+		client = cdsapi.Client()
+
+		# Define filename and download
+		download_folder = os.path.join(os.getcwd(), "CDSdata")		
+		os.makedirs(download_folder, exist_ok=True) # Create the directory if it doesn't exist
+
+		download_filepath = os.path.join(download_folder, f"{dataset}.zip")
+		client.retrieve(dataset, request, download_filepath)
+
+.. _api_jupyter:
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2. The API Request in Jupyter Notebook
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Open Jupyter Lab via the command prompt (cmd):
+Open Jupyter Lab via the command prompt (cmd) and run the codes above to download your first dataset.
 
 	.. code-block::
 
 		jupyter lab
 
 If Jupyter Lab does not open, please review the instructions we have prepared for you :ref:`here <software-to-run-jupyter>`.
-
-We have prepared a Jupyter Notebook for you, where you only need to adjust the output folder and your API key. You can download the notebook from the following link:
-
-.. raw:: html
-
-   <div class="download-button">
-       <a href="../_static/element1_api_test.ipynb" download>⇩ Element1: Test Notebook</a>
-   </div>
-
-Open the notebook in Jupyter Lab and follow the instructions.

@@ -1,8 +1,8 @@
+.. _kurs1-element2:
+
 =========
 Element 2
 =========
-
-.. _kurs1-element2:
 
 -------------------
 Learning Objectives
@@ -12,6 +12,18 @@ Learning Objectives
 	* :ref:`Unpacking the NetCDF Zip file <netcdf_unzip>`
 	* :ref:`Investigate the NetCDF file <netcdf_investigate>`
 * :ref:`Visualization of a Time Series and a Selected Region <netcdf_visualize>`
+
+----
+
+All the steps from this course is also available in a ready-to-use notebook for download from the following link:
+
+.. raw:: html
+
+   <div class="download-button">
+       <a href="../_static/notebooks/element2_netcdf.ipynb" download>⇩ Element2: Notebook</a>
+   </div>
+
+Open the notebook in Jupyter Lab and follow the instructions.
 
 ----
 
@@ -43,23 +55,31 @@ Open your Jupyter Lab via the command prompt (cmd):
 
 		jupyter lab
 
-Open a notebook in a folder of your choice. You can use the "CDSdata" folder from the first course module (Element 1), as it contains the data we will be working with.
+Open a notebook in a folder of your choice. You can use the "CDSdata" folder from the first course module (:ref:`Element 1 <kurs1-element1>`), as it contains the data we will be working with.
 
-The file you downloaded in the first course module (Element 1) is in NetCDF format but is still compressed in a ZIP file. First, extract the data by copying the following code block into your notebook and modifying the lines as needed:
+The file you downloaded in the first course module (:ref:`Element 1 <kurs1-element1>`) is in NetCDF format but is still compressed in a ZIP file. Alternatively, you can download the dataset from Element 1 here and move it inside "CDSdata" folder inside the current working folder in Jupyter Lab:
 
-    .. code-block::
+.. raw:: html
+
+   <div class="download-button">
+       <a href="../_static/notebooks/CDSdata/reanalysis-era5-land.zip" download>⇩ ERA5-Land (Dataset)</a>
+   </div>
+
+First, extract the data by copying the following code block into your notebook and modifying the lines as needed:
+
+    .. code-block:: python
 
         import zipfile
         import os
 
         # Path to the ZIP file (same directory or absolute path)
-        zip_file = 'example.zip'
+        zip_file = './CDSdata/reanalysis-era5-land.zip'
 
         # Target directory for extraction
         target_directory = 'Era5Data'
-        os.makedirs(target_directory, exist_ok=True)  # Create the directory if it doesn't exist
+        os.makedirs(target_directory, exist_ok=True) # Create the directory if it doesn't exist
 
-        # Open and extract the ZIP file  
+        # Open and extract the ZIP file
         with zipfile.ZipFile(zip_file, 'r') as zip_ref:
             zip_ref.extractall(target_directory)
         print(f"ZIP file successfully extracted to '{target_directory}'.")
@@ -76,7 +96,7 @@ NetCDF files are structured into dimensions, variables, and attributes. Dimensio
 
 First, get an overview of the dataset.
 
-    .. code-block::
+    .. code-block:: python
         
         import netCDF4 as nc  
         
@@ -90,7 +110,7 @@ The ``print`` command provides the most important information about the given fi
 
 There are many other ways to quickly obtain more information about a NetCDF file. You can display the **keys**, meaning the short names of the variables, and thus apply the ``print`` command to an individual one. With the following code block, you can immediately check whether the ``2m temperature`` values of our test dataset appear valid.
 
-    .. code-block::
+    .. code-block:: python
         
         # List variables
         print(dataset.variables.keys())
@@ -100,14 +120,6 @@ There are many other ways to quickly obtain more information about a NetCDF file
         print(temperature)
 
 Once you have tried out the various commands for a quick overview, you can proceed with different visualization options.
-
-All previously executed steps are also available in a ready-to-use notebook for download:
-
-.. raw:: html
-
-   <div class="download-button">
-       <a href="../_static/Element2_NetCDF.ipynb" download>⇩ Notebook: Element2_NetCDF</a>
-   </div>
 
 ----
 
@@ -122,33 +134,33 @@ To have more options for visualization, you will need an additional dataset. We 
 .. raw:: html
 
    <div class="download-button">
-       <a href="./data/era5-land-monthly/download/reanalysis-era5-land-monthly-means_2m_temperature_1950_2024.nc" download>⇩ Dataset for Visualization</a>
+       <a href="../_static/notebooks/era5-land-monthly/download/reanalysis-era5-land-monthly-means_2m_temperature_1950_2024.nc" download>⇩ Dataset for Visualization</a>
    </div>
 
 First, you should define the paths for your output. This step should be included at the beginning of every notebook to ensure that you can easily locate your generated data and plots. It also makes your code more flexible. By using aliases (e.g., "output_folder") for storage paths, you avoid the hassle of searching through your notebook if the paths change. You only need to update the paths in the first code block, and the rest will automatically adjust thanks to the aliases.
 
-    .. code-block::
+    .. code-block:: python
         
         import os
         
         # ---- Specify directories below ----
-        download_folder = r".\data\era5-land-monthly\download"  # Folder for downloaded data
-        output_folder = r".\data\era5-land-monthly\output"      # Folder for final outputs
+        download_folder = r"./era5-land-monthly/download"  # Folder for downloaded data
+        output_folder = r"./era5-land-monthly/output"      # Folder for final outputs
         # ---- End of user inputs ----
         
         # Create directories if they do not exist
         os.makedirs(download_folder, exist_ok=True)
         os.makedirs(output_folder, exist_ok=True)
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Reading and Exploring the Data
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1. Reading and Exploring the Data
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the following steps, we will use some useful Python libraries, such as the data analysis library **pandas**. Further information on each library can be found online, as they are not included in the resources of **CoKLIMAx II**. The code blocks contain comments that document each step in text form.
 
 In addition to defining storage paths, you should also specify the paths to the files you want to work with.
 
-    .. code-block::
+    .. code-block:: python
 
         # Specify the dataset filename and construct its full path
         filename = "reanalysis-era5-land-monthly-means_2m_temperature_1950_2024.nc"
@@ -159,7 +171,7 @@ In addition to defining storage paths, you should also specify the paths to the 
 
 Now, get an overview of the file, including its spatial and temporal extent, as well as the available variables and time steps.
 
-    .. code-block::
+    .. code-block:: python
 
         import netCDF4 as nc
 
@@ -174,8 +186,7 @@ Now, get an overview of the file, including its spatial and temporal extent, as 
         lon_list = dataset['longitude'][:]  # Extract longitude
         lat_list = dataset['latitude'][:]  # Extract latitude
 
-
-    .. code-block::
+    .. code-block:: python
 
         import pandas as pd
 
@@ -198,42 +209,41 @@ Now, get an overview of the file, including its spatial and temporal extent, as 
         # Display the summary DataFrame
         nc_summary
 
-    
-	.. code-block::
+    .. code-block:: python
 
-		import numpy as np
-		import pandas as pd
+        import numpy as np
+        import pandas as pd
 
-		# Configure pandas display settings for better readability
-		pd.set_option('display.max_colwidth', None)
+        # Configure pandas display settings for better readability
+        pd.set_option('display.max_colwidth', None)
 
-		# Create a summary of the dataset
-		ds_summary = {
-			"Institution": dataset.institution if hasattr(dataset, 'institution') else "N/A",
-			"Dimensions": list(dataset.dimensions.keys()),
-			"Variables": list(dataset.variables.keys()),
-			"Variable dimensions": [
-				np.shape(dataset[variable]) for variable in dataset.variables.keys()
-			],
-		}
+        # Create a summary of the dataset
+        ds_summary = {
+            "Institution": dataset.institution if hasattr(dataset, 'institution') else "N/A",
+            "Dimensions": list(dataset.dimensions.keys()),
+            "Variables": list(dataset.variables.keys()),
+            "Variable dimensions": [
+                np.shape(dataset[variable]) for variable in dataset.variables.keys()
+            ],
+        }
 
-		# Convert the summary dictionary into a DataFrame for better visualization
-		dataset_summary = pd.DataFrame(list(ds_summary.items()), columns=['Description', 	'Remarks'])
+        # Convert the summary dictionary into a DataFrame for better visualization
+        dataset_summary = pd.DataFrame(list(ds_summary.items()), columns=['Description', 'Remarks'])
 
-		# Display the summary DataFrame
-		dataset_summary
+        # Display the summary DataFrame
+        dataset_summary
 
-In the generated summary, you can see that the file contains 898 valid time steps. Since the data represents monthly averages and the file starts with its first time step in January 1950, we now know that the last time step is in October 2024: (2024−1950)×12 + 10=898
+In the generated summary, you can see that the file contains **898** valid time steps. Since the data represents monthly averages and the file starts with its first time step in January 1950, we now know that the last time step is in October 2024: **(2024 − 1950) × 12 + 10 = 898**
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Creating a Plot for August 1980
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2. Creating a Plot for August 1980
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 With the following code blocks, you can create a flexible plotting script that allows you to quickly switch between visualizations for different months.
 
 To achieve this, define aliases for the year and month at the beginning, just as you did for the storage and file paths.
 
-    .. code-block::
+    .. code-block:: python
 
         # Define the target year and month for visualization
         selected_year = 1980
@@ -249,7 +259,7 @@ To achieve this, define aliases for the year and month at the beginning, just as
 
 In the next block, you will set some visualization options before viewing the final result.
 
-    .. code-block::
+    .. code-block:: python
 
         import matplotlib.pyplot as plt
 
@@ -290,12 +300,12 @@ The required shapefile for Konstanz can be downloaded here:
 .. raw:: html
 
    <div class="download-button">
-       <a href="../_static/kn_boundary.zip" download>⇩ Shapefile of Konstanz</a>
+       <a href="../_static/zip/kn_boundary.zip" download>⇩ Shapefile of Konstanz</a>
    </div>
 
-Remember to adjust the file path to the shapefile in the following code so that the script can access it.
+Download and extract the **kn_boundary.zip** file into your working folder. Remember to adjust the file path to the shapefile in the following code so that the script can access it.
 
-    .. code-block::
+    .. code-block:: python
 
         import numpy as np
         import math as ma
@@ -318,104 +328,104 @@ Remember to adjust the file path to the shapefile in the following code so that 
         interval = 0.1
         bins = int((vmax_ceil - vmin_floor) / interval)
 
-
-    .. code-block::
+    .. code-block:: python
 
         # Function to format latitude tick labels
-		def format_latitude(x, pos):
-			return f"{x:.2f}°N"
+        def format_latitude(x, pos):
+            return f"{x:.2f}°N"
 
-		# Function to format longitude tick labels
-		def format_longitude(x, pos):
-			return f"{x:.2f}°E"
+        # Function to format longitude tick labels
+        def format_longitude(x, pos):
+            return f"{x:.2f}°E"
 
-		# Plot using matplotlib
-		fig, ax = plt.subplots(figsize=(8, 8))
+        # Plot using matplotlib
+        fig, ax = plt.subplots(figsize=(8, 8))
 
-		# Load predefined Colormap with 10 discrete colors
-		cmap = plt.get_cmap('turbo', bins)
+        # Load predefined Colormap with 10 discrete colors
+        cmap = plt.get_cmap('turbo', bins)
 
-		pcm = ax.pcolormesh(lon_list, 
-						lat_list,
-						band_data_C,
-						cmap=cmap,
-						vmin=vmin_floor,
-						vmax=vmax_ceil)
+        pcm = ax.pcolormesh(
+            lon_list,
+            lat_list,
+            band_data_C,
+            cmap=cmap,
+            vmin=vmin_floor,
+            vmax=vmax_ceil
+        )
 
-		# Add administrative boundary of Konstanz (Shapefile)
-		germany_shp = r".\shapefiles\kn_boundary.shp"
-		germany_boundary = gpd.read_file(germany_shp)
-		germany_boundary.boundary.plot(ax=ax, edgecolor='red')
+        # Add administrative boundary of Konstanz (Shapefile)
+        konstanz_shp = r"./shapefiles/kn_boundary.shp"
+        konstanz_boundary = gpd.read_file(konstanz_shp)
+        konstanz_boundary.boundary.plot(ax=ax, edgecolor='red')
 
-		# Plot color bar
-		divider = make_axes_locatable(ax)
-		cax = divider.append_axes("right", size="5%", pad=-0.95)
-		plt.colorbar(pcm, cax=cax, label=f'{summary["Long Name"]} (°C)')
+        # Plot color bar
+        divider = make_axes_locatable(ax)
+        cax = divider.append_axes("right", size="5%", pad=-0.95)
+        plt.colorbar(pcm, cax=cax, label=f'{summary["Long Name"]} (°C)')
 
-		# Add grid lines
-		ax.grid(visible=True, which='major', color='#f0f0f0', linestyle='--', alpha=0.5)
+        # Add grid lines
+        ax.grid(visible=True, which='major', color='#f0f0f0', linestyle='--', alpha=0.5)
 
-		# Set custom tick formatters for latitude and longitude
-		ax.xaxis.set_major_formatter(FuncFormatter(format_longitude))
-		ax.yaxis.set_major_formatter(FuncFormatter(format_latitude))
+        # Set custom tick formatters for latitude and longitude
+        ax.xaxis.set_major_formatter(FuncFormatter(format_longitude))
+        ax.yaxis.set_major_formatter(FuncFormatter(format_latitude))
 
-		ax.set_title(f'{summary["Long Name"]} (°C)')
-		ax.set_ylabel('Latitude', fontsize=12)
-		ax.set_xlabel('Longitude', fontsize=12)
+        ax.set_title(f'{summary["Long Name"]} (°C)')
+        ax.set_ylabel('Latitude', fontsize=12)
+        ax.set_xlabel('Longitude', fontsize=12)
 
-		plt.show()
+        plt.show()
 
 With this plot, you can easily get an overview of the spatial characteristics and distribution of a parameter. Try out different configurations to determine which color scheme and scale work best for your purpose.
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Creating a Plot for a Time Series
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+3. Creating a Plot for a Time Series
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To analyze the trend of aggregated monthly temperature averages for August across all years in a specific region, a **line plot** is well suited. You can generate this using the following code block. This approach utilizes the DataFrame structure, a format that organizes variables into sorted groups (similar to a table with rows and columns). This structure is particularly useful when working with large datasets.
 
 More information on the proper use of lists, arrays, and DataFrames in Python can be found online.
 
-	.. code-block::
+    .. code-block:: python
 
-		# Initialize lists to store statistics
-		mean_values_list = []
-		median_values_list = []
-		std_values_list = []
+        # Initialize lists to store statistics
+        mean_values_list = []
+        median_values_list = []
+        std_values_list = []
 
-		# Calculate the total number of time bands
-		total_bands = range(variable_data.shape[0])
+        # Calculate the total number of time bands
+        total_bands = range(variable_data.shape[0])
 
-		# Derive year and month lists based on the time index
-		year_list = [(band_index // 12) + 1950 for band_index in total_bands]
-		month_list = [(band_index % 12) + 1 for band_index in total_bands]
+        # Derive year and month lists based on the time index
+        year_list = [(band_index // 12) + 1950 for band_index in total_bands]
+        month_list = [(band_index % 12) + 1 for band_index in total_bands]
 
-		# Iterate over all bands to compute statistics
-		for band_index in total_bands:
-			# Convert Kelvin to Celsius
-			band_data = variable_data[band_index, :, :] - 273.15
+        # Iterate over all bands to compute statistics
+        for band_index in total_bands:
+            # Convert Kelvin to Celsius
+            band_data = variable_data[band_index, :, :] - 273.15
 
-			# Compute and append statistics
-			mean_values_list.append(np.nanmean(band_data))  # Mean excluding NaNs
-			median_values_list.append(np.ma.median(band_data))  # Median for masked arrays
-			std_values_list.append(np.nanstd(band_data))  # Standard deviation excluding NaNs
+            # Compute and append statistics
+            mean_values_list.append(np.nanmean(band_data))  # Mean excluding NaNs
+            median_values_list.append(np.ma.median(band_data))  # Median for masked arrays
+            std_values_list.append(np.nanstd(band_data))  # Standard deviation excluding NaNs
 
-		# Create a dictionary to store results
-		df_data = {
-			'Year': year_list,
-			'Month': month_list,
-			'Mean': mean_values_list,
-			'Median': median_values_list,
-			"Std Dev": std_values_list
-		}
+        # Create a dictionary to store results
+        df_data = {
+            'Year': year_list,
+            'Month': month_list,
+            'Mean': mean_values_list,
+            'Median': median_values_list,
+            "Std Dev": std_values_list
+        }
 
-		# Convert dictionary to DataFrame
-		df_statistics = pd.DataFrame(df_data)
+        # Convert dictionary to DataFrame
+        df_statistics = pd.DataFrame(df_data)
 
-		# Display the first few rows of the DataFrame
-		df_statistics.head()
+        # Display the first few rows of the DataFrame
+        df_statistics.head()
 
-
-    .. code-block::
+    .. code-block:: python
 
         import matplotlib.ticker as ticker
 
@@ -451,8 +461,8 @@ More information on the proper use of lists, arrays, and DataFrames in Python ca
         ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.2f'))
         ax.tick_params(axis='y', which='both', color='#b0b0b0')
 
-        # Define yaxis limits
-        ax.set_ylim(15,24)
+        # Define y-axis limits
+        ax.set_ylim(15, 24)
 
         # Plot the mean temperature trend
         line1, = ax.plot(
@@ -485,8 +495,8 @@ More information on the proper use of lists, arrays, and DataFrames in Python ca
         )
 
         # Add legend
-        ax.legend(loc='upper left', fontsize=12, frameon=True, facecolor='#ffffff', 	edgecolor='#b0b0b0')
+        ax.legend(loc='upper left', fontsize=12, frameon=True, facecolor='#ffffff', edgecolor='#b0b0b0')
 
         # Display the plot
         plt.tight_layout()
-        plt.show()`
+        plt.show()
