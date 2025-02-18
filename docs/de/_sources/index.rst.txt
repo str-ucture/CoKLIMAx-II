@@ -35,4 +35,4 @@ Im ersten Teil der Dokumentation geht es um die Vorbereitung Ihres Computers auf
   /rst_jupyter_bibliothek/index
   /rst_jupyter_bibliothek/cds_data/index
   /rst_jupyter_bibliothek/satellite_data/index
-  /rst_jupyter_bibliothek/visualization_options/index
+  /rst_jupyter_bibliothek/visualizations/index

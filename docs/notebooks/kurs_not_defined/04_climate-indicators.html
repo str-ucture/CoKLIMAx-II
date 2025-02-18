@@ -160,9 +160,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">The Jupyter-Notebook Library:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/index.html">Visualization Options Library</a><ul class="simple">
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/index.html">Über CoKLIMAx-II Notebooks</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../rst_jupyter_bibliothek/cds_data/index.html">CDS Dataset Notebooks </a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01_alpine-monthly-precipitation.html">Alpine monatliche Niederschlagsdaten</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="01_alpine-monthly-precipitation.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
@@ -380,6 +378,9 @@
 <li class="toctree-l3"><a class="reference internal" href="08_landsat-with-landsatxplore.html#calculate-indices">4. Calculate Indices</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/visualizations/index.html">Visualization Options Library</a><ul class="simple">
 </ul>
 </li>
 </ul>
@@ -722,10 +723,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-02-18 10:24:48,936 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-02-18 10:42:29,353 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-02-18 10:24:48,937 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-02-18 10:42:29,355 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset already downloaded.
@@ -1252,18 +1253,97 @@
 <span class="g g-Whitespace">    </span><span class="mi">312</span>     <span class="k">break</span>
 <span class="ne">--&gt; </span><span class="mi">313</span> <span class="bp">self</span><span class="o">.</span><span class="n">_save_chunk</span><span class="p">(</span><span class="n">start_i</span><span class="p">,</span> <span class="n">end_i</span><span class="p">)</span>
 
-<span class="nn">File ~\anaconda3\envs\myenv\lib\site-packages\pandas\io\formats\csvs.py:324,</span> in <span class="ni">CSVFormatter._save_chunk</span><span class="nt">(self, start_i, end_i)</span>
+<span class="nn">File ~\anaconda3\envs\myenv\lib\site-packages\pandas\io\formats\csvs.py:320,</span> in <span class="ni">CSVFormatter._save_chunk</span><span class="nt">(self, start_i, end_i)</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span> <span class="n">slicer</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">start_i</span><span class="p">,</span> <span class="n">end_i</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">318</span> <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">slicer</span><span class="p">]</span>
+<span class="ne">--&gt; </span><span class="mi">320</span> <span class="n">res</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">_get_values_for_csv</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_number_format</span><span class="p">)</span>
 <span class="g g-Whitespace">    </span><span class="mi">321</span> <span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">_iter_column_arrays</span><span class="p">())</span>
 <span class="g g-Whitespace">    </span><span class="mi">323</span> <span class="n">ix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_index</span><span class="p">[</span><span class="n">slicer</span><span class="p">]</span><span class="o">.</span><span class="n">_get_values_for_csv</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_number_format</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">324</span> <span class="n">libwriters</span><span class="o">.</span><span class="n">write_csv_rows</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">325</span>     <span class="n">data</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">326</span>     <span class="n">ix</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">327</span>     <span class="bp">self</span><span class="o">.</span><span class="n">nlevels</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">328</span>     <span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">329</span>     <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">330</span> <span class="p">)</span>
 
-<span class="nn">File writers.pyx:65,</span> in <span class="ni">pandas._libs.writers.write_csv_rows</span><span class="nt">()</span>
+<span class="nn">File ~\anaconda3\envs\myenv\lib\site-packages\pandas\core\frame.py:1410,</span> in <span class="ni">DataFrame._get_values_for_csv</span><span class="nt">(self, float_format, date_format, decimal, na_rep, quoting)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1400</span> <span class="k">def</span><span class="w"> </span><span class="nf">_get_values_for_csv</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1401</span>     <span class="bp">self</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1402</span>     <span class="o">*</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1408</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1409</span>     <span class="c1"># helper used by to_csv</span>
+<span class="ne">-&gt; </span><span class="mi">1410</span>     <span class="n">mgr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mgr</span><span class="o">.</span><span class="n">get_values_for_csv</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1411</span>         <span class="n">float_format</span><span class="o">=</span><span class="n">float_format</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1412</span>         <span class="n">date_format</span><span class="o">=</span><span class="n">date_format</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1413</span>         <span class="n">decimal</span><span class="o">=</span><span class="n">decimal</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1414</span>         <span class="n">na_rep</span><span class="o">=</span><span class="n">na_rep</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1415</span>         <span class="n">quoting</span><span class="o">=</span><span class="n">quoting</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1416</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1417</span>     <span class="c1"># error: Incompatible return value type (got &quot;DataFrame&quot;, expected &quot;Self&quot;)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1418</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor_from_mgr</span><span class="p">(</span><span class="n">mgr</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="n">mgr</span><span class="o">.</span><span class="n">axes</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\envs\myenv\lib\site-packages\pandas\core\internals\managers.py:466,</span> in <span class="ni">BaseBlockManager.get_values_for_csv</span><span class="nt">(self, float_format, date_format, decimal, na_rep, quoting)</span>
+<span class="g g-Whitespace">    </span><span class="mi">459</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_values_for_csv</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">460</span>     <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">float_format</span><span class="p">,</span> <span class="n">date_format</span><span class="p">,</span> <span class="n">decimal</span><span class="p">,</span> <span class="n">na_rep</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;nan&quot;</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">461</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">462</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">463</span><span class="sd">     Convert values to native types (strings / python objects) that are used</span>
+<span class="g g-Whitespace">    </span><span class="mi">464</span><span class="sd">     in formatting (repr / csv).</span>
+<span class="g g-Whitespace">    </span><span class="mi">465</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">466</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">467</span>         <span class="s2">&quot;get_values_for_csv&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">468</span>         <span class="n">na_rep</span><span class="o">=</span><span class="n">na_rep</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">469</span>         <span class="n">quoting</span><span class="o">=</span><span class="n">quoting</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">470</span>         <span class="n">float_format</span><span class="o">=</span><span class="n">float_format</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">471</span>         <span class="n">date_format</span><span class="o">=</span><span class="n">date_format</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">472</span>         <span class="n">decimal</span><span class="o">=</span><span class="n">decimal</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">473</span>     <span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\envs\myenv\lib\site-packages\pandas\core\internals\managers.py:363,</span> in <span class="ni">BaseBlockManager.apply</span><span class="nt">(self, f, align_keys, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">361</span>         <span class="n">applied</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">362</span>     <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">363</span>         <span class="n">applied</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">f</span><span class="p">)(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">364</span>     <span class="n">result_blocks</span> <span class="o">=</span> <span class="n">extend_blocks</span><span class="p">(</span><span class="n">applied</span><span class="p">,</span> <span class="n">result_blocks</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">366</span> <span class="n">out</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">from_blocks</span><span class="p">(</span><span class="n">result_blocks</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\envs\myenv\lib\site-packages\pandas\core\internals\blocks.py:780,</span> in <span class="ni">Block.get_values_for_csv</span><span class="nt">(self, float_format, date_format, decimal, na_rep, quoting)</span>
+<span class="g g-Whitespace">    </span><span class="mi">775</span> <span class="nd">@final</span>
+<span class="g g-Whitespace">    </span><span class="mi">776</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_values_for_csv</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">777</span>     <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">float_format</span><span class="p">,</span> <span class="n">date_format</span><span class="p">,</span> <span class="n">decimal</span><span class="p">,</span> <span class="n">na_rep</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;nan&quot;</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="kc">None</span>
+<span class="g g-Whitespace">    </span><span class="mi">778</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Block</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">779</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;convert to our native types format&quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">780</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">get_values_for_csv</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">781</span>         <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">782</span>         <span class="n">na_rep</span><span class="o">=</span><span class="n">na_rep</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">783</span>         <span class="n">quoting</span><span class="o">=</span><span class="n">quoting</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">784</span>         <span class="n">float_format</span><span class="o">=</span><span class="n">float_format</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">785</span>         <span class="n">date_format</span><span class="o">=</span><span class="n">date_format</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">786</span>         <span class="n">decimal</span><span class="o">=</span><span class="n">decimal</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">787</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">788</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_block</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\envs\myenv\lib\site-packages\pandas\core\indexes\base.py:7802,</span> in <span class="ni">get_values_for_csv</span><span class="nt">(values, date_format, na_rep, quoting, float_format, decimal)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7800</span> <span class="n">results_converted</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">   </span><span class="mi">7801</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)):</span>
+<span class="ne">-&gt; </span><span class="mi">7802</span>     <span class="n">result</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">_format_native_types</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">7803</span>         <span class="n">na_rep</span><span class="o">=</span><span class="n">na_rep</span><span class="p">,</span> <span class="n">date_format</span><span class="o">=</span><span class="n">date_format</span>
+<span class="g g-Whitespace">   </span><span class="mi">7804</span>     <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">7805</span>     <span class="n">results_converted</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="g g-Whitespace">   </span><span class="mi">7806</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">results_converted</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\envs\myenv\lib\site-packages\pandas\core\arrays\timedeltas.py:455,</span> in <span class="ni">TimedeltaArray._format_native_types</span><span class="nt">(self, na_rep, date_format, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">452</span> <span class="n">formatter</span> <span class="o">=</span> <span class="n">get_format_timedelta64</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">na_rep</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">453</span> <span class="c1"># equiv: np.array([formatter(x) for x in self._ndarray])</span>
+<span class="g g-Whitespace">    </span><span class="mi">454</span> <span class="c1">#  but independent of dimension</span>
+<span class="ne">--&gt; </span><span class="mi">455</span> <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">frompyfunc</span><span class="p">(</span><span class="n">formatter</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ndarray</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\envs\myenv\lib\site-packages\pandas\io\formats\format.py:1718,</span> in <span class="ni">get_format_timedelta64.&lt;locals&gt;._formatter</span><span class="nt">(x)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1715</span>     <span class="n">x</span> <span class="o">=</span> <span class="n">Timedelta</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1717</span> <span class="c1"># Timedelta._repr_base uses string formatting (faster than strftime)</span>
+<span class="ne">-&gt; </span><span class="mi">1718</span> <span class="n">result</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">_repr_base</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1719</span> <span class="k">if</span> <span class="n">box</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1720</span>     <span class="n">result</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+
+<span class="nn">File timedeltas.pyx:1575,</span> in <span class="ni">pandas._libs.tslibs.timedeltas._Timedelta._repr_base</span><span class="nt">()</span>
+
+<span class="nn">File timedeltas.pyx:1398,</span> in <span class="ni">pandas._libs.tslibs.timedeltas._Timedelta.components.__get__</span><span class="nt">()</span>
+
+<span class="nn">File &lt;string&gt;:1,</span> in <span class="ni">&lt;lambda&gt;</span><span class="nt">(_cls, days, hours, minutes, seconds, milliseconds, microseconds, nanoseconds)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
