@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=2bfa0ee5" />
 
   
@@ -52,7 +52,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html">Required Software and Knowledge</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#setting-up-the-infrastructure-on-a-windows-pc">Setting Up the Infrastructure on a Windows PC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#setting-up-the-infrastructure-on-a-windows-system">Setting Up the Infrastructure on a Windows System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#installing-python-and-jupyter-notebook">Installing Python and Jupyter Notebook</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#python-and-pip">1. Python and Pip:</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#installing-jupyter-notebook">2. Installing Jupyter Notebook</a></li>
@@ -157,7 +157,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">The Jupyter-Notebook Library:</span></p>
+<p class="caption" role="heading"><span class="caption-text">The Jupyter Notebook Library:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../rst_jupyter_bibliothek/index.html">Über CoKLIMAx-II Notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rst_jupyter_bibliothek/cds_data/index.html">CDS Dataset Notebooks </a><ul>
@@ -606,7 +606,7 @@
 </pre></div>
 </div>
 </div></blockquote>
-<p>In the generated summary, you can see that the file contains <strong>898</strong> valid time steps. Since the data represents monthly averages and the file starts with its first time step in January 1950, we now know that the last time step is in October 2024: <strong>(2024 − 1950) × 12 + 10 = 898</strong></p>
+<p>In the generated summary, you can see that the file contains <strong>898</strong> valid time steps. Since the data represents monthly averages and the file starts with its first time step in January 1950, we now know that the last time step is in October 2024: <strong>(2024 − 1950) × 12 + 10 = 898</strong>.</p>
 </section>
 <section id="creating-a-plot-for-august-1980">
 <h3>2. Creating a Plot for August 1980<a class="headerlink" href="#creating-a-plot-for-august-1980" title="Link to this heading"></a></h3>
@@ -676,7 +676,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="kn">import</span> <span class="n">FuncFormatter</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.axes_grid1</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_axes_locatable</span>
 
-<span class="c1"># Convert the temperature data from K to °C</span>
+<span class="c1"># Convert the temperature data from Kelvin to °C</span>
 <span class="n">band_data_C</span> <span class="o">=</span> <span class="n">variable_data</span><span class="p">[</span><span class="n">band_index</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">-</span> <span class="mf">273.15</span>
 
 <span class="c1"># Calculate minimum and maximum values within the band data</span>

@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=2bfa0ee5" />
 
   
@@ -52,7 +52,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html">Required Software and Knowledge</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#setting-up-the-infrastructure-on-a-windows-pc">Setting Up the Infrastructure on a Windows PC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#setting-up-the-infrastructure-on-a-windows-system">Setting Up the Infrastructure on a Windows System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#installing-python-and-jupyter-notebook">Installing Python and Jupyter Notebook</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#python-and-pip">1. Python and Pip:</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#installing-jupyter-notebook">2. Installing Jupyter Notebook</a></li>
@@ -157,7 +157,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">The Jupyter-Notebook Library:</span></p>
+<p class="caption" role="heading"><span class="caption-text">The Jupyter Notebook Library:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../rst_jupyter_bibliothek/index.html">Über CoKLIMAx-II Notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rst_jupyter_bibliothek/cds_data/index.html">CDS Dataset Notebooks </a><ul>
@@ -446,7 +446,7 @@
 <section id="setting-up-the-cds-api">
 <span id="setup-api"></span><h2>Setting Up the CDS API<a class="headerlink" href="#setting-up-the-cds-api" title="Link to this heading"></a></h2>
 <p>To set up the CDS API (Application Programming Interface to download data from the CDS), you need a user account in the CDS. You can create this account directly via the <a class="reference external" href="https://cds.climate.copernicus.eu/" rel="noopener noreferrer" target="_blank">Climate Data Store (CDS)</a>.</p>
-<p>If you do not yet have a user account, create one via the homepage. In the top right corner of the window, click on <strong>Login - Register</strong> button. A dialog window will appear as shown below. Follow the instructions to create an ECMWF account, then log in to the CDS using your ECMWF username and password.</p>
+<p>If you do not yet have a user account, create one via the homepage. In the top right corner of the window, click on <strong>“Login - Register”</strong> button. A dialog window will appear as shown below. Follow the instructions to create an ECMWF account, then log in to the CDS using your ECMWF username and password.</p>
 <img alt="CDS API login screen" class="no-scaled-link align-center" src="../_images/kurs_1_cds_1.png" style="width: 600px;" />
 <section id="personal-api-key">
 <span id="id1"></span><h3>1. Personal API Key<a class="headerlink" href="#personal-api-key" title="Link to this heading"></a></h3>
@@ -509,7 +509,7 @@
 <img alt="Data and download fromat" class="no-scaled-link align-center" src="../_images/kurs_1_cds_4.png" style="width: 600px;" />
 <p>Once you have accepted the terms of use, simply click <strong>“Show API request code”</strong> and the automatically generated API request code will appear. For our test data, it looks as follows:</p>
 <blockquote id="dataset-and-request-parameters">
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define dataset and request parameters</span>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define dataset and request parameters</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="s2">&quot;reanalysis-era5-land&quot;</span>
 <span class="n">request</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;variable&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;2m_temperature&quot;</span><span class="p">],</span>
@@ -532,7 +532,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">cdsapi</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">cdsapi</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
 
 <span class="c1"># Define filename and download</span>
 <span class="n">download_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;CDSdata&quot;</span><span class="p">)</span>

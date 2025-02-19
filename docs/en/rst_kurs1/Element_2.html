@@ -1,0 +1,898 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Element 2 &mdash; CoKLIMAx 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=2bfa0ee5" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Lake Water Temperature from Satellite Data" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html" />
+    <link rel="prev" title="Element 1" href="Element_1.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CoKLIMAx
+              <img src="../_static/coklimax_logo_new.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html">Required Software and Knowledge</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#setting-up-the-infrastructure-on-a-windows-system">Setting Up the Infrastructure on a Windows System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#installing-python-and-jupyter-notebook">Installing Python and Jupyter Notebook</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#python-and-pip">1. Python and Pip:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#installing-jupyter-notebook">2. Installing Jupyter Notebook</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#starting-jupyter-notebook-for-course-elements">Starting Jupyter Notebook for Course Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#required-knowledge">Required Knowledge</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../rst_inhalte/02_Kurs-Elemente.html">The Course Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rst_inhalte/03_CDS.html">The Copernicus Climate Data Store (CDS)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Course 1:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Element_1.html">Element 1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Element_1.html#learning-objectives">Learning Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Element_1.html#setting-up-the-cds-api">Setting Up the CDS API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Element_1.html#personal-api-key">1. Personal API Key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Element_1.html#installation-of-the-cds-api">2. Installation of the CDS API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Element_1.html#downloading-climate-data-from-the-cds">Downloading Climate Data from the CDS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Element_1.html#creating-the-api-request">1. Creating the API Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Element_1.html#the-api-request-in-jupyter-notebook">2. The API Request in Jupyter Notebook</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Element 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#handling-netcdf-files">Handling NetCDF Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#unpacking-the-netcdf-zip-file">1. Unpacking the NetCDF Zip file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examining-a-netcdf-file">2. Examining a NetCDF File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#visualization-and-selection-of-a-region">Visualization and Selection of a Region</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reading-and-exploring-the-data">1. Reading and Exploring the Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-plot-for-august-1980">2. Creating a Plot for August 1980</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-plot-for-a-time-series">3. Creating a Plot for a Time Series</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Course 2:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html">Lake Water Temperature from Satellite Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#download-and-extract-the-dataset">2. Download and Extract the Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#define-the-request-and-download-the-dataset">2.2 Define the “request” and Download the Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#extract-the-zip-files-in-folder-s">2.3 Extract the ZIP files in folder(s)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#merge-netcdf4-files-into-a-single-netcdf4-file">3. Merge NetCDF4 Files into a Single NetCDF4 File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#investigate-the-metadata-of-the-netcdf4-file">4. Investigate the Metadata of the NetCDF4 file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#export-the-time-series-in-csv-format">5. Export the time series in CSV Format</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#define-a-function-to-compute-daily-average">5.1 Define a Function to Compute Daily Average</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#create-merged-dataframe-for-yearly-data-and-export-as-csv">5.2 Create Merged DataFrame for yearly data and Export as CSV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#analysis-and-visualization-options">6. Analysis and Visualization Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#visualization-of-daily-average-with-line-graph">6.1 Visualization of Daily Average with Line Graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#visualization-of-monthly-average-with-line-graph">6.2 Visualization of Monthly Average with Line Graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#visualization-of-monthly-average-with-bar-graph">6.3 Visualization of Monthly Average with Bar Graph</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#export-the-merged-netcdf4-file-to-geotiff">7. Export the Merged NetCDF4 file to GeoTIFF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#export-all-year-dataset-as-merged-geotiff-file">7.1 Export All-Year Dataset as Merged GeoTIFF File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#export-all-year-dataset-as-individual-geotiff-file">7.2 Export All-Year Dataset as Individual GeoTIFF File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs2/02_satellite-lake-water-temperature.html#visualize-all-available-data-from-1995-to-2023">8. Visualize all available data from 1995 to 2023</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html">Temperature Statistics for Europe</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html#download-and-extract-the-dataset">2. Download and Extract the Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html#define-the-request-and-download-the-dataset">2.2 Define the “request” and Download the Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html#extract-the-zip-files-in-folder-s">2.3 Extract the ZIP files in folder(s)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html#read-the-netcdf-file-and-print-the-metadata">3. Read the NetCDF File and Print the Metadata</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html#create-a-dataframe-of-available-netcdf-files">3.1 Create a Dataframe of Available netCDF Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html#overview-of-the-downloaded-data-structure">3.1 Overview of the Downloaded Data Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html#print-unique-variable-name-s-and-available-variables">3.2 Print unique Variable name(s) and Available Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html#define-a-function-to-convert-netcdf-data-to-a-pandas-dataframe">4.1 Define a function to convert NetCDF data to a pandas DataFrame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html#create-merged-dataframe-and-export-as-csv">4.2 Create Merged DataFrame and Export as CSV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html#filter-by-area-create-dataframe-and-export-as-merged-csv-file">4.2 Filter by Area, Create DataFrame and Export as merged CSV file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html#export-dataset-to-geotiff">5. Export Dataset to GeoTIFF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html#function-to-exort-the-dataset-as-geotiff-file-s">5.1 Function to exort the Dataset as GeoTIFF File(s)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html#export-selected-dataset-to-geotiff">5.2 Export selected dataset to GeoTIFF</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs2/03_sis-temperature-statistics.html#plot-using-matplotlib">6. Plot using Matplotlib</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">The Jupyter Notebook Library:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../rst_jupyter_bibliothek/index.html">Über CoKLIMAx-II Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rst_jupyter_bibliothek/cds_data/index.html">CDS Dataset Notebooks </a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html">Alpine monatliche Niederschlagsdaten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#download-and-extract-the-dataset">2. Download and Extract the Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#define-the-request-and-download-the-dataset">2.2 Define the “request” and Download the Dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#extract-zip-folder-s">2.3 Extract Zip Folder(s)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#print-netcdf-metadata">3.1 Print netCDF metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#define-bounding-box-to-filter-data-for-konstanz">4.1 Define Bounding Box to Filter Data for Konstanz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#filter-data-by-bounding-box-and-export-as-csv">4.2 Filter Data by Bounding Box and Export as CSV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#compute-monthly-means-and-export-as-csv">4.3 Compute Monthly Means and Export as CSV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#plot-monthly-averages-for-a-defined-date-range">4.4 Plot Monthly Averages for a Defined Date Range</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#export-dataset-to-geotiff">5. Export Dataset to GeoTIFF</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#export-all-year-dataset-as-individual-geotiff-files">5.1 Export All-Year Dataset as Individual GeoTIFF Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#export-dataset-as-a-single-merged-geotiff-file">5.2 Export Dataset as a Single Merged GeoTIFF File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#export-data-for-a-defined-date-range-and-area">5.3 Export Data for a Defined Date Range and Area</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#plot-using-matplotlib">6. Plot using Matplotlib</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#plot-the-complete-data">6.1 Plot the Complete data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/01_alpine-monthly-precipitation.html#plot-monthly-mean-heatmap">6.2 Plot monthly mean heatmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html">Heat Wave and Cold Spells</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html#api-authentication">2.1 API Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html#request-definition-and-download">2.2 Request Definition and Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html#create-a-dataframe-of-available-netcdf-files">3.1 Create a Dataframe of Available netCDF Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html#print-unique-variable-name-s-and-available-variables">3.1 Print unique Variable name(s) and Available Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html#create-dataframe-and-export-as-merged-csv-file">4.1 Create DataFrame and Export as merged CSV file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html#filter-by-area-create-dataframe-and-export-as-merged-csv-file">4.2 Filter by Area, Create DataFrame and Export as merged CSV file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html#export-dataset-to-geotiff">5. Export Dataset to GeoTIFF</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html#function-to-exort-the-dataset-as-geotiff-file-s">5.1 Function to exort the Dataset as GeoTIFF File(s)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html#export-selected-dataset-to-geotiff">5.2 Export selected dataset to GeoTIFF</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html#plot-using-matplotlib">6. Plot using Matplotlib</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html#line-graph-with-error">6.2 Line graph with error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells.html#heatmap">6.2 Heatmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs_not_defined/03_sis-health-vector.html">SIS Health Vector</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/03_sis-health-vector.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/03_sis-health-vector.html#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/03_sis-health-vector.html#api-authentication">2.1 API Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/03_sis-health-vector.html#request-definition-and-download">2.2 Request Definition and Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/03_sis-health-vector.html#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/03_sis-health-vector.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/03_sis-health-vector.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/03_sis-health-vector.html#create-individual-dataframe-and-export-as-individual-csv-files">4.1 Create Individual DataFrame and Export as Individual CSV files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/03_sis-health-vector.html#create-dataframe-and-export-as-merged-csv-file">4.2 Create DataFrame and Export as merged CSV file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/03_sis-health-vector.html#filter-by-area-create-dataframe-and-export-as-merged-csv-file">4.2 Filter by Area, Create DataFrame and Export as merged CSV file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/03_sis-health-vector.html#export-dataset-to-geotiff">5. Export Dataset to GeoTIFF</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/03_sis-health-vector.html#function-to-export-the-dataset-as-geotiff-file-s">5.1 Function to export the Dataset as GeoTIFF File(s)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/03_sis-health-vector.html#export-selected-dataset-to-geotiff">5.2 Export selected dataset to GeoTIFF</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/03_sis-health-vector.html#plot-using-matplotlib">6. Plot using Matplotlib</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs_not_defined/04_climate-indicators.html">Climate Indicators for Europe</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/04_climate-indicators.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/04_climate-indicators.html#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/04_climate-indicators.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/04_climate-indicators.html#request-definition-and-download">2.2 Request Definition and Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/04_climate-indicators.html#define-request-for-only-heat-and-cold">2.3 Define request for only heat and cold</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/04_climate-indicators.html#request-defined-by-tim">2.4 Request defined by Tim</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/04_climate-indicators.html#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/04_climate-indicators.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/04_climate-indicators.html#print-unique-variable-name-s-and-available-variables">3.1 Print unique Variable name(s) and Available Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/04_climate-indicators.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/04_climate-indicators.html#filter-by-bounding-box-create-dataframe-and-export-as-merged-csv-file">4.1 Filter by Bounding Box, Create DataFrame and Export as merged CSV file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/04_climate-indicators.html#error-bar-chart-for-reanalysis">Error bar chart for reanalysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs_not_defined/05_sis-biodiversity-era5-regional.html">Downscaled bioclimatic indicators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/05_sis-biodiversity-era5-regional.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/05_sis-biodiversity-era5-regional.html#download-and-extract-the-dataset">2. Download and Extract the Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/05_sis-biodiversity-era5-regional.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/05_sis-biodiversity-era5-regional.html#define-the-request-and-download-the-dataset">2.2 Define the “request” and Download the Dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/05_sis-biodiversity-era5-regional.html#extract-the-zip-folder-s">2.3 Extract the Zip Folder(s)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/05_sis-biodiversity-era5-regional.html#read-the-netcdf4-file-and-print-the-metadata">3. Read the netCDF4 file and print the Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/05_sis-biodiversity-era5-regional.html#create-a-dataframe-of-available-netcdf-files">3.1 Create a Dataframe of Available netCDF Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/05_sis-biodiversity-era5-regional.html#print-unique-variable-name-s-and-available-variables">3.2 Print unique Variable name(s) and Available Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/05_sis-biodiversity-era5-regional.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/05_sis-biodiversity-era5-regional.html#define-a-function-to-convert-netcdf-data-to-a-pandas-dataframe">4.1 Define a function to convert NetCDF data to a pandas DataFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/05_sis-biodiversity-era5-regional.html#filter-by-bounding-box-create-dataframe-and-export-as-merged-csv-file">4.2 Filter by Bounding Box, Create DataFrame and Export as merged CSV file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/05_sis-biodiversity-era5-regional.html#export-dataset-to-geotiff">5. Export Dataset to GeoTIFF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/05_sis-biodiversity-era5-regional.html#plot-using-matplotlib">6. Plot using Matplotlib</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/05_sis-biodiversity-era5-regional.html#plot-the-complete-data">6.1 Plot the Complete data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs_not_defined/06_era5_land_hourly.html">ERA5-Land Hourly Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/06_era5_land_hourly.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/06_era5_land_hourly.html#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/06_era5_land_hourly.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/06_era5_land_hourly.html#request-definition-and-download">2.2 Request Definition and Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/06_era5_land_hourly.html#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/06_era5_land_hourly.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/06_era5_land_hourly.html#print-unique-variable-name-s-and-available-variables">3.1 Print unique Variable name(s) and Available Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/06_era5_land_hourly.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/06_era5_land_hourly.html#filter-by-bounding-box-create-dataframe-and-export-as-merged-csv-file">4.1 Filter by Bounding Box, Create DataFrame and Export as merged CSV file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs_not_defined/07_era5-land-monthly.html">ERA5-Land Monthly Averaged</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/07_era5-land-monthly.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/07_era5-land-monthly.html#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/07_era5-land-monthly.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/07_era5-land-monthly.html#request-definition-and-download">2.2 Request Definition and Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/07_era5-land-monthly.html#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/07_era5-land-monthly.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/07_era5-land-monthly.html#export-dataset-to-csv">4. Export Dataset to CSV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs_not_defined/10_c3s-erderwaermung.html">Global Warming</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/10_c3s-erderwaermung.html#codes">Codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/10_c3s-erderwaermung.html#era5">ERA5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/10_c3s-erderwaermung.html#ecv">ECV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/10_c3s-erderwaermung.html#ipcc">IPCC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../rst_jupyter_bibliothek/satellite_data/index.html">Satellite Data Notebooks </a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs3/01_senthub_downloader.html">SentinelHub Satellite Data Explorer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs3/01_senthub_downloader.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs3/01_senthub_downloader.html#filter-data-collection-and-retrieve-satellite-images">2. Filter Data Collection and Retrieve Satellite Images</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs3/01_senthub_downloader.html#api-and-authentication">2.1 API and Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs3/01_senthub_downloader.html#define-data-query-parameters">2.2 Define Data Query Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs3/01_senthub_downloader.html#retrieve-filtered-dataset-using-sentinelhubcatalog">2.3 Retrieve Filtered Dataset Using SentinelHubCatalog</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs3/01_senthub_downloader.html#download-and-visualize-satellite-data">3. Download and Visualize Satellite Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs3/01_senthub_downloader.html#evaluation-scripts">3.1 Evaluation scripts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs3/01_senthub_downloader.html#request-satellite-data-and-create-plots">3.2 Request Satellite Data and create Plots</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs3/01_senthub_downloader.html#save-image-as-a-geotiff-raster">4. Save Image as a GeoTIFF Raster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs3/01_senthub_downloader.html#visualize-the-raster">5. Visualize the Raster</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs3/01_senthub_downloader.html#visualize-the-saved-true-color-raster-using-folium">5.1 Visualize the Saved True Color Raster Using <strong>Folium</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs3/01_senthub_downloader.html#visualize-a-false-color-composite-using-matplotlib">5.2 Visualize a False Color Composite Using <strong>Matplotlib</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs3/01_senthub_downloader.html#calculate-and-plot-remote-sensing-indices">5.3 Calculate and Plot Remote Sensing <strong>Indices</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs3/01_senthub_downloader.html#supplements">6 Supplements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs_not_defined/09_Sentinel2-without-esri.html">Sentinel 2 - Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/09_Sentinel2-without-esri.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/09_Sentinel2-without-esri.html#download-the-datasets">2. Download the datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/09_Sentinel2-without-esri.html#extract-scenes">3. Extract scenes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/09_Sentinel2-without-esri.html#select-scene-from-extracted-for-processing">4. Select scene from extracted for processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/09_Sentinel2-without-esri.html#process">Process</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../notebooks/kurs_not_defined/08_landsat-with-landsatxplore.html">Landsat Downloader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/08_landsat-with-landsatxplore.html#specifying-the-paths-and-working-directories">1. Specifying the Paths and Working Directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/08_landsat-with-landsatxplore.html#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/08_landsat-with-landsatxplore.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/08_landsat-with-landsatxplore.html#search-for-available-scenes">2.2 Search for Available Scenes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/08_landsat-with-landsatxplore.html#visualizing-scene-polygons-on-a-map">2.3 Visualizing Scene Polygons on a Map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/08_landsat-with-landsatxplore.html#download-scenes-using-display-id">2.4 Download Scenes Using Display ID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../notebooks/kurs_not_defined/08_landsat-with-landsatxplore.html#extract-the-tar-file">2.5 Extract the TAR File</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/08_landsat-with-landsatxplore.html#merge-rgb-bands-into-a-single-geotiff-file">3. Merge RGB Bands into a Single GeoTIFF File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../notebooks/kurs_not_defined/08_landsat-with-landsatxplore.html#calculate-indices">4. Calculate Indices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../rst_jupyter_bibliothek/visualizations/index.html">Visualization Options Library</a><ul class="simple">
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CoKLIMAx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Element 2</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst_kurs1/Element_2.rst.txt" rel="nofollow"> View page source</a>
+<div id='language-switcher' style='text-align: right; margin-top: 10px;'>
+    <select onchange="location = this.value;">
+        <option value='/./CoKLIMAx-II/en\rst_kurs1\Element_2.html' selected>EN</option>
+        <option value='/./CoKLIMAx-II/de\rst_kurs1\Element_2.html'>DE</option>
+    </select>
+</div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="element-2">
+<span id="kurs1-element2"></span><h1>Element 2<a class="headerlink" href="#element-2" title="Link to this heading"></a></h1>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><a class="reference internal" href="#netcdf-how-to"><span class="std std-ref">Structure and Handling of a file in NetCDF Format</span></a></dt><dd><ul>
+<li><p><a class="reference internal" href="#netcdf-unzip"><span class="std std-ref">Unpacking the NetCDF Zip file</span></a></p></li>
+<li><p><a class="reference internal" href="#netcdf-investigate"><span class="std std-ref">Investigate the NetCDF file</span></a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><a class="reference internal" href="#netcdf-visualize"><span class="std std-ref">Visualization of a Time Series and a Selected Region</span></a></p></li>
+</ul>
+<hr class="docutils" />
+<p>All the steps from this course is also available in a ready-to-use notebook for download from the following link:</p>
+<div class="download-button">
+    <a href="../_static/notebooks/element2_netcdf.ipynb" download>⇩ Element2: Notebook</a>
+</div><p>Open the notebook in Jupyter Lab and follow the instructions. Alternatively, you can copy the Python code snippet into your Jupyter Notebook and execute the cell.</p>
+<hr class="docutils" />
+</section>
+<section id="handling-netcdf-files">
+<span id="netcdf-how-to"></span><h2>Handling NetCDF Files<a class="headerlink" href="#handling-netcdf-files" title="Link to this heading"></a></h2>
+<p>NetCDF (Network Common Data Form) is a data format specifically designed for scientific data. It was developed in the late 1980s by the Unidata program of the University Corporation for Atmospheric Research (UCAR). The goal was to provide a standardized format for storing and exchanging multidimensional data, particularly suited for applications in climate research, meteorology, and oceanography. Since then, NetCDF has become a key tool for working with spatial and temporal data.</p>
+<p>For more information, visit the <a class="reference external" href="https://docs.unidata.ucar.edu/netcdf-c/current/faq.html" rel="noopener noreferrer" target="_blank">UCAR website</a>.</p>
+<p>To work with NetCDF files, first install the necessary Python libraries:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">netCDF4</span> <span class="n">xarray</span> <span class="n">numpy</span> <span class="n">matplotlib</span>
+</pre></div>
+</div>
+</div></blockquote>
+<section id="unpacking-the-netcdf-zip-file">
+<span id="netcdf-unzip"></span><h3>1. Unpacking the NetCDF Zip file<a class="headerlink" href="#unpacking-the-netcdf-zip-file" title="Link to this heading"></a></h3>
+<p>Open your Jupyter Lab via the command prompt (cmd):</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jupyter</span> <span class="n">lab</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Open a notebook in a folder of your choice. You can use the “CDSdata” folder from the first course module (<a class="reference internal" href="Element_1.html#kurs1-element1"><span class="std std-ref">Element 1</span></a>), as it contains the data we will be working with.</p>
+<p>The file you downloaded in the first course module (<a class="reference internal" href="Element_1.html#kurs1-element1"><span class="std std-ref">Element 1</span></a>) is in NetCDF format but is still compressed in a ZIP file. Alternatively, you can download the dataset from Element 1 here and move it inside “CDSdata” folder inside the current working folder in Jupyter Lab:</p>
+<div class="download-button">
+    <a href="../_static/notebooks/CDSdata/reanalysis-era5-land.zip" download>⇩ ERA5-Land (Dataset)</a>
+</div><p>First, extract the data by copying the following code block into your notebook and modifying the lines as needed:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="c1"># Path to the ZIP file (same directory or absolute path)</span>
+<span class="n">zip_file</span> <span class="o">=</span> <span class="s1">&#39;./CDSdata/reanalysis-era5-land.zip&#39;</span>
+
+<span class="c1"># Target directory for extraction</span>
+<span class="n">target_directory</span> <span class="o">=</span> <span class="s1">&#39;Era5Data&#39;</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">target_directory</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Create the directory if it doesn&#39;t exist</span>
+
+<span class="c1"># Open and extract the ZIP file</span>
+<span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zip_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+    <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">target_directory</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ZIP file successfully extracted to &#39;</span><span class="si">{</span><span class="n">target_directory</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Now, let’s take a closer look at the file.</p>
+</section>
+<section id="examining-a-netcdf-file">
+<span id="netcdf-investigate"></span><h3>2. Examining a NetCDF File<a class="headerlink" href="#examining-a-netcdf-file" title="Link to this heading"></a></h3>
+<p>NetCDF files are structured into dimensions, variables, and attributes. Dimensions serve as the axes along which the variables are arranged. These axes can represent, for example, geographic longitude and latitude or different altitude levels. Variables are the meteorological parameters contained in the file, such as temperature, air pressure, or wind speeds. Attributes of a NetCDF file are the metadata and include the units of the variables, descriptions, and the sources/authors of the data.</p>
+<p>First, get an overview of the dataset.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
+
+<span class="c1"># Open file</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="s1">&#39;ERA5Data/data_0.nc&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display Metadata</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The <code class="docutils literal notranslate"><span class="pre">print</span></code> command provides the most important information about the given file in a readable text format. At a glance, you can see which variables are included, their formats, and how many time steps are available.</p>
+<p>There are many other ways to quickly obtain more information about a NetCDF file. You can display the <strong>keys</strong>, meaning the short names of the variables, and thus apply the <code class="docutils literal notranslate"><span class="pre">print</span></code> command to an individual one. With the following code block, you can immediately check whether the <code class="docutils literal notranslate"><span class="pre">2m</span> <span class="pre">temperature</span></code> values of our test dataset appear valid.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># List variables</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+<span class="c1"># Access a variable</span>
+<span class="n">temperature</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;t2m&#39;</span><span class="p">][:]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">temperature</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Once you have tried out the various commands for a quick overview, you can proceed with different visualization options.</p>
+<hr class="docutils" />
+</section>
+</section>
+<section id="visualization-and-selection-of-a-region">
+<span id="netcdf-visualize"></span><h2>Visualization and Selection of a Region<a class="headerlink" href="#visualization-and-selection-of-a-region" title="Link to this heading"></a></h2>
+<p>To have more options for visualization, you will need an additional dataset. We have already made this available for download. Just like in the previous section, it is a dataset from the ERA-5 reanalysis, containing monthly averages of the 2m temperature for a predefined region in southern Germany.</p>
+<div class="download-button">
+    <a href="../_static/notebooks/era5-land-monthly/download/reanalysis-era5-land-monthly-means_2m_temperature_1950_2024.nc" download>⇩ Dataset for Visualization</a>
+</div><p>First, you should define the paths for your output. This step should be included at the beginning of every notebook to ensure that you can easily locate your generated data and plots. It also makes your code more flexible. By using aliases (e.g., “output_folder”) for storage paths, you avoid the hassle of searching through your notebook if the paths change. You only need to update the paths in the first code block, and the rest will automatically adjust thanks to the aliases.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="c1"># ---- Specify directories below ----</span>
+<span class="n">download_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;./era5-land-monthly/download&quot;</span>  <span class="c1"># Folder for downloaded data</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;./era5-land-monthly/output&quot;</span>      <span class="c1"># Folder for final outputs</span>
+<span class="c1"># ---- End of user inputs ----</span>
+
+<span class="c1"># Create directories if they do not exist</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<section id="reading-and-exploring-the-data">
+<h3>1. Reading and Exploring the Data<a class="headerlink" href="#reading-and-exploring-the-data" title="Link to this heading"></a></h3>
+<p>In the following steps, we will use some useful Python libraries, such as the data analysis library <strong>pandas</strong>. Further information on each library can be found online, as they are not included in the resources of <strong>CoKLIMAx II</strong>. The code blocks contain comments that document each step in text form.</p>
+<p>In addition to defining storage paths, you should also specify the paths to the files you want to work with.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Specify the dataset filename and construct its full path</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;reanalysis-era5-land-monthly-means_2m_temperature_1950_2024.nc&quot;</span>
+<span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+<span class="c1"># Display the constructed file path for verification</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dataset file path: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Now, get an overview of the file, including its spatial and temporal extent, as well as the available variables and time steps.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
+
+<span class="c1"># Open the NetCDF file in read mode</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="c1"># List all variables in the dataset</span>
+<span class="n">variables_list</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Available variables: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">variables_list</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Extract coordinate data and the primary variable&#39;s data</span>
+<span class="n">lon_list</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">][:]</span>  <span class="c1"># Extract longitude</span>
+<span class="n">lat_list</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">][:]</span>  <span class="c1"># Extract latitude</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="n">test_variable</span> <span class="o">=</span> <span class="s1">&#39;t2m&#39;</span>
+<span class="n">variable_data</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="n">test_variable</span><span class="p">]</span>
+
+<span class="c1"># Generate summary of the primary variable</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Variable Name&quot;</span><span class="p">:</span> <span class="n">test_variable</span><span class="p">,</span>
+    <span class="s2">&quot;Data Type&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+    <span class="s2">&quot;Shape&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+    <span class="s2">&quot;Variable Info&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">test_variable</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">variable_data</span><span class="o">.</span><span class="n">dimensions</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Units&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Long Name&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;long_name&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="c1"># Display dataset summary as a DataFrame for better visualization</span>
+<span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">,</span> <span class="s1">&#39;Remarks&#39;</span><span class="p">])</span>
+
+<span class="c1"># Display the summary DataFrame</span>
+<span class="n">nc_summary</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Configure pandas display settings for better readability</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># Create a summary of the dataset</span>
+<span class="n">ds_summary</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Institution&quot;</span><span class="p">:</span> <span class="n">dataset</span><span class="o">.</span><span class="n">institution</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;institution&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;N/A&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Dimensions&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">dimensions</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+    <span class="s2">&quot;Variables&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+    <span class="s2">&quot;Variable dimensions&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="n">variable</span><span class="p">])</span> <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    <span class="p">],</span>
+<span class="p">}</span>
+
+<span class="c1"># Convert the summary dictionary into a DataFrame for better visualization</span>
+<span class="n">dataset_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">ds_summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">,</span> <span class="s1">&#39;Remarks&#39;</span><span class="p">])</span>
+
+<span class="c1"># Display the summary DataFrame</span>
+<span class="n">dataset_summary</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>In the generated summary, you can see that the file contains <strong>898</strong> valid time steps. Since the data represents monthly averages and the file starts with its first time step in January 1950, we now know that the last time step is in October 2024: <strong>(2024 − 1950) × 12 + 10 = 898</strong>.</p>
+</section>
+<section id="creating-a-plot-for-august-1980">
+<h3>2. Creating a Plot for August 1980<a class="headerlink" href="#creating-a-plot-for-august-1980" title="Link to this heading"></a></h3>
+<p>With the following code blocks, you can create a flexible plotting script that allows you to quickly switch between visualizations for different months.</p>
+<p>To achieve this, define aliases for the year and month at the beginning, just as you did for the storage and file paths.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the target year and month for visualization</span>
+<span class="n">selected_year</span> <span class="o">=</span> <span class="mi">1980</span>
+<span class="n">selected_month</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="c1"># Calculate the band index for the selected year and month</span>
+<span class="c1"># Index is determined by the position in the time dimension</span>
+<span class="n">band_index</span> <span class="o">=</span> <span class="p">(</span><span class="n">selected_year</span> <span class="o">-</span> <span class="mi">1950</span><span class="p">)</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">+</span> <span class="p">(</span><span class="n">selected_month</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Extract the data slice corresponding to the selected year and month</span>
+<span class="c1"># This gives the spatial data (latitude x longitude) for the specified time</span>
+<span class="n">band_data</span> <span class="o">=</span> <span class="n">variable_data</span><span class="p">[</span><span class="n">band_index</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>In the next block, you will set some visualization options before viewing the final result.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Plot the data using matplotlib</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Load predefined colormap</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s2">&quot;turbo&quot;</span><span class="p">)</span>
+
+<span class="c1"># Create a pseudo-color plot for the data</span>
+<span class="n">pcm</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span>
+    <span class="n">lon_list</span><span class="p">,</span>
+    <span class="n">lat_list</span><span class="p">,</span>
+    <span class="n">band_data</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+    <span class="n">shading</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Add colorbar with units</span>
+<span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s2">&quot;Long Name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s2">&quot;Units&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set plot title and labels</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s2">&quot;Long Name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s2">&quot;Units&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">) - </span><span class="si">{</span><span class="n">selected_year</span><span class="si">}</span><span class="s1">-</span><span class="si">{</span><span class="n">selected_month</span><span class="si">:</span><span class="s1">02d</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Longitude&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Latitude&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="c1"># Display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>You can add more details to the plot, such as administrative boundaries or grid lines. To improve readability, you can also convert temperature values from Kelvin to Celsius or adjust the color scheme. We have prepared some options for you in the next code blocks.</p>
+<p>The required shapefile for Konstanz can be downloaded here:</p>
+<div class="download-button">
+    <a href="../_static/zip/kn_boundary.zip" download>⇩ Shapefile of Konstanz</a>
+</div><p>Download and extract the <strong>kn_boundary.zip</strong> file into your working folder. Remember to adjust the file path to the shapefile in the following code so that the script can access it.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ma</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="kn">import</span> <span class="n">FuncFormatter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mpl_toolkits.axes_grid1</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_axes_locatable</span>
+
+<span class="c1"># Convert the temperature data from Kelvin to °C</span>
+<span class="n">band_data_C</span> <span class="o">=</span> <span class="n">variable_data</span><span class="p">[</span><span class="n">band_index</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">-</span> <span class="mf">273.15</span>
+
+<span class="c1"># Calculate minimum and maximum values within the band data</span>
+<span class="n">vmin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmin</span><span class="p">(</span><span class="n">band_data_C</span><span class="p">)</span>
+<span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">band_data_C</span><span class="p">)</span>
+
+<span class="n">vmin_floor</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">vmin</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span>
+<span class="n">vmax_ceil</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">vmax</span> <span class="o">*</span> <span class="mi">10</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span>
+
+<span class="c1"># Compute interval for the color bar</span>
+<span class="n">interval</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">bins</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">vmax_ceil</span> <span class="o">-</span> <span class="n">vmin_floor</span><span class="p">)</span> <span class="o">/</span> <span class="n">interval</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to format latitude tick labels</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">format_latitude</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">°N&quot;</span>
+
+<span class="c1"># Function to format longitude tick labels</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">format_longitude</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">°E&quot;</span>
+
+<span class="c1"># Plot using matplotlib</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Load predefined Colormap with 10 discrete colors</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;turbo&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="p">)</span>
+
+<span class="n">pcm</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span>
+    <span class="n">lon_list</span><span class="p">,</span>
+    <span class="n">lat_list</span><span class="p">,</span>
+    <span class="n">band_data_C</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="n">vmin_floor</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="n">vmax_ceil</span>
+<span class="p">)</span>
+
+<span class="c1"># Add administrative boundary of Konstanz (Shapefile)</span>
+<span class="n">konstanz_shp</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;./shapefiles/kn_boundary.shp&quot;</span>
+<span class="n">konstanz_boundary</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">konstanz_shp</span><span class="p">)</span>
+<span class="n">konstanz_boundary</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot color bar</span>
+<span class="n">divider</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">cax</span> <span class="o">=</span> <span class="n">divider</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s2">&quot;5%&quot;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=-</span><span class="mf">0.95</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">pcm</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s2">&quot;Long Name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> (°C)&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add grid lines</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#f0f0f0&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Set custom tick formatters for latitude and longitude</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">FuncFormatter</span><span class="p">(</span><span class="n">format_longitude</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">FuncFormatter</span><span class="p">(</span><span class="n">format_latitude</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s2">&quot;Long Name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> (°C)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Latitude&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Longitude&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>With this plot, you can easily get an overview of the spatial characteristics and distribution of a parameter. Try out different configurations to determine which color scheme and scale work best for your purpose.</p>
+</section>
+<section id="creating-a-plot-for-a-time-series">
+<h3>3. Creating a Plot for a Time Series<a class="headerlink" href="#creating-a-plot-for-a-time-series" title="Link to this heading"></a></h3>
+<p>To analyze the trend of aggregated monthly temperature averages for August across all years in a specific region, a <strong>line plot</strong> is well suited. You can generate this using the following code block. This approach utilizes the DataFrame structure, a format that organizes variables into sorted groups (similar to a table with rows and columns). This structure is particularly useful when working with large datasets.</p>
+<p>More information on the proper use of lists, arrays, and DataFrames in Python can be found online.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize lists to store statistics</span>
+<span class="n">mean_values_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">median_values_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">std_values_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Calculate the total number of time bands</span>
+<span class="n">total_bands</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="n">variable_data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Derive year and month lists based on the time index</span>
+<span class="n">year_list</span> <span class="o">=</span> <span class="p">[(</span><span class="n">band_index</span> <span class="o">//</span> <span class="mi">12</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1950</span> <span class="k">for</span> <span class="n">band_index</span> <span class="ow">in</span> <span class="n">total_bands</span><span class="p">]</span>
+<span class="n">month_list</span> <span class="o">=</span> <span class="p">[(</span><span class="n">band_index</span> <span class="o">%</span> <span class="mi">12</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">band_index</span> <span class="ow">in</span> <span class="n">total_bands</span><span class="p">]</span>
+
+<span class="c1"># Iterate over all bands to compute statistics</span>
+<span class="k">for</span> <span class="n">band_index</span> <span class="ow">in</span> <span class="n">total_bands</span><span class="p">:</span>
+    <span class="c1"># Convert Kelvin to Celsius</span>
+    <span class="n">band_data</span> <span class="o">=</span> <span class="n">variable_data</span><span class="p">[</span><span class="n">band_index</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">-</span> <span class="mf">273.15</span>
+
+    <span class="c1"># Compute and append statistics</span>
+    <span class="n">mean_values_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">band_data</span><span class="p">))</span>  <span class="c1"># Mean excluding NaNs</span>
+    <span class="n">median_values_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">band_data</span><span class="p">))</span>  <span class="c1"># Median for masked arrays</span>
+    <span class="n">std_values_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanstd</span><span class="p">(</span><span class="n">band_data</span><span class="p">))</span>  <span class="c1"># Standard deviation excluding NaNs</span>
+
+<span class="c1"># Create a dictionary to store results</span>
+<span class="n">df_data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Year&#39;</span><span class="p">:</span> <span class="n">year_list</span><span class="p">,</span>
+    <span class="s1">&#39;Month&#39;</span><span class="p">:</span> <span class="n">month_list</span><span class="p">,</span>
+    <span class="s1">&#39;Mean&#39;</span><span class="p">:</span> <span class="n">mean_values_list</span><span class="p">,</span>
+    <span class="s1">&#39;Median&#39;</span><span class="p">:</span> <span class="n">median_values_list</span><span class="p">,</span>
+    <span class="s2">&quot;Std Dev&quot;</span><span class="p">:</span> <span class="n">std_values_list</span>
+<span class="p">}</span>
+
+<span class="c1"># Convert dictionary to DataFrame</span>
+<span class="n">df_statistics</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">df_data</span><span class="p">)</span>
+
+<span class="c1"># Display the first few rows of the DataFrame</span>
+<span class="n">df_statistics</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ticker</span>
+
+<span class="c1"># Filter the statistics DataFrame by the selected month (August)</span>
+<span class="n">selected_month</span> <span class="o">=</span> <span class="mi">8</span>  <span class="c1"># August</span>
+<span class="n">df_statistics_filtered</span> <span class="o">=</span> <span class="n">df_statistics</span><span class="p">[</span><span class="n">df_statistics</span><span class="p">[</span><span class="s1">&#39;Month&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">selected_month</span><span class="p">]</span>
+
+<span class="c1"># Initialize the plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#f1f1f1&#39;</span><span class="p">)</span>
+
+<span class="c1"># Titles and labels</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s1">&#39;Average </span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s2">&quot;Long Name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> for August (°C)&#39;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#333333&#39;</span><span class="p">,</span>
+    <span class="n">pad</span><span class="o">=</span><span class="mi">20</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#555555&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="s2">&quot;Long Name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> (°C)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#555555&#39;</span><span class="p">)</span>
+
+<span class="c1"># Update plot parameters for consistency</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;axes.labelsize&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span>
+    <span class="s1">&#39;axes.titlesize&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span>
+    <span class="s1">&#39;xtick.labelsize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="s1">&#39;ytick.labelsize&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+<span class="c1"># Add grid and tick formatting</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">FormatStrFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%0.2f</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">)</span>
+
+<span class="c1"># Define y-axis limits</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
+
+<span class="c1"># Plot the mean temperature trend</span>
+<span class="n">line1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">df_statistics_filtered</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">],</span>
+    <span class="n">df_statistics_filtered</span><span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span>
+    <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Mean Temperature&#39;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#ff6f61&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-.&#39;</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">2.5</span>
+<span class="p">)</span>
+
+<span class="c1"># Fit a quadratic curve (degree 2) for the trend line</span>
+<span class="n">degree</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Quadratic fit</span>
+<span class="n">coefficients</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span>
+    <span class="n">df_statistics_filtered</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">],</span>
+    <span class="n">df_statistics_filtered</span><span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span>
+    <span class="n">degree</span>
+<span class="p">)</span>
+<span class="n">curve_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span>
+
+<span class="c1"># Plot the curve fit trend line</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">df_statistics_filtered</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">],</span>
+    <span class="n">curve_fit</span><span class="p">(</span><span class="n">df_statistics_filtered</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]),</span>
+    <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Curve Fit (Degree </span><span class="si">{</span><span class="n">degree</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span>
+<span class="p">)</span>
+
+<span class="c1"># Add legend</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#ffffff&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Element_1.html" class="btn btn-neutral float-left" title="Element 1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../notebooks/kurs2/02_satellite-lake-water-temperature.html" class="btn btn-neutral float-right" title="Lake Water Temperature from Satellite Data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, str.ucture GmbH.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
