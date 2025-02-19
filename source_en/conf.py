@@ -48,6 +48,6 @@ html_theme_options = {
 }
 
 html_css_files = ['css/custom.css']
-html_logo = "_static/coklimax_logo_new.png"
+html_logo = "_static/logos/coklimax_logo_new.png"
 
 language='en'

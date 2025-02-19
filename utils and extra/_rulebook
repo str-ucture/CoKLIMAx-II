@@ -1,0 +1,24 @@
+File and Folder Naming Rules
+
+1. File and Folder Language
+    * File and folder names must be in German (DE).
+    * Exception: Notebook filenames should be in English (EN).
+    * No white spaces should be used in filenames and folder names.
+    * All file and folder names should hve lowercase letters only.
+
+2. References in Documentation (*.rst files)
+    * All references inside .rst files must be in English (EN).
+    * Example: cds-api-key → .. _cds-api-key.
+
+3. Image Naming and Captions
+    * Image file names should be in English (EN) whenever possible.
+    * Image captions should be in the selected language (German or English).
+
+4. Naming Format
+    * Files: Use hyphens (-) as separators (e.g., example-file-name.ext).
+    * Folders: Use underscores (_) as separators (e.g., example_folder_name).
+
+5. German Characters with Umlauts
+    * Replace German characters with umlaut (ä, ö, ü, ß) with their simple alphabet equivalents in file and folder names
+
+* Similar files inside a folder should have a 2 digit prefix to distinguish the sequence in which the files will be called/used in the documentation.

@@ -1,0 +1,496 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heatmap &mdash; CoKLIMAx 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=2bfa0ee5" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Bar Graph" href="03-bargraph-with-error.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CoKLIMAx
+              <img src="../../_static/coklimax_logo_new.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/01-softwarekenntnisse.html">Required Software and Knowledge</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_inhalte/01-softwarekenntnisse.html#setting-up-the-infrastructure-on-a-windows-system">Setting Up the Infrastructure on a Windows System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_inhalte/01-softwarekenntnisse.html#installing-python-and-jupyter-notebook">Installing Python and Jupyter Notebook</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_inhalte/01-softwarekenntnisse.html#python-and-pip">1. Python and Pip:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_inhalte/01-softwarekenntnisse.html#installing-jupyter-notebook">2. Installing Jupyter Notebook</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_inhalte/01-softwarekenntnisse.html#starting-jupyter-notebook-for-course-elements">Starting Jupyter Notebook for Course Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_inhalte/01-softwarekenntnisse.html#required-knowledge">Required Knowledge</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/02-kurselemente.html">The Course Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/03-cds.html">The Copernicus Climate Data Store (CDS)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Course 1:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/cds-api-installieren-und-herunterladen.html">CDS API Installation and Download</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_kurs1/cds-api-installieren-und-herunterladen.html#learning-objectives">Learning Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_kurs1/cds-api-installieren-und-herunterladen.html#setting-up-the-cds-api">Setting Up the CDS API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/cds-api-installieren-und-herunterladen.html#personal-api-key">1. Personal API Key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/cds-api-installieren-und-herunterladen.html#installation-of-the-cds-api">2. Installation of the CDS API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_kurs1/cds-api-installieren-und-herunterladen.html#downloading-climate-data-from-the-cds">Downloading Climate Data from the CDS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/cds-api-installieren-und-herunterladen.html#creating-the-api-request">1. Creating the API Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/cds-api-installieren-und-herunterladen.html#the-api-request-in-jupyter-notebook">2. The API Request in Jupyter Notebook</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html">NetCDF Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html#learning-objectives">Learning Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html#handling-netcdf-files">Handling NetCDF Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html#unpacking-the-netcdf-zip-file">1. Unpacking the NetCDF Zip file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html#examining-a-netcdf-file">2. Examining a NetCDF File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html#visualization-and-selection-of-a-region">Visualization and Selection of a Region</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html#reading-and-exploring-the-data">1. Reading and Exploring the Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html#creating-a-plot-for-august-1980">2. Creating a Plot for August 1980</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html#creating-a-plot-for-a-time-series">3. Creating a Plot for a Time Series</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Course 2:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html">Lake Water Levels from Satellite Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#download-and-extract-the-dataset">2. Download and Extract the Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#define-the-request-and-download-the-dataset">2.2 Define the “request” and Download the Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#extract-the-zip-files-in-folder-s">2.3 Extract the ZIP files in folder(s)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#investigate-the-metadata-of-the-netcdf4-file">3. Investigate the Metadata of the NetCDF4 file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#export-the-time-series-in-csv-format">4. Export the time series in CSV Format</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#define-a-function-to-compute-daily-average">4.1 Define a Function to Compute Daily Average</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#create-dataframe-and-export-as-csv">4.2 Create DataFrame and Export as CSV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#analysis-and-visualization-options">5. Analysis and Visualization Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#visualization-of-all-data-without-a-map">5.1 Visualization of all data (without a map)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#visualization-of-monthly-averages-without-a-map">5.2 Visualization of monthly averages (without a map)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#visualization-of-all-data-with-a-map">5.3 Visualization of all data (with a map)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#visualization-of-monthly-average-with-a-map">5.4 Visualization of monthly average (with a map)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html">Lake Water Temperature from Satellite Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#download-and-extract-the-dataset">2. Download and Extract the Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#define-the-request-and-download-the-dataset">2.2 Define the “request” and Download the Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#extract-the-zip-files-in-folder-s">2.3 Extract the ZIP files in folder(s)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#merge-netcdf4-files-into-a-single-netcdf4-file">3. Merge NetCDF4 Files into a Single NetCDF4 File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#investigate-the-metadata-of-the-netcdf4-file">4. Investigate the Metadata of the NetCDF4 file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#export-the-time-series-in-csv-format">5. Export the time series in CSV Format</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#define-a-function-to-compute-daily-average">5.1 Define a Function to Compute Daily Average</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#create-merged-dataframe-for-yearly-data-and-export-as-csv">5.2 Create Merged DataFrame for yearly data and Export as CSV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#analysis-and-visualization-options">6. Analysis and Visualization Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#visualization-of-daily-average-with-line-graph">6.1 Visualization of Daily Average with Line Graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#visualization-of-monthly-average-with-line-graph">6.2 Visualization of Monthly Average with Line Graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#visualization-of-monthly-average-with-bar-graph">6.3 Visualization of Monthly Average with Bar Graph</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#export-the-merged-netcdf4-file-to-geotiff">7. Export the Merged NetCDF4 file to GeoTIFF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#export-all-year-dataset-as-merged-geotiff-file">7.1 Export All-Year Dataset as Merged GeoTIFF File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#export-all-year-dataset-as-individual-geotiff-file">7.2 Export All-Year Dataset as Individual GeoTIFF File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#visualize-all-available-data-from-1995-to-2023">8. Visualize all available data from 1995 to 2023</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">The Jupyter Notebook Library:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/index.html">About CoKLIMAx-II Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/cds_data/index.html">CDS Dataset Notebooks </a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html">Alpine monatliche Niederschlagsdaten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#download-and-extract-the-dataset">2. Download and Extract the Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#define-the-request-and-download-the-dataset">2.2 Define the “request” and Download the Dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#extract-zip-folder-s">2.3 Extract Zip Folder(s)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#print-netcdf-metadata">3.1 Print netCDF metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#define-bounding-box-to-filter-data-for-konstanz">4.1 Define Bounding Box to Filter Data for Konstanz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#filter-data-by-bounding-box-and-export-as-csv">4.2 Filter Data by Bounding Box and Export as CSV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#compute-monthly-means-and-export-as-csv">4.3 Compute Monthly Means and Export as CSV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#plot-monthly-averages-for-a-defined-date-range">4.4 Plot Monthly Averages for a Defined Date Range</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#export-dataset-to-geotiff">5. Export Dataset to GeoTIFF</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#export-all-year-dataset-as-individual-geotiff-files">5.1 Export All-Year Dataset as Individual GeoTIFF Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#export-dataset-as-a-single-merged-geotiff-file">5.2 Export Dataset as a Single Merged GeoTIFF File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#export-data-for-a-defined-date-range-and-area">5.3 Export Data for a Defined Date Range and Area</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#plot-using-matplotlib">6. Plot using Matplotlib</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#plot-the-complete-data">6.1 Plot the Complete data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/01-alpine-monthly-precipitation.html#plot-monthly-mean-heatmap">6.2 Plot monthly mean heatmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html">Heat Wave and Cold Spells</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html#api-authentication">2.1 API Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html#request-definition-and-download">2.2 Request Definition and Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html#create-a-dataframe-of-available-netcdf-files">3.1 Create a Dataframe of Available netCDF Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html#print-unique-variable-name-s-and-available-variables">3.1 Print unique Variable name(s) and Available Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html#create-dataframe-and-export-as-merged-csv-file">4.1 Create DataFrame and Export as merged CSV file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html#filter-by-area-create-dataframe-and-export-as-merged-csv-file">4.2 Filter by Area, Create DataFrame and Export as merged CSV file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html#export-dataset-to-geotiff">5. Export Dataset to GeoTIFF</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html#function-to-exort-the-dataset-as-geotiff-file-s">5.1 Function to exort the Dataset as GeoTIFF File(s)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html#export-selected-dataset-to-geotiff">5.2 Export selected dataset to GeoTIFF</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html#plot-using-matplotlib">6. Plot using Matplotlib</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html#line-graph-with-error">6.2 Line graph with error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/02-sis-heat-wave-and-cold-spells.html#heatmap">6.2 Heatmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs_sonstiges/03-sis-health-vector.html">SIS Health Vector</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/03-sis-health-vector.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/03-sis-health-vector.html#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/03-sis-health-vector.html#api-authentication">2.1 API Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/03-sis-health-vector.html#request-definition-and-download">2.2 Request Definition and Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/03-sis-health-vector.html#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/03-sis-health-vector.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/03-sis-health-vector.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/03-sis-health-vector.html#create-individual-dataframe-and-export-as-individual-csv-files">4.1 Create Individual DataFrame and Export as Individual CSV files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/03-sis-health-vector.html#create-dataframe-and-export-as-merged-csv-file">4.2 Create DataFrame and Export as merged CSV file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/03-sis-health-vector.html#filter-by-area-create-dataframe-and-export-as-merged-csv-file">4.2 Filter by Area, Create DataFrame and Export as merged CSV file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/03-sis-health-vector.html#export-dataset-to-geotiff">5. Export Dataset to GeoTIFF</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/03-sis-health-vector.html#function-to-export-the-dataset-as-geotiff-file-s">5.1 Function to export the Dataset as GeoTIFF File(s)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/03-sis-health-vector.html#export-selected-dataset-to-geotiff">5.2 Export selected dataset to GeoTIFF</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/03-sis-health-vector.html#plot-using-matplotlib">6. Plot using Matplotlib</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs_sonstiges/04-climate-indicators.html">Climate Indicators for Europe</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/04-climate-indicators.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/04-climate-indicators.html#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/04-climate-indicators.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/04-climate-indicators.html#request-definition-and-download">2.2 Request Definition and Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/04-climate-indicators.html#define-request-for-only-heat-and-cold">2.3 Define request for only heat and cold</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/04-climate-indicators.html#request-defined-by-tim">2.4 Request defined by Tim</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/04-climate-indicators.html#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/04-climate-indicators.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/04-climate-indicators.html#print-unique-variable-name-s-and-available-variables">3.1 Print unique Variable name(s) and Available Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/04-climate-indicators.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/04-climate-indicators.html#filter-by-bounding-box-create-dataframe-and-export-as-merged-csv-file">4.1 Filter by Bounding Box, Create DataFrame and Export as merged CSV file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/04-climate-indicators.html#error-bar-chart-for-reanalysis">Error bar chart for reanalysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs_sonstiges/05-sis-biodiversity-era5-regional.html">Downscaled bioclimatic indicators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/05-sis-biodiversity-era5-regional.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/05-sis-biodiversity-era5-regional.html#download-and-extract-the-dataset">2. Download and Extract the Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/05-sis-biodiversity-era5-regional.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/05-sis-biodiversity-era5-regional.html#define-the-request-and-download-the-dataset">2.2 Define the “request” and Download the Dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/05-sis-biodiversity-era5-regional.html#extract-the-zip-folder-s">2.3 Extract the Zip Folder(s)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/05-sis-biodiversity-era5-regional.html#read-the-netcdf4-file-and-print-the-metadata">3. Read the netCDF4 file and print the Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/05-sis-biodiversity-era5-regional.html#create-a-dataframe-of-available-netcdf-files">3.1 Create a Dataframe of Available netCDF Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/05-sis-biodiversity-era5-regional.html#print-unique-variable-name-s-and-available-variables">3.2 Print unique Variable name(s) and Available Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/05-sis-biodiversity-era5-regional.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/05-sis-biodiversity-era5-regional.html#define-a-function-to-convert-netcdf-data-to-a-pandas-dataframe">4.1 Define a function to convert NetCDF data to a pandas DataFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/05-sis-biodiversity-era5-regional.html#filter-by-bounding-box-create-dataframe-and-export-as-merged-csv-file">4.2 Filter by Bounding Box, Create DataFrame and Export as merged CSV file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/05-sis-biodiversity-era5-regional.html#export-dataset-to-geotiff">5. Export Dataset to GeoTIFF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/05-sis-biodiversity-era5-regional.html#plot-using-matplotlib">6. Plot using Matplotlib</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/05-sis-biodiversity-era5-regional.html#plot-the-complete-data">6.1 Plot the Complete data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs_sonstiges/06-era5-land-hourly.html">ERA5-Land Hourly Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/06-era5-land-hourly.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/06-era5-land-hourly.html#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/06-era5-land-hourly.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/06-era5-land-hourly.html#request-definition-and-download">2.2 Request Definition and Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/06-era5-land-hourly.html#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/06-era5-land-hourly.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/06-era5-land-hourly.html#print-unique-variable-name-s-and-available-variables">3.1 Print unique Variable name(s) and Available Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/06-era5-land-hourly.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/06-era5-land-hourly.html#filter-by-bounding-box-create-dataframe-and-export-as-merged-csv-file">4.1 Filter by Bounding Box, Create DataFrame and Export as merged CSV file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs_sonstiges/07-era5-land-monthly.html">ERA5-Land Monthly Averaged</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/07-era5-land-monthly.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/07-era5-land-monthly.html#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/07-era5-land-monthly.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/07-era5-land-monthly.html#request-definition-and-download">2.2 Request Definition and Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs_sonstiges/07-era5-land-monthly.html#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/07-era5-land-monthly.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/07-era5-land-monthly.html#export-dataset-to-csv">4. Export Dataset to CSV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs_sonstiges/10-c3s-erderwaermung.html">Global Warming</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/10-c3s-erderwaermung.html#codes">Codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/10-c3s-erderwaermung.html#era5">ERA5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/10-c3s-erderwaermung.html#ecv">ECV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs_sonstiges/10-c3s-erderwaermung.html#ipcc">IPCC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/satellite_data/index.html">Satellite Data Notebooks </a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html">SentinelHub Satellite Data Explorer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#filter-data-collection-and-retrieve-satellite-images">2. Filter Data Collection and Retrieve Satellite Images</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#api-and-authentication">2.1 API and Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#define-data-query-parameters">2.2 Define Data Query Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#retrieve-filtered-dataset-using-sentinelhubcatalog">2.3 Retrieve Filtered Dataset Using SentinelHubCatalog</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#download-and-visualize-satellite-data">3. Download and Visualize Satellite Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#evaluation-scripts">3.1 Evaluation scripts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#request-satellite-data-and-create-plots">3.2 Request Satellite Data and create Plots</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#save-image-as-a-geotiff-raster">4. Save Image as a GeoTIFF Raster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#visualize-the-raster">5. Visualize the Raster</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#visualize-the-saved-true-color-raster-using-folium">5.1 Visualize the Saved True Color Raster Using <strong>Folium</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#visualize-a-false-color-composite-using-matplotlib">5.2 Visualize a False Color Composite Using <strong>Matplotlib</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#calculate-and-plot-remote-sensing-indices">5.3 Calculate and Plot Remote Sensing <strong>Indices</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#supplements">6 Supplements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs3_satellit/02-sentinel2-without-esri.html">Sentinel 2 - Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/02-sentinel2-without-esri.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/02-sentinel2-without-esri.html#download-the-datasets">2. Download the datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/02-sentinel2-without-esri.html#extract-scenes">3. Extract scenes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/02-sentinel2-without-esri.html#select-scene-from-extracted-for-processing">4. Select scene from extracted for processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/02-sentinel2-without-esri.html#process">Process</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html">Landsat Downloader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#specifying-the-paths-and-working-directories">1. Specifying the Paths and Working Directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#search-for-available-scenes">2.2 Search for Available Scenes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#visualizing-scene-polygons-on-a-map">2.3 Visualizing Scene Polygons on a Map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#download-scenes-using-display-id">2.4 Download Scenes Using Display ID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#extract-the-tar-file">2.5 Extract the TAR File</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#merge-rgb-bands-into-a-single-geotiff-file">3. Merge RGB Bands into a Single GeoTIFF File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#calculate-indices">4. Calculate Indices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../rst_jupyter_bibliothek/visualizations/index.html">Visualization Options Library</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01-linegraph.html">Line Graph</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="01-linegraph.html#basic-line-graph">1. Basic Line Graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-linegraph.html#line-graph-using-cds-dataset">2. Line Graph using CDS Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="03-bargraph-with-error.html">Bar Graph</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="03-bargraph-with-error.html#basic-bar-graph">1. Basic Bar Graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-bargraph-with-error.html#bar-graph-using-cds-dataset">2. Bar Graph using CDS Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Heatmap</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basic-heatmap">1. Basic Heatmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#heatmap-using-cds-dataset">2. Heatmap using CDS Dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CoKLIMAx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../rst_jupyter_bibliothek/visualizations/index.html">Visualization Options Library</a></li>
+      <li class="breadcrumb-item active">Heatmap</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/notebooks/kurs4_vis_optionen/04-heatmap.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="heatmap">
+<h1>Heatmap<a class="headerlink" href="#heatmap" title="Link to this heading"></a></h1>
+<section id="basic-heatmap">
+<h2>1. Basic Heatmap<a class="headerlink" href="#basic-heatmap" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Import Libraries</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Set a unique seed for reproducibility</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Step 2: Create Sample Data</span>
+<span class="c1"># Define latitude and longitude ranges and create meshgrid</span>
+<span class="n">lat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">lon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">LON</span><span class="p">,</span> <span class="n">LAT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+
+<span class="c1"># Create a base temperature field as a function of latitude and longitude.</span>
+<span class="n">temperature_data</span> <span class="o">=</span> <span class="mi">25</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">LAT</span> <span class="o">-</span> <span class="mi">35</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">LON</span> <span class="o">+</span> <span class="mi">95</span><span class="p">))</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">LAT</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Plot the heatmap using the &#39;turbo&#39; colormap</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">temperature_data</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="n">lon</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">lon</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">lat</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">lat</span><span class="o">.</span><span class="n">max</span><span class="p">()],</span>
+           <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;turbo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span><span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.04</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Longitude&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Latitude&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Heatmap&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b91fd1dcb7a42cc7297570ab7478b9b1ab67c9de13bb6a01f9ec5320b13a5590.png" src="../../_images/b91fd1dcb7a42cc7297570ab7478b9b1ab67c9de13bb6a01f9ec5320b13a5590.png" />
+</div>
+</div>
+</section>
+<section id="heatmap-using-cds-dataset">
+<h2>2. Heatmap using CDS Dataset<a class="headerlink" href="#heatmap-using-cds-dataset" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="03-bargraph-with-error.html" class="btn btn-neutral float-left" title="Bar Graph" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, str.ucture GmbH.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

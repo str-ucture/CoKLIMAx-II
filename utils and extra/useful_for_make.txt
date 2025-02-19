@@ -4,8 +4,8 @@ Check-list:
 - Update the upload_dropdown.py file?
 
 run
-conda activate myenv
 
+conda activate myenv
 .\make.bat clean
 .\make.bat html
 .\make_en.bat html

@@ -1,19 +1,19 @@
-.. _einfuehrung-jupyter:
+.. _jupyter-notebooks-library:
 
-==========================
-Über CoKLIMAx-II Notebooks
-==========================
+===========================
+About CoKLIMAx-II Notebooks
+===========================
 
-Willkommen in der Ressourcen-Bibliothek des CoKLIMAx-II Projekts. Hier haben wir Ihnen zahlreiche Jupyter Notebooks erarbeitet und zur Verfügung gestellt, die Ihnen den Einstieg in die Arbeit mit großen Datensätzen erleichtern können.
+Welcome to the resource library of the CoKLIMAx-II project. Here we have developed and made available numerous Jupyter Notebooks that can make it easier for you to get started working with large data sets.
 
-Jupyter Notebooks sind interaktive Werkzeuge, die es Ihnen ermöglichen, Code, Datenanalyse und Dokumentation nahtlos miteinander zu verbinden. Sie bieten eine ideale Plattform, um komplexe Datensätze, wie die Klimadatensätze des Copernicus Climate Data Store (CDS) zu verarbeiten und in Ihrer täglichen Arbeit zu nutzen. Im städtischen Verwaltungskontext können solche Datensätze in Zukunft eine entscheidende Rolle spielen. Ob es um das Monitoring von Klimaauswirkungen, die Planung von Infrastruktur oder die Anpassung an den Klimawandel geht – Jupyter Notebooks können Sie in Ihrer Arbeit unterstützen, diese Herausforderungen effektiv anzugehen.
+Jupyter Notebooks are interactive tools that allow you to seamlessly combine code, data analysis and documentation. They provide an ideal platform for processing complex data sets, such as the climate data sets from the Copernicus Climate Data Store (CDS), and using them in your daily work. In the urban administration context, such data sets can play a crucial role in the future. Whether it is monitoring climate impacts, planning infrastructure or adapting to climate change - Jupyter Notebooks can support you in your work to effectively address these challenges.
 
-Die digitalen Ressourcen, welche innerhalb des CoKLIMAx-II Projekts entwickelt und zur Verfügung gestellt werden, können Sie selbst ohne umfangreiche Vorkenntnisse in der Datenverarbeitung nutzen. Unsere Notebooks wurden so gestaltet, dass sie flexibel und erweiterbar sind, sodass Sie sie an Ihre spezifischen Bedürfnisse anpassen können.
+You can use the digital resources developed and made available within the CoKLIMAx-II project even without extensive prior knowledge of data processing. Our notebooks have been designed to be flexible and expandable so that you can adapt them to your specific needs.
 
-Haben Sie Ihren Computer bereits auf die Arbeit mit den Jupyter-Ressourcen vorbereitet? Falls nicht, springen Sie zunächst zum Kapitel :ref:`Notwendige Software und Kenntnisse <software-to-run-jupyter>`.
+Have you already prepared your computer to work with the Jupyter resources? If not, first skip to the chapter :ref:`Required Software and Knowledge <software-knowledge>`.
 
-Alle Notizbücher sind in zwei Kategorien unterteilt und können hier gefunden werden:
+All notebooks are divided into two categories and can be found here:
 
-* :ref:`CDS Dataset Notebooks <cds_dataset_notebooks>`
-* :ref:`Satellite Data Notebooks <satellite_data_notebooks>`
-* :ref:`Visualization Options Library <visualization_options_library>`
+* :ref:`CDS Dataset Notebooks <cds-dataset-notebooks>`
+* :ref:`Satellite Data Notebooks <satellite-data-notebooks>`
+* :ref:`Visualization Options Library <visualization-options-library>`
