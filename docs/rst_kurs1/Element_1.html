@@ -6,11 +6,11 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Element 1 &mdash; Coklimax 1.0.0 documentation</title>
+  <title>Element 1 &mdash; CoKLIMAx 1.0.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
       <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=2bfa0ee5" />
 
   
@@ -38,7 +38,7 @@
           
           
           <a href="../index.html" class="icon icon-home">
-            Coklimax
+            CoKLIMAx
               <img src="../_static/coklimax_logo_new.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
@@ -52,14 +52,13 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html">Required Software and Knowledge</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#learning-objectives">Learning Objectives</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#setting-up-the-infrastructure-for-jupyter-notebooks-on-a-windows-pc">Setting Up the Infrastructure for Jupyter Notebooks on a Windows PC</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#installing-python">Installing Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#setting-up-the-infrastructure-on-a-windows-pc">Setting Up the Infrastructure on a Windows PC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#installing-python-and-jupyter-notebook">Installing Python and Jupyter Notebook</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#python-and-pip">1. Python and Pip:</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#installing-jupyter-notebook">2. Installing Jupyter Notebook</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#starting-jupyter-notebook">3. Starting Jupyter Notebook</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#starting-jupyter-notebook-for-course-elements">Starting Jupyter Notebook for Course Elements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rst_inhalte/01_SoftwareKenntnisse.html#required-knowledge">Required Knowledge</a></li>
 </ul>
 </li>
@@ -391,7 +390,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">Coklimax</a>
+          <a href="../index.html">CoKLIMAx</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -421,7 +420,7 @@
 <h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><dl class="simple">
-<dt><a class="reference internal" href="#setup-api"><span class="std std-ref">Setting up the Copernicus Data Store API (CDS API)</span></a></dt><dd><ul>
+<dt><a class="reference internal" href="#setup-api"><span class="std std-ref">Setting Up the Copernicus Data Store API (CDS API)</span></a></dt><dd><ul>
 <li><p><a class="reference internal" href="#personal-api-key"><span class="std std-ref">Personal API Key</span></a></p></li>
 <li><p><a class="reference internal" href="#install-cds-api"><span class="std std-ref">Installation of the CDS API</span></a></p></li>
 </ul>
@@ -441,13 +440,13 @@
 <p>We have prepared a Jupyter Notebook for you, where you only need to adjust the output folder and your API key. You can download the notebook from the following link:</p>
 <div class="download-button">
     <a href="../_static/notebooks/element1_api_test.ipynb" download>⇩ Element1: Notebook</a>
-</div><p>Open the notebook in Jupyter Lab and follow the instructions.</p>
+</div><p>Open the notebook in Jupyter Lab and follow the instructions. Alternatively, you can copy the Python code snippet into your Jupyter Notebook and execute the cell.</p>
 <hr class="docutils" />
 </section>
 <section id="setting-up-the-cds-api">
 <span id="setup-api"></span><h2>Setting Up the CDS API<a class="headerlink" href="#setting-up-the-cds-api" title="Link to this heading"></a></h2>
-<p>To set up the CDS API (Application Programming Interface, required installation to download data from the CDS), you need a user account in the Copernicus Climate Data Store (CDS). You can create this account directly via the <a class="reference external" href="https://cds.climate.copernicus.eu/" rel="noopener noreferrer" target="_blank">CDS</a>.</p>
-<p>If you do not yet have a user account, create one via the homepage. In the top right corner of the window, click on “Login/Register.” A dialog window will appear as shown below. Follow the instructions to create an ECMWF account, then log in to the Copernicus CDS using your ECMWF username and password.</p>
+<p>To set up the CDS API (Application Programming Interface to download data from the CDS), you need a user account in the CDS. You can create this account directly via the <a class="reference external" href="https://cds.climate.copernicus.eu/" rel="noopener noreferrer" target="_blank">Climate Data Store (CDS)</a>.</p>
+<p>If you do not yet have a user account, create one via the homepage. In the top right corner of the window, click on <strong>Login - Register</strong> button. A dialog window will appear as shown below. Follow the instructions to create an ECMWF account, then log in to the CDS using your ECMWF username and password.</p>
 <img alt="CDS API login screen" class="no-scaled-link align-center" src="../_images/kurs_1_cds_1.png" style="width: 600px;" />
 <section id="personal-api-key">
 <span id="id1"></span><h3>1. Personal API Key<a class="headerlink" href="#personal-api-key" title="Link to this heading"></a></h3>
@@ -455,8 +454,9 @@
 <img alt="CSD Profile" class="no-scaled-link align-center" src="../_images/kurs_1_cds_2.png" style="width: 600px;" />
 <p>Scroll down to the <strong>API Token</strong> section and click the copy button to copy your API key. Next, open the <strong>element1 notebook</strong> and replace the existing key at <code class="docutils literal notranslate"><span class="pre">api_key</span> <span class="pre">=</span> <span class="pre">&quot;Your</span> <span class="pre">Personal</span> <span class="pre">API</span> <span class="pre">Key&quot;</span></code>.</p>
 <img alt="CDS API key" class="no-scaled-link align-center" src="../_images/kurs_1_cds_2_2.png" style="width: 600px;" />
-<blockquote id="personal-cds-api-key">
-<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cdsapi</span>
+<p>Alternatively, copy the following code and replace the API key:</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cdsapi</span>
 <span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;Your Personal API Key&quot;</span>
 <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;https://cds.climate.copernicus.eu/api&quot;</span>
 </pre></div>
@@ -477,7 +477,7 @@
 </section>
 <section id="downloading-climate-data-from-the-cds">
 <span id="cds-download"></span><h2>Downloading Climate Data from the CDS<a class="headerlink" href="#downloading-climate-data-from-the-cds" title="Link to this heading"></a></h2>
-<p>Our sample dataset is the <strong>ERA5 reanalysis dataset</strong>. If you are already familiar with this dataset, you can skip the info box and proceed directly to the <a class="reference internal" href="#era5-download"><span class="std std-ref">next step</span></a>.</p>
+<p>Our sample dataset is the <strong>ERA5 reanalysis dataset</strong>. If you are already familiar with this dataset, you can skip the info box and proceed directly to the <a class="reference internal" href="#api-request"><span class="std std-ref">next step</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The ERA5 climate dataset is a comprehensive collection of weather and climate data produced by the European Centre for Medium-Range Weather Forecasts (ECMWF). It is a historical weather and climate database based on modern computational models and satellite measurements. ERA5 provides continuous weather data from 1950 to the present. These data include temperature, humidity, wind speed, and more.</p>
@@ -486,19 +486,19 @@
 </div>
 <section id="creating-the-api-request">
 <span id="api-request"></span><h3>1. Creating the API Request<a class="headerlink" href="#creating-the-api-request" title="Link to this heading"></a></h3>
-<p id="era5-download">Datasets available in the CDS can quickly reach several gigabytes due to their spatial and temporal coverage. The CDS allows you to select specific variables, time periods, and regions to prevent unnecessary storage usage on your computer. For testing, we will download only a small portion of the dataset (one variable for a single day in October 2024).</p>
+<p>Datasets available in the CDS can quickly reach several gigabytes due to their spatial and temporal coverage. The CDS allows you to select specific variables, time periods, and regions to prevent unnecessary storage usage on your computer. For testing, we will download only a small portion of the dataset (one variable for a single day in October 2024).</p>
 <p>To automate the download of the desired data via the CDS API, you first need to generate an API request code. To do this, go to the Copernicus Climate Data Store, log in, and search for the dataset <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=overview" rel="noopener noreferrer" target="_blank">ERA5-Land hourly data from 1950 to present</a>.</p>
 <p>Go to the <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=download" rel="noopener noreferrer" target="_blank">Download Tab</a> and select the parameters as follows:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Temperature: 2m temperature</p></li>
-<li><p>Year: 2024</p></li>
-<li><p>Month: October</p></li>
-<li><p>Day: 01</p></li>
-<li><p>Time: Select all</p></li>
+<li><p><strong>Temperature</strong>: 2m temperature</p></li>
+<li><p><strong>Year</strong>:2024</p></li>
+<li><p><strong>Month</strong>: October</p></li>
+<li><p><strong>Day</strong>: 01</p></li>
+<li><p><strong>Time</strong>: Select all</p></li>
 </ul>
 </div></blockquote>
-<p>You can define your preferred region in the “Geographical Area” section. This step is essential to avoid downloading data for the entire available area.</p>
+<p>You can define your preferred region in the <strong>“Geographical Area”</strong> section. This step is essential to avoid downloading data for the entire available area.</p>
 <p>We have prepared the coordinates for the region around Lake Constance, the test region for the CoKLIMAx project.</p>
 <img alt="Download region" class="no-scaled-link align-center" src="../_images/kurs_1_cds_3.png" style="width: 600px;" />
 <div class="admonition note">
@@ -507,7 +507,7 @@
 </div>
 <p>For the additional parameters (data format and compression), set the fields in the input form as shown in the following image.</p>
 <img alt="Data and download fromat" class="no-scaled-link align-center" src="../_images/kurs_1_cds_4.png" style="width: 600px;" />
-<p>Once you have accepted the terms of use, simply click “Show API request code,” and the automatically generated API request code will appear. For our test data, it looks as follows:</p>
+<p>Once you have accepted the terms of use, simply click <strong>“Show API request code”</strong> and the automatically generated API request code will appear. For our test data, it looks as follows:</p>
 <blockquote id="dataset-and-request-parameters">
 <div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define dataset and request parameters</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="s2">&quot;reanalysis-era5-land&quot;</span>

@@ -2,9 +2,9 @@
 CoKLIMAx II Resources for Data Processing
 =========================================
 
-Welcome to the CoKLIMAx II Documentation. Here you will find information and tools that can help you deal with large climate datasets in urban management practice. The resources are structured within :ref:`Jupyter Notebooks <einfuehrung-jupyter>`, which allow you to download, edit, and visualize climate data from the :ref:`Copernicus Climate Data Store (CDS) <cds>`. 
+Welcome to the CoKLIMAx II Documentation. Here you will find information and tools that can help you deal with large climate datasets in urban management practice. The resources are structured within :ref:`Jupyter Notebooks Library <einfuehrung-jupyter>`, which allow you to download, edit, and visualize climate data from the :ref:`Copernicus Climate Data Store (CDS) <cds>`. 
 
-The first part of the documentation focuses on preparing your computer for working with the data. Once you have followed the instructions, you can get started. To learn how to work with CDS data, you can go through the prepared course elements. For advanced users, we have prepared a range of different :ref:`Notebooks <einfuehrung-jupyter>` that you can modify as needed based on your skills. In addition to CDS, the notebooks also cover processing satellite data, such as high-resolution images from the Sentinel-II satellite.
+The first part of the documentation focuses on preparing your computer for working with the data. Once you have followed the instructions, you can get started. To learn how to work with CDS data, you can go through the prepared course elements. For advanced users, we have prepared a range of different notebooks within a :ref:`Jupyter Notebook Library <einfuehrung-jupyter>` that you can modify as needed baszced on your skills. In addition to CDS, the notebooks also cover processing satellite data, such as high-resolution images from the Sentinel-II satellite.
 
 .. toctree::
   :maxdepth: 2
@@ -30,7 +30,7 @@ The first part of the documentation focuses on preparing your computer for worki
 
 .. toctree::
   :maxdepth: 2
-  :caption: The Jupyter-Notebook Library:
+  :caption: The Jupyter Notebook Library:
   
   /rst_jupyter_bibliothek/index
   /rst_jupyter_bibliothek/cds_data/index

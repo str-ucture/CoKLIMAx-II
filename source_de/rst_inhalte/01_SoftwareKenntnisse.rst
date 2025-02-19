@@ -4,17 +4,19 @@
 Notwendige Software und Kenntnisse
 ==================================
 
----------
-Lernziele
----------
+.. raw:: html
+    
+    <h2>Lernziele</h2>
 
-* :ref:`Installation und Einrichten der notwendigen Software auf einem Windows-System <python_install>`
-* :ref:`Installation von Jupyter Notebooks <jupyter_install>`
+* :ref:`Einrichten der notwendigen Software auf einem Windows-System <setup_infrastructure>`
+* :ref:`Installation von Python und Jupyter Notebooks <python_and_jupyter_install>`
 * :ref:`Starten des Jupyter Notebooks zur Vorbereitung auf die Kurs-Elemente <jupyter_start>`
 
 Jupyter Notebooks sind eine leistungsstarke Umgebung für interaktive Programmierung, Datenanalyse und Visualisierung. Um Jupyter Notebooks auf einem Windows-PC nutzen zu können, benötigen Sie eine entsprechende Software-Infrastruktur. Die folgenden Schritte zeigen Ihnen, wie Sie Ihren Rechner dafür vorbereiten und welche frei verfügbaren Ressourcen Sie nutzen können, um sich vor dem Start der Kurse schon Grundkenntnisse anzueignen.
 
 ----
+
+.. _setup_infrastructure:
 
 ------------------------------------------------------------------------
 Einrichtung der Infrastruktur für Jupyter Notebooks auf einem Windows-PC
@@ -34,13 +36,13 @@ Eine vollständige Referenz der Befehle und Syntax finden Sie in der Microsoft-D
 
 ----
 
+.. _python_and_jupyter_install:
+
 -----------------------
 Installation von Python
 -----------------------
 
 Jupyter Notebooks basieren auf **Python**, daher benötigen Sie zunächst eine **Python-Installation**.
-
-.. _python_install:
 
 ^^^^^^^^^^^^^^^^^^
 1. Python und Pip:
@@ -59,8 +61,6 @@ Falls Python nicht automatisch zum **PATH** hinzugefügt wurde, können Sie dies
     * Bestätigen Sie die Änderungen und starten Sie die **Eingabeaufforderung** neu, damit die Änderungen wirksam werden.
 
 Nach diesem Schritt sollte Python über die Eingabeaufforderung mit dem Befehl ``python`` oder ``python3`` ausführbar sein. Testen Sie dies, indem Sie ``python --version`` eingeben, um die installierte Python-Version zu überprüfen.
-
-.. _jupyter_install:
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2. Jupyter Notebook installieren
@@ -92,7 +92,13 @@ Sobald die Installation abgeschlossen ist, starten Sie Ihr **JupyterLab** mit fo
 
 Es sollte sich ein Browserfenster öffnen, in dem Sie auf der linken Seite die **Ordnerstruktur Ihres Computers** auf der ersten Ebene widergespiegelt sehen (z. B. "Downloads", "Dokumente" usw.). Navigieren Sie zu dem Ordner, in dem Sie Ihr erstes Notebook starten möchten.
 
-Falls der **Launcher-Tab** nicht automatisch geöffnet wird, klicken Sie auf das "+"-Zeichen oben links in der Ecke:
+Falls der **Launcher-Tab** nicht automatisch geöffnet wird, klicken Sie auf das |jupyter_new_launcher|-Zeichen oben links in der Ecke:
+
+.. |jupyter_new_launcher| image:: /_static/icons/jupyter_new_launcher.png
+  :width: 72px
+  :height: 21px
+  :class: no-scaled-link
+  :alt: Jupyter New Launcher Button
 
 .. image:: /_static/02_Jupyter.png
 	:width: 650px

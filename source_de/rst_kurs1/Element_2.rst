@@ -1,17 +1,29 @@
+.. _kurs1-element2:
+
 =========
 Element 2
 =========
-
-.. _kurs1-element2:
 
 ---------
 Lernziele
 ---------
 
- * :ref:`Aufbau und Umgang mit einer Datei im NetCDF-Format<netcdf_how_to>`
-  * :ref:`Entpacken der NetCDF zip-Datei<netcdf_unzip>`
-  * :ref:`Untersuchen der NetCDF-Datei<netcdf_investigate>`
- * :ref:`Visualisierung einer Zeitreihe und einer gewählten Region <netcdf_visualize>`
+* :ref:`Aufbau und Umgang mit einer Datei im NetCDF-Format<netcdf_how_to>`
+	* :ref:`Entpacken der NetCDF zip-Datei<netcdf_unzip>`
+  	* :ref:`Untersuchen der NetCDF-Datei<netcdf_investigate>`
+* :ref:`Visualisierung einer Zeitreihe und einer gewählten Region <netcdf_visualize>`
+
+----
+
+Alle Schritte dieses Kurses stehen auch in einem gebrauchsfertigen Notizbuch zum Download unter dem folgenden Link zur Verfügung:
+
+.. raw:: html
+
+   <div class="download-button">
+       <a href="../_static/notebooks/element2_netcdf.ipynb" download>⇩ Element2: Notebook</a>
+   </div>
+
+Öffnen Sie das Notebook in Jupyter Lab und folgen Sie den Anweisungen. Alternativ können Sie den Python-Codeausschnitt in Ihr Jupyter-Notebook kopieren und die Zelle ausführen.
 
 ----
 
@@ -43,21 +55,29 @@ Um mit den NetCDF Dateien arbeiten zu können installieren Sie zunächst die not
 
 		jupyter lab
 
-Öffnen Sie ein Notebook in einem Ordner Ihrer Wahl. Sie können den "CDSdata" Ordner aus dem 1. Kurselement nehmen, in diesem befinden sich die Daten, mit denen wir arbeiten wollen.
+Öffnen Sie ein Notebook in einem Ordner Ihrer Wahl. Sie können den "CDSdata" Ordner aus dem (:ref:`Element 1 <kurs1-element1>`) nehmen, in diesem befinden sich die Daten, mit denen wir arbeiten wollen.
 
-Die Datei die Sie im 1. Kurselement heruntergeladen haben ist im NetCDF Format, jedoch noch in einer Zip Datei komprimiert.Zunächst entpacken Sie die Daten, kopieren Sie sich folgenden Block in Ihr Notebook und modifizieren Sie die Zeilen wie benötigt:
+Die Datei die Sie im (:ref:`Element 1 <kurs1-element1>`) heruntergeladen haben ist im NetCDF Format, jedoch noch in einer Zip Datei komprimiert.Zunächst entpacken Sie die Daten, kopieren Sie sich folgenden Block in Ihr Notebook und modifizieren Sie die Zeilen wie benötigt:
 
-	..  code-block::
+.. raw:: html
+
+   <div class="download-button">
+       <a href="../_static/notebooks/CDSdata/reanalysis-era5-land.zip" download>⇩ ERA5-Land (Dataset)</a>
+   </div>
+
+Extrahieren Sie zunächst die Daten, indem Sie den folgenden Codeblock in Ihr Notebook kopieren und die Zeilen nach Bedarf ändern: 
+
+	..  code-block:: python
 
 		import zipfile
 		import os
 
 		# Pfad zur ZIP-Datei (im selben Verzeichnis oder absoluter Pfad)
-		zip_datei = 'beispiel.zip'
+		zip_datei = './CDSdata/reanalysis-era5-land.zip'
 
 		# Zielverzeichnis zum Entpacken
 		zielverzeichnis = 'Era5Data'
-		os.makedirs(zielverzeichnis, exist_ok=True)  # Verzeichnis erstellen, falls nicht vorhanden
+		os.makedirs(zielverzeichnis, exist_ok=True) # Verzeichnis erstellen, falls nicht vorhanden
 		
 		# ZIP-Datei öffnen und extrahieren
 			with zipfile.ZipFile(zip_datei, 'r') as zip_ref:
@@ -76,7 +96,7 @@ NetCDF Dateien sind in Dimensionen, Variablen und Attributen aufgebaut. Dabei si
 
 Zunächst verschaffen Sie sich einen Überblick über den Datensatz.
 
-	.. code-block::
+	.. code-block:: python
 		
 		import netCDF4 as nc
 
@@ -90,7 +110,7 @@ Der ``print``-Command gibt Ihnen die wichtigsten Informationen über die vorlieg
 
 Es gibt viele weitere Möglichkeiten schnell mehr Informationen über eine NetCDF-Datei zu erhalten. Sie können sich die **keys**, also die Kurznamen der Variablen anzeigen lassen und dadurch den ``print``-Command auf eine einzelne anwenden. Mit dem nächsten Code-Block können Sie auf einen Bloick sehen, ob die ``2m-Temperatur``-Werte unseres Test-Datensatzes valide erscheinen.
 
-	.. code-block::
+	.. code-block:: python
 
 		# Variablen auflisten
 		print(dataset.variables.keys())
@@ -100,14 +120,6 @@ Es gibt viele weitere Möglichkeiten schnell mehr Informationen über eine NetCD
 		print(temperatur)
 
 Wenn Sie die verschiedenen Commands für den schnellen Überblick ausprobiert haben, können Sie mit den verschiedenen Visualisierungsmöglichkeiten weiter machen.
-
-Alle zuvor ausgeführten Schritte finden Sie auch fertigen Notebook zum Download:
-
-.. raw:: html
-
-   <div class="download-button">
-       <a href="../_static/Element2_NetCDF.ipynb" download>⇩ Notebook: Element2_NetCDF</a>
-   </div>
 
 ----
 
@@ -120,169 +132,168 @@ Visualisierung und Auswahl einer Region
 Um für die Visualisierung mehr Möglichkeiten zu haben benötigen Sie einen weiteren Datensatz. Diesen haben wir Ihnen bereits zum Download zur Verfügung gestellt. Es handelt sich genau wie im vorangegangenen Abschnitt um einen Datensatz aus der ERA-5 Reanalyse, die Monatsmittel der 2m-Temperatur für eine vordefinierte Region in Süddeutschland.
 
 .. raw:: html
-
-   <div class="download-button">
-       <a href="./data/era5-land-monthly/download/reanalysis-era5-land-monthly-means_2m_temperature_1950_2024.nc" download>⇩ Dataset for Visualization</a>
-   </div>
+    
+    <div class="download-button">
+        <a href="../_static/notebooks/era5-land-monthly/download/reanalysis-era5-land-monthly-means_2m_temperature_1950_2024.nc" download>⇩ Dataset for Visualization</a>
+    </div>
 
 Zunächst sollten Sie die Pfade für Ihren Output definieren. Damit sollen Sie jedes Notebook beginnen, um sicherzugehen, dass Sie Ihre erzeugten Daten und Plots wiederfinden. Es sorgt auch dafür, dass Ihr Code flexibler wird. Durch die Aliase (Bsp. "output_folder") für die Speicherpfade ersparen Sie sich mühsames durchsuchen Ihres Notebooks, falls sich diese einmal ändern sollten. Sie müssen nur die Pfade im ersten Codeblock anpassen, der Rest erledigt sich durch die Aliase von alleine.
 
-	.. code-block::
+	.. code-block:: python
 
 		import os
 
-		# ---- Specify directories below ----
-		download_folder = r".\data\era5-land-monthly\download"  # Folder for downloaded data
-		output_folder = r".\data\era5-land-monthly\output"      # Folder for final outputs
-		# ---- End of user inputs ----
+		# ---- Verzeichnisse unten angeben ----
+		download_folder = r".\data\era5-land-monthly\download"  # Ordner für heruntergeladene Daten
+		output_folder = r".\data\era5-land-monthly\output"      # Ordner für die endgültigen Ausgaben
+		# ---- Ende der Benutzereingaben ----
 
-		# Create directories if they do not exist
+		# Verzeichnis erstellen, falls nicht vorhanden
 		os.makedirs(download_folder, exist_ok=True)
 		os.makedirs(output_folder, exist_ok=True)
 
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Einlesen und Kennenlernen der Daten
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1. Einlesen und Kennenlernen der Daten
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Im Folgenden nutzen wir einige nützliche Python Bibliotheken, wie zum Beispiel die Datenanalyse-Bibliothek **pandas**. Weiterführende Informationen zu den einzelnen Bibliotheken finden Sie online, diese sind nicht in den Ressourcen von **CoKLIMAx II** inkludiert. Die Code-Böcke enthalten Kommentare, die die einzelnen Arbeitschritte in Textform dokumentieren.
 
 Definieren Sie zusätzlich zu den Speicherpfaden auch die Pfade zu den Dateien, mit denen Sie arbeiten möchten.
 
-	.. code-block::
+	.. code-block:: python
 
-		# Specify the dataset filename and construct its full path
+		# Geben Sie den Dateinamen des Datensatzes an und erstellen Sie seinen vollständigen Pfad.
 		filename = "reanalysis-era5-land-monthly-means_2m_temperature_1950_2024.nc"
 		filepath = os.path.join(download_folder, filename)
 
-		# Display the constructed file path for verification
+		# Anzeige des konstruierten Dateipfads zur Überprüfung
 		print(f"Dataset file path: {filepath}")
 
 Nun verschaffen Sie sich einen Überblick über die Datei, die räumliche und zeitliche Ausdehnung, sowie die verfügbaren Variablen und Zeitschritte.
 
-	.. code-block::
+    .. code-block:: python
 
-		import netCDF4 as nc
+        import netCDF4 as nc
 
-		# Open the NetCDF file in read mode
-		dataset = nc.Dataset(filepath, mode='r')
+        # Öffne die NetCDF-Datei im Lesemodus
+        dataset = nc.Dataset(filepath, mode='r')
 
-		# List all variables in the dataset
-		variables_list = dataset.variables.keys()
-		print(f"Available variables: {list(variables_list)}")
+        # Liste alle Variablen im Datensatz auf
+        variables_list = dataset.variables.keys()
+        print(f"Verfügbare Variablen: {list(variables_list)}")
 
-		# Extract coordinate data and the primary variable's data
-		lon_list = dataset['longitude'][:]  # Extract longitude
-		lat_list = dataset['latitude'][:]  # Extract latitude
+        # Extrahiere Koordinatendaten und die Daten der Hauptvariablen
+        lon_list = dataset['longitude'][:]  # Längengrad extrahieren
+        lat_list = dataset['latitude'][:]  # Breitengrad extrahieren
+
+    .. code-block:: python
+
+        import pandas as pd
+
+        test_variable = 't2m'
+        variable_data = dataset[test_variable]
+
+        # Erstelle eine Zusammenfassung der Hauptvariablen
+        summary = {
+            "Variablenname": test_variable,
+            "Datentyp": variable_data.dtype,
+            "Form": variable_data.shape,
+            "Variableninfo": f"{test_variable}({', '.join(variable_data.dimensions)})",
+            "Einheiten": getattr(variable_data, "units", "N/A"),
+            "Long Name": getattr(variable_data, "long_name", "N/A"),
+        }
+
+        # Zeige die Datensatz-Zusammenfassung als DataFrame für bessere Visualisierung
+        nc_summary = pd.DataFrame(list(summary.items()), columns=['Beschreibung', 'Bemerkungen'])
+
+        # Zeige das Zusammenfassungs-DataFrame an
+        nc_summary
+
+    .. code-block:: python
+
+        import numpy as np
+        import pandas as pd
+
+        # Konfiguriere die Anzeigeeinstellungen von pandas für bessere Lesbarkeit
+        pd.set_option('display.max_colwidth', None)
+
+        # Erstelle eine Zusammenfassung des Datensatzes
+        ds_summary = {
+            "Institution": dataset.institution if hasattr(dataset, 'institution') else "N/A",
+            "Dimensionen": list(dataset.dimensions.keys()),
+            "Variablen": list(dataset.variables.keys()),
+            "Variablen-Dimensionen": [
+                np.shape(dataset[variable]) for variable in dataset.variables.keys()
+            ],
+        }
+
+        # Konvertiere das Zusammenfassungs-Dictionary in ein DataFrame für bessere Visualisierung
+        dataset_summary = pd.DataFrame(list(ds_summary.items()), columns=['Beschreibung', 'Bemerkungen'])
+
+        # Zeige das Zusammenfassungs-DataFrame an
+        dataset_summary
 
 
-	.. code-block::
+Im erstellten Summary sehen Sie, dass die Datei **898** valide Zeitschritte enthält. Da es sich um monatliche Mittelwerte handelt un die Datei im Januar 1950 ihren ersten Zeitschritt hat, wissen wir nun, dass im Oktober 2024 der letzte Zeitschritt ist: **(2024 - 1950) x 12 + 10 = 898**.
 
-			import pandas as pd
-
-			test_variable = 't2m'
-			variable_data = dataset[test_variable]
-
-			# Generate summary of the primary variable
-			summary = {
-					"Variable Name": test_variable,
-					"Data Type": variable_data.dtype,
-					"Shape": variable_data.shape,
-					"Variable Info": f"{test_variable}({', '.join(variable_data.dimensions)})",
-					"Units": getattr(variable_data, "units", "N/A"),
-					"Long Name": getattr(variable_data, "long_name", "N/A"),
-			}
-		
-		# Display dataset summary as a DataFrame for better visualization
-		nc_summary = pd.DataFrame(list(summary.items()), columns=['Description', 'Remarks'])
-
-		# Display the summary DataFrame
-		nc_summary
-
-
-	.. code-block::
-
-		import numpy as np
-		import pandas as pd
-
-		# Configure pandas display settings for better readability
-		pd.set_option('display.max_colwidth', None)
-
-		# Create a summary of the dataset
-		ds_summary = {
-			"Institution": dataset.institution if hasattr(dataset, 'institution') else "N/A",
-			"Dimensions": list(dataset.dimensions.keys()),
-			"Variables": list(dataset.variables.keys()),
-			"Variable dimensions": [
-				np.shape(dataset[variable]) for variable in dataset.variables.keys()
-			],
-		}
-
-		# Convert the summary dictionary into a DataFrame for better visualization
-		dataset_summary = pd.DataFrame(list(ds_summary.items()), columns=['Description', 	'Remarks'])
-
-		# Display the summary DataFrame
-		dataset_summary
-
-Im erstellten Summary sehen Sie, dass die Datei 898 valide Zeitschritte enthält. Da es sich um monatliche Mittelwerte handelt un die Datei im Januar 1950 ihren ersten Zeitschritt hat, wissen wir nun, dass im Oktober 2024 der letzte Zeitschritt ist. (2024-1950)*12 + 10 = 898.
-
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Erstellen eines Plots für August 1980
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2. Erstellen eines Plots für August 1980
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Mit dem folgenden Code-Blöcken können Sie sich ein flexibles Plotskript erstellen, mit dem Sie ind er Lage sind, schnell zwischen Visualisierungen verschiedener Monate zu switchen.
 
 Um dies zu erreichen definieren Sie Aliase für Jahr und Monat direkt zu Beginn, genau wie für die Speicherpfade und Dateipfade.
 
-	.. code-block::
+	.. code-block:: python
 
-		# Define the target year and month for visualization
+		# Definieren Sie das Zieljahr und den Zielmonat für die Visualisierung
 		selected_year = 1980
 		selected_month = 8
 
-		# Calculate the band index for the selected year and month
-		# Index is determined by the position in the time dimension
+		# Berechnen Sie den Bandindex für das ausgewählte Jahr und den ausgewählten Monat
+		# Der Index wird durch die Position in der Zeitdimension bestimmt
 		band_index = (selected_year - 1950) * 12 + (selected_month - 1)
 
-		# Extract the data slice corresponding to the selected year and month
-		# This gives the spatial data (latitude x longitude) for the specified time
+		# Extrahieren Sie den Datenausschnitt, der dem ausgewählten Jahr und Monat entspricht
+		# Dies ergibt die räumlichen Daten (Breitengrad x Längengrad) für die angegebene Zeit
 		band_data = variable_data[band_index,:,:]
 
 Im folgenden Block legen Sie noch einige Visualisierungsoptionen fest, bevor Sie sich das Ergebnis anschauen können.
 
-	.. code-block::
+    .. code-block:: python
 
-		import matplotlib.pyplot as plt
+        import matplotlib.pyplot as plt
 
-		# Plot the data using matplotlib
-		fig, ax = plt.subplots(figsize=(8, 8))
+        # Daten mit matplotlib darstellen
+        fig, ax = plt.subplots(figsize=(8, 8))
 
-		# Load predefined colormap
-		cmap = plt.get_cmap("turbo")
+        # Vordefinierte Farbkarte laden
+        cmap = plt.get_cmap("turbo")
 
-		# Create a pseudo-color plot for the data
-		pcm = ax.pcolormesh(
-			lon_list,
-			lat_list,
-			band_data,
-			cmap=cmap,
-			shading="auto",
-		)
+        # Pseudofarbdiagramm für die Daten erstellen
+        pcm = ax.pcolormesh(
+            lon_list,
+            lat_list,
+            band_data,
+            cmap=cmap,
+            shading="auto",
+        )
 
-		# Add colorbar with units
-		cbar = plt.colorbar(pcm, ax=ax, label=f'{summary["Long Name"]} ({summary["Units"]})')
+        # Farbbalken mit Einheiten hinzufügen
+        cbar = plt.colorbar(pcm, ax=ax, label=f'{summary["Long Name"]} ({summary["Einheiten"]})')
 
-		# Set plot title and labels
-		ax.set_title(
-				f'{summary["Long Name"]} ({summary["Units"]}) - {selected_year}-		{selected_month:02d}',
-			fontsize=14,
-		)
-		ax.set_xlabel("Longitude", fontsize=12)
-		ax.set_ylabel("Latitude", fontsize=12)
+        # Diagrammtitel und Beschriftungen festlegen
+        ax.set_title(
+            f'{summary["Long Name"]} ({summary["Einheiten"]}) - {selected_year}-{selected_month:02d}',
+            fontsize=14,
+        )
+        ax.set_xlabel("Longitude", fontsize=12)
+        ax.set_ylabel("Latitude", fontsize=12)
 
-		# Display the plot
-		plt.tight_layout()
-		plt.show()
+        # Diagramm anzeigen
+        plt.tight_layout()
+        plt.show()
 
 Sie können dem Plot weitere Informationen hinzufügen, wie zum Beispiel administrative Grenzen oder Gitterlinien. Zur besseren Lesbarkeit können Sie die Temperaturewerte von °Kelvin zu °Celsius konvertieren oder die Farbgebung anpassen. Einige Möglichkeiten haben wir Ihnen in den nächsten Code-Blöcken vorbereitet.
 
@@ -291,86 +302,87 @@ Das benötigte Shapefile von Konstanz können Sie sich hier herunterladen:
 .. raw:: html
 
    <div class="download-button">
-       <a href="../_static/kn_boundary.zip" download>⇩ Shapefile of Konstanz</a>
+       <a href="../_static/zip/kn_boundary.zip" download>⇩ Shapefile von Konstanz</a>
    </div>
 
 Denken Sie daran, im folgenden den Dateipfad zum Shapefile anzupassen, damit das Skript darauf zugreifen kann.
 
-	.. code-block::
+    .. code-block:: python
 
-		import numpy as np
-		import math as ma
-		import geopandas as gpd
-		import matplotlib.pyplot as plt
-		from matplotlib.ticker import FuncFormatter
-		from mpl_toolkits.axes_grid1 import make_axes_locatable
+        import numpy as np
+        import math as ma
+        import geopandas as gpd
+        import matplotlib.pyplot as plt
+        from matplotlib.ticker import FuncFormatter
+        from mpl_toolkits.axes_grid1 import make_axes_locatable
 
-		# Convert the temperature data from K to °C
-		band_data_C = variable_data[band_index,:,:]-273.15
+        # Temperaturdaten von Kelvin in °C umwandeln
+        band_data_C = variable_data[band_index, :, :] - 273.15
 
-		# Calculate minimum and maxium value within the band data
-		vmin = np.nanmin(band_data_C)
-		vmax = np.nanmax(band_data_C)
+        # Minimal- und Maximalwerte innerhalb der Banddaten berechnen
+        vmin = np.nanmin(band_data_C)
+        vmax = np.nanmax(band_data_C)
 
-		vmin_floor = ma.floor(vmin * 10) / 10
-		vmax_ceil = ma.ceil(vmax * 10) / 10
+        vmin_floor = ma.floor(vmin * 10) / 10
+        vmax_ceil = ma.ceil(vmax * 10) / 10
 
-		# Compute interval for color bar
-		interval = 0.1
-		bins = int((vmax_ceil - vmin_floor)/interval)
+        # Intervall für die Farbleiste berechnen
+        interval = 0.1
+        bins = int((vmax_ceil - vmin_floor) / interval)
 
+    .. code-block:: python
 
-	.. code-block::
+        # Funktion zum Formatieren von Breitengrad-Markierungen
+        def format_latitude(x, pos):
+            return f"{x:.2f}°N"
 
-		# Function to format latitude tick labels
-		def format_latitude(x, pos):
-			return f"{x:.2f}°N"
+        # Funktion zum Formatieren von Längengrad-Markierungen
+        def format_longitude(x, pos):
+            return f"{x:.2f}°E"
 
-		# Function to format longitude tick labels
-		def format_longitude(x, pos):
-			return f"{x:.2f}°E"
+        # Plotten mit matplotlib
+        fig, ax = plt.subplots(figsize=(8, 8))
 
-		# Plot using matplotlib
-		fig, ax = plt.subplots(figsize=(8, 8))
+        # Vordefinierte Farbkarte mit 10 diskreten Farben laden
+        cmap = plt.get_cmap('turbo', bins)
 
-		# Load predefined Colormap with 10 discrete colors
-		cmap = plt.get_cmap('turbo', bins)
+        pcm = ax.pcolormesh(
+            lon_list,
+            lat_list,
+            band_data_C,
+            cmap=cmap,
+            vmin=vmin_floor,
+            vmax=vmax_ceil
+        )
 
-		pcm = ax.pcolormesh(lon_list, 
-						lat_list,
-						band_data_C,
-						cmap=cmap,
-						vmin=vmin_floor,
-						vmax=vmax_ceil)
+        # Verwaltungsgrenze von Konstanz hinzufügen (Shapefile)
+        konstanz_shp = r"./shapefiles/kn_boundary.shp"
+        konstanz_boundary = gpd.read_file(konstanz_shp)
+        konstanz_boundary.boundary.plot(ax=ax, edgecolor='red')
 
-		# Add administrative boundary of Konstanz (Shapefile)
-		germany_shp = r".\shapefiles\kn_boundary.shp"
-		germany_boundary = gpd.read_file(germany_shp)
-		germany_boundary.boundary.plot(ax=ax, edgecolor='red')
+        # Farbbalken plotten
+        divider = make_axes_locatable(ax)
+        cax = divider.append_axes("right", size="5%", pad=-0.95)
+        plt.colorbar(pcm, cax=cax, label=f'{summary["Long Name"]} (°C)')
 
-		# Plot color bar
-		divider = make_axes_locatable(ax)
-		cax = divider.append_axes("right", size="5%", pad=-0.95)
-		plt.colorbar(pcm, cax=cax, label=f'{summary["Long Name"]} (°C)')
+        # Gitternetzlinien hinzufügen
+        ax.grid(visible=True, which='major', color='#f0f0f0', linestyle='--', alpha=0.5)
 
-		# Add grid lines
-		ax.grid(visible=True, which='major', color='#f0f0f0', linestyle='--', alpha=0.5)
+        # Benutzerdefinierte Tick-Formatierer für Breiten- und Längengrad festlegen
+        ax.xaxis.set_major_formatter(FuncFormatter(format_longitude))
+        ax.yaxis.set_major_formatter(FuncFormatter(format_latitude))
 
-		# Set custom tick formatters for latitude and longitude
-		ax.xaxis.set_major_formatter(FuncFormatter(format_longitude))
-		ax.yaxis.set_major_formatter(FuncFormatter(format_latitude))
+        ax.set_title(f'{summary["Long Name"]} (°C)')
+        ax.set_ylabel('Breitengrad', fontsize=12)
+        ax.set_xlabel('Längengrad', fontsize=12)
 
-		ax.set_title(f'{summary["Long Name"]} (°C)')
-		ax.set_ylabel('Latitude', fontsize=12)
-		ax.set_xlabel('Longitude', fontsize=12)
-
-		plt.show()
+        plt.show()
 
 Mit dem Plot können Sie sich einfach einen Überblick über die räumliche Ausprägung und Verteilung eines Paramenters verschaffen. Probieren Sie verschiedene Konfigurationen aus um herauszufinden, welche Farbgebung und Skala für Ihren Zweck am besten funktioniert.
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Erstellen eines Plots für eine Zeitserie
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+3. Erstellen eines Plots für eine Zeitserie
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Um den Verlauf der aggregierten monatlichen Temperatur-Mittelwerte für August aller Jahre einer Region zu betrachten eignet sich ein **Linienplot**. Diesen erstellen Sie mit dem foilgenden Code-Block. Dabei arbeiten Sie mit der dataframe-Struktur, einem Format, das (ähnlich einer Tabelle mit Zeilen und Spalten) sortierte Variablengruppen erstellt, welche sehr nützlich im Umgang mit großen Datenpaketen sein können.
 

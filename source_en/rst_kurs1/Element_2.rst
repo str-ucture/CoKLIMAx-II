@@ -23,7 +23,7 @@ All the steps from this course is also available in a ready-to-use notebook for 
        <a href="../_static/notebooks/element2_netcdf.ipynb" download>⇩ Element2: Notebook</a>
    </div>
 
-Open the notebook in Jupyter Lab and follow the instructions.
+Open the notebook in Jupyter Lab and follow the instructions. Alternatively, you can copy the Python code snippet into your Jupyter Notebook and execute the cell.
 
 ----
 
@@ -132,10 +132,10 @@ Visualization and Selection of a Region
 To have more options for visualization, you will need an additional dataset. We have already made this available for download. Just like in the previous section, it is a dataset from the ERA-5 reanalysis, containing monthly averages of the 2m temperature for a predefined region in southern Germany.
 
 .. raw:: html
-
-   <div class="download-button">
-       <a href="../_static/notebooks/era5-land-monthly/download/reanalysis-era5-land-monthly-means_2m_temperature_1950_2024.nc" download>⇩ Dataset for Visualization</a>
-   </div>
+    
+    <div class="download-button">
+        <a href="../_static/notebooks/era5-land-monthly/download/reanalysis-era5-land-monthly-means_2m_temperature_1950_2024.nc" download>⇩ Dataset for Visualization</a>
+    </div>
 
 First, you should define the paths for your output. This step should be included at the beginning of every notebook to ensure that you can easily locate your generated data and plots. It also makes your code more flexible. By using aliases (e.g., "output_folder") for storage paths, you avoid the hassle of searching through your notebook if the paths change. You only need to update the paths in the first code block, and the rest will automatically adjust thanks to the aliases.
 
@@ -233,7 +233,7 @@ Now, get an overview of the file, including its spatial and temporal extent, as 
         # Display the summary DataFrame
         dataset_summary
 
-In the generated summary, you can see that the file contains **898** valid time steps. Since the data represents monthly averages and the file starts with its first time step in January 1950, we now know that the last time step is in October 2024: **(2024 − 1950) × 12 + 10 = 898**
+In the generated summary, you can see that the file contains **898** valid time steps. Since the data represents monthly averages and the file starts with its first time step in January 1950, we now know that the last time step is in October 2024: **(2024 − 1950) × 12 + 10 = 898**.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2. Creating a Plot for August 1980
@@ -314,7 +314,7 @@ Download and extract the **kn_boundary.zip** file into your working folder. Reme
         from matplotlib.ticker import FuncFormatter
         from mpl_toolkits.axes_grid1 import make_axes_locatable
 
-        # Convert the temperature data from K to °C
+        # Convert the temperature data from Kelvin to °C
         band_data_C = variable_data[band_index, :, :] - 273.15
 
         # Calculate minimum and maximum values within the band data

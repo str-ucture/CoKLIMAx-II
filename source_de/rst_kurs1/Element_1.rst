@@ -1,23 +1,35 @@
+.. _kurs1-element1:
+
 =========
 Element 1
 =========
-
-.. _kurs1-element1:
 
 ---------
 Lernziele
 ---------
 
-* :ref:`Einrichtung der API des Copernicus Climate Data Store (CDS API) <einrichtung_api>`
-	* :ref:`Persönlicher API-Key <pers_api_key>`
-	* :ref:`Installation der CDS API <install_cdsapi>`
+* :ref:`Einrichtung der API des Copernicus Climate Data Store (CDS API) <setup_api>`
+	* :ref:`Persönlicher API-Key <personal_api_key>`
+	* :ref:`Installation der CDS API <install_cds_api>`
 * :ref:`Download des ersten Klima-Datensatzes <cds_download>`
 	* :ref:`Erstellen der API-Request <api_request>`
 	* :ref:`Die API-Request im Jupyter Notebook <api_jupyter>`
 
 ----
 
-.. _einrichtung_api:
+Wir haben für dich ein Jupyter Notebook vorbereitet, bei dem du nur noch den Ausgabeordner und deinen API-Key anpassen musst. Das Notebook kannst du unter folgendem Link herunterladen:
+
+.. raw:: html
+
+   <div class="download-button">
+       <a href="../_static/notebooks/element1_api_test.ipynb" download>⇩ Element1: Notebook</a>
+   </div>
+
+Öffnen Sie das Notebook in Jupyter Lab und folgen Sie den Anweisungen. Alternativ können Sie den Python-Codeausschnitt in Ihr Jupyter-Notebook kopieren und die Zelle ausführen.
+
+----
+
+.. _setup_api:
 
 -----------------------
 Einrichtung der CDS API
@@ -25,15 +37,15 @@ Einrichtung der CDS API
 
 Zur Einrichtung der CDS API (Application Programming Interface, notwendige Installation um Daten aus dem CDS herunterzuladen) benötigen Sie einen Nutzeraccount im Copernicus Climate Data Store (CDS). Diesen richten Sie direkt über den `CDS <https://cds.climate.copernicus.eu/>`_ ein.
 
-Falls Sie noch keinen Nutzeraccount haben erstellen Sie sich einen Account über die Startseite. Oben rechts im Fenster klicken Sie auf "Login/Register". Das Dialogfenster erscheint wie unten angezeigt. Erstellen Sie sich einen ECMWF-Account wie beschrieben und loggen Sie sich dann mit Ihrem ECMWF-Nutzernamen und Passwort im Copernicus CDS ein.
+Falls Sie noch keinen Nutzeraccount haben erstellen Sie sich einen Account über die Startseite. Oben rechts im Fenster klicken Sie auf **"Login/Register"**. Das Dialogfenster erscheint wie unten angezeigt. Erstellen Sie sich einen ECMWF-Account wie beschrieben und loggen Sie sich dann mit Ihrem ECMWF-Nutzernamen und Passwort im Copernicus CDS ein.
 
-.. image:: ../_static/kurs_1_cds_1.png
+.. image:: /_static/kurs_1_cds_1.png
 	:width: 650px
 	:align: center
 	:class: no-scaled-link
 	:alt: CDS API login screen
 
-.. _pers_api_key:
+.. _personal_api_key:
 
 ^^^^^^^^^^^^^^^^^^^^^^^
 1. Persönlicher API-Key
@@ -41,21 +53,27 @@ Falls Sie noch keinen Nutzeraccount haben erstellen Sie sich einen Account über
 
 Nach dem Login können Sie sich in Ihrem Account Ihre API-Informationen ansehen. Den API-Key (oder API-Token) benötigen Sie im nächsten Schritt.
 
-.. image:: ../_static/kurs_1_cds_2.png
+.. image:: /_static/kurs_1_cds_2.png
 	:width: 650px
 	:align: center
 	:class: no-scaled-link
-	:alt: CDS API key
+	:alt: CDS Profile
 
-Laden Sie sich die folgende Datei herunter, entpacken und öffnen Sie die Datei und ergänzen Sie Ihren persönlichen API-Key in der zweiten Zeile (anstelle von ####).
+Scrollen Sie nach unten zum Abschnitt **API-Token** und klicken Sie auf die Schaltfläche „Kopieren“, um Ihren API-Key zu kopieren. Öffnen Sie als Nächstes das **element1 notebook** und ersetzen Sie den vorhandenen Schlüssel bei ``api_key = "Ihr persönlicher API-Key"``.
 
-.. raw:: html
+.. image:: /_static/kurs_1_cds_2_2.png
+   :width: 600px
+   :align: center
+   :class: no-scaled-link
+   :alt: CDS API key
 
-   <div class="download-button">
-       <a href="../_static/_cdsapirc.zip" download>⇩ CDS API (zip)</a>
-   </div>
+Alternativ können Sie den folgenden Code kopieren und den API-Schlüssel ersetzen:
 
-Speichern Sie das Dokument. Legen sie das Dokument in Ihrem Benutzerlaufwerk ab (C:\Users\Nutzername\)
+	.. code-block:: python
+		
+		import cdsapi
+		api_key = "Ihr persönlicher API-Key"
+		api_url = "https://cds.climate.copernicus.eu/api"
 
 .. _install_cds_api:
 
@@ -79,7 +97,7 @@ Sie sollten nun alle Voraussetzungen erfüllt haben um Daten aus dem CDS herunte
 Download von Klimadaten aus dem CDS
 -----------------------------------
 
-Unser Testdatensatz ist der Reanalyse-Datensatz ERA5. Falls Sie sich mit dem Datensatz gut auskennen, können Sie den Infokasten überspringen und gleich zum :ref:`nächsten Schritt <era5download>` übergehen.
+Unser Testdatensatz ist der Reanalyse-Datensatz ERA5. Falls Sie sich mit dem Datensatz gut auskennen, können Sie den Infokasten überspringen und gleich zum :ref:`nächsten Schritt <api_request>` übergehen.
 
 .. note::
 	Der ERA5-Klimadatensatz ist eine umfangreiche Sammlung von Wetter- und Klimadaten, die von der 	Europäischen Organisation für die Nutzung meteorologischer Satelliten (ECMWF) erstellt wurde. Es 	handelt sich dabei um eine historische Wetter- und Klimadatenbank, die auf modernen Rechenmodellen und 	Satellitenmessungen basiert. ERA5 umfasst kontinuierliche Wetterdaten der letzten Jahrzehnte, von 1950 	bis in die Gegenwart. Diese Daten umfassen unter anderem Temperatur, Luftfeuchtigkeit oder 	Windgeschwindigkeit.
@@ -94,36 +112,34 @@ Unser Testdatensatz ist der Reanalyse-Datensatz ERA5. Falls Sie sich mit dem Dat
 1. Erstellen der API-Request
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. _era5_download:
-
 Die im CDS verfügbaren Datensätze können durch die räumliche und zeitliche Abdeckung schnell mehrere Gigabyte Größe erreichen. Im CDS haben Sie die Möglichkeit, individuell Variablen, Zeiträume und Regionen auszwählen, damit der Datensatz nicht unnötig Speicherplatz auf Ihrem Computer verbraucht. Für den Test laden wir nur einen kleinen Teil des Datensatzes herunter (eine Variable für einen Tag im Oktober 2024).
 
 Um die gewünschten Daten automatisiert über die CDS API herunterzuladen müssen Sie zunächst einen API request code erzeugen. Dafür gehen Sie in den Copernicus Climate Data store, loggen sich ein und suchen nach dem Datensatz `ERA5-Land hourly data from 1950 to present <https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=overview>`_
 
 Gehen Sie auf den `Download-Tab <https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=download>`_ und wählen Sie die Parameter wie folgt aus:
 
-	* Temperature: 2m temperature
-	* Year: 2024
-	* Month: October
-	* Day: 01
-	* Time: Select all
+	* **Temperature**: 2m temperature
+	* **Year**:2024
+	* **Month**: October
+	* **Day**: 01
+	* **Time**: Select all
 
-Die Region Ihrer Wahl könnnen Sie im Bereich "Geographical Area" festlegen. Dies sollten Sie tun, damit der Datensatz nicht für den gesamten, verfügbaren Bereich heruntergeladen wird.
+Die Region Ihrer Wahl könnnen Sie im Bereich **"Geographical Area"** festlegen. Dies sollten Sie tun, damit der Datensatz nicht für den gesamten, verfügbaren Bereich heruntergeladen wird.
 
-wir haben für Sie die Koordinaten für die Region rund um den Bodensee vorbereitet, der Test-Region des CoKLIMAx-Projekts.
+Wir haben für Sie die Koordinaten für die Region rund um den Bodensee vorbereitet, der Test-Region des CoKLIMAx-Projekts.
 
-.. image:: ../_static/kurs_1_cds_3.png
+.. image:: /_static/kurs_1_cds_3.png
 	:width: 650px
 	:align: center
 	:class: no-scaled-link
 	:alt: Download region
 
 .. note::
-	Ihre eigenen Wunschkoordinaten können Sie sich ganz einfach im von uns entwickelten `Bbox-Generator <https://str-ucture.github.io/bbox-extractor/>`_ erstellen. Kopieren Sie sich die Koordinaten in die Zwischenablage oder in ein Textdokument. Diese können später auch noch direkt im Jupyter-Notebook eingegeben werden.
+	Ihre eigenen Wunschkoordinaten können Sie sich ganz einfach im von uns entwickelten `Bbox-Generator <https://str-ucture.github.io/bbox-extractor/>`_ erstellen. Kopieren Sie sich die Koordinaten in die Zwischenablage oder in ein Textdokument. Diese können später auch noch direkt im Jupyter-Notebook eingegeben werden. Alternativ können Sie den Begrenzungsrahmenwert in ``"area": ​​[48.7, 7, 47.1, 11]`` aktualisieren, um den Datenumfang zu definieren, siehe :ref:`Sub-region Bounding Box <dataset_and_request_parameters>`
 
 Für die weiteren Parameter Datenformat und Komprimierung setzen Sie die Felder in der Eingabemaske bitte wie in der folgenden Abbildung gezeigt.
 
-.. image:: ../_static/kurs_1_cds_4.png
+.. image:: /_static/kurs_1_cds_4.png
 	:width: 650px
 	:align: center
 	:class: no-scaled-link
@@ -131,10 +147,11 @@ Für die weiteren Parameter Datenformat und Komprimierung setzen Sie die Felder 
 
 Sobald Sie die Nutzungsbedingungen akzeptiert haben müssen Sie nur noch auf "Show API request code" klicken und der automatisch generierte API request code erscheint. Für unsere Testdaten sieht dieser wie folgt aus:
 
-	.. code-block::
+.. _dataset_and_request_parameters:
 
-		import cdsapi
+	.. code-block:: python
 
+		# Datensatz und Anfrageparameter definieren
 		dataset = "reanalysis-era5-land"
 		request = {
 				"variable": ["2m_temperature"],
@@ -156,8 +173,17 @@ Sobald Sie die Nutzungsbedingungen akzeptiert haben müssen Sie nur noch auf "Sh
 			"area": [48.7, 7, 47.1, 11]
 		}
 
+	.. code-block:: python
+
 		client = cdsapi.Client()
-		client.retrieve(dataset, request).download()
+
+		# Dateiname definieren und herunterladen
+		download_folder = os.path.join(os.getcwd(), "CDSdata")		
+		os.makedirs(download_folder, exist_ok=True) # Verzeichnis erstellen, falls nicht vorhanden
+
+		download_filepath = os.path.join(download_folder, f"{dataset}.zip")
+		client.retrieve(dataset, request, download_filepath)
+
 
 .. _api_jupyter:
 
@@ -172,13 +198,3 @@ Sobald Sie die Nutzungsbedingungen akzeptiert haben müssen Sie nur noch auf "Sh
 		jupyter lab
 
 Falls das Öffnen des Jupyter labs nicht funktioniert gehen Sie am besten noch einmal die Anleitung durch, die wir :ref:`hier <software-to-run-jupyter>` für Sie vorbereitet haben.
-
-Wir haben ein Jupyter Notebook für Sie vorbereitet, in dem Sie nur den Output-Ordner und Ihren API Key anpassen müssen. Sie können das Notebook unter folgendem Link herunterladen:
-
-.. raw:: html
-
-   <div class="download-button">
-       <a href="../_static/element1_api_test.ipynb" download>⇩ Element1: Test Notebook</a>
-   </div>
-
-Öffnen Sie das Notebook in Ihrem Jupyter lab und folgen Sie den Anweisungen.

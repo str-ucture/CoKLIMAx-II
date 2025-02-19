@@ -23,7 +23,7 @@ All the steps from this course is also available in a ready-to-use notebook for 
        <a href="../_static/notebooks/element2_netcdf.ipynb" download>⇩ Element2: Notebook</a>
    </div>
 
-Open the notebook in Jupyter Lab and follow the instructions.
+Open the notebook in Jupyter Lab and follow the instructions. Alternatively, you can copy the Python code snippet into your Jupyter Notebook and execute the cell.
 
 ----
 

@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Coklimax'
+project = 'CoKLIMAx'
 copyright = '2024, str.ucture GmbH'
 author = 'str.ucture GmbH'
 release = '1.0.0'

@@ -4,21 +4,23 @@
 Required Software and Knowledge
 ===============================
 
--------------------
-Learning Objectives
--------------------
+.. raw:: html
+    
+    <h2>Learning Objectives</h2>
 
-* :ref:`Installation and setup of the necessary software on a Windows System <python_install>`
-* :ref:`Installing Jupyter Notebooks <jupyter_install>`
-* :ref:`Starting Jupyter Notebook to prepare for the course elements <jupyter_start>`
+* :ref:`Setting Up the Infrastructure on a Windows System <setup_infrastructure>`
+* :ref:`Installing Python and Jupyter Notebooks <python_and_jupyter_install>`
+* :ref:`Starting Jupyter Notebook for the Course Elements <jupyter_start>`
 
 Jupyter Notebooks are a powerful environment for interactive programming, data analysis, and visualization. To use Jupyter Notebooks on a Windows PC, you need an appropriate software infrastructre. The following steps show you how to prepare your computer and which freely available resources you can use to acquire basic knowledge before starting the courses.
 
 ----
 
--------------------------------------------------------------------
-Setting Up the Infrastructure for Jupyter Notebooks on a Windows PC
--------------------------------------------------------------------
+.. _setup_infrastructure:
+
+-------------------------------------------------
+Setting Up the Infrastructure on a Windows System
+-------------------------------------------------
 
 While preparing for course units, we will use the Windows Command Prompt (CMD) at certain points. The Command Prompt is a command-line environment that allows you to interact directly with your operating system by entering text commands. It enables you to launch programs, manage files, and control system processes. CMD is particularly useful for developers to execute installations or configure tools such as Python and Jupyter.
 
@@ -34,13 +36,13 @@ A complete reference of commands and syntax can be found in the Microsoft docume
 
 ----
 
------------------
-Installing Python
------------------
+.. _python_and_jupyter_install:
+
+--------------------------------------
+Installing Python and Jupyter Notebook
+--------------------------------------
 
 Jupyter Notebooks are based on **Python**, so you first need to install **Python**.
-
-.. _python_install:
 
 ^^^^^^^^^^^^^^^^^^
 1. Python and Pip:
@@ -60,8 +62,6 @@ If Python is not automatically added to the **PATH**, you can configure it manua
 
 After this step, Python should be executable from the Command Prompt using the command ``python`` or ``python3``. You can verify this by entering ``python --version`` to verify the installed Python version.
 
-.. _jupyter_install:
-
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2. Installing Jupyter Notebook
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -78,11 +78,13 @@ To work with Jupyter Notebooks on your local computer, you need to install the n
 
 The installation process should take less than 5 minutes and no additional input is required during installation.
 
+----
+
 .. _jupyter_start:
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-3. Starting Jupyter Notebook
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------------------
+Starting Jupyter Notebook for Course Elements
+---------------------------------------------
 
 Once the installation is complete, start **JupyterLab** using the following command in the Command Prompt:
 
@@ -92,7 +94,14 @@ Once the installation is complete, start **JupyterLab** using the following comm
 
 A browser window should open, displaying your **Computer's folder structure** on the left side (e.g., "Downloads," "Documents," etc.). Navigate to the folder where you want to create your first notebook.
 
-If the **Launcher-Tab** does not open automatically, click the "+" icon in the top-left corner:
+If the **Launcher-Tab** does not open automatically, click the |jupyter_new_launcher| icon in the top-left corner:
+
+.. |jupyter_new_launcher| image:: /_static/icons/jupyter_new_launcher.png
+  :width: 72px
+  :height: 21px
+  :class: no-scaled-link
+  :alt: Jupyter New Launcher Button
+
 
 .. image:: /_static/02_Jupyter.png
 	:width: 650px
