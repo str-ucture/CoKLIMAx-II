@@ -18,8 +18,8 @@ Im ersten Teil der Dokumentation geht es um die Vorbereitung Ihres Computers auf
   :maxdepth: 2
   :caption: Kurs 1:
 
-  /rst_kurs1/cds-api-installieren-und-herunterladen
-  /rst_kurs1/netcdf-einfuhrung
+  /rst_kurs1/01-cds-api-installieren-und-herunterladen
+  /rst_kurs1/02-netcdf-einfuhrung
 
 .. toctree::
   :maxdepth: 2
