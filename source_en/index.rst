@@ -18,8 +18,8 @@ The first part of the documentation focuses on preparing your computer for worki
   :maxdepth: 2
   :caption: Course 1:
 
-  /rst_kurs1/cds-api-installieren-und-herunterladen
-  /rst_kurs1/netcdf-einfuhrung
+  /rst_kurs1/01-cds-api-installieren-und-herunterladen
+  /rst_kurs1/02-netcdf-einfuhrung
 
 .. toctree::
   :maxdepth: 2

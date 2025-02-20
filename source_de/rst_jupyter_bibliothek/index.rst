@@ -1,4 +1,4 @@
-.. _einfuehrung-jupyter:
+.. _jupyter-notebooks-library:
 
 ==========================
 Über CoKLIMAx-II Notebooks
@@ -10,10 +10,10 @@ Jupyter Notebooks sind interaktive Werkzeuge, die es Ihnen ermöglichen, Code, D
 
 Die digitalen Ressourcen, welche innerhalb des CoKLIMAx-II Projekts entwickelt und zur Verfügung gestellt werden, können Sie selbst ohne umfangreiche Vorkenntnisse in der Datenverarbeitung nutzen. Unsere Notebooks wurden so gestaltet, dass sie flexibel und erweiterbar sind, sodass Sie sie an Ihre spezifischen Bedürfnisse anpassen können.
 
-Haben Sie Ihren Computer bereits auf die Arbeit mit den Jupyter-Ressourcen vorbereitet? Falls nicht, springen Sie zunächst zum Kapitel :ref:`Notwendige Software und Kenntnisse <software-to-run-jupyter>`.
+Haben Sie Ihren Computer bereits auf die Arbeit mit den Jupyter-Ressourcen vorbereitet? Falls nicht, springen Sie zunächst zum Kapitel :ref:`Notwendige Software und Kenntnisse <software-knowledge>`.
 
 Alle Notizbücher sind in zwei Kategorien unterteilt und können hier gefunden werden:
 
-* :ref:`CDS Datensatz Notebooks <cds_dataset_notebooks>`
-* :ref:`Satellitendaten Notebooks <satellite_data_notebooks>`
-* :ref:`Bibliothek mit Visualisierungsoptionen <visualization_options_library>`
+* :ref:`CDS Datensatz Notebooks <cds-dataset-notebooks>`
+* :ref:`Satellitendaten Notebooks <satellite-data-notebooks>`
+* :ref:`Bibliothek mit Visualisierungsoptionen <visualization-options-library>`

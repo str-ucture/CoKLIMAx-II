@@ -1,10 +1,10 @@
-.. _satellite_data_notebooks:
+.. _satellite-data-notebooks:
 
 ===============================================
-Satellitendaten Notebooks |satellite_data_logo|
+Satellitendaten Notebooks |satellite-data-logo|
 ===============================================
 
-.. |satellite_data_logo| image:: /_static/logos/satellite.png
+.. |satellite-data-logo| image:: /_static/logos/satellite.png
   :width: 24px
   :height: 24px
   :class: no-scaled-link
@@ -19,7 +19,6 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
   :maxdepth: 1
   :caption: Satellite Data:
 
-  /notebooks/kurs3/01_senthub_downloader
-  /notebooks/kurs_not_defined/09_Sentinel2-without-esri
-  /notebooks/kurs_not_defined/08_landsat-with-landsatxplore
-
+  /notebooks/kurs3_satellit/01-senthub-downloader
+  /notebooks/kurs3_satellit/02-sentinel2-without-esri
+  /notebooks/kurs3_satellit/03-landsat-with-landsatxplore

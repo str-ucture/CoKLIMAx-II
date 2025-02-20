@@ -1,10 +1,10 @@
-.. _cds_dataset_notebooks:
+.. _cds-dataset-notebooks:
 
 =================================
-CDS Datensatz Notebooks |cds_logo|
+CDS Datensatz Notebooks |cds-logo|
 =================================
 
-.. |cds_logo| image:: /_static/logos/cds.png
+.. |cds-logo| image:: /_static/logos/cds.png
   :width: 24px
   :height: 24px
   :class: no-scaled-link
@@ -18,11 +18,11 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
   :maxdepth: 1
   :caption: CDS Data:
 
-  /notebooks/kurs_not_defined/01_alpine-monthly-precipitation
-  /notebooks/kurs_not_defined/02_sis-heat-wave-and-cold-spells
-  /notebooks/kurs_not_defined/03_sis-health-vector
-  /notebooks/kurs_not_defined/04_climate-indicators
-  /notebooks/kurs_not_defined/05_sis-biodiversity-era5-regional
-  /notebooks/kurs_not_defined/06_era5_land_hourly
-  /notebooks/kurs_not_defined/07_era5-land-monthly
-  /notebooks/kurs_not_defined/10_c3s-erderwaermung
+  /notebooks/kurs_sonstiges/01-alpine-monthly-precipitation
+  /notebooks/kurs_sonstiges/02-sis-heat-wave-and-cold-spells
+  /notebooks/kurs_sonstiges/03-sis-health-vector
+  /notebooks/kurs_sonstiges/04-climate-indicators
+  /notebooks/kurs_sonstiges/05-sis-biodiversity-era5-regional
+  /notebooks/kurs_sonstiges/06-era5-land-hourly
+  /notebooks/kurs_sonstiges/07-era5-land-monthly
+  /notebooks/kurs_sonstiges/10-c3s-erderwaermung

@@ -27,7 +27,7 @@ While preparing for course units, we will use the Windows Command Prompt (CMD) a
 You can open the Command Prompt by pressing the Windows key, typing “cmd” directly in the search bar, and pressing Enter (see figure).
 
 .. image:: /_static/01-cmd.png
-	:width: 650px
+	:width: 600px
 	:align: center
 	:class: no-scaled-link
 	:alt: Commant Prompt (Windows)
@@ -103,7 +103,7 @@ If the **Launcher-Tab** does not open automatically, click the |jupyter-lab-new-
   :alt: Jupyter Lab New Launcher Button
 
 .. image:: /_static/02-jupyter-1.png
-	:width: 650px
+	:width: 600px
 	:align: center
 	:class: no-scaled-link
 	:alt: Jupyter: New Launcher
@@ -111,7 +111,7 @@ If the **Launcher-Tab** does not open automatically, click the |jupyter-lab-new-
 Now, open a new notebook:
 
 .. image:: /_static/02-jupyter-2.png
-	:width: 650px
+	:width: 600px
 	:align: center
 	:class: no-scaled-link
 	:alt: Jupyter: Create New Notebook
