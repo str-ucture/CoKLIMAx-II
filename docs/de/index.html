@@ -1,0 +1,212 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoKLIMAx II Ressourcen zur Datenverarbeitung &mdash; Coklimax 1.0.0 Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=2bfa0ee5" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=f029ec32"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script src="_static/translations.js?v=9bf55d28"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="genindex.html" />
+    <link rel="search" title="Suche" href="search.html" />
+    <link rel="next" title="Notwendige Software und Kenntnisse" href="rst_inhalte/01_SoftwareKenntnisse.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Coklimax
+              <img src="_static/coklimax_logo_new.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Inhalte:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rst_inhalte/01_SoftwareKenntnisse.html">Notwendige Software und Kenntnisse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst_inhalte/02_Kurs-Elemente.html">Die Kurs-Elemente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst_inhalte/03_CDS.html">Der Copernicus Climate Data Store (CDS)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kurs 1:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rst_kurs1/Element_1.html">Element 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst_kurs1/Element_2.html">Element 2</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kurs 2:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/kurs2/02_satellite-lake-water-temperature.html">Seewassertemperatur aus Satellitendaten abgeleitet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/kurs2/03_sis-temperature-statistics.html">Temperature Statistics for Europe</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">The Jupyter Notebook Bibliothek:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rst_jupyter_bibliothek/index.html">Über CoKLIMAx-II Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst_jupyter_bibliothek/cds_data/index.html">CDS Datensatz Notebooks </a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst_jupyter_bibliothek/satellite_data/index.html">Satellitendaten Notebooks </a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst_jupyter_bibliothek/visualizations/index.html">Visualization Options Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Coklimax</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">CoKLIMAx II Ressourcen zur Datenverarbeitung</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
+<div id='language-switcher' style='text-align: right; margin-top: 10px;'>
+    <select onchange="location = this.value;">
+        <option value='/./CoKLIMAx-II/en\index.html'>EN</option>
+        <option value='/./CoKLIMAx-II/de\index.html' selected>DE</option>
+    </select>
+</div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="coklimax-ii-ressourcen-zur-datenverarbeitung">
+<h1>CoKLIMAx II Ressourcen zur Datenverarbeitung<a class="headerlink" href="#coklimax-ii-ressourcen-zur-datenverarbeitung" title="Link to this heading"></a></h1>
+<p>Herzlich willkommen in der CoKLIMAx II Dokumentation. Hier finden Sie Informationen und Werkzeuge, die Ihnen den Umgang mit großen Klimadatensätzen in der städischen Verwaltungspraxis erleichtern können. Die Ressourcen sind innerhalb von <a class="reference internal" href="rst_jupyter_bibliothek/index.html#einfuehrung-jupyter"><span class="std std-ref">Jupyter Notebooks Bibliothek</span></a> aufgebaut, mit deren Hilfe Sie Klimadaten aus dem Angebot des <a class="reference internal" href="rst_inhalte/03_CDS.html#cds"><span class="std std-ref">Copernicus Climate Data Store (CDS)</span></a> herunterladen, bearbeiten und visualisieren können.</p>
+<p>Im ersten Teil der Dokumentation geht es um die Vorbereitung Ihres Computers auf die Arbeit mit den Daten. Sobald Sie der Anleitung gefolgt sind können Sie loslegen. Um den Umgang mit den CDS-Daten zu lernen können Sie die vorbereiteten Kurs-Elemente durcharbeiten. Für fortgeschritte Nutzende haben wir eine Reihe verschiedener <a class="reference internal" href="rst_jupyter_bibliothek/index.html#einfuehrung-jupyter"><span class="std std-ref">Jupyter Notebooks Bibliothek</span></a> vorbereitet, die Sie mit entsprechenden Fähigkeiten nach Belieben modifizieren können. Die Notebooks befassen sich über den CDS hinaus auch mit der Verarbeitung von Satellitendaten, wie zum Beispiel den hochaufgelösten Bildern des Sentinel-II Satelliten.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Inhalte:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rst_inhalte/01_SoftwareKenntnisse.html">Notwendige Software und Kenntnisse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rst_inhalte/01_SoftwareKenntnisse.html#einrichtung-der-infrastruktur-fur-jupyter-notebooks-auf-einem-windows-pc">Einrichtung der Infrastruktur für Jupyter Notebooks auf einem Windows-PC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst_inhalte/01_SoftwareKenntnisse.html#installation-von-python">Installation von Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst_inhalte/01_SoftwareKenntnisse.html#notwendige-kenntnisse">Notwendige Kenntnisse</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rst_inhalte/02_Kurs-Elemente.html">Die Kurs-Elemente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst_inhalte/03_CDS.html">Der Copernicus Climate Data Store (CDS)</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Kurs 1:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rst_kurs1/Element_1.html">Element 1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rst_kurs1/Element_1.html#lernziele">Lernziele</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst_kurs1/Element_1.html#einrichtung-der-cds-api">Einrichtung der CDS API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst_kurs1/Element_1.html#download-von-klimadaten-aus-dem-cds">Download von Klimadaten aus dem CDS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rst_kurs1/Element_2.html">Element 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rst_kurs1/Element_2.html#lernziele">Lernziele</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst_kurs1/Element_2.html#umgang-mit-netcdf-dateien">Umgang mit NetCDF-Dateien</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rst_kurs1/Element_2.html#visualisierung-und-auswahl-einer-region">Visualisierung und Auswahl einer Region</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Kurs 2:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/kurs2/02_satellite-lake-water-temperature.html">Seewassertemperatur aus Satellitendaten abgeleitet</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/kurs2/02_satellite-lake-water-temperature.html#festlegen-der-pfade-und-arbeitsverzeichnisse">1. Festlegen der Pfade und Arbeitsverzeichnisse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/kurs2/02_satellite-lake-water-temperature.html#herunterladen-und-entpacken-des-datensatzes">2. Herunterladen und Entpacken des Datensatzes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/kurs2/02_satellite-lake-water-temperature.html#netcdf4-dateien-zusammenfuhren">3. NetCDF4-Dateien zusammenführen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/kurs2/02_satellite-lake-water-temperature.html#untersuchen-der-metadaten-der-netcdf4-datei">4. Untersuchen der Metadaten der netCDF4-Datei</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/kurs2/02_satellite-lake-water-temperature.html#export-dataset-to-csv">4. Export Dataset to CSV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/kurs2/02_satellite-lake-water-temperature.html#export-merged-netcdf4-file-to-geotiff">5. Export merged netCDF4 file to GeoTIFF</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/kurs2/03_sis-temperature-statistics.html">Temperature Statistics for Europe</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/kurs2/03_sis-temperature-statistics.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/kurs2/03_sis-temperature-statistics.html#download-and-extract-dataset">2. Download and Extract Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/kurs2/03_sis-temperature-statistics.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/kurs2/03_sis-temperature-statistics.html#export-dataset-to-csv">4. Export Dataset to CSV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/kurs2/03_sis-temperature-statistics.html#export-dataset-to-geotiff">5. Export Dataset to GeoTIFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/kurs2/03_sis-temperature-statistics.html#plot-using-matplotlib">6. Plot using Matplotlib</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">The Jupyter Notebook Bibliothek:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rst_jupyter_bibliothek/index.html">Über CoKLIMAx-II Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst_jupyter_bibliothek/cds_data/index.html">CDS Datensatz Notebooks </a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/kurs_not_defined/05_sis-biodiversity-era5-regional.html">Downscaled bioclimatic indicators</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rst_jupyter_bibliothek/satellite_data/index.html">Satellitendaten Notebooks </a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notebooks/kurs3/01_senthub_downloader.html">SentinelHub Satellite Data Explorer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="rst_jupyter_bibliothek/visualizations/index.html">Visualization Options Library</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="rst_inhalte/01_SoftwareKenntnisse.html" class="btn btn-neutral float-right" title="Notwendige Software und Kenntnisse" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, str.ucture GmbH.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

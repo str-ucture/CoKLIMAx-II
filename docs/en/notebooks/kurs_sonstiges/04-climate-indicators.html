@@ -1,0 +1,1977 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Climate Indicators for Europe &mdash; CoKLIMAx 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=2bfa0ee5" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script type="application/vnd.jupyter.widget-state+json">{"state": {"39a79e59cb894b8baaebbc5b6460b32e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "5e5fad3fe12041ab809bb8698a5470e2": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": ""}}, "b856f481b9b14eb8bd4e5dd3c2ca54d8": {"model_name": "DropdownModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "DropdownModel", "_options_labels": ["growing_degree_days", "heating_degree_days", "cooling_degree_days", "tropical_nights", "hot_days", "warmest_three_day_period", "heat_waves_climatological", "frost_days", "total_precipitation", "maximum_five_days_precipitation", "extreme_precipitation_total", "frequency_of_extreme_precipitation", "consecutive_dry_days", "duration_of_meteorological_droughts", "magnitude_of_meteorological_droughts", "days_with_high_fire_danger", "extreme_wind_speed_days", "fire_weather_index"], "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "DropdownView", "description": "Select a variable:", "description_allow_html": false, "disabled": false, "index": 0, "layout": "IPY_MODEL_39a79e59cb894b8baaebbc5b6460b32e", "style": "IPY_MODEL_5e5fad3fe12041ab809bb8698a5470e2", "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
+      <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Downscaled bioclimatic indicators" href="05-sis-biodiversity-era5-regional.html" />
+    <link rel="prev" title="SIS Health Vector" href="03-sis-health-vector.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CoKLIMAx
+              <img src="../../_static/coklimax_logo_new.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/01-softwarekenntnisse.html">Required Software and Knowledge</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_inhalte/01-softwarekenntnisse.html#setting-up-the-infrastructure-on-a-windows-system">Setting Up the Infrastructure on a Windows System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_inhalte/01-softwarekenntnisse.html#installing-python-and-jupyter-notebook">Installing Python and Jupyter Notebook</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_inhalte/01-softwarekenntnisse.html#python-and-pip">1. Python and Pip:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_inhalte/01-softwarekenntnisse.html#installing-jupyter-notebook">2. Installing Jupyter Notebook</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_inhalte/01-softwarekenntnisse.html#starting-jupyter-notebook-for-course-elements">Starting Jupyter Notebook for Course Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_inhalte/01-softwarekenntnisse.html#required-knowledge">Required Knowledge</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/02-kurselemente.html">The Course Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/03-cds.html">The Copernicus Climate Data Store (CDS)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Course 1:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/cds-api-installieren-und-herunterladen.html">CDS API Installation and Download</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_kurs1/cds-api-installieren-und-herunterladen.html#learning-objectives">Learning Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_kurs1/cds-api-installieren-und-herunterladen.html#setting-up-the-cds-api">Setting Up the CDS API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/cds-api-installieren-und-herunterladen.html#personal-api-key">1. Personal API Key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/cds-api-installieren-und-herunterladen.html#installation-of-the-cds-api">2. Installation of the CDS API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_kurs1/cds-api-installieren-und-herunterladen.html#downloading-climate-data-from-the-cds">Downloading Climate Data from the CDS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/cds-api-installieren-und-herunterladen.html#creating-the-api-request">1. Creating the API Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/cds-api-installieren-und-herunterladen.html#the-api-request-in-jupyter-notebook">2. The API Request in Jupyter Notebook</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html">NetCDF Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html#learning-objectives">Learning Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html#handling-netcdf-files">Handling NetCDF Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html#unpacking-the-netcdf-zip-file">1. Unpacking the NetCDF Zip file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html#examining-a-netcdf-file">2. Examining a NetCDF File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html#visualization-and-selection-of-a-region">Visualization and Selection of a Region</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html#reading-and-exploring-the-data">1. Reading and Exploring the Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html#creating-a-plot-for-august-1980">2. Creating a Plot for August 1980</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../rst_kurs1/netcdf-einfuhrung.html#creating-a-plot-for-a-time-series">3. Creating a Plot for a Time Series</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Course 2:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html">Lake Water Levels from Satellite Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#download-and-extract-the-dataset">2. Download and Extract the Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#define-the-request-and-download-the-dataset">2.2 Define the “request” and Download the Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#extract-the-zip-files-in-folder-s">2.3 Extract the ZIP files in folder(s)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#investigate-the-metadata-of-the-netcdf4-file">3. Investigate the Metadata of the NetCDF4 file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#export-the-time-series-in-csv-format">4. Export the time series in CSV Format</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#define-a-function-to-compute-daily-average">4.1 Define a Function to Compute Daily Average</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#create-dataframe-and-export-as-csv">4.2 Create DataFrame and Export as CSV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#analysis-and-visualization-options">5. Analysis and Visualization Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#visualization-of-all-data-without-a-map">5.1 Visualization of all data (without a map)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#visualization-of-monthly-averages-without-a-map">5.2 Visualization of monthly averages (without a map)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#visualization-of-all-data-with-a-map">5.3 Visualization of all data (with a map)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html#visualization-of-monthly-average-with-a-map">5.4 Visualization of monthly average (with a map)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html">Lake Water Temperature from Satellite Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#download-and-extract-the-dataset">2. Download and Extract the Dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#define-the-request-and-download-the-dataset">2.2 Define the “request” and Download the Dataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#extract-the-zip-files-in-folder-s">2.3 Extract the ZIP files in folder(s)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#merge-netcdf4-files-into-a-single-netcdf4-file">3. Merge NetCDF4 Files into a Single NetCDF4 File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#investigate-the-metadata-of-the-netcdf4-file">4. Investigate the Metadata of the NetCDF4 file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#export-the-time-series-in-csv-format">5. Export the time series in CSV Format</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#define-a-function-to-compute-daily-average">5.1 Define a Function to Compute Daily Average</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#create-merged-dataframe-for-yearly-data-and-export-as-csv">5.2 Create Merged DataFrame for yearly data and Export as CSV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#analysis-and-visualization-options">6. Analysis and Visualization Options</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#visualization-of-daily-average-with-line-graph">6.1 Visualization of Daily Average with Line Graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#visualization-of-monthly-average-with-line-graph">6.2 Visualization of Monthly Average with Line Graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#visualization-of-monthly-average-with-bar-graph">6.3 Visualization of Monthly Average with Bar Graph</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#export-the-merged-netcdf4-file-to-geotiff">7. Export the Merged NetCDF4 file to GeoTIFF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#export-all-year-dataset-as-merged-geotiff-file">7.1 Export All-Year Dataset as Merged GeoTIFF File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#export-all-year-dataset-as-individual-geotiff-file">7.2 Export All-Year Dataset as Individual GeoTIFF File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html#visualize-all-available-data-from-1995-to-2023">8. Visualize all available data from 1995 to 2023</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">The Jupyter Notebook Library:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/index.html">About CoKLIMAx-II Notebooks</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../rst_jupyter_bibliothek/cds_data/index.html">CDS Dataset Notebooks </a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01-alpine-monthly-precipitation.html">Alpine monatliche Niederschlagsdaten</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="01-alpine-monthly-precipitation.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-alpine-monthly-precipitation.html#download-and-extract-the-dataset">2. Download and Extract the Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="01-alpine-monthly-precipitation.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="01-alpine-monthly-precipitation.html#define-the-request-and-download-the-dataset">2.2 Define the “request” and Download the Dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="01-alpine-monthly-precipitation.html#extract-zip-folder-s">2.3 Extract Zip Folder(s)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="01-alpine-monthly-precipitation.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="01-alpine-monthly-precipitation.html#print-netcdf-metadata">3.1 Print netCDF metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="01-alpine-monthly-precipitation.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="01-alpine-monthly-precipitation.html#define-bounding-box-to-filter-data-for-konstanz">4.1 Define Bounding Box to Filter Data for Konstanz</a></li>
+<li class="toctree-l4"><a class="reference internal" href="01-alpine-monthly-precipitation.html#filter-data-by-bounding-box-and-export-as-csv">4.2 Filter Data by Bounding Box and Export as CSV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="01-alpine-monthly-precipitation.html#compute-monthly-means-and-export-as-csv">4.3 Compute Monthly Means and Export as CSV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="01-alpine-monthly-precipitation.html#plot-monthly-averages-for-a-defined-date-range">4.4 Plot Monthly Averages for a Defined Date Range</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="01-alpine-monthly-precipitation.html#export-dataset-to-geotiff">5. Export Dataset to GeoTIFF</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="01-alpine-monthly-precipitation.html#export-all-year-dataset-as-individual-geotiff-files">5.1 Export All-Year Dataset as Individual GeoTIFF Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="01-alpine-monthly-precipitation.html#export-dataset-as-a-single-merged-geotiff-file">5.2 Export Dataset as a Single Merged GeoTIFF File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="01-alpine-monthly-precipitation.html#export-data-for-a-defined-date-range-and-area">5.3 Export Data for a Defined Date Range and Area</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="01-alpine-monthly-precipitation.html#plot-using-matplotlib">6. Plot using Matplotlib</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="01-alpine-monthly-precipitation.html#plot-the-complete-data">6.1 Plot the Complete data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="01-alpine-monthly-precipitation.html#plot-monthly-mean-heatmap">6.2 Plot monthly mean heatmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html">Heat Wave and Cold Spells</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html#api-authentication">2.1 API Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html#request-definition-and-download">2.2 Request Definition and Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html#create-a-dataframe-of-available-netcdf-files">3.1 Create a Dataframe of Available netCDF Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html#print-unique-variable-name-s-and-available-variables">3.1 Print unique Variable name(s) and Available Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html#create-dataframe-and-export-as-merged-csv-file">4.1 Create DataFrame and Export as merged CSV file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html#filter-by-area-create-dataframe-and-export-as-merged-csv-file">4.2 Filter by Area, Create DataFrame and Export as merged CSV file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html#export-dataset-to-geotiff">5. Export Dataset to GeoTIFF</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html#function-to-exort-the-dataset-as-geotiff-file-s">5.1 Function to exort the Dataset as GeoTIFF File(s)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html#export-selected-dataset-to-geotiff">5.2 Export selected dataset to GeoTIFF</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html#plot-using-matplotlib">6. Plot using Matplotlib</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html#line-graph-with-error">6.2 Line graph with error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html#heatmap">6.2 Heatmap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="03-sis-health-vector.html">SIS Health Vector</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="03-sis-health-vector.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-sis-health-vector.html#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="03-sis-health-vector.html#api-authentication">2.1 API Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="03-sis-health-vector.html#request-definition-and-download">2.2 Request Definition and Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="03-sis-health-vector.html#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="03-sis-health-vector.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-sis-health-vector.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="03-sis-health-vector.html#create-individual-dataframe-and-export-as-individual-csv-files">4.1 Create Individual DataFrame and Export as Individual CSV files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="03-sis-health-vector.html#create-dataframe-and-export-as-merged-csv-file">4.2 Create DataFrame and Export as merged CSV file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="03-sis-health-vector.html#filter-by-area-create-dataframe-and-export-as-merged-csv-file">4.2 Filter by Area, Create DataFrame and Export as merged CSV file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="03-sis-health-vector.html#export-dataset-to-geotiff">5. Export Dataset to GeoTIFF</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="03-sis-health-vector.html#function-to-export-the-dataset-as-geotiff-file-s">5.1 Function to export the Dataset as GeoTIFF File(s)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="03-sis-health-vector.html#export-selected-dataset-to-geotiff">5.2 Export selected dataset to GeoTIFF</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="03-sis-health-vector.html#plot-using-matplotlib">6. Plot using Matplotlib</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Climate Indicators for Europe</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#request-definition-and-download">2.2 Request Definition and Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#define-request-for-only-heat-and-cold">2.3 Define request for only heat and cold</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#request-defined-by-tim">2.4 Request defined by Tim</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#print-unique-variable-name-s-and-available-variables">3.1 Print unique Variable name(s) and Available Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#filter-by-bounding-box-create-dataframe-and-export-as-merged-csv-file">4.1 Filter by Bounding Box, Create DataFrame and Export as merged CSV file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#error-bar-chart-for-reanalysis">Error bar chart for reanalysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="05-sis-biodiversity-era5-regional.html">Downscaled bioclimatic indicators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="05-sis-biodiversity-era5-regional.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-sis-biodiversity-era5-regional.html#download-and-extract-the-dataset">2. Download and Extract the Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="05-sis-biodiversity-era5-regional.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="05-sis-biodiversity-era5-regional.html#define-the-request-and-download-the-dataset">2.2 Define the “request” and Download the Dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="05-sis-biodiversity-era5-regional.html#extract-the-zip-folder-s">2.3 Extract the Zip Folder(s)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="05-sis-biodiversity-era5-regional.html#read-the-netcdf4-file-and-print-the-metadata">3. Read the netCDF4 file and print the Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="05-sis-biodiversity-era5-regional.html#create-a-dataframe-of-available-netcdf-files">3.1 Create a Dataframe of Available netCDF Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="05-sis-biodiversity-era5-regional.html#print-unique-variable-name-s-and-available-variables">3.2 Print unique Variable name(s) and Available Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="05-sis-biodiversity-era5-regional.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="05-sis-biodiversity-era5-regional.html#define-a-function-to-convert-netcdf-data-to-a-pandas-dataframe">4.1 Define a function to convert NetCDF data to a pandas DataFrame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="05-sis-biodiversity-era5-regional.html#filter-by-bounding-box-create-dataframe-and-export-as-merged-csv-file">4.2 Filter by Bounding Box, Create DataFrame and Export as merged CSV file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="05-sis-biodiversity-era5-regional.html#export-dataset-to-geotiff">5. Export Dataset to GeoTIFF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-sis-biodiversity-era5-regional.html#plot-using-matplotlib">6. Plot using Matplotlib</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="05-sis-biodiversity-era5-regional.html#plot-the-complete-data">6.1 Plot the Complete data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="06-era5-land-hourly.html">ERA5-Land Hourly Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="06-era5-land-hourly.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06-era5-land-hourly.html#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="06-era5-land-hourly.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="06-era5-land-hourly.html#request-definition-and-download">2.2 Request Definition and Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="06-era5-land-hourly.html#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="06-era5-land-hourly.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="06-era5-land-hourly.html#print-unique-variable-name-s-and-available-variables">3.1 Print unique Variable name(s) and Available Variables</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="06-era5-land-hourly.html#export-dataset-to-csv">4. Export Dataset to CSV</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="06-era5-land-hourly.html#filter-by-bounding-box-create-dataframe-and-export-as-merged-csv-file">4.1 Filter by Bounding Box, Create DataFrame and Export as merged CSV file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="07-era5-land-monthly.html">ERA5-Land Monthly Averaged</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="07-era5-land-monthly.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="07-era5-land-monthly.html#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="07-era5-land-monthly.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="07-era5-land-monthly.html#request-definition-and-download">2.2 Request Definition and Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="07-era5-land-monthly.html#extract-the-zip-folder">2.3 Extract the Zip folder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="07-era5-land-monthly.html#read-the-netcdf-file-and-print-the-metadata">3. Read the netCDF file and print the metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="07-era5-land-monthly.html#export-dataset-to-csv">4. Export Dataset to CSV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="10-c3s-erderwaermung.html">Global Warming</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="10-c3s-erderwaermung.html#codes">Codes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="10-c3s-erderwaermung.html#era5">ERA5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="10-c3s-erderwaermung.html#ecv">ECV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="10-c3s-erderwaermung.html#ipcc">IPCC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/satellite_data/index.html">Satellite Data Notebooks </a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html">SentinelHub Satellite Data Explorer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#filter-data-collection-and-retrieve-satellite-images">2. Filter Data Collection and Retrieve Satellite Images</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#api-and-authentication">2.1 API and Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#define-data-query-parameters">2.2 Define Data Query Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#retrieve-filtered-dataset-using-sentinelhubcatalog">2.3 Retrieve Filtered Dataset Using SentinelHubCatalog</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#download-and-visualize-satellite-data">3. Download and Visualize Satellite Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#evaluation-scripts">3.1 Evaluation scripts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#request-satellite-data-and-create-plots">3.2 Request Satellite Data and create Plots</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#save-image-as-a-geotiff-raster">4. Save Image as a GeoTIFF Raster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#visualize-the-raster">5. Visualize the Raster</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#visualize-the-saved-true-color-raster-using-folium">5.1 Visualize the Saved True Color Raster Using <strong>Folium</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#visualize-a-false-color-composite-using-matplotlib">5.2 Visualize a False Color Composite Using <strong>Matplotlib</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#calculate-and-plot-remote-sensing-indices">5.3 Calculate and Plot Remote Sensing <strong>Indices</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/01-senthub-downloader.html#supplements">6 Supplements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs3_satellit/02-sentinel2-without-esri.html">Sentinel 2 - Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/02-sentinel2-without-esri.html#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/02-sentinel2-without-esri.html#download-the-datasets">2. Download the datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/02-sentinel2-without-esri.html#extract-scenes">3. Extract scenes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/02-sentinel2-without-esri.html#select-scene-from-extracted-for-processing">4. Select scene from extracted for processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/02-sentinel2-without-esri.html#process">Process</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html">Landsat Downloader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#specifying-the-paths-and-working-directories">1. Specifying the Paths and Working Directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#download-and-extract-dataset">2. Download and Extract Dataset</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#authentication">2.1 Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#search-for-available-scenes">2.2 Search for Available Scenes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#visualizing-scene-polygons-on-a-map">2.3 Visualizing Scene Polygons on a Map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#download-scenes-using-display-id">2.4 Download Scenes Using Display ID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#extract-the-tar-file">2.5 Extract the TAR File</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#merge-rgb-bands-into-a-single-geotiff-file">3. Merge RGB Bands into a Single GeoTIFF File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs3_satellit/03-landsat-with-landsatxplore.html#calculate-indices">4. Calculate Indices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/visualizations/index.html">Visualization Options Library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../kurs4_vis_optionen/01-linegraph.html">Line Graph</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs4_vis_optionen/01-linegraph.html#basic-line-graph">1. Basic Line Graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs4_vis_optionen/01-linegraph.html#line-graph-using-cds-dataset">2. Line Graph using CDS Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs4_vis_optionen/03-bargraph-with-error.html">Bar Graph</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs4_vis_optionen/03-bargraph-with-error.html#basic-bar-graph">1. Basic Bar Graph</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs4_vis_optionen/03-bargraph-with-error.html#bar-graph-using-cds-dataset">2. Bar Graph using CDS Dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../kurs4_vis_optionen/04-heatmap.html">Heatmap</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../kurs4_vis_optionen/04-heatmap.html#basic-heatmap">1. Basic Heatmap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../kurs4_vis_optionen/04-heatmap.html#heatmap-using-cds-dataset">2. Heatmap using CDS Dataset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CoKLIMAx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../rst_jupyter_bibliothek/cds_data/index.html">CDS Dataset Notebooks </a></li>
+      <li class="breadcrumb-item active">Climate Indicators for Europe</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/notebooks/kurs_sonstiges/04-climate-indicators.ipynb.txt" rel="nofollow"> View page source</a>
+<div id='language-switcher' style='text-align: right; margin-top: 10px;'>
+    <select onchange="location = this.value;">
+        <option value='/./CoKLIMAx-II/en\notebooks\kurs_sonstiges\04-climate-indicators.html' selected>EN</option>
+        <option value='/./CoKLIMAx-II/de\notebooks\kurs_sonstiges\04-climate-indicators.html'>DE</option>
+    </select>
+</div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="climate-indicators-for-europe">
+<h1>Climate Indicators for Europe<a class="headerlink" href="#climate-indicators-for-europe" title="Link to this heading"></a></h1>
+<p>Dieses Datenset enthält Klimadaten, die aus Reanalyse- und Modellsimulationen stammen und im Copernicus Climate Data Store (CDS) verfügbar sind. Es bietet Klimaindizes, die die Auswirkungen von Klimavariabilität und -wandel auf Sektoren wie Gesundheit, Landwirtschaft, Energie und Wasserwirtschaft beschreiben. Diese Indizes sind wichtig für die Anpassungsplanung auf europäischer und nationaler Ebene und wurden von der Europäischen Umweltagentur (EEA) entwickelt, um die Bedürfnisse nationaler Klimaanpassungsinitiativen in der EU zu erfüllen.</p>
+<p>Die Indizes basieren auf Daten aus verschiedenen CDS-Datensätzen und umfassen Temperatur-, Niederschlags- und Windindikatoren. Sie wurden aus den Datensätzen „Climate and energy indicators for Europe from 2005 to 2100“ und „ERA5 hourly data on single levels from 1940 to present“ berechnet. Weitere Indizes stammen aus thematischen Projekten des CDS.</p>
+<p><strong>Informationen zum Datensatz:</strong></p>
+<ul class="simple">
+<li><p>Source: <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/sis-ecde-climate-indicators?tab=download" rel="noopener noreferrer" target="_blank">Climate Indicators</a></p></li>
+<li><p>Author: T. Tewes (City of Konstanz)</p></li>
+<li><p>Notebook Version: 1.2 (Updated: December 13, 2024)</p></li>
+</ul>
+<blockquote>
+<div><p>Zitieren: Copernicus Climate Change Service (C3S), Climate Data Store (CDS), (2024): Climate indicators for Europe from 1940 to 2100 derived from reanalysis and climate projections, Copernicus Climate Change Service (C3S) Climate Data Store (CDS). (Accessed on DD-MMM-YYYY)</p>
+</div></blockquote>
+<section id="specifying-the-paths-and-working-directories">
+<h2>1. Specifying the paths and working directories<a class="headerlink" href="#specifying-the-paths-and-working-directories" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="sd">&#39;&#39;&#39; ---- Hier die Verzeichnisse angeben ---- &#39;&#39;&#39;</span>
+<span class="n">download_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\climate-indicators\download&quot;</span>
+<span class="n">working_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\climate-indicators\working&quot;</span>
+<span class="n">geotiff_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\climate-indicators\geotiff&quot;</span>
+<span class="n">csv_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\climate-indicators\csv&quot;</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\climate-indicators\output&quot;</span>
+<span class="sd">&#39;&#39;&#39; ----- Ende der Eingaben ---- &#39;&#39;&#39;</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">geotiff_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="download-and-extract-dataset">
+<h2>2. Download and Extract Dataset<a class="headerlink" href="#download-and-extract-dataset" title="Link to this heading"></a></h2>
+<section id="authentication">
+<h3>2.1 Authentication<a class="headerlink" href="#authentication" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cdsapi</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;fdae60fd-35d4-436f-825c-c63fedab94a4&quot;</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;https://cds.climate.copernicus.eu/api&quot;</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">cdsapi</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">api_url</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">client</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="request-definition-and-download">
+<h3>2.2 Request Definition and Download<a class="headerlink" href="#request-definition-and-download" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define additional request fields to ensure the request stays within the file size limit.</span>
+<span class="c1"># These coordinates were obtained using the BBox Extractor tool:</span>
+<span class="c1"># https://str-ucture.github.io/bbox-extractor/</span>
+
+<span class="n">bbox_wgs84_deutschland</span> <span class="o">=</span> <span class="p">[</span><span class="mf">56.0</span><span class="p">,</span> <span class="mf">5.8</span><span class="p">,</span> <span class="mf">47.2</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">]</span>
+<span class="n">bbox_wgs84_konstanz</span> <span class="o">=</span> <span class="p">[</span><span class="mf">47.9</span><span class="p">,</span> <span class="mf">8.9</span><span class="p">,</span> <span class="mf">47.6</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">]</span>
+
+<span class="c1"># Alternatively, use a shapefile for precise geographic filtering</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="c1"># Example: Load shapefile of Konstanz (WGS84 projection)</span>
+<span class="n">de_shapefile</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;./shapefiles/de_boundary.shp&quot;</span>
+<span class="n">de_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">de_shapefile</span><span class="p">)</span>
+<span class="n">de_bounds</span> <span class="o">=</span> <span class="n">de_gdf</span><span class="o">.</span><span class="n">total_bounds</span>
+
+<span class="c1"># Adjust and buffer</span>
+<span class="n">de_bounds_adjusted</span> <span class="o">=</span> <span class="p">[(</span><span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">de_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">de_bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">de_bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">de_bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">+</span><span class="mf">0.1</span><span class="p">]</span>
+
+<span class="n">bbox_de_bounds_adjusted</span> <span class="o">=</span> <span class="p">[</span><span class="n">de_bounds_adjusted</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">de_bounds_adjusted</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                           <span class="n">de_bounds_adjusted</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">de_bounds_adjusted</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+
+<span class="n">bbox_de_bounds_adjusted</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[55.2, 5.7, 47.1, 15.2]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="define-request-for-only-heat-and-cold">
+<h3>2.3 Define request for only heat and cold<a class="headerlink" href="#define-request-for-only-heat-and-cold" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Origin = reanalysis</span>
+<span class="c1"># dataset = &quot;sis-ecde-climate-indicators&quot;</span>
+<span class="c1"># request = {</span>
+<span class="c1">#     &quot;variable&quot;: [</span>
+<span class="c1">#         &quot;mean_temperature&quot;,</span>
+<span class="c1">#         &quot;growing_degree_days&quot;,</span>
+<span class="c1">#         &quot;heating_degree_days&quot;,</span>
+<span class="c1">#         &quot;cooling_degree_days&quot;,</span>
+<span class="c1">#         &quot;tropical_nights&quot;,</span>
+<span class="c1">#         &quot;hot_days&quot;,</span>
+<span class="c1">#         &quot;warmest_three_day_period&quot;,</span>
+<span class="c1">#         &quot;heatwave_days&quot;,</span>
+<span class="c1">#         &quot;high_utci_days&quot;,</span>
+<span class="c1">#         &quot;frost_days&quot;,</span>
+<span class="c1">#         &quot;daily_maximum_temperature&quot;,</span>
+<span class="c1">#         &quot;daily_minimum_temperature&quot;</span>
+<span class="c1">#     ],</span>
+<span class="c1">#     &quot;origin&quot;: &quot;reanalysis&quot;,</span>
+<span class="c1">#     &quot;temporal_aggregation&quot;: [&quot;yearly&quot;],</span>
+<span class="c1">#     &quot;spatial_aggregation&quot;: &quot;gridded&quot;,</span>
+<span class="c1">#     &quot;other_parameters&quot;: [</span>
+<span class="c1">#         &quot;30_c&quot;,</span>
+<span class="c1">#         &quot;35_c&quot;,</span>
+<span class="c1">#         &quot;40_c&quot;,</span>
+<span class="c1">#         &quot;max&quot;,</span>
+<span class="c1">#         &quot;mean&quot;,</span>
+<span class="c1">#         &quot;min&quot;</span>
+<span class="c1">#     ],</span>
+<span class="c1">#     &quot;area&quot;: bbox_de_bounds_adjusted</span>
+<span class="c1"># }</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # Origin = projections</span>
+<span class="c1"># dataset = &quot;sis-ecde-climate-indicators&quot;</span>
+<span class="c1"># request = {</span>
+<span class="c1">#     &quot;variable&quot;: [</span>
+<span class="c1">#         &quot;mean_temperature&quot;,</span>
+<span class="c1">#         &quot;growing_degree_days&quot;,</span>
+<span class="c1">#         &quot;heating_degree_days&quot;,</span>
+<span class="c1">#         &quot;cooling_degree_days&quot;,</span>
+<span class="c1">#         &quot;tropical_nights&quot;,</span>
+<span class="c1">#         &quot;hot_days&quot;,</span>
+<span class="c1">#         &quot;warmest_three_day_period&quot;,</span>
+<span class="c1">#         &quot;heatwave_days&quot;,</span>
+<span class="c1">#         &quot;frost_days&quot;,</span>
+<span class="c1">#         &quot;daily_maximum_temperature&quot;,</span>
+<span class="c1">#         &quot;daily_minimum_temperature&quot;</span>
+<span class="c1">#     ],</span>
+<span class="c1">#     &quot;origin&quot;: &quot;projections&quot;,</span>
+<span class="c1">#     &quot;gcm&quot;: [&quot;mpi_esm_lr&quot;],</span>
+<span class="c1">#     &quot;rcm&quot;: [&quot;cclm4_8_17&quot;],</span>
+<span class="c1">#     &quot;experiment&quot;: [</span>
+<span class="c1">#         &quot;rcp4_5&quot;,</span>
+<span class="c1">#         &quot;rcp8_5&quot;</span>
+<span class="c1">#     ],</span>
+<span class="c1">#     &quot;ensemble_member&quot;: [&quot;r1i1p1&quot;],</span>
+<span class="c1">#     &quot;temporal_aggregation&quot;: [&quot;yearly&quot;],</span>
+<span class="c1">#     &quot;spatial_aggregation&quot;: &quot;gridded&quot;,</span>
+<span class="c1">#     &quot;other_parameters&quot;: [</span>
+<span class="c1">#         &quot;30_c&quot;,</span>
+<span class="c1">#         &quot;35_c&quot;,</span>
+<span class="c1">#         &quot;40_c&quot;,</span>
+<span class="c1">#         &quot;max&quot;,</span>
+<span class="c1">#         &quot;mean&quot;,</span>
+<span class="c1">#         &quot;min&quot;</span>
+<span class="c1">#     ],</span>
+<span class="c1">#     &quot;area&quot;: bbox_de_bounds_adjusted</span>
+<span class="c1"># }</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># variable_group = &#39;heat_and_cold&#39;</span>
+<span class="c1"># # Uncomment and run this cell to download the dataset:</span>
+
+<span class="c1"># def main_retrieve():</span>
+<span class="c1">#     dataset_filename = f&quot;{dataset}_{variable_group}_{request[&#39;origin&#39;]}_{request[&#39;temporal_aggregation&#39;][0]}.zip&quot;</span>
+<span class="c1">#     dataset_filepath = os.path.join(download_folder, dataset_filename)</span>
+
+<span class="c1">#     # Download the dataset only if the dataset has not been downloaded before</span>
+<span class="c1">#     if not os.path.isfile(dataset_filepath):</span>
+<span class="c1">#         # Download the dataset with the defined request parameters</span>
+<span class="c1">#         client.retrieve(dataset, request, dataset_filepath)</span>
+<span class="c1">#     else:</span>
+<span class="c1">#         print(&quot;Dataset already downloaded.&quot;)</span>
+
+<span class="c1"># if __name__ == &quot;__main__&quot;:</span>
+<span class="c1">#     client = main()</span>
+<span class="c1">#     main_retrieve()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="request-defined-by-tim">
+<h3>2.4 Request defined by Tim<a class="headerlink" href="#request-defined-by-tim" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="s2">&quot;sis-ecde-climate-indicators&quot;</span>
+<span class="n">request</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;variable&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;growing_degree_days&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;heating_degree_days&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cooling_degree_days&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tropical_nights&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;hot_days&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;warmest_three_day_period&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;heatwave_days&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;high_utci_days&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;frost_days&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;total_precipitation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;maximum_consecutive_five_day_precipitation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;extreme_precipitation_total&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;frequency_of_extreme_precipitation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;consecutive_dry_days&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;duration_of_meteorological_droughts&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;magnitude_of_meteorological_droughts&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;days_with_high_fire_danger&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;extreme_wind_speed_days&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;fire_weather_index&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;reanalysis&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;temporal_aggregation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;yearly&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;spatial_aggregation&quot;</span><span class="p">:</span> <span class="s2">&quot;gridded&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;other_parameters&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;30_c&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;35_c&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;40_c&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;area&quot;</span><span class="p">:</span> <span class="n">bbox_de_bounds_adjusted</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span> <span class="o">=</span> <span class="s2">&quot;sis-ecde-climate-indicators&quot;</span>
+<span class="n">request</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;variable&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;growing_degree_days&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;heating_degree_days&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cooling_degree_days&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;tropical_nights&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;hot_days&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;warmest_three_day_period&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;heatwave_days&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;frost_days&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;total_precipitation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;maximum_consecutive_five_day_precipitation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;extreme_precipitation_total&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;frequency_of_extreme_precipitation&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;consecutive_dry_days&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;duration_of_meteorological_droughts&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;magnitude_of_meteorological_droughts&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;days_with_high_fire_danger&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;extreme_wind_speed_days&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;fire_weather_index&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;origin&quot;</span><span class="p">:</span> <span class="s2">&quot;projections&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;gcm&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;mpi_esm_lr&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;rcm&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;cclm4_8_17&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;experiment&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;rcp4_5&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;rcp8_5&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;ensemble_member&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;r1i1p1&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;temporal_aggregation&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;yearly&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;spatial_aggregation&quot;</span><span class="p">:</span> <span class="s2">&quot;gridded&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;other_parameters&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;30_c&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;35_c&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;40_c&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;area&quot;</span><span class="p">:</span> <span class="n">bbox_de_bounds_adjusted</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run this cell to download the dataset:</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main_retrieve</span><span class="p">():</span>
+    <span class="n">dataset_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">request</span><span class="p">[</span><span class="s1">&#39;origin&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">request</span><span class="p">[</span><span class="s1">&#39;temporal_aggregation&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">.zip&quot;</span>
+    <span class="n">dataset_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">dataset_filename</span><span class="p">)</span>
+
+    <span class="c1"># Download the dataset only if the dataset has not been downloaded before</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dataset_filepath</span><span class="p">):</span>
+        <span class="c1"># Download the dataset with the defined request parameters</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">dataset_filepath</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dataset already downloaded.&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">main</span><span class="p">()</span>
+    <span class="n">main_retrieve</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-02-20 09:20:10,400 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-02-20 09:20:10,401 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset already downloaded.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="extract-the-zip-folder">
+<h3>2.3 Extract the Zip folder<a class="headerlink" href="#extract-the-zip-folder" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+
+<span class="n">dataset_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">request</span><span class="p">[</span><span class="s1">&#39;origin&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">request</span><span class="p">[</span><span class="s1">&#39;temporal_aggregation&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">.zip&quot;</span>
+<span class="n">dataset_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">dataset_filename</span><span class="p">)</span>
+
+<span class="n">extract_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">request</span><span class="p">[</span><span class="s1">&#39;origin&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">request</span><span class="p">[</span><span class="s1">&#39;temporal_aggregation&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Extract the zip file</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">dataset_filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+            <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully extracted files to: </span><span class="si">{</span><span class="n">extract_folder</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Folder is not empty. Skipping extraction.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: The file </span><span class="si">{</span><span class="n">dataset_filepath</span><span class="si">}</span><span class="s2"> was not found.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">BadZipFile</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: The file </span><span class="si">{</span><span class="n">dataset_filepath</span><span class="si">}</span><span class="s2"> is not a valid zip file.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An unexpected error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Folder is not empty. Skipping extraction.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="read-the-netcdf-file-and-print-the-metadata">
+<h2>3. Read the netCDF file and print the metadata<a class="headerlink" href="#read-the-netcdf-file-and-print-the-metadata" title="Link to this heading"></a></h2>
+<p>Note: select the origin here</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">origin</span> <span class="o">=</span> <span class="s2">&quot;projections&quot;</span> <span class="c1"># projections or reanalysis</span>
+<span class="n">extract_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">origin</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">request</span><span class="p">[</span><span class="s1">&#39;temporal_aggregation&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">meta</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?P&lt;index&gt;\w+?)_(?P&lt;ds_variable&gt;[a-zA-Z_]+?)-(?P&lt;ds_origin&gt;\w+?)-(?P&lt;ds_temporal_aggregation&gt;\w+)(?:-(?P&lt;ds_stat&gt;min|max|mean))?(?:-(?P&lt;ds_grid&gt;\d+deg))?(?:-(?P&lt;ds_rcp&gt;rcp_\d+_\d+))?&quot;</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?P&lt;index&gt;\w+?)_(?P&lt;ds_variable&gt;[a-zA-Z_]+?)-(?P&lt;ds_origin&gt;\w+?)-(?P&lt;ds_temporal_aggregation&gt;\w+)(?:-(?P&lt;ds_stat&gt;min|max|mean))?(?:-(?P&lt;ds_grid&gt;\d+deg))?(?:-(?P&lt;ds_rcp&gt;rcp_\d+_\d+))?&quot;</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_nc_variable</span><span class="p">():</span>
+        <span class="k">with</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">filename</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">nc_dataset</span><span class="p">:</span>
+            <span class="n">nc_variable_name</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+            <span class="k">return</span> <span class="p">[</span><span class="o">*</span><span class="n">nc_variable_name</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+        <span class="n">path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">filename</span><span class="p">),</span>
+        <span class="c1"># index=match.group(&#39;index&#39;),</span>
+        <span class="n">ds_variable</span><span class="o">=</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;ds_variable&#39;</span><span class="p">),</span>
+        <span class="n">ds_origin</span><span class="o">=</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;ds_origin&#39;</span><span class="p">),</span>
+        <span class="n">ds_temporal_aggregation</span><span class="o">=</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;ds_temporal_aggregation&#39;</span><span class="p">),</span>
+        <span class="c1"># ds_stat=match.group(&#39;ds_stat&#39;),</span>
+        <span class="n">variable_name</span><span class="o">=</span><span class="n">get_nc_variable</span><span class="p">(),</span>
+        <span class="n">ds_grid</span><span class="o">=</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;ds_grid&#39;</span><span class="p">),</span>
+        <span class="n">ds_rcp</span><span class="o">=</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;ds_rcp&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="c1"># Create DataFrame from the list of files inside the extracted directory</span>
+<span class="n">nc_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">meta</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.nc&#39;</span><span class="p">)]</span>
+<span class="n">df_nc_files</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">nc_files</span><span class="p">)</span>
+
+<span class="c1"># Modify pandas display options</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_colwidth</span> <span class="o">=</span> <span class="mi">24</span>
+
+<span class="c1"># Display the DataFrame</span>
+<span class="n">df_nc_files</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">df_nc_files</span><span class="o">.</span><span class="n">columns</span> <span class="o">!=</span> <span class="s1">&#39;path&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>filename</th>
+      <th>ds_variable</th>
+      <th>ds_origin</th>
+      <th>ds_temporal_aggregation</th>
+      <th>variable_name</th>
+      <th>ds_grid</th>
+      <th>ds_rcp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>02_growing_degree_da...</td>
+      <td>growing_degree_days</td>
+      <td>projections</td>
+      <td>yearly</td>
+      <td>tasAdjust</td>
+      <td>None</td>
+      <td>rcp_4_5</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>02_growing_degree_da...</td>
+      <td>growing_degree_days</td>
+      <td>projections</td>
+      <td>yearly</td>
+      <td>tasAdjust</td>
+      <td>None</td>
+      <td>rcp_8_5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>03_heating_degree_da...</td>
+      <td>heating_degree_days</td>
+      <td>projections</td>
+      <td>yearly</td>
+      <td>data</td>
+      <td>None</td>
+      <td>rcp_4_5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>03_heating_degree_da...</td>
+      <td>heating_degree_days</td>
+      <td>projections</td>
+      <td>yearly</td>
+      <td>data</td>
+      <td>None</td>
+      <td>rcp_8_5</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>04_cooling_degree_da...</td>
+      <td>cooling_degree_days</td>
+      <td>projections</td>
+      <td>yearly</td>
+      <td>data</td>
+      <td>None</td>
+      <td>rcp_4_5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<section id="print-unique-variable-name-s-and-available-variables">
+<h3>3.1 Print unique Variable name(s) and Available Variables<a class="headerlink" href="#print-unique-variable-name-s-and-available-variables" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
+
+<span class="n">seen_variables</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">nc_file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nc_files</span><span class="p">):</span>
+    <span class="n">variable_name</span> <span class="o">=</span> <span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;variable_name&#39;</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">variable_name</span> <span class="ow">in</span> <span class="n">seen_variables</span><span class="p">:</span>
+        <span class="k">continue</span>
+
+    <span class="c1"># Open the NetCDF file in read mode</span>
+    <span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+    <span class="c1"># List all variables in the dataset</span>
+    <span class="n">variables_list</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">:</span><span class="s2">&lt;2</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">variable_name</span><span class="si">:</span><span class="s2">&lt;18</span><span class="si">}</span><span class="s2">: Available variables: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">variables_list</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Add the variable name to the seen set</span>
+    <span class="n">seen_variables</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">variable_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1  tasAdjust         : Available variables: [&#39;tasAdjust&#39;, &#39;time&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;height&#39;]
+3  data              : Available variables: [&#39;data&#39;, &#39;time&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;height&#39;]
+7  tasAdjust_NON_CDM : Available variables: [&#39;tasAdjust_NON_CDM&#39;, &#39;time&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;height&#39;]
+21 prAdjust          : Available variables: [&#39;prAdjust&#39;, &#39;time&#39;, &#39;lat&#39;, &#39;lon&#39;]
+29 cdd               : Available variables: [&#39;cdd&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;time&#39;]
+31 dmd               : Available variables: [&#39;dmd&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;time&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seen_variables</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">nc_file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nc_files</span><span class="p">):</span>
+    <span class="n">variable_name</span> <span class="o">=</span> <span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;variable_name&#39;</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">variable_name</span> <span class="ow">in</span> <span class="n">seen_variables</span><span class="p">:</span>
+        <span class="k">continue</span>
+    
+    <span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">variable_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>
+    
+    <span class="c1"># Generate summary of the primary variable</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Variable Name&quot;</span><span class="p">:</span> <span class="n">variable_name</span><span class="p">,</span>
+        <span class="s2">&quot;Data Type&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+        <span class="s2">&quot;Shape&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+        <span class="s2">&quot;Variable Info&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">variable_data</span><span class="o">.</span><span class="n">dimensions</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Units&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+        <span class="s2">&quot;Long Name&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;long_name&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
+    <span class="p">}</span>
+    
+    <span class="c1"># Display dataset summary as a DataFrame for better visualization</span>
+    <span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">,</span> <span class="s1">&#39;Remarks&#39;</span><span class="p">])</span>
+
+    <span class="c1"># Display the summary DataFrame</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;variable_name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">nc_summary</span><span class="p">)</span>
+    
+    <span class="c1"># Add the variable name to the seen set</span>
+    <span class="n">seen_variables</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">variable_name</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1. tasAdjust:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Description</th>
+      <th>Remarks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Variable Name</td>
+      <td>tasAdjust</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Data Type</td>
+      <td>float32</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Shape</td>
+      <td>(151, 32, 38)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Variable Info</td>
+      <td>tasAdjust(time, lat,...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Units</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Long Name</td>
+      <td>N/A</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3. data:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Description</th>
+      <th>Remarks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Variable Name</td>
+      <td>data</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Data Type</td>
+      <td>float32</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Shape</td>
+      <td>(151, 32, 38)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Variable Info</td>
+      <td>data(time, lat, lon)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Units</td>
+      <td>K</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Long Name</td>
+      <td>N/A</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="export-dataset-to-csv">
+<h2>4. Export Dataset to CSV<a class="headerlink" href="#export-dataset-to-csv" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+
+<span class="c1"># Open the NetCDF dataset using xarray</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="p">,</span> <span class="n">bounding_box</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span> <span class="k">as</span> <span class="n">nc_dataset</span><span class="p">:</span>
+        <span class="n">variable_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;variable_name&#39;</span><span class="p">]]</span>
+        
+        <span class="c1"># Ensure latitude and longitude names are correct</span>
+        <span class="n">latitude_name</span> <span class="o">=</span> <span class="s1">&#39;latitude&#39;</span> <span class="k">if</span> <span class="s1">&#39;latitude&#39;</span> <span class="ow">in</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">coords</span> <span class="k">else</span> <span class="s1">&#39;lat&#39;</span>
+        <span class="n">longitude_name</span> <span class="o">=</span> <span class="s1">&#39;longitude&#39;</span> <span class="k">if</span> <span class="s1">&#39;longitude&#39;</span> <span class="ow">in</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">coords</span> <span class="k">else</span> <span class="s1">&#39;lon&#39;</span>
+        
+        <span class="k">if</span> <span class="n">bounding_box</span><span class="p">:</span>
+            <span class="c1"># Filter the data based on latitude and longitude</span>
+            <span class="n">filtered_data</span> <span class="o">=</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">nc_dataset</span><span class="p">[</span><span class="n">latitude_name</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">bounding_box</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">nc_dataset</span><span class="p">[</span><span class="n">latitude_name</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">bounding_box</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">&amp;</span>
+                <span class="p">(</span><span class="n">nc_dataset</span><span class="p">[</span><span class="n">longitude_name</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">bounding_box</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">nc_dataset</span><span class="p">[</span><span class="n">longitude_name</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">bounding_box</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span>
+                <span class="n">drop</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">filtered_data</span> <span class="o">=</span> <span class="n">variable_data</span>
+
+        <span class="c1"># Convert the xarray dataset to a pandas DataFrame</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">filtered_data</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">latitude_name</span><span class="p">,</span> <span class="n">longitude_name</span><span class="p">])</span>
+        
+        <span class="c1"># Rename the value column to &quot;test value&quot;</span>
+        <span class="c1"># ds_origin = nc_file[&#39;ds_origin&#39;]</span>
+        <span class="c1"># if ds_origin == &quot;projections&quot;:</span>
+        <span class="c1">#     df.rename(columns={nc_file[&#39;variable_name&#39;]: nc_file[&#39;ds_variable&#39;] + &#39; (&#39; + nc_file[&#39;ds_rcp&#39;] + &#39;)&#39;}, inplace=True)</span>
+        <span class="c1"># else:</span>
+        <span class="c1">#     df.rename(columns={nc_file[&#39;variable_name&#39;]: nc_file[&#39;ds_variable&#39;]}, inplace=True)        </span>
+        <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="filter-by-bounding-box-create-dataframe-and-export-as-merged-csv-file">
+<h3>4.1 Filter by Bounding Box, Create DataFrame and Export as merged CSV file<a class="headerlink" href="#filter-by-bounding-box-create-dataframe-and-export-as-merged-csv-file" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define additional request fields to ensure the request stays within the file size limit.</span>
+<span class="c1"># These coordinates were obtained using the BBox Extractor tool:</span>
+<span class="c1"># https://str-ucture.github.io/bbox-extractor/</span>
+
+<span class="n">bbox_wgs84_konstanz</span> <span class="o">=</span> <span class="p">[</span><span class="mf">47.9</span><span class="p">,</span> <span class="mf">8.9</span><span class="p">,</span> <span class="mf">47.6</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">]</span>  <span class="c1"># Format: [North, West, South, East]</span>
+<span class="n">bbox_wgs84_konstanz_standard</span> <span class="o">=</span> <span class="p">[</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">47.6</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">,</span> <span class="mf">47.8</span><span class="p">]</span>  <span class="c1"># Standard format: [West, South, East, North]</span>
+<span class="n">bbox_wgs84_de_standard</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5.7</span><span class="p">,</span> <span class="mf">47.1</span><span class="p">,</span> <span class="mf">15.2</span><span class="p">,</span> <span class="mf">55.2</span><span class="p">]</span>  <span class="c1"># Standard format: [West, South, East, North]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export all netCDF4 files to individual csv files (currently overwrites)</span>
+<span class="n">subset_csv_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">origin</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">request</span><span class="p">[</span><span class="s1">&#39;temporal_aggregation&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">subset_csv_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">nc_file</span> <span class="ow">in</span> <span class="n">nc_files</span><span class="p">:</span>
+    <span class="n">dataframe</span> <span class="o">=</span> <span class="n">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="o">=</span><span class="n">nc_file</span><span class="p">)</span>
+    <span class="n">dataframe</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subset_csv_folder</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">))</span>
+
+<span class="n">dataframe</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>data</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th>lat</th>
+      <th>lon</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">1985-01-01</th>
+      <th rowspan="5" valign="top">47.101753</th>
+      <th>5.911708</th>
+      <td>6.679999</td>
+    </tr>
+    <tr>
+      <th>6.170711</th>
+      <td>4.948425</td>
+    </tr>
+    <tr>
+      <th>6.429714</th>
+      <td>3.801291</td>
+    </tr>
+    <tr>
+      <th>6.688717</th>
+      <td>2.963428</td>
+    </tr>
+    <tr>
+      <th>6.947720</th>
+      <td>2.622460</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">2083-01-01</th>
+      <th rowspan="5" valign="top">55.103738</th>
+      <th>13.940800</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14.199802</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14.458805</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14.717808</th>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>14.976811</th>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>235224 rows × 1 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ipywidgets</span>
+<span class="c1"># Extract data from netCDF4 files from specific ds_variable</span>
+
+<span class="n">ds_variable_list</span> <span class="o">=</span> <span class="n">df_nc_files</span><span class="p">[</span><span class="s1">&#39;ds_variable&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+<span class="n">selected_ds_variable</span> <span class="o">=</span> <span class="n">ipywidgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="n">ds_variable_list</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Select a variable:&#39;</span><span class="p">,</span>
+    <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">selected_ds_variable</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b856f481b9b14eb8bd4e5dd3c2ca54d8"}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get data from reanalysis and projections for selected ds_variable and create a combined csv file</span>
+
+<span class="n">origin</span> <span class="o">=</span> <span class="s2">&quot;reanalysis&quot;</span>
+<span class="n">extract_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">origin</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">request</span><span class="p">[</span><span class="s1">&#39;temporal_aggregation&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">nc_files_reanalysis</span> <span class="o">=</span> <span class="p">[</span><span class="n">meta</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)</span> <span class="k">if</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">selected_ds_variable</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
+
+<span class="n">origin</span> <span class="o">=</span> <span class="s2">&quot;projections&quot;</span>
+<span class="n">extract_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">origin</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">request</span><span class="p">[</span><span class="s1">&#39;temporal_aggregation&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">nc_files_projections</span> <span class="o">=</span> <span class="p">[</span><span class="n">meta</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)</span> <span class="k">if</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">selected_ds_variable</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span> <span class="ow">in</span> <span class="n">f</span><span class="p">]</span>
+
+<span class="n">nc_files_merged</span> <span class="o">=</span>  <span class="n">nc_files_reanalysis</span> <span class="o">+</span> <span class="n">nc_files_projections</span>
+<span class="n">df_nc_files_merged</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">nc_files_merged</span><span class="p">)</span>
+
+<span class="n">df_nc_files_merged</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">df_nc_files_merged</span><span class="o">.</span><span class="n">columns</span> <span class="o">!=</span> <span class="s1">&#39;path&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>filename</th>
+      <th>ds_variable</th>
+      <th>ds_origin</th>
+      <th>ds_temporal_aggregation</th>
+      <th>variable_name</th>
+      <th>ds_grid</th>
+      <th>ds_rcp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>02_growing_degree_da...</td>
+      <td>growing_degree_days</td>
+      <td>reanalysis</td>
+      <td>yearly</td>
+      <td>t2m</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>02_growing_degree_da...</td>
+      <td>growing_degree_days</td>
+      <td>projections</td>
+      <td>yearly</td>
+      <td>tasAdjust</td>
+      <td>None</td>
+      <td>rcp_4_5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>02_growing_degree_da...</td>
+      <td>growing_degree_days</td>
+      <td>projections</td>
+      <td>yearly</td>
+      <td>tasAdjust</td>
+      <td>None</td>
+      <td>rcp_8_5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nc_file_reanalysis</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">nc_file_proj_rcp45</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">nc_file_proj_rcp85</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="c1"># Extract the nc_file_reanalysis, nc_file_proj_rcp45, nc_file_proj_rcp85 rows</span>
+<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">nc_files_merged</span><span class="p">:</span>
+    <span class="c1"># Extract first row where ds_origin == &#39;reanalysis&#39;</span>
+    <span class="k">if</span> <span class="n">file</span><span class="p">[</span><span class="s1">&#39;ds_origin&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;reanalysis&#39;</span> <span class="ow">and</span> <span class="n">nc_file_reanalysis</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">nc_file_reanalysis</span> <span class="o">=</span> <span class="n">file</span>
+    
+    <span class="c1"># Extract first row where ds_origin == &#39;projections&#39; and ds_rcp == &#39;rcp_4_5&#39;</span>
+    <span class="k">if</span> <span class="n">file</span><span class="p">[</span><span class="s1">&#39;ds_origin&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;projections&#39;</span> <span class="ow">and</span> <span class="n">file</span><span class="p">[</span><span class="s1">&#39;ds_rcp&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;rcp_4_5&#39;</span> <span class="ow">and</span> <span class="n">nc_file_proj_rcp45</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">nc_file_proj_rcp45</span> <span class="o">=</span> <span class="n">file</span>
+    
+    <span class="c1"># Extract first row where ds_origin == &#39;projections&#39; and ds_rcp == &#39;rcp_8_5&#39;</span>
+    <span class="k">if</span> <span class="n">file</span><span class="p">[</span><span class="s1">&#39;ds_origin&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;projections&#39;</span> <span class="ow">and</span> <span class="n">file</span><span class="p">[</span><span class="s1">&#39;ds_rcp&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;rcp_8_5&#39;</span> <span class="ow">and</span> <span class="n">nc_file_proj_rcp85</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">nc_file_proj_rcp85</span> <span class="o">=</span> <span class="n">file</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="error-bar-chart-for-reanalysis">
+<h3>Error bar chart for reanalysis<a class="headerlink" href="#error-bar-chart-for-reanalysis" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Farben</span>
+<span class="n">color1</span> <span class="o">=</span> <span class="s2">&quot;green&quot;</span> <span class="c1">#Reanalyse</span>
+<span class="n">color2</span> <span class="o">=</span> <span class="s2">&quot;#005d82&quot;</span> <span class="c1">#RCP4.5</span>
+<span class="n">color3</span> <span class="o">=</span> <span class="s2">&quot;#ce1657&quot;</span> <span class="c1">#RCP8.5</span>
+
+<span class="c1"># Darstellung der Reanalyse-Daten</span>
+<span class="n">design_reanalyse</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Reanalyse&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="n">color1</span><span class="p">,</span>
+    <span class="s1">&#39;marker&#39;</span><span class="p">:</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;markersize&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.5</span>
+<span class="p">}</span>
+
+<span class="c1"># Darstellung der RCP4.5-Daten</span>
+<span class="n">design_rcp45</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;RCP4.5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="n">color2</span><span class="p">,</span>
+    <span class="s1">&#39;marker&#39;</span><span class="p">:</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;markersize&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.5</span>
+<span class="p">}</span>
+
+<span class="c1"># Darstellung der RCP8.5-Daten</span>
+<span class="n">design_rcp85</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;RCP8.5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="n">color3</span><span class="p">,</span>
+    <span class="s1">&#39;marker&#39;</span><span class="p">:</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;markersize&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">0.5</span>
+<span class="p">}</span>
+
+<span class="c1"># Darstellung der Trendlinie RCP4.5</span>
+<span class="n">design_rcp45_trend</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Trend RCP4.5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="n">color2</span><span class="p">,</span>
+    <span class="s1">&#39;linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">1.5</span>
+<span class="p">}</span>
+
+<span class="c1"># Darstellung der Trendlinie RCP8.5</span>
+<span class="n">design_rcp85_trend</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Trend RCP8.5&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="n">color3</span><span class="p">,</span>
+    <span class="s1">&#39;linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;:&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">1.5</span>
+<span class="p">}</span>
+
+<span class="c1"># Darstellung der Trennline zwischen Reanalyse und Projektionsdaten</span>
+<span class="n">datum_trennlinie</span> <span class="o">=</span> <span class="s1">&#39;2024-01-01&#39;</span> <span class="c1"># wenn neuere Reanalyse-Daten vorliegen, müsste dieses Datum angepasst werden</span>
+<span class="n">design_trennlinie</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;grey&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;linestyle&#39;</span><span class="p">:</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mf">2.5</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Parameters for reference year</span>
+<span class="n">start_year</span> <span class="o">=</span> <span class="mi">1971</span>
+<span class="n">end_year</span> <span class="o">=</span> <span class="mi">2000</span>
+
+<span class="c1"># Load the nc_file_reanalysis and convert it to a DataFrame</span>
+<span class="n">variable_name_reanalysis</span> <span class="o">=</span> <span class="n">nc_file_reanalysis</span><span class="p">[</span><span class="s1">&#39;variable_name&#39;</span><span class="p">]</span>
+<span class="n">df_reanalysis</span> <span class="o">=</span> <span class="n">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="o">=</span><span class="n">nc_file_reanalysis</span><span class="p">,</span>
+                                    <span class="n">bounding_box</span><span class="o">=</span><span class="n">bbox_wgs84_konstanz_standard</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Filter the DataFrame for the reference period</span>
+<span class="n">df_reanalysis</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_reanalysis</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+<span class="n">df_reanalysis_ref_period</span> <span class="o">=</span> <span class="n">df_reanalysis</span><span class="p">[(</span><span class="n">df_reanalysis</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">&gt;=</span> <span class="n">start_year</span><span class="p">)</span> <span class="o">&amp;</span>
+                                         <span class="p">(</span><span class="n">df_reanalysis</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">&lt;=</span> <span class="n">end_year</span><span class="p">)]</span>
+
+<span class="c1"># Calculate the mean value for the reference period and the anomaly</span>
+<span class="n">reference_mean</span> <span class="o">=</span> <span class="n">df_reanalysis_ref_period</span><span class="p">[</span><span class="n">variable_name_reanalysis</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">df_reanalysis</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="s1">&#39;anomaly&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_reanalysis</span><span class="p">[</span><span class="n">variable_name_reanalysis</span><span class="p">]</span> <span class="o">-</span> <span class="n">reference_mean</span>
+
+<span class="n">df_reanalysis_yearly_mean</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_reanalysis</span>
+    <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">df_reanalysis</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;lat&#39;</span><span class="p">,</span> <span class="s1">&#39;lon&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">df_reanalysis_yearly_mean</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time</th>
+      <th>realization</th>
+      <th>t2m</th>
+      <th>anomaly</th>
+    </tr>
+    <tr>
+      <th>time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1940</th>
+      <td>1940-01-01</td>
+      <td>0.0</td>
+      <td>1850.592773</td>
+      <td>-158.640564</td>
+    </tr>
+    <tr>
+      <th>1941</th>
+      <td>1941-01-01</td>
+      <td>0.0</td>
+      <td>1655.679443</td>
+      <td>-353.553772</td>
+    </tr>
+    <tr>
+      <th>1942</th>
+      <td>1942-01-01</td>
+      <td>0.0</td>
+      <td>2059.707275</td>
+      <td>50.473999</td>
+    </tr>
+    <tr>
+      <th>1943</th>
+      <td>1943-01-01</td>
+      <td>0.0</td>
+      <td>2053.417969</td>
+      <td>44.184814</td>
+    </tr>
+    <tr>
+      <th>1944</th>
+      <td>1944-01-01</td>
+      <td>0.0</td>
+      <td>1942.366699</td>
+      <td>-66.866638</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#f1f1f1&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot negative values</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">][</span><span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;anomaly&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">],</span> 
+       <span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;anomaly&#39;</span><span class="p">][</span><span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;anomaly&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">],</span> 
+       <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+       <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#005d82&#39;</span><span class="p">,</span>
+       <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Negative Deviation&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot positive values</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">][</span><span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;anomaly&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">],</span> 
+       <span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;anomaly&#39;</span><span class="p">][</span><span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;anomaly&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">],</span> 
+       <span class="n">width</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+       <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#ce1657&#39;</span><span class="p">,</span>
+       <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Positive Deviation&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add zero line</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+
+<span class="c1"># Set axis labels and title</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mean annual anomaly&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reference Period </span><span class="si">{</span><span class="n">start_year</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">end_year</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Anomaly in </span><span class="si">{</span><span class="n">selected_ds_variable</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+             <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+             <span class="n">x</span><span class="o">=</span><span class="mf">0.52</span><span class="p">)</span>
+
+<span class="c1"># Add grid</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="c1"># X-axis: Show all 5-year intervals</span>
+<span class="n">years</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+                      <span class="n">end</span><span class="o">=</span><span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                      <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;5YE&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">year</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+<span class="c1"># Add description</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span>
+    <span class="mf">0.5</span><span class="p">,</span>
+    <span class="o">-</span><span class="mf">0.035</span><span class="p">,</span>
+    <span class="p">(</span>
+       <span class="s1">&#39;Quelle: Copernicus Climate Change Service (C3S),&#39;</span>
+       <span class="s1">&#39;Climate Data Store (CDS), (2024): Climate indicators for Europe from 1940 to 2100&#39;</span>
+       <span class="s1">&#39;derived from reanalysis and climate projections,&#39;</span>
+       <span class="s1">&#39;Copernicus Climate Change Service (C3S) Climate Data Store (CDS).&#39;</span>
+       <span class="s1">&#39;(Accessed on 01-08-2024)&#39;</span>
+    <span class="p">),</span>
+    <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+    <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+    <span class="n">wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># Legend</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower center&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">),</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Adjust layout and show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/74b291037512fe8aa8c91dfadd295b05242ce7c4e448ccdd9bc76337e8838dcd.png" src="../../_images/74b291037512fe8aa8c91dfadd295b05242ce7c4e448ccdd9bc76337e8838dcd.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="c1">#  Create a plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#f1f1f1&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>
+         <span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="n">variable_name_reanalysis</span><span class="p">],</span>
+         <span class="o">**</span><span class="n">design_reanalyse</span><span class="p">)</span>
+
+<span class="c1"># Plot the trend line</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+               <span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="n">variable_name_reanalysis</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>
+        <span class="n">p</span><span class="p">(</span><span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">),</span>
+        <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Trend&#39;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">color1</span><span class="p">,</span>
+        <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+
+<span class="c1"># Set axis labels and title</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mean annual&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reference Period: </span><span class="si">{</span><span class="n">start_year</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">end_year</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+             <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Annual </span><span class="si">{</span><span class="n">selected_ds_variable</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+             <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+             <span class="n">x</span><span class="o">=</span><span class="mf">0.52</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
+<span class="c1"># Add grid</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">,</span>
+        <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="c1"># X-axis: Show all 5-year intervals</span>
+<span class="n">years</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+                      <span class="n">end</span><span class="o">=</span><span class="n">df_reanalysis_yearly_mean</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                      <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;5YE&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">year</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+<span class="c1"># Add description</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span>
+    <span class="mf">0.5</span><span class="p">,</span>
+    <span class="o">-</span><span class="mf">0.035</span><span class="p">,</span>
+    <span class="p">(</span>
+       <span class="s1">&#39;Quelle: Copernicus Climate Change Service (C3S),&#39;</span>
+       <span class="s1">&#39;Climate Data Store (CDS), (2024): Climate indicators for Europe from 1940 to 2100&#39;</span>
+       <span class="s1">&#39;derived from reanalysis and climate projections,&#39;</span>
+       <span class="s1">&#39;Copernicus Climate Change Service (C3S) Climate Data Store (CDS).&#39;</span>
+       <span class="s1">&#39;(Accessed on 01-08-2024)&#39;</span>
+    <span class="p">),</span>
+    <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+    <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+    <span class="n">wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># Legend</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Adjust layout and show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0d1a40f50a9e05c28919b3475c8e4bd352f3c018ff220bae24d54ac1b07d45e4.png" src="../../_images/0d1a40f50a9e05c28919b3475c8e4bd352f3c018ff220bae24d54ac1b07d45e4.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define</span>
+<span class="n">start_year</span> <span class="o">=</span> <span class="mi">1940</span>
+<span class="n">intermediate_year</span> <span class="o">=</span> <span class="mi">2023</span>
+<span class="n">end_year</span> <span class="o">=</span> <span class="mi">2100</span>
+
+<span class="c1"># Load the nc_files and convert it to a DataFrame</span>
+<span class="n">variable_name_reanalysis</span> <span class="o">=</span> <span class="n">nc_file_reanalysis</span><span class="p">[</span><span class="s1">&#39;variable_name&#39;</span><span class="p">]</span>
+<span class="n">df_reanalysis</span> <span class="o">=</span> <span class="n">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="o">=</span><span class="n">nc_file_reanalysis</span><span class="p">,</span>
+                                    <span class="n">bounding_box</span><span class="o">=</span><span class="n">bbox_wgs84_konstanz_standard</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="n">variable_name_projections</span> <span class="o">=</span> <span class="n">nc_file_proj_rcp45</span><span class="p">[</span><span class="s1">&#39;variable_name&#39;</span><span class="p">]</span>
+<span class="n">df_rcp45</span> <span class="o">=</span> <span class="n">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="o">=</span><span class="n">nc_file_proj_rcp45</span><span class="p">,</span>
+                                           <span class="n">bounding_box</span><span class="o">=</span><span class="n">bbox_wgs84_konstanz_standard</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="n">df_rcp85</span> <span class="o">=</span> <span class="n">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="o">=</span><span class="n">nc_file_proj_rcp85</span><span class="p">,</span>
+                                           <span class="n">bounding_box</span><span class="o">=</span><span class="n">bbox_wgs84_konstanz_standard</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+
+<span class="c1"># Convert time</span>
+<span class="n">df_reanalysis</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_reanalysis</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+<span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+<span class="n">df_rcp85</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df_rcp85</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+
+<span class="c1"># Filter</span>
+<span class="n">df_reanalysis</span> <span class="o">=</span> <span class="n">df_reanalysis</span><span class="p">[(</span><span class="n">df_reanalysis</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">&gt;=</span> <span class="n">start_year</span><span class="p">)</span> <span class="o">&amp;</span>
+                              <span class="p">(</span><span class="n">df_reanalysis</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">&lt;=</span> <span class="n">intermediate_year</span><span class="p">)]</span>
+<span class="n">df_rcp45</span> <span class="o">=</span> <span class="n">df_rcp45</span><span class="p">[(</span><span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">&gt;=</span> <span class="n">intermediate_year</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span>
+                    <span class="p">(</span><span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">&lt;=</span> <span class="n">end_year</span><span class="p">)]</span>
+<span class="n">df_rcp85</span> <span class="o">=</span> <span class="n">df_rcp85</span><span class="p">[(</span><span class="n">df_rcp85</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">&gt;=</span> <span class="n">intermediate_year</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span>
+                    <span class="p">(</span><span class="n">df_rcp85</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span> <span class="o">&lt;=</span> <span class="n">end_year</span><span class="p">)]</span>
+
+<span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+<span class="n">df_rcp85</span><span class="p">[</span><span class="s1">&#39;Year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_rcp85</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+
+<span class="c1"># Function</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">compute_fixed_30_year_average</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">column</span><span class="p">):</span>
+    <span class="c1"># Ensure the data is sorted by year before performing any rolling operation</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Calculate rolling 30-year average and standard deviation</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;30_year_avg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;30_year_std&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">column</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+    
+    <span class="k">return</span> <span class="n">df</span>
+
+<span class="c1"># Execute</span>
+<span class="n">df_rcp45</span> <span class="o">=</span> <span class="n">compute_fixed_30_year_average</span><span class="p">(</span><span class="n">df_rcp45</span><span class="p">,</span> <span class="n">variable_name_projections</span><span class="p">)</span>
+<span class="n">df_rcp85</span> <span class="o">=</span> <span class="n">compute_fixed_30_year_average</span><span class="p">(</span><span class="n">df_rcp85</span><span class="p">,</span> <span class="n">variable_name_projections</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#f1f1f1&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_reanalysis</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>
+         <span class="n">df_reanalysis</span><span class="p">[</span><span class="n">variable_name_reanalysis</span><span class="p">],</span>
+         <span class="o">**</span><span class="n">design_reanalyse</span><span class="p">)</span>
+
+<span class="c1"># Plot the rcp45 data and trend line</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>
+         <span class="n">df_rcp45</span><span class="p">[</span><span class="n">variable_name_projections</span><span class="p">],</span>
+         <span class="o">**</span><span class="n">design_rcp45</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+               <span class="n">df_rcp45</span><span class="p">[</span><span class="n">variable_name_projections</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>
+         <span class="n">p</span><span class="p">(</span><span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">),</span>
+         <span class="o">**</span><span class="n">design_rcp45_trend</span><span class="p">)</span>
+
+<span class="c1"># Plot the rcp85 data and trend line</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_rcp85</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>
+         <span class="n">df_rcp85</span><span class="p">[</span><span class="n">variable_name_projections</span><span class="p">],</span>
+         <span class="o">**</span><span class="n">design_rcp85</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">df_rcp85</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">,</span>
+               <span class="n">df_rcp85</span><span class="p">[</span><span class="n">variable_name_projections</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_rcp85</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>
+         <span class="n">p</span><span class="p">(</span><span class="n">df_rcp85</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">),</span>
+         <span class="o">**</span><span class="n">design_rcp85_trend</span><span class="p">)</span>
+
+<span class="c1"># Plot vertical line</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">design_trennlinie</span><span class="p">)</span>
+
+<span class="c1"># Set axis labels and title</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mean annual&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reference Period: </span><span class="si">{</span><span class="n">start_year</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">end_year</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+             <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Annual </span><span class="si">{</span><span class="n">selected_ds_variable</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+             <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+             <span class="n">x</span><span class="o">=</span><span class="mf">0.52</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">df_reanalysis</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
+<span class="c1"># Add grid</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">,</span>
+        <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="c1"># X-axis: Show all 5-year intervals</span>
+<span class="n">years</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">df_reanalysis</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+                      <span class="n">end</span><span class="o">=</span><span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                      <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;10YE&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">year</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+<span class="c1"># Add description</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span>
+    <span class="mf">0.5</span><span class="p">,</span>
+    <span class="o">-</span><span class="mf">0.035</span><span class="p">,</span>
+    <span class="p">(</span>
+       <span class="s1">&#39;Quelle: Copernicus Climate Change Service (C3S),&#39;</span>
+       <span class="s1">&#39;Climate Data Store (CDS), (2024): Climate indicators for Europe from 1940 to 2100&#39;</span>
+       <span class="s1">&#39;derived from reanalysis and climate projections,&#39;</span>
+       <span class="s1">&#39;Copernicus Climate Change Service (C3S) Climate Data Store (CDS).&#39;</span>
+       <span class="s1">&#39;(Accessed on 01-08-2024)&#39;</span>
+    <span class="p">),</span>
+    <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+    <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+    <span class="n">wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># Legend</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Adjust layout and show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/98c0128dac59399a394248cc7c86dd203332ecc85745e3a146efdac639cfae23.png" src="../../_images/98c0128dac59399a394248cc7c86dd203332ecc85745e3a146efdac639cfae23.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#f1f1f1&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_reanalysis</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>
+         <span class="n">df_reanalysis</span><span class="p">[</span><span class="n">variable_name_reanalysis</span><span class="p">],</span>
+         <span class="o">**</span><span class="n">design_reanalyse</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;30_year_avg&#39;</span><span class="p">],</span> <span class="o">**</span><span class="n">design_rcp45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> 
+                 <span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;30_year_avg&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;30_year_std&#39;</span><span class="p">],</span> 
+                 <span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;30_year_avg&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;30_year_std&#39;</span><span class="p">],</span> 
+                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;RCP4.5 - Std&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df_rcp85</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">df_rcp85</span><span class="p">[</span><span class="s1">&#39;30_year_avg&#39;</span><span class="p">],</span> <span class="o">**</span><span class="n">design_rcp85</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">df_rcp85</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> 
+                 <span class="n">df_rcp85</span><span class="p">[</span><span class="s1">&#39;30_year_avg&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df_rcp85</span><span class="p">[</span><span class="s1">&#39;30_year_std&#39;</span><span class="p">],</span> 
+                 <span class="n">df_rcp85</span><span class="p">[</span><span class="s1">&#39;30_year_avg&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_rcp85</span><span class="p">[</span><span class="s1">&#39;30_year_std&#39;</span><span class="p">],</span> 
+                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;RCP8.5 - Std&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot vertical line</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">design_trennlinie</span><span class="p">)</span>
+
+<span class="c1"># Set axis labels and title</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Year&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Mean annual&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reference Period: </span><span class="si">{</span><span class="n">start_year</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">end_year</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+             <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Annual </span><span class="si">{</span><span class="n">selected_ds_variable</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+             <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+             <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span>
+             <span class="n">x</span><span class="o">=</span><span class="mf">0.52</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">df_reanalysis</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+
+<span class="c1"># Add grid</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">,</span>
+        <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+
+<span class="c1"># X-axis: Show all 5-year intervals</span>
+<span class="n">years</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">df_reanalysis</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+                      <span class="n">end</span><span class="o">=</span><span class="n">df_rcp45</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+                      <span class="n">freq</span><span class="o">=</span><span class="s1">&#39;10YE&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">year</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+<span class="c1"># Add description</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span>
+    <span class="mf">0.5</span><span class="p">,</span>
+    <span class="o">-</span><span class="mf">0.035</span><span class="p">,</span>
+    <span class="p">(</span>
+       <span class="s1">&#39;Quelle: Copernicus Climate Change Service (C3S),&#39;</span>
+       <span class="s1">&#39;Climate Data Store (CDS), (2024): Climate indicators for Europe from 1940 to 2100&#39;</span>
+       <span class="s1">&#39;derived from reanalysis and climate projections,&#39;</span>
+       <span class="s1">&#39;Copernicus Climate Change Service (C3S) Climate Data Store (CDS).&#39;</span>
+       <span class="s1">&#39;(Accessed on 01-08-2024)&#39;</span>
+    <span class="p">),</span>
+    <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+    <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+    <span class="n">wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># Legend</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Adjust layout and show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1ea5e40210c4c12d0aae84ef06bf9f7259f7283f44ac113a757774512f5ccc3a.png" src="../../_images/1ea5e40210c4c12d0aae84ef06bf9f7259f7283f44ac113a757774512f5ccc3a.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="03-sis-health-vector.html" class="btn btn-neutral float-left" title="SIS Health Vector" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="05-sis-biodiversity-era5-regional.html" class="btn btn-neutral float-right" title="Downscaled bioclimatic indicators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, str.ucture GmbH.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
