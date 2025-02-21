@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 
 import plotly.graph_objects as go
-import calendar 
+import calendar
 
 def compute_df_stats(variable_data):
     # Initialize lists to store statistics
