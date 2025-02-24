@@ -123,7 +123,7 @@
 <h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><dl class="simple">
-<dt><a class="reference internal" href="#netcdf-how-to"><span class="std std-ref">Structure and Handling of a file in NetCDF Format</span></a></dt><dd><ul>
+<dt><a class="reference internal" href="#netcdf-how-to"><span class="std std-ref">Structure and Handling of a NetCDF file</span></a></dt><dd><ul>
 <li><p><a class="reference internal" href="#netcdf-unzip"><span class="std std-ref">Unpacking the NetCDF Zip file</span></a></p></li>
 <li><p><a class="reference internal" href="#netcdf-investigate"><span class="std std-ref">Investigate the NetCDF file</span></a></p></li>
 </ul>
@@ -135,7 +135,9 @@
 <hr class="docutils" />
 <p>All the steps from this course is also available in a ready-to-use notebook for download from the following link:</p>
 <div class="download-button">
-    <a href="../_static/notebooks/netcdf-introduction.ipynb" download>⇩ NetCDF Introduction (Notebook)</a>
+    <a href="../_static/notebooks/netcdf-introduction-part1.ipynb" download>⇩ NetCDF Introduction: Part 1 (Notebook)</a>
+</div><div class="download-button">
+    <a href="../_static/notebooks/netcdf-introduction-part2.ipynb" download>⇩ NetCDF Introduction: Part 2 (Notebook)</a>
 </div><p>Open the notebook in Jupyter Lab and follow the instructions. Alternatively, you can copy the Python code snippet into your Jupyter Notebook and execute the cell.</p>
 <hr class="docutils" />
 </section>
@@ -166,8 +168,8 @@
 <div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="c1"># Path to the ZIP file (same directory or absolute path)</span>
-<span class="n">zip_file</span> <span class="o">=</span> <span class="s1">&#39;./CDSdata/reanalysis-era5-land.zip&#39;</span>
+<span class="c1"># Path to the ZIP file (in the same directory or absolute path)</span>
+<span class="n">zip_file</span> <span class="o">=</span> <span class="s1">&#39;./CDSdata/reanalysis-era5-land.zip&#39;</span> <span class="c1"># Adjust the path if necessary</span>
 
 <span class="c1"># Target directory for extraction</span>
 <span class="n">target_directory</span> <span class="o">=</span> <span class="s1">&#39;Era5Data&#39;</span>
@@ -189,7 +191,7 @@
 <blockquote>
 <div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
 
-<span class="c1"># Open file</span>
+<span class="c1"># Open the extracted file</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="s1">&#39;./ERA5Data/data_0.nc&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
 
 <span class="c1"># Display Metadata</span>
@@ -200,10 +202,10 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">print</span></code> command provides the most important information about the given file in a readable text format. At a glance, you can see which variables are included, their formats, and how many time steps are available.</p>
 <p>There are many other ways to quickly obtain more information about a NetCDF file. You can display the <strong>keys</strong>, meaning the short names of the variables, and thus apply the <code class="docutils literal notranslate"><span class="pre">print</span></code> command to an individual one. With the following code block, you can immediately check whether the <code class="docutils literal notranslate"><span class="pre">2m</span> <span class="pre">temperature</span></code> values of our test dataset appear valid.</p>
 <blockquote>
-<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># List variables</span>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># List the Variables</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 
-<span class="c1"># Access a variable</span>
+<span class="c1"># Access a Variable</span>
 <span class="n">temperature</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s1">&#39;t2m&#39;</span><span class="p">][:]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">temperature</span><span class="p">)</span>
 </pre></div>

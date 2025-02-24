@@ -28,8 +28,9 @@ We have prepared a Jupyter Notebook for you, where you only need to adjust the o
 Open the notebook in Jupyter Lab and follow the instructions. Alternatively, you can copy the Python code snippets into your Jupyter Notebook and execute the cells.
 
 .. image:: /_static/gif/01-tutorial-02.gif
-   :width: 500px
+   :width: 600px
    :align: center
+   :class: no-scaled-link
 
 ----
 
@@ -181,11 +182,14 @@ Once you have accepted the terms of use, simply click **"Show API request code"*
 
 		client = cdsapi.Client()
 
-		# Define filename and download
+		# Define download folder
 		download_folder = os.path.join(os.getcwd(), "CDSdata")		
 		os.makedirs(download_folder, exist_ok=True) # Create the directory if it doesn't exist
 
+		# Define download file path
 		download_filepath = os.path.join(download_folder, f"{dataset}.zip")
+
+		# Download the dataset
 		client.retrieve(dataset, request, download_filepath)
 
 .. _api-jupyter:

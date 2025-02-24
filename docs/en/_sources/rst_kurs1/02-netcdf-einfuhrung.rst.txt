@@ -8,7 +8,7 @@ NetCDF Introduction
 Learning Objectives
 -------------------
 
-* :ref:`Structure and Handling of a file in NetCDF Format <netcdf-how-to>`
+* :ref:`Structure and Handling of a NetCDF file <netcdf-how-to>`
 	* :ref:`Unpacking the NetCDF Zip file <netcdf-unzip>`
 	* :ref:`Investigate the NetCDF file <netcdf-investigate>`
 * :ref:`Visualization of a Time Series and a Selected Region <netcdf-visualize>`
@@ -20,7 +20,13 @@ All the steps from this course is also available in a ready-to-use notebook for 
 .. raw:: html
 
    <div class="download-button">
-       <a href="../_static/notebooks/netcdf-introduction.ipynb" download>⇩ NetCDF Introduction (Notebook)</a>
+       <a href="../_static/notebooks/netcdf-introduction-part1.ipynb" download>⇩ NetCDF Introduction: Part 1 (Notebook)</a>
+   </div>
+
+.. raw:: html
+
+   <div class="download-button">
+       <a href="../_static/notebooks/netcdf-introduction-part2.ipynb" download>⇩ NetCDF Introduction: Part 2 (Notebook)</a>
    </div>
 
 Open the notebook in Jupyter Lab and follow the instructions. Alternatively, you can copy the Python code snippet into your Jupyter Notebook and execute the cell.
@@ -72,8 +78,8 @@ First, extract the data by copying the following code block into your notebook a
         import zipfile
         import os
 
-        # Path to the ZIP file (same directory or absolute path)
-        zip_file = './CDSdata/reanalysis-era5-land.zip'
+        # Path to the ZIP file (in the same directory or absolute path)
+        zip_file = './CDSdata/reanalysis-era5-land.zip' # Adjust the path if necessary
 
         # Target directory for extraction
         target_directory = 'Era5Data'
@@ -100,7 +106,7 @@ First, get an overview of the dataset.
         
         import netCDF4 as nc  
         
-        # Open file
+        # Open the extracted file
         dataset = nc.Dataset('./ERA5Data/data_0.nc', 'r')
         
         # Display Metadata
@@ -112,10 +118,10 @@ There are many other ways to quickly obtain more information about a NetCDF file
 
     .. code-block:: python
         
-        # List variables
+        # List the Variables
         print(dataset.variables.keys())
         
-        # Access a variable
+        # Access a Variable
         temperature = dataset.variables['t2m'][:]
         print(temperature)
 

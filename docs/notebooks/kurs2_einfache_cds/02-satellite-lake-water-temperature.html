@@ -75,7 +75,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#investigate-the-metadata-of-the-netcdf4-file">4. Investigate the Metadata of the NetCDF4 file</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#export-the-time-series-in-csv-format">5. Export the time series in CSV Format</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#define-a-function-to-compute-daily-average">5.1 Define a Function to Compute Daily Average</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#create-merged-dataframe-for-yearly-data-and-export-as-csv">5.2 Create Merged DataFrame for yearly data and Export as CSV</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-dataframe-for-yearly-data-and-export-as-csv">5.2 Create DataFrame for yearly data and Export as CSV</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#analysis-and-visualization-options">6. Analysis and Visualization Options</a><ul>
@@ -183,7 +183,6 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
     <span class="c1"># API key for authentication</span>
     <span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;fdae60fd-35d4-436f-825c-c63fedab94a4&quot;</span>
-    
     <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;https://cds.climate.copernicus.eu/api&quot;</span>
 
     <span class="c1"># Creation of the CDS API client</span>
@@ -412,7 +411,7 @@ the geographic area for such requests.</p>
 <span class="p">}</span>
 
 <span class="c1"># Display the summary of the data set as a DataFrame for better visualisation</span>
-<span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">,</span> <span class="s1">&#39;Details&#39;</span><span class="p">])</span>
+<span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">,</span> <span class="s1">&#39;Remarks&#39;</span><span class="p">])</span>
 
 <span class="c1"># Display the summary DataFrame</span>
 <span class="n">nc_summary</span>
@@ -439,7 +438,7 @@ the geographic area for such requests.</p>
     <tr style="text-align: right;">
       <th></th>
       <th>Description</th>
-      <th>Details</th>
+      <th>Remarks</th>
     </tr>
   </thead>
   <tbody>
@@ -600,6 +599,7 @@ the geographic area for such requests.</p>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
+<span class="c1"># Function for converting NetCDF data into a Pandas DataFrame</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Converts a NetCDF file containing lake surface water temperature (LSWT) data</span>
@@ -661,8 +661,8 @@ the geographic area for such requests.</p>
 </div>
 </div>
 </section>
-<section id="create-merged-dataframe-for-yearly-data-and-export-as-csv">
-<h3>5.2 Create Merged DataFrame for yearly data and Export as CSV<a class="headerlink" href="#create-merged-dataframe-for-yearly-data-and-export-as-csv" title="Link to this heading"></a></h3>
+<section id="create-dataframe-for-yearly-data-and-export-as-csv">
+<h3>5.2 Create DataFrame for yearly data and Export as CSV<a class="headerlink" href="#create-dataframe-for-yearly-data-and-export-as-csv" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -683,10 +683,10 @@ the geographic area for such requests.</p>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Reading existing CSV file...&quot;</span><span class="p">)</span>
     <span class="n">filtered_dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">)</span>
 
-<span class="c1"># Modify pandas display options</span>
+<span class="c1"># Modify the Pandas display options</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
 
-<span class="c1"># Display DataFrame</span>
+<span class="c1"># Display the DataFrame</span>
 <span class="n">filtered_dataframe</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -825,7 +825,7 @@ Reading existing CSV file...
 <span class="c1"># Set axis labels and chart title</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Months&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (K)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Lake Surface Water Temperature, </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Surface Water Temperature of Lake Constance, </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add grid to the plot and format y-axis</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
@@ -855,7 +855,7 @@ Reading existing CSV file...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/2e11382971e32f510d46fa5fe8c310ff2160d5c44b60675bee275a1b05801f4c.png" src="../../_images/2e11382971e32f510d46fa5fe8c310ff2160d5c44b60675bee275a1b05801f4c.png" />
+<img alt="../../_images/1e39f41ede3809d3787ac3f9fe1a879f12d2c9e7b1d6574f2daf037fde4becd4.png" src="../../_images/1e39f41ede3809d3787ac3f9fe1a879f12d2c9e7b1d6574f2daf037fde4becd4.png" />
 </div>
 </div>
 </section>
@@ -990,7 +990,7 @@ Reading existing CSV file...
 <span class="c1"># Set axis labels and chart title</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Months&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (K)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Average Monthly Lake Surface Water Temperature, </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Average Monthly Surface Water Temperature of Lake Constance, </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add grid to the plot and format y-axis</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
@@ -1020,7 +1020,7 @@ Reading existing CSV file...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/8513efc71d213fb7c33bd5e898efe96e54b8757e9bca72c53588c27bd0662c85.png" src="../../_images/8513efc71d213fb7c33bd5e898efe96e54b8757e9bca72c53588c27bd0662c85.png" />
+<img alt="../../_images/3af97d3d6c5cae72cd3285bdb4a98b5820310f0d25e278de49c226ec2936788c.png" src="../../_images/3af97d3d6c5cae72cd3285bdb4a98b5820310f0d25e278de49c226ec2936788c.png" />
 </div>
 </div>
 </section>
@@ -1378,7 +1378,7 @@ Reading existing CSV file...
     <span class="n">nc_file</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">nc_file</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No NetCDF file found for the specified year.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No NetCDF file found for the specified year.&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Selecting the latest available year.&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">nc_files</span><span class="p">:</span>
             <span class="n">nc_file</span> <span class="o">=</span> <span class="n">nc_files</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Select the latest available year</span>
@@ -1432,7 +1432,6 @@ Reading existing CSV file...
     <span class="n">cbar</span><span class="o">.</span><span class="n">set_ticks</span><span class="p">(</span><span class="n">ticks</span><span class="p">)</span>  <span class="c1"># Set the ticks</span>
     <span class="n">cbar</span><span class="o">.</span><span class="n">set_ticklabels</span><span class="p">(</span><span class="n">ticks</span><span class="p">)</span>
 
-
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="c1"># Plot the calendar heatmap for the specified year</span>
     <span class="n">plot_calendarplot</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">1990</span><span class="p">)</span>
@@ -1441,17 +1440,13 @@ Reading existing CSV file...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">calmap</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;calmap&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No NetCDF file found for the specified year.
+Selecting the latest available year.
+Using data from the year 2020.
 </pre></div>
 </div>
+<img alt="../../_images/e741601af83cbf26653aec5d63ec7f8d9dd86bb0cd7d7ce66cb8b5fd421d7b21.png" src="../../_images/e741601af83cbf26653aec5d63ec7f8d9dd86bb0cd7d7ce66cb8b5fd421d7b21.png" />
+<img alt="../../_images/02aa620bb2c1a13176df63d6e0feac31944c6d6d6c7a8b816090c023c561e2c9.png" src="../../_images/02aa620bb2c1a13176df63d6e0feac31944c6d6d6c7a8b816090c023c561e2c9.png" />
 </div>
 </div>
 </section>

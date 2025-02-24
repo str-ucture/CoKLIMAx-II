@@ -49,7 +49,6 @@ source/secrets/
 *.gif
 !docs/**/*.gif
 
-
 # add all png files inside source/_static
 !source_en/_static/*.png
 !source_de/_static/*.png

@@ -320,7 +320,7 @@
 <span class="p">}</span>
 
 <span class="c1"># Display the summary of the data set as a DataFrame for better visualisation</span>
-<span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">,</span> <span class="s1">&#39;Details&#39;</span><span class="p">])</span>
+<span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">,</span> <span class="s1">&#39;Remarks&#39;</span><span class="p">])</span>
 
 <span class="c1"># Display the summary DataFrame</span>
 <span class="n">nc_summary</span>
@@ -347,7 +347,7 @@
     <tr style="text-align: right;">
       <th></th>
       <th>Description</th>
-      <th>Details</th>
+      <th>Remarks</th>
     </tr>
   </thead>
   <tbody>
@@ -419,7 +419,7 @@
         <span class="n">df</span> <span class="o">=</span> <span class="n">variable_data_water_surface_height</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
 
         <span class="c1"># Merge the uncertainty data into the main DataFrame</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;uncertainty&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable_data_water_surface_height_uncertainty</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Uncertainty (m)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable_data_water_surface_height_uncertainty</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">df</span>
 </pre></div>
@@ -447,10 +447,10 @@
     <span class="c1"># Read the CSV file with datetime parsing</span>
     <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
 
-<span class="c1"># Modify pandas display options</span>
+<span class="c1"># Modify the Pandas display options</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
     
-<span class="c1"># Display DataFrame</span>
+<span class="c1"># Display the DataFrame</span>
 <span class="n">dataframe</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -480,7 +480,7 @@ Reading existing CSV file...
     <tr style="text-align: right;">
       <th></th>
       <th>water_surface_height_above_reference_datum</th>
-      <th>uncertainty</th>
+      <th>Uncertainty (m)</th>
     </tr>
     <tr>
       <th>time</th>
@@ -544,12 +544,12 @@ Reading existing CSV file...
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1. Maximum Water Surface Height: (2016-07-09)
- water_surface_height_above_reference_datum  uncertainty
-                                     396.13         0.13
+ water_surface_height_above_reference_datum  Uncertainty (m)
+                                     396.13             0.13
 
 2. Minimum Water Surface Height: (2017-02-10)
- water_surface_height_above_reference_datum  uncertainty
-                                     393.69         1.08
+ water_surface_height_above_reference_datum  Uncertainty (m)
+                                     393.69             1.08
 </pre></div>
 </div>
 </div>

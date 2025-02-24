@@ -143,8 +143,7 @@
 <div class="download-button">
     <a href="../_static/notebooks/cds-api-installation-and-download.ipynb" download>⇩ CDS API Installation and Download (Notebook)</a>
 </div><p>Open the notebook in Jupyter Lab and follow the instructions. Alternatively, you can copy the Python code snippets into your Jupyter Notebook and execute the cells.</p>
-<a class="reference internal image-reference" href="../_images/01-tutorial-02.gif"><img alt="../_images/01-tutorial-02.gif" class="align-center" src="../_images/01-tutorial-02.gif" style="width: 500px;" />
-</a>
+<img alt="../_images/01-tutorial-02.gif" class="no-scaled-link align-center" src="../_images/01-tutorial-02.gif" style="width: 600px;" />
 <hr class="docutils" />
 </section>
 <section id="setting-up-the-cds-api">
@@ -238,11 +237,14 @@
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">cdsapi</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
 
-<span class="c1"># Define filename and download</span>
+<span class="c1"># Define download folder</span>
 <span class="n">download_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;CDSdata&quot;</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Create the directory if it doesn&#39;t exist</span>
 
+<span class="c1"># Define download file path</span>
 <span class="n">download_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">.zip&quot;</span><span class="p">)</span>
+
+<span class="c1"># Download the dataset</span>
 <span class="n">client</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">download_filepath</span><span class="p">)</span>
 </pre></div>
 </div>

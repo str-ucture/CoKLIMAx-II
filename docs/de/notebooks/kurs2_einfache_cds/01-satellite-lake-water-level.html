@@ -321,7 +321,7 @@
 <span class="p">}</span>
 
 <span class="c1"># Anzeigen der Zusammenfassung des Datensatzes als DataFrame zur besseren Visualisierung</span>
-<span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Beschreibung&#39;</span><span class="p">,</span> <span class="s1">&#39;Details&#39;</span><span class="p">])</span>
+<span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Beschreibung&#39;</span><span class="p">,</span> <span class="s1">&#39;Bemerkungen&#39;</span><span class="p">])</span>
 
 <span class="c1"># Anzeigen des Zusammenfassungs-DataFrames</span>
 <span class="n">nc_summary</span>
@@ -348,7 +348,7 @@
     <tr style="text-align: right;">
       <th></th>
       <th>Beschreibung</th>
-      <th>Details</th>
+      <th>Bemerkungen</th>
     </tr>
   </thead>
   <tbody>
@@ -395,7 +395,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
 
-<span class="c1"># Funktion zur Konvertierung von NetCDF-Daten in ein Pandas DataFrame</span>
+<span class="c1"># Funktion zur Umwandlung von NetCDF-Daten in ein Pandas DataFrame</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Konvertiert NetCDF-Daten, die die Höhe der Wasseroberfläche und deren Unsicherheit enthalten, </span>
@@ -420,7 +420,7 @@
         <span class="n">df</span> <span class="o">=</span> <span class="n">variable_data_water_surface_height</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
 
         <span class="c1"># Zusammenführen der Unsicherheitsdaten in das Haupt-DataFrame</span>
-        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;uncertainty&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable_data_water_surface_height_uncertainty</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
+        <span class="n">df</span><span class="p">[</span><span class="s1">&#39;unsicherheit (m)&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">variable_data_water_surface_height_uncertainty</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="n">df</span>
 </pre></div>
@@ -448,9 +448,6 @@
     <span class="c1"># Lese die CSV-Datei mit Datums-Parsing</span>
     <span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
 
-<span class="c1"># Modify pandas display options</span>
-<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
-    
 <span class="c1"># Ändere die Pandas-Anzeigeoptionen</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
     
@@ -484,7 +481,7 @@ Lese bestehende CSV-Datei ein...
     <tr style="text-align: right;">
       <th></th>
       <th>water_surface_height_above_reference_datum</th>
-      <th>uncertainty</th>
+      <th>unsicherheit (m)</th>
     </tr>
     <tr>
       <th>time</th>
@@ -537,23 +534,23 @@ Lese bestehende CSV-Datei ein...
 <span class="n">min_date_str</span> <span class="o">=</span> <span class="n">min_index_label</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="c1"># Drucken Sie die Ergebnisse</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1. Maximum Water Surface Height: (</span><span class="si">{</span><span class="n">max_date_str</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;1. Maximale Höhe der Wasseroberfläche: (</span><span class="si">{</span><span class="n">max_date_str</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">max_row</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">()</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2. Minimum Water Surface Height: (</span><span class="si">{</span><span class="n">min_date_str</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;2. Mindesthöhe der Wasseroberfläche: (</span><span class="si">{</span><span class="n">min_date_str</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">min_row</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1. Maximum Water Surface Height: (2016-07-09)
- water_surface_height_above_reference_datum  uncertainty
-                                     396.13         0.13
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1. Maximale Höhe der Wasseroberfläche: (2016-07-09)
+ water_surface_height_above_reference_datum  unsicherheit (m)
+                                     396.13              0.13
 
-2. Minimum Water Surface Height: (2017-02-10)
- water_surface_height_above_reference_datum  uncertainty
-                                     393.69         1.08
+2. Mindesthöhe der Wasseroberfläche: (2017-02-10)
+ water_surface_height_above_reference_datum  unsicherheit (m)
+                                     393.69              1.08
 </pre></div>
 </div>
 </div>
