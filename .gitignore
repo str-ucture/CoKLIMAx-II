@@ -47,6 +47,8 @@ source/secrets/
 # add all png files inside docs
 !docs/**/*.png
 *.gif
+!docs/**/*.gif
+
 
 # add all png files inside source/_static
 !source_en/_static/*.png
