@@ -25,7 +25,11 @@ We have prepared a Jupyter Notebook for you, where you only need to adjust the o
        <a href="../_static/notebooks/cds-api-installation-and-download.ipynb" download>⇩ CDS API Installation and Download (Notebook)</a>
    </div>
 
-Open the notebook in Jupyter Lab and follow the instructions. Alternatively, you can copy the Python code snippet into your Jupyter Notebook and execute the cell.
+Open the notebook in Jupyter Lab and follow the instructions. Alternatively, you can copy the Python code snippets into your Jupyter Notebook and execute the cells.
+
+.. image:: /_static/gif/01-tutorial-02.gif
+   :width: 500px
+   :align: center
 
 ----
 

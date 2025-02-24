@@ -5,7 +5,7 @@ Check-list:
 
 run
 
-conda activate myenv
+conda activate cds_env
 .\make.bat clean
 .\make.bat html
 .\make_en.bat html

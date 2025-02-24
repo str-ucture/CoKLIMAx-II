@@ -1,0 +1,101 @@
+Traceback (most recent call last):
+  File "c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\nbclient\client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\asyncio\base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import xarray as xr
+import calmap
+import matplotlib.pyplot as plt
+import pandas as pd
+import math as ma
+
+def plot_calendarplot(year=None):
+    # Filter nc_files for the item where year == year
+    nc_file = next((item for item in nc_files if item['year'] == str(year)), None)
+    nc_file
+
+    if not nc_file:
+        print("No NetCDF file found for the specified year.")
+        print("Selecting the latest available year.")
+        if nc_files:
+            nc_file = nc_files[-1]  # Select the latest available year
+            print(f"Using data from the year {nc_file['year']}.")
+        else:
+            print("No NetCDF files available.")
+            return
+    
+    # Open the NetCDF file and process the specified variable
+    with xr.open_dataset(nc_file['path']) as nc_dataset:
+        # Extract the variable data as a DataFrame
+        variable_data = nc_dataset[nc_file['variable_name']]
+        df = variable_data.to_dataframe().reset_index().dropna().reset_index(drop=True)
+
+        # Convert 'time' to datetime and derive 'day_of_year' and 'date' for grouping
+        df['time'] = pd.to_datetime(df['time'])
+        df['day_of_year'] = df['time'].dt.dayofyear
+        df['date'] = df['time'].dt.year.astype(str) + '-' + df['day_of_year'].astype(str).str.zfill(3)
+        df['date'] = pd.to_datetime(df['date'], format='%Y-%j').dt.strftime('%Y-%m-%d')
+
+        # Group by 'date' and calculate daily mean for the variable
+        df2 = df.groupby('date')[variable_name].mean()
+
+    # Ensure the index of the result is datetime
+    df2.index = pd.to_datetime(df2.index) 
+
+    # Plot a calendar heatmap of the mean temperature values
+    # Plot the calendar heatmap
+    fig, axs = calmap.calendarplot(df2,
+                                fig_kws={'figsize': (12, 8)},
+                                yearlabel_kws={'color': 'black', 'fontsize': 22},
+                                subplot_kws={'title': f'Calendar Heatmap of {variable_name} for {year}',},
+                                cmap='YlGnBu',
+                                fillcolor='#efefef',
+                                daylabels='MTWTFSS',
+                                linecolor='#ffffff',
+                                dayticks=True,
+                                )
+    
+    # Add a colorbar to the right side of the plot
+    cax = fig.add_axes([1.005, 0.38, 0.02, 0.2])
+    vmin=ma.floor(df2.min()//5*5)
+    vmax=ma.ceil(df2.max()//5*5)
+
+    sm = plt.cm.ScalarMappable(cmap='YlGnBu', norm=plt.Normalize(vmin=vmin, vmax=vmax))
+    cbar = fig.colorbar(sm, cax=cax)
+
+    # Customize the ticks on the colorbar
+    tick_interval = 5
+    ticks = np.arange(vmin, vmax+1, tick_interval)
+    cbar.set_ticks(ticks)  # Set the ticks
+    cbar.set_ticklabels(ticks)
+
+
+if __name__ == "__main__":
+    # Plot the calendar heatmap for the specified year
+    plot_calendarplot(year=1990)
+    plot_calendarplot(year=2005)
+------------------
+
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
+Cell [1;32mIn[21], line 2[0m
+[0;32m      1[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mxarray[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mxr[39;00m
+[1;32m----> 2[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mcalmap[39;00m
+[0;32m      3[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mplt[39;00m
+[0;32m      4[0m [38;5;28;01mimport[39;00m[38;5;250m [39m[38;5;21;01mpandas[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[38;5;21;01mpd[39;00m
+
+[1;31mModuleNotFoundError[0m: No module named 'calmap'
+

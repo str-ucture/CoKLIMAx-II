@@ -1,17 +1,17 @@
 Traceback (most recent call last):
-  File "C:\Users\ShaileshShrestha\anaconda3\envs\myenv\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+  File "c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
     executenb(
-  File "C:\Users\ShaileshShrestha\anaconda3\envs\myenv\lib\site-packages\nbclient\client.py", line 1319, in execute
+  File "c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\nbclient\client.py", line 1319, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "C:\Users\ShaileshShrestha\anaconda3\envs\myenv\lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+  File "c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
     return loop.run_until_complete(inner)
-  File "C:\Users\ShaileshShrestha\anaconda3\envs\myenv\lib\asyncio\base_events.py", line 649, in run_until_complete
+  File "c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\asyncio\base_events.py", line 649, in run_until_complete
     return future.result()
-  File "C:\Users\ShaileshShrestha\anaconda3\envs\myenv\lib\site-packages\nbclient\client.py", line 709, in async_execute
+  File "c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\nbclient\client.py", line 709, in async_execute
     await self.async_execute_cell(
-  File "C:\Users\ShaileshShrestha\anaconda3\envs\myenv\lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+  File "c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
     await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "C:\Users\ShaileshShrestha\anaconda3\envs\myenv\lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+  File "c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
@@ -36,7 +36,7 @@ Cell [1;32mIn[8], line 7[0m
 [1;32m----> 7[0m [38;5;28;01mwith[39;00m [43mzipfile[49m[38;5;241;43m.[39;49m[43mZipFile[49m[43m([49m[43mzip_filepath[49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43mr[39;49m[38;5;124;43m'[39;49m[43m)[49m [38;5;28;01mas[39;00m zip_ref:
 [0;32m      8[0m     zip_ref[38;5;241m.[39mextractall(ecv_folder)
 
-File [1;32m~\anaconda3\envs\myenv\lib\zipfile.py:1254[0m, in [0;36mZipFile.__init__[1;34m(self, file, mode, compression, allowZip64, compresslevel, strict_timestamps)[0m
+File [1;32mc:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\zipfile.py:1254[0m, in [0;36mZipFile.__init__[1;34m(self, file, mode, compression, allowZip64, compresslevel, strict_timestamps)[0m
 [0;32m   1252[0m [38;5;28;01mwhile[39;00m [38;5;28;01mTrue[39;00m:
 [0;32m   1253[0m     [38;5;28;01mtry[39;00m:
 [1;32m-> 1254[0m         [38;5;28mself[39m[38;5;241m.[39mfp [38;5;241m=[39m [43mio[49m[38;5;241;43m.[39;49m[43mopen[49m[43m([49m[43mfile[49m[43m,[49m[43m [49m[43mfilemode[49m[43m)[49m

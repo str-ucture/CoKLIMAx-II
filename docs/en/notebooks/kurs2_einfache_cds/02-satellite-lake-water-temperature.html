@@ -1441,13 +1441,17 @@ Reading existing CSV file...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No NetCDF file found for the specified year.
-Selecting the latest available year.
-Using data from the year 2020.
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">calmap</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;calmap&#39;
 </pre></div>
 </div>
-<img alt="../../_images/e741601af83cbf26653aec5d63ec7f8d9dd86bb0cd7d7ce66cb8b5fd421d7b21.png" src="../../_images/e741601af83cbf26653aec5d63ec7f8d9dd86bb0cd7d7ce66cb8b5fd421d7b21.png" />
-<img alt="../../_images/02aa620bb2c1a13176df63d6e0feac31944c6d6d6c7a8b816090c023c561e2c9.png" src="../../_images/02aa620bb2c1a13176df63d6e0feac31944c6d6d6c7a8b816090c023c561e2c9.png" />
 </div>
 </div>
 </section>
