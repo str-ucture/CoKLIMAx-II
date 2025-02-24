@@ -72,14 +72,14 @@
 <li class="toctree-l3"><a class="reference internal" href="#extrahieren-sie-die-zip-dateien-in-ordner">2.3 Extrahieren Sie die ZIP-Dateien in Ordner</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#zusammenfuhren-von-netcdf4-dateien-in-eine-einzelne-netcdf4-datei">3. Zusammenführen von NetCDF4-Dateien in eine einzelne NetCDF4-Datei</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#netcdf4-dateien-zu-einer-einzigen-netcdf4-datei-zusammenfuhren">3. NetCDF4-Dateien zu einer einzigen NetCDF4-Datei zusammenführen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#untersuchen-der-metadaten-der-netcdf4-datei">4. Untersuchen der Metadaten der netCDF4-Datei</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#exportieren-der-zeitreihe-im-csv-format">5. Exportieren der Zeitreihe im csv-Format</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#definieren-sie-eine-funktion-zur-berechnung-des-tagesdurchschnitts">5.1 Definieren Sie eine Funktion zur Berechnung des Tagesdurchschnitts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#erstellen-des-dataframes-fur-jahresdaten-und-export-als-csv">5.2 Erstellen des DataFrames für Jahresdaten und Export als CSV</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#optionen-fur-analyse-und-visualisierung">6. Optionen für Analyse und Visualisierung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#analyse-und-visualisierung">6. Analyse und Visualisierung</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#visualisierung-des-tagesdurchschnitts-mit-liniendiagramm">6.1 Visualisierung des Tagesdurchschnitts mit Liniendiagramm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visualisierung-des-monatlichen-durchschnitts-mit-liniendiagramm">6.2 Visualisierung des monatlichen Durchschnitts mit Liniendiagramm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visualisierung-des-monatlichen-durchschnitts-mit-balkendiagramm">6.3 Visualisierung des monatlichen Durchschnitts mit Balkendiagramm</a></li>
@@ -138,7 +138,7 @@
 <p><strong>Schnellnavigation:</strong></p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#herunterladen-und-entpacken-des-datensatzes"><span class="std std-ref">Herunterladen und Entpacken des Datensatzes</span></a></p></li>
-<li><p>NetCDF4-Dateien zusammenführen</p></li>
+<li><p>NetCDF4-Dateien zu einer einzigen NetCDF4-Datei zusammenführen</p></li>
 <li><p><a class="reference internal" href="#untersuchen-der-metadaten-der-netcdf4-datei"><span class="std std-ref">Untersuchen der Metadaten der netCDF4-Datei</span></a></p></li>
 <li><p><a class="reference internal" href="#exportieren-der-zeitreihe-im-csv-format"><span class="std std-ref">Exportieren der Zeitreihe im csv-Format</span></a></p></li>
 <li><p>Analyse und Visualisierung</p></li>
@@ -323,8 +323,8 @@
 </div>
 </section>
 </section>
-<section id="zusammenfuhren-von-netcdf4-dateien-in-eine-einzelne-netcdf4-datei">
-<h2>3. Zusammenführen von NetCDF4-Dateien in eine einzelne NetCDF4-Datei<a class="headerlink" href="#zusammenfuhren-von-netcdf4-dateien-in-eine-einzelne-netcdf4-datei" title="Link to this heading"></a></h2>
+<section id="netcdf4-dateien-zu-einer-einzigen-netcdf4-datei-zusammenfuhren">
+<h2>3. NetCDF4-Dateien zu einer einzigen NetCDF4-Datei zusammenführen<a class="headerlink" href="#netcdf4-dateien-zu-einer-einzigen-netcdf4-datei-zusammenfuhren" title="Link to this heading"></a></h2>
 <p>Viele <strong>jährliche Datensätze</strong> werden als tägliche NetCDF4-Dateien bereitgestellt, wobei jede Datei einen Tag des Jahres repräsentiert <em>(365 Dateien für normale Jahre, 366 Dateien für Schaltjahre)</em>. Die Verwaltung dieser zahlreichen Dateien kann mühsam sein, insbesondere beim Datenzugriff oder bei der Visualisierung.</p>
 <p>Um Arbeitsabläufe zu vereinfachen und die Effizienz der Datenverarbeitung zu verbessern, werden alle täglichen Datensätze eines bestimmten Jahres in einer <strong>einzigen jährlichen NetCDF4-Datei</strong> zusammengeführt. Diese Konsolidierung erleichtert die spätere Datenverarbeitung, beispielsweise für die Visualisierung oder statistische Auswertungen.</p>
 <blockquote>
@@ -777,8 +777,8 @@ Lese bestehende CSV-Datei ein...
 </div>
 </section>
 </section>
-<section id="optionen-fur-analyse-und-visualisierung">
-<h2>6. Optionen für Analyse und Visualisierung<a class="headerlink" href="#optionen-fur-analyse-und-visualisierung" title="Link to this heading"></a></h2>
+<section id="analyse-und-visualisierung">
+<h2>6. Analyse und Visualisierung<a class="headerlink" href="#analyse-und-visualisierung" title="Link to this heading"></a></h2>
 <section id="visualisierung-des-tagesdurchschnitts-mit-liniendiagramm">
 <h3>6.1 Visualisierung des Tagesdurchschnitts mit Liniendiagramm<a class="headerlink" href="#visualisierung-des-tagesdurchschnitts-mit-liniendiagramm" title="Link to this heading"></a></h3>
 <blockquote>
