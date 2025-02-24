@@ -20,7 +20,13 @@ Alle Schritte dieses Kurses stehen auch in einem gebrauchsfertigen Notizbuch zum
 .. raw:: html
 
    <div class="download-button">
-       <a href="../_static/notebooks/netcdf-einfuhrung.ipynb" download>⇩ NetCDF Einführung (Notebook)</a>
+       <a href="../_static/notebooks/netcdf-introduction-part1.ipynb" download>⇩ NetCDF Einführung: Teil 1 (Notebook)</a>
+   </div>
+
+.. raw:: html
+
+   <div class="download-button">
+       <a href="../_static/notebooks/netcdf-introduction-part2.ipynb" download>⇩ NetCDF Introduction: Teil 2 (Notebook)</a>
    </div>
 
 Öffnen Sie das Notebook in Jupyter Lab und folgen Sie den Anweisungen. Alternativ können Sie den Python-Codeausschnitt in Ihr Jupyter-Notebook kopieren und die Zelle ausführen.

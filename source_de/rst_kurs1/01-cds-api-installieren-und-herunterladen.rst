@@ -27,6 +27,11 @@ Wir haben für dich ein Jupyter Notebook vorbereitet, bei dem du nur noch den Au
 
 Öffnen Sie das Notebook in Jupyter Lab und folgen Sie den Anweisungen. Alternativ können Sie den Python-Codeausschnitt in Ihr Jupyter-Notebook kopieren und die Zelle ausführen.
 
+.. image:: /_static/gif/01-tutorial-02.gif
+   :width: 600px
+   :align: center
+   :class: no-scaled-link
+
 ----
 
 .. _setup-api:
