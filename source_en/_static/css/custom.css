@@ -71,3 +71,8 @@ div.cell_output table {
 .download-button a:hover {
     color: white;
 }
+
+/* Add margin to notebook image outputs */
+.cell_output img {
+    margin-bottom: 10px;
+  }
