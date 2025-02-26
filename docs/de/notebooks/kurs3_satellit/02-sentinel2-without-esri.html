@@ -1,0 +1,448 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sentinel 2 - Workflow &mdash; Coklimax 1.0.0 Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=2bfa0ee5" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f029ec32"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/translations.js?v=9bf55d28"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script type="application/vnd.jupyter.widget-state+json">{"state": {"39039eb28ca2460596509014ca621596": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": "150px", "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "80%"}}, "f558e83c70d7495a993272117db35b9e": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": "initial"}}, "74fe888b80fe4f8ca1062bdd53c6d61d": {"model_name": "SelectMultipleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "SelectMultipleModel", "_options_labels": ["S2A_MSIL1C_20240811T103031_N0511_R108_T32TNT_20240811T141108.SAFE.zip", "S2A_MSIL1C_20240828T102021_N0511_R065_T32TMT_20240828T130205.SAFE.zip", "S2A_MSIL1C_20240907T102021_N0511_R065_T32TNT_20240907T125720.SAFE.zip", "S2A_MSIL2A_20240811T103031_N0511_R108_T32TNT_20240811T164252.SAFE.zip", "S2A_MSIL2A_20240828T102021_N0511_R065_T32TMT_20240828T150452.SAFE.zip", "S2A_MSIL2A_20240907T102021_N0511_R065_T32TMT_20240907T143052.SAFE.zip", "S2B_MSIL1C_20240806T102559_N0511_R108_T32TMT_20240806T130330.SAFE.zip", "S2B_MSIL1C_20240806T102559_N0511_R108_T32TNT_20240806T130330.SAFE.zip", "S2B_MSIL1C_20240823T101559_N0511_R065_T32TMT_20240823T125436.SAFE.zip", "S2B_MSIL1C_20240823T101559_N0511_R065_T32TNT_20240823T125436.SAFE.zip", "S2B_MSIL2A_20240806T102559_N0511_R108_T32TMT_20240806T134756.SAFE.zip", "S2B_MSIL2A_20240806T102559_N0511_R108_T32TNT_20240806T134756.SAFE.zip", "S2B_MSIL2A_20240823T101559_N0511_R065_T32TMT_20240823T133745.SAFE.zip", "S2B_MSIL2A_20240823T101559_N0511_R065_T32TNT_20240823T133745.SAFE.zip"], "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "SelectMultipleView", "description": "Scenes:", "description_allow_html": false, "disabled": false, "index": [0], "layout": "IPY_MODEL_39039eb28ca2460596509014ca621596", "rows": 5, "style": "IPY_MODEL_f558e83c70d7495a993272117db35b9e", "tabbable": null, "tooltip": null}}, "e63a1447ebc24f5bad8f7074de998612": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "30%"}}, "e6b6d722dae74123b65f66e0cbd37333": {"model_name": "ButtonStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ButtonStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "button_color": null, "font_family": null, "font_size": null, "font_style": null, "font_variant": null, "font_weight": null, "text_color": null, "text_decoration": null}}, "7711e7d65f684cc3944a6069963bbbc1": {"model_name": "ButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "ButtonView", "button_style": "success", "description": "Extract Selected Scenes", "disabled": false, "icon": "", "layout": "IPY_MODEL_e63a1447ebc24f5bad8f7074de998612", "style": "IPY_MODEL_e6b6d722dae74123b65f66e0cbd37333", "tabbable": null, "tooltip": null}}, "0f778fb36fc246e0bc288178b09274ec": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "371828e828904ec095951c6bf98256bb": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_0f778fb36fc246e0bc288178b09274ec", "msg_id": "", "outputs": [], "tabbable": null, "tooltip": null}}, "217a37febd114b4ab3ac68c2d3e97db3": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "6db62d6fa7954ab7bd06fb0dc4166d5e": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_74fe888b80fe4f8ca1062bdd53c6d61d", "IPY_MODEL_7711e7d65f684cc3944a6069963bbbc1", "IPY_MODEL_371828e828904ec095951c6bf98256bb"], "layout": "IPY_MODEL_217a37febd114b4ab3ac68c2d3e97db3", "tabbable": null, "tooltip": null}}, "54a7c4f24d154a3693ae8816bfddd560": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": "150px", "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "80%"}}, "3edb01eddcb24a32b4aaf9f35073afc5": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": "initial"}}, "3ee3566be9244ce0a581307a0ae3aa8d": {"model_name": "SelectMultipleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "SelectMultipleModel", "_options_labels": ["S2A_MSIL1C_20240811T103031_N0511_R108_T32TNT_20240811T141108.SAFE", "S2A_MSIL1C_20240828T102021_N0511_R065_T32TMT_20240828T130205.SAFE", "S2A_MSIL1C_20240907T102021_N0511_R065_T32TNT_20240907T125720.SAFE", "S2A_MSIL2A_20240811T103031_N0511_R108_T32TNT_20240811T164252.SAFE", "S2A_MSIL2A_20240828T102021_N0511_R065_T32TMT_20240828T150452.SAFE", "S2A_MSIL2A_20240907T102021_N0511_R065_T32TMT_20240907T143052.SAFE", "S2B_MSIL1C_20240806T102559_N0511_R108_T32TMT_20240806T130330.SAFE", "S2B_MSIL1C_20240806T102559_N0511_R108_T32TNT_20240806T130330.SAFE", "S2B_MSIL1C_20240823T101559_N0511_R065_T32TMT_20240823T125436.SAFE", "S2B_MSIL1C_20240823T101559_N0511_R065_T32TNT_20240823T125436.SAFE", "S2B_MSIL2A_20240806T102559_N0511_R108_T32TMT_20240806T134756.SAFE", "S2B_MSIL2A_20240806T102559_N0511_R108_T32TNT_20240806T134756.SAFE", "S2B_MSIL2A_20240823T101559_N0511_R065_T32TMT_20240823T133745.SAFE", "S2B_MSIL2A_20240823T101559_N0511_R065_T32TNT_20240823T133745.SAFE"], "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "SelectMultipleView", "description": "Scenes:", "description_allow_html": false, "disabled": false, "index": [0], "layout": "IPY_MODEL_54a7c4f24d154a3693ae8816bfddd560", "rows": 5, "style": "IPY_MODEL_3edb01eddcb24a32b4aaf9f35073afc5", "tabbable": null, "tooltip": null}}, "a97d8c885de148049f1562df83d79a29": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": "30%"}}, "bea4533519e74d6d8eb440fb9d3d6969": {"model_name": "ButtonStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ButtonStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "button_color": null, "font_family": null, "font_size": null, "font_style": null, "font_variant": null, "font_weight": null, "text_color": null, "text_decoration": null}}, "ac85f7e7b9bf4cbdbf2d19749aaf20f6": {"model_name": "ButtonModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "ButtonModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "ButtonView", "button_style": "success", "description": "Select Scene", "disabled": false, "icon": "", "layout": "IPY_MODEL_a97d8c885de148049f1562df83d79a29", "style": "IPY_MODEL_bea4533519e74d6d8eb440fb9d3d6969", "tabbable": null, "tooltip": null}}, "a47a005b3afb414aac5f67992e713385": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "456e4507769246978fdf41653a844630": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_a47a005b3afb414aac5f67992e713385", "msg_id": "", "outputs": [], "tabbable": null, "tooltip": null}}, "9e65e65413f74c40ae18ffe543646221": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "e6957ba97b944493b2dc90250ce3662f": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_3ee3566be9244ce0a581307a0ae3aa8d", "IPY_MODEL_ac85f7e7b9bf4cbdbf2d19749aaf20f6", "IPY_MODEL_456e4507769246978fdf41653a844630"], "layout": "IPY_MODEL_9e65e65413f74c40ae18ffe543646221", "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
+      <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
+    <link rel="search" title="Suche" href="../../search.html" />
+    <link rel="next" title="Landsat Downloader" href="03-landsat-with-landsatxplore.html" />
+    <link rel="prev" title="Satellitendaten Notebooks" href="../../rst_jupyter_bibliothek/satellite_data/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Coklimax
+              <img src="../../_static/coklimax_logo_new.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Inhalte:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/01-softwarekenntnisse.html">Notwendige Software und Kenntnisse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/02-kurselemente.html">Die Kurs-Elemente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/03-cds.html">Der Copernicus Climate Data Store (CDS)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kurs 1:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/01-cds-api-installieren-und-herunterladen.html">CDS API Installation &amp; Download​</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/02-netcdf-einfuhrung.html">NetCDF Einführung</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kurs 2:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html">Wasserstände von Seen abgleitet aus Satellitendaten</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html">Seewassertemperatur aus Satellitendaten abgeleitet</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">The Jupyter Notebook Bibliothek:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/index.html">Über CoKLIMAx-II Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/cds_data/index.html">CDS Datensatz Notebooks </a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../rst_jupyter_bibliothek/satellite_data/index.html">Satellitendaten Notebooks </a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Sentinel 2 - Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#download-the-datasets">2. Download the datasets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extract-scenes">3. Extract scenes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#select-scene-from-extracted-for-processing">4. Select scene from extracted for processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#process">Process</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="03-landsat-with-landsatxplore.html">Landsat Downloader</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/visualizations/index.html">Visualization Options Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Coklimax</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../rst_jupyter_bibliothek/satellite_data/index.html">Satellitendaten Notebooks </a></li>
+      <li class="breadcrumb-item active">Sentinel 2 - Workflow</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/notebooks/kurs3_satellit/02-sentinel2-without-esri.ipynb.txt" rel="nofollow"> Quelltext anzeigen</a>
+<div id='language-switcher' style='text-align: right; margin-top: 10px;'>
+    <select onchange="location = this.value;">
+        <option value='/./CoKLIMAx-II/en\notebooks\kurs3_satellit\02-sentinel2-without-esri.html'>EN</option>
+        <option value='/./CoKLIMAx-II/de\notebooks\kurs3_satellit\02-sentinel2-without-esri.html' selected>DE</option>
+    </select>
+</div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sentinel-2-workflow">
+<h1>Sentinel 2 - Workflow<a class="headerlink" href="#sentinel-2-workflow" title="Link to this heading"></a></h1>
+<p><em>Version: 0.4  
+Author: T.Tewes</em></p>
+<blockquote>
+<div><p>Verarbeitet Sentinel 2-Aufnahmen, die in einem Ordner liegen, anhand einer benuterdefinierten Auswahl;
+Zuschneiden auf eine AOI;
+NDVI-Berechnen, Statistische Auswertungen (folgen noch)</p>
+</div></blockquote>
+<p>Download der Sentinel 2-Aufnahmen, z.B. über den EO-Explorer von CODE-DE. Es sollte auf eine geringe Wolkenbedeckung sowie eine Produktklassifikation L1C oder L2A geachtet werden. Alle heruntergeladenen Aufnahmen sollten in einem Ordner (siehe Pfade und Arbeitsbereich festlegen) gespeichert werden, wobei die original Ordnerstruktur der Sentinel 2 Szenen beibehalten werden sollte.</p>
+<p><strong>SCL Korrektur funktioniert noch nicht</strong></p>
+<section id="specifying-the-paths-and-working-directories">
+<h2>1. Specifying the paths and working directories<a class="headerlink" href="#specifying-the-paths-and-working-directories" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="sd">&#39;&#39;&#39; ---- Hier die Verzeichnisse angeben ---- &#39;&#39;&#39;</span>
+<span class="n">download_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\sentinel2-without-esri\download&quot;</span>
+<span class="n">working_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\sentinel2-without-esri\working&quot;</span>
+<span class="n">geotiff_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\sentinel2-without-esri\geotiff&quot;</span>
+<span class="n">csv_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\sentinel2-without-esri\csv&quot;</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\sentinel2-without-esri\output&quot;</span>
+<span class="sd">&#39;&#39;&#39; ----- Ende der Eingaben ---- &#39;&#39;&#39;</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">geotiff_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="download-the-datasets">
+<h2>2. Download the datasets<a class="headerlink" href="#download-the-datasets" title="Link to this heading"></a></h2>
+<p>Users can download raw Sentinel-2 datasets from https://explore.code-de.org/search</p>
+<ol class="arabic simple">
+<li><p>Signup/Login</p></li>
+<li><p>Select Data Catalogue and Dataset</p></li>
+<li><p>Draw polygon</p></li>
+<li><p>Selected scenes</p></li>
+<li><p>Download and place it under ./data/sentinel2-without-esri</p></li>
+</ol>
+</section>
+<section id="extract-scenes">
+<h2>3. Extract scenes<a class="headerlink" href="#extract-scenes" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">SelectMultiple</span><span class="p">,</span> <span class="n">Button</span><span class="p">,</span> <span class="n">VBox</span><span class="p">,</span> <span class="n">Output</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
+
+<span class="c1"># List and sort scenes</span>
+<span class="n">scenes</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">download_folder</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;SAFE.zip&quot;</span><span class="p">))</span>
+
+<span class="c1"># Selection widget</span>
+<span class="n">selection_widget</span> <span class="o">=</span> <span class="n">SelectMultiple</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="n">scenes</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">scenes</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Scenes:&quot;</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;80%&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;150px&#39;</span><span class="p">},</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># Create confirmation buttons</span>
+<span class="n">extract_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Extract Selected Scenes&quot;</span><span class="p">,</span>
+                        <span class="n">button_style</span><span class="o">=</span><span class="s1">&#39;success&#39;</span><span class="p">,</span>
+                        <span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;30%&#39;</span><span class="p">})</span>
+
+<span class="c1"># Output()</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">Output</span><span class="p">()</span>
+
+<span class="c1"># Function to extract selected scenes</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_scenes</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">output</span><span class="p">:</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
+        <span class="n">selected_scenes_for_extract</span> <span class="o">=</span> <span class="n">selection_widget</span><span class="o">.</span><span class="n">value</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">selected_scenes_for_extract</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No scenes selected for extraction.&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="k">for</span> <span class="n">scene</span> <span class="ow">in</span> <span class="n">selected_scenes_for_extract</span><span class="p">:</span>
+            <span class="n">scene_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">scene</span><span class="p">)</span>
+            <span class="n">scene_extract_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">scene</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.zip&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">))</span>
+            
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">scene_path</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">scene_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+                        <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">working_folder</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Extracted: </span><span class="si">{</span><span class="n">scene</span><span class="si">}</span><span class="s2"> to </span><span class="se">\n</span><span class="si">{</span><span class="n">scene_extract_folder</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">BadZipFile</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">scene</span><span class="si">}</span><span class="s2"> is not a valid zip file.&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scene not found: </span><span class="si">{</span><span class="n">scene</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+            
+<span class="c1"># Attach event handlers</span>
+<span class="n">extract_button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">extract_scenes</span><span class="p">)</span>
+
+<span class="c1"># Display the widgets</span>
+<span class="n">display</span><span class="p">(</span><span class="n">VBox</span><span class="p">([</span><span class="n">selection_widget</span><span class="p">,</span> <span class="n">extract_button</span><span class="p">,</span> <span class="n">output</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "6db62d6fa7954ab7bd06fb0dc4166d5e"}</script></div>
+</div>
+</section>
+<section id="select-scene-from-extracted-for-processing">
+<h2>4. Select scene from extracted for processing<a class="headerlink" href="#select-scene-from-extracted-for-processing" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># List and sort scenes only once</span>
+<span class="n">scenes</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">working_folder</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.SAFE&quot;</span><span class="p">))</span>
+
+<span class="c1"># Selection widget</span>
+<span class="n">selection_widget</span> <span class="o">=</span> <span class="n">SelectMultiple</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="n">scenes</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="n">scenes</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Scenes:&quot;</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;80%&#39;</span><span class="p">,</span> <span class="s1">&#39;height&#39;</span><span class="p">:</span> <span class="s1">&#39;150px&#39;</span><span class="p">},</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;initial&#39;</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># Create confirmation buttons with adjusted width</span>
+<span class="n">process_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;Select Scene&quot;</span><span class="p">,</span>
+                        <span class="n">button_style</span><span class="o">=</span><span class="s1">&#39;success&#39;</span><span class="p">,</span>
+                        <span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;width&#39;</span><span class="p">:</span> <span class="s1">&#39;30%&#39;</span><span class="p">})</span>
+
+<span class="c1"># Create output widget</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">Output</span><span class="p">()</span>
+
+<span class="n">selected_scenes_for_process</span> <span class="o">=</span> <span class="n">selection_widget</span><span class="o">.</span><span class="n">value</span>
+
+<span class="c1"># Function for processing the selection</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">process_selection</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">selected_scenes_for_process</span>
+    <span class="n">selected_scenes_for_process</span> <span class="o">=</span> <span class="n">selection_widget</span><span class="o">.</span><span class="n">value</span>
+    <span class="k">with</span> <span class="n">output</span><span class="p">:</span>
+        <span class="n">output</span><span class="o">.</span><span class="n">clear_output</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">selected_scenes_for_process</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Selected scenes (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">selected_scenes_for_process</span><span class="p">)</span><span class="si">}</span><span class="s2">):&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="sa">f</span><span class="s2">&quot;- </span><span class="si">{</span><span class="n">scene</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">scene</span> <span class="ow">in</span> <span class="n">selected_scenes_for_process</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No scenes selected.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Attach event handlers</span>
+<span class="n">process_button</span><span class="o">.</span><span class="n">on_click</span><span class="p">(</span><span class="n">process_selection</span><span class="p">)</span>
+
+<span class="c1"># Display the widgets</span>
+<span class="n">display</span><span class="p">(</span><span class="n">VBox</span><span class="p">([</span><span class="n">selection_widget</span><span class="p">,</span> <span class="n">process_button</span><span class="p">,</span> <span class="n">output</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "e6957ba97b944493b2dc90250ce3662f"}</script></div>
+</div>
+</section>
+<section id="process">
+<h2>Process<a class="headerlink" href="#process" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rasterio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+
+<span class="c1"># Constants</span>
+<span class="n">NDVI_BANDS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;NIR&quot;</span><span class="p">:</span> <span class="s2">&quot;B08&quot;</span><span class="p">,</span> <span class="s2">&quot;RED&quot;</span><span class="p">:</span> <span class="s2">&quot;B04&quot;</span><span class="p">}</span>
+<span class="n">RESOLUTION_DIRS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;R10m&quot;</span><span class="p">,</span> <span class="s2">&quot;R20m&quot;</span><span class="p">,</span> <span class="s2">&quot;R60m&quot;</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_ndvi</span><span class="p">(</span><span class="n">img_data_dir</span><span class="p">,</span> <span class="n">image_filenames_list</span><span class="p">,</span> <span class="n">aoi_shapefile</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Locate required bands</span>
+        <span class="n">nir_filename</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">image_filenames_list</span> <span class="k">if</span> <span class="n">NDVI_BANDS</span><span class="p">[</span><span class="s2">&quot;NIR&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">f</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">red_filename</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">image_filenames_list</span> <span class="k">if</span> <span class="n">NDVI_BANDS</span><span class="p">[</span><span class="s2">&quot;RED&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">f</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">nir_filename</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">red_filename</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;NIR or RED band files not found in the provided list.&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Construct full file paths</span>
+        <span class="n">nir_band_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">img_data_dir</span><span class="p">,</span> <span class="n">nir_filename</span><span class="p">)</span>
+        <span class="n">red_band_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">img_data_dir</span><span class="p">,</span> <span class="n">red_filename</span><span class="p">)</span>
+
+        <span class="c1"># Read bands</span>
+        <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">nir_band_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">nir_src</span><span class="p">:</span>
+            <span class="n">nir_band</span> <span class="o">=</span> <span class="n">nir_src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+            <span class="n">transform</span> <span class="o">=</span> <span class="n">nir_src</span><span class="o">.</span><span class="n">transform</span>
+            <span class="n">crs</span> <span class="o">=</span> <span class="n">nir_src</span><span class="o">.</span><span class="n">crs</span>
+
+        <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">red_band_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">red_src</span><span class="p">:</span>
+            <span class="n">red_band</span> <span class="o">=</span> <span class="n">red_src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Calculate NDVI</span>
+        <span class="k">with</span> <span class="n">np</span><span class="o">.</span><span class="n">errstate</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">invalid</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">):</span>
+            <span class="n">ndvi</span> <span class="o">=</span> <span class="p">(</span><span class="n">nir_band</span> <span class="o">-</span> <span class="n">red_band</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">nir_band</span> <span class="o">+</span> <span class="n">red_band</span><span class="p">)</span>
+            <span class="n">ndvi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">ndvi</span><span class="p">,</span> <span class="n">nan</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># Replace NaN with 0</span>
+
+        <span class="k">return</span> <span class="n">ndvi</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">crs</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error in NDVI calculation: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+    
+<span class="k">def</span><span class="w"> </span><span class="nf">save_raster</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">crs</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span>
+            <span class="n">output_path</span><span class="p">,</span>
+            <span class="s2">&quot;w&quot;</span><span class="p">,</span>
+            <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GTiff&quot;</span><span class="p">,</span>
+            <span class="n">height</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">width</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+            <span class="n">crs</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
+        <span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
+            <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Raster saved to </span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error saving raster: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">process_scene</span><span class="p">(</span><span class="n">selected_scenes</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s2">&quot;NDVI&quot;</span><span class="p">,</span> <span class="n">aoi_shapefile</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">scene</span> <span class="ow">in</span> <span class="n">selected_scenes</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Define paths for the scene</span>
+            <span class="n">scene_extract_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">scene</span><span class="p">)</span>
+            <span class="n">granule_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">scene_extract_folder</span><span class="p">,</span> <span class="s2">&quot;GRANULE&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Validate granule directory</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">granule_dir</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">granule_dir</span><span class="p">):</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Granule directory missing or empty for scene </span><span class="si">{</span><span class="n">scene</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="n">granule_subdirs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">granule_dir</span><span class="p">)</span>
+            <span class="n">granule_subdir</span> <span class="o">=</span> <span class="n">granule_subdirs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">img_data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">granule_dir</span><span class="p">,</span> <span class="n">granule_subdir</span><span class="p">,</span> <span class="s2">&quot;IMG_DATA&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Prioritize R10m resolution if available</span>
+            <span class="k">for</span> <span class="n">res_dir</span> <span class="ow">in</span> <span class="n">RESOLUTION_DIRS</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">res_dir</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">img_data_dir</span><span class="p">):</span>
+                    <span class="n">img_data_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">img_data_dir</span><span class="p">,</span> <span class="n">res_dir</span><span class="p">)</span>
+                    <span class="k">break</span>
+
+            <span class="c1"># Validate image data directory</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">img_data_dir</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">img_data_dir</span><span class="p">):</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Image data directory missing or empty for scene </span><span class="si">{</span><span class="n">scene</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="n">image_filenames_list</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">img_data_dir</span><span class="p">)</span>
+
+            <span class="c1"># Calculate the specified index (e.g., NDVI)</span>
+            <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="s2">&quot;NDVI&quot;</span><span class="p">:</span>
+                <span class="n">ndvi</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">crs</span> <span class="o">=</span> <span class="n">calculate_ndvi</span><span class="p">(</span><span class="n">img_data_dir</span><span class="p">,</span> <span class="n">image_filenames_list</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">ndvi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">scene</span><span class="si">}</span><span class="s2">_NDVI.tif&quot;</span><span class="p">)</span>
+                    <span class="n">save_raster</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="n">ndvi</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span> <span class="n">crs</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error processing scene </span><span class="si">{</span><span class="n">scene</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># Export complete scene</span>
+    <span class="n">process_scene</span><span class="p">(</span>
+        <span class="n">selected_scenes</span><span class="o">=</span><span class="n">selected_scenes_for_process</span><span class="p">,</span>
+        <span class="n">output_folder</span><span class="o">=</span><span class="n">geotiff_folder</span><span class="p">,</span>
+        <span class="n">index</span><span class="o">=</span><span class="s2">&quot;NDVI&quot;</span><span class="p">,</span>
+        <span class="n">aoi_shapefile</span><span class="o">=</span><span class="kc">None</span>
+        <span class="p">)</span>
+    
+    <span class="c1"># # Export clipped scene using shapefile</span>
+    <span class="c1"># kn_shapefile = &quot;./shapefiles/kn_boundary.shp&quot;</span>
+    <span class="c1"># process_scene(</span>
+    <span class="c1">#     selected_scenes=selected_scenes_for_process,</span>
+    <span class="c1">#     output_folder=geotiff_folder,</span>
+    <span class="c1">#     index=&quot;NDVI&quot;,</span>
+    <span class="c1">#     aoi_shapefile=kn_shapefile,</span>
+    <span class="c1">#     )</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../rst_jupyter_bibliothek/satellite_data/index.html" class="btn btn-neutral float-left" title="Satellitendaten Notebooks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="03-landsat-with-landsatxplore.html" class="btn btn-neutral float-right" title="Landsat Downloader" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, str.ucture GmbH.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
