@@ -15,4 +15,3 @@ python .\update_images.py
 git add .
 git commit -m "updates"
 git push
-

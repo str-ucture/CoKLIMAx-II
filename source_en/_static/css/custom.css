@@ -71,3 +71,7 @@ div.cell_output table {
 .download-button a:hover {
     color: white;
 }
+
+.rst-content img {
+    margin: 8px 0px;
+}
