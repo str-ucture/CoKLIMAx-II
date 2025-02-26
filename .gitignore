@@ -4,9 +4,8 @@ myenv/
 env/
 cds_venv/
 
-# Ignore everything in the folder and add the folder
+# Ignore everything in this folder except explicitly allowed files
 source/notebooks/kurs_not_defined/data/landsatxplorer/working/*
-!source/notebooks/kurs_not_defined/data/landsatxplorer/working/*
 
 kurs_backups/
 kurs_ArcGIS/
@@ -17,49 +16,43 @@ source/secrets/
 **/.cdsapirc
 **/cds_api
 
-# Archived data
+# Archived & compressed data
 *.zip
-*.tar
-*.tar.gz
+*.tar*
 *.7z
 *.rar
 *.gz
 *.SAFE
 
-*.csv
-*.xls
-*.xlsx
-
-# Temporary files
+# Temporary & auxiliary files
 *.aux.xml
 *.ovr
 *.idx
 *.lock
 
+# Raster & geospatial data
 *.nc
-*.tiff
-*.tif
-*.TIF
-*.TIFF
+*.tif*
+*.TIF*
 
-# Image files
+# Ignore all image files globally
 *.png
-# add all png files inside docs
-!docs/**/*.png
 *.gif
-!docs/**/*.gif
 
-# add all png files inside source/_static
+# Allow everything inside the docs folder (overriding previous rules)
+!docs/
+!docs/**
+
+# Allow PNG & GIF files inside source/_static
 !source_en/_static/*.png
 !source_de/_static/*.png
 
-# Specific files
+
+# Specific scripts & batch files
 copy_images.bat
 setup_env.bat
 update_buttons.py
-update_buttons.ipynb
 update_dropdown.py
-update_dropdown.ipynb
 update_dropdown_v2.py
 update_html.py
 update_images.py
