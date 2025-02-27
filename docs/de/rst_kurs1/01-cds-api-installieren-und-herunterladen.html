@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CDS API Installation &amp; Download​ &mdash; Coklimax 1.0.0 Dokumentation</title>
+  <title>CDS API Installation und Download &mdash; Coklimax 1.0.0 Dokumentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -58,7 +58,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kurs 1:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">CDS API Installation &amp; Download​</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">CDS API Installation und Download</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#lernziele">Lernziele</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#einrichtung-der-cds-api">Einrichtung der CDS API</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#personlicher-api-key">1. Persönlicher API-Key</a></li>
@@ -78,6 +78,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/kurs2_einfache_cds/01-satellite-lake-water-level.html">Wasserstände von Seen abgleitet aus Satellitendaten</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notebooks/kurs2_einfache_cds/02-satellite-lake-water-temperature.html">Seewassertemperatur aus Satellitendaten abgeleitet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/kurs2_einfache_cds/03-sis-temperature-statistics.html">Temperaturstatistiken für Europa</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">The Jupyter Notebook Bibliothek:</span></p>
 <ul>
@@ -101,7 +102,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">CDS API Installation &amp; Download​</li>
+      <li class="breadcrumb-item active">CDS API Installation und Download</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/rst_kurs1/01-cds-api-installieren-und-herunterladen.rst.txt" rel="nofollow"> Quelltext anzeigen</a>
 <div id='language-switcher' style='text-align: right; margin-top: 10px;'>
@@ -117,15 +118,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="cds-api-installation-download">
-<span id="kurs1-cds-api-installation-and-download"></span><h1>CDS API Installation &amp; Download​<a class="headerlink" href="#cds-api-installation-download" title="Link to this heading"></a></h1>
+  <section id="cds-api-installation-und-download">
+<span id="kurs1-cds-api-installation-and-download"></span><h1>CDS API Installation und Download<a class="headerlink" href="#cds-api-installation-und-download" title="Link to this heading"></a></h1>
 <section id="lernziele">
 <h2>Lernziele<a class="headerlink" href="#lernziele" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><dl class="simple">
 <dt><a class="reference internal" href="#setup-api"><span class="std std-ref">Einrichtung der API des Copernicus Climate Data Store (CDS API)</span></a></dt><dd><ul>
 <li><p><a class="reference internal" href="#personal-api-key"><span class="std std-ref">Persönlicher API-Key</span></a></p></li>
-<li><p><a class="reference internal" href="#install-cds-api"><span class="std std-ref">Installation der CDS API</span></a></p></li>
+<li><p><a class="reference internal" href="#install-cds-api"><span class="std std-ref">Installation der CDS-API</span></a></p></li>
 </ul>
 </dd>
 </dl>
@@ -140,10 +141,10 @@
 </li>
 </ul>
 <hr class="docutils" />
-<p>Wir haben für dich ein Jupyter Notebook vorbereitet, bei dem du nur noch den Ausgabeordner und deinen API-Key anpassen musst. Das Notebook kannst du unter folgendem Link herunterladen:</p>
+<p>Wir haben für Sie ein Jupyter Notebook vorbereitet, bei dem Sie lediglich den Ausgabeordner und Ihren API-Schlüssel anpassen müssen. Das Notebook können Sie unter folgendem Link herunterladen:</p>
 <div class="download-button">
-    <a href="../_static/notebooks/cds-api-installieren-und-herunterladen.ipynb" download>⇩ CDS API Installation and Download (Notebook)</a>
-</div><p>Öffnen Sie das Notebook in Jupyter Lab und folgen Sie den Anweisungen. Alternativ können Sie den Python-Codeausschnitt in Ihr Jupyter-Notebook kopieren und die Zelle ausführen.</p>
+    <a href="../_static/notebooks/cds-api-installieren-und-herunterladen.ipynb" download>⇩ CDS API Installation und Download (Notebook)</a>
+</div><p>Öffnen Sie das Notebook in Jupyter Lab und folgen Sie den Anweisungen. Alternativ können Sie den Python-Codeausschnitt in Ihr Jupyter-Notebook kopieren und die Zellen ausführen.</p>
 <img alt="../_images/01-tutorial-02.gif" class="no-scaled-link align-center" src="../_images/01-tutorial-02.gif" style="width: 600px;" />
 <hr class="docutils" />
 </section>
@@ -181,7 +182,7 @@
 </section>
 <section id="download-von-klimadaten-aus-dem-cds">
 <span id="cds-download"></span><h2>Download von Klimadaten aus dem CDS<a class="headerlink" href="#download-von-klimadaten-aus-dem-cds" title="Link to this heading"></a></h2>
-<p>Unser Testdatensatz ist der Reanalyse-Datensatz ERA5. Falls Sie sich mit dem Datensatz gut auskennen, können Sie den Infokasten überspringen und gleich zum <span class="xref std std-ref">nächsten Schritt</span> übergehen.</p>
+<p>Unser Testdatensatz ist der <strong>Reanalyse-Datensatz ERA5</strong>. Falls Sie sich mit dem Datensatz gut auskennen, können Sie den Infokasten überspringen und gleich zum <a class="reference internal" href="#api-request"><span class="std std-ref">nächsten Schritt</span></a> übergehen.</p>
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
 <p>Der ERA5-Klimadatensatz ist eine umfangreiche Sammlung von Wetter- und Klimadaten, die von der  Europäischen Organisation für die Nutzung meteorologischer Satelliten (ECMWF) erstellt wurde. Es        handelt sich dabei um eine historische Wetter- und Klimadatenbank, die auf modernen Rechenmodellen und  Satellitenmessungen basiert. ERA5 umfasst kontinuierliche Wetterdaten der letzten Jahrzehnte, von 1950  bis in die Gegenwart. Diese Daten umfassen unter anderem Temperatur, Luftfeuchtigkeit oder      Windgeschwindigkeit.</p>
@@ -196,7 +197,7 @@
 <blockquote>
 <div><ul class="simple">
 <li><p><strong>Temperature</strong>: 2m temperature</p></li>
-<li><p><strong>Year</strong>:2024</p></li>
+<li><p><strong>Year</strong>: 2024</p></li>
 <li><p><strong>Month</strong>: October</p></li>
 <li><p><strong>Day</strong>: 01</p></li>
 <li><p><strong>Time</strong>: Select all</p></li>
@@ -211,7 +212,7 @@
 </div>
 <p>Für die weiteren Parameter Datenformat und Komprimierung setzen Sie die Felder in der Eingabemaske bitte wie in der folgenden Abbildung gezeigt.</p>
 <img alt="Data and Download Fromat" class="no-scaled-link align-center" src="../_images/04-kurs-1-cds-5.png" style="width: 600px;" />
-<p>Sobald Sie die Nutzungsbedingungen akzeptiert haben müssen Sie nur noch auf „Show API request code“ klicken und der automatisch generierte API request code erscheint. Für unsere Testdaten sieht dieser wie folgt aus:</p>
+<p>Sobald Sie die Nutzungsbedingungen akzeptiert haben müssen Sie nur noch auf <strong>Show API request code</strong> klicken und der automatisch generierte API request code erscheint. Für unsere Testdaten sieht dieser wie folgt aus:</p>
 <blockquote id="dataset-and-request-parameters">
 <div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Datensatz und Anfrageparameter definieren</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="s2">&quot;reanalysis-era5-land&quot;</span>
@@ -240,9 +241,12 @@
 
 <span class="c1"># Dateiname definieren und herunterladen</span>
 <span class="n">download_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;CDSdata&quot;</span><span class="p">)</span>
-<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Verzeichnis erstellen, falls nicht vorhanden</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Verzeichnis erstellen, falls nicht vorhanden</span>
 
+<span class="c1"># Download-Dateipfad definieren</span>
 <span class="n">download_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">.zip&quot;</span><span class="p">)</span>
+
+<span class="c1"># Laden Sie den Datensatz herunter</span>
 <span class="n">client</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">download_filepath</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -256,7 +260,7 @@
 </pre></div>
 </div>
 </div></blockquote>
-<p>Falls das Öffnen des Jupyter labs nicht funktioniert gehen Sie am besten noch einmal die Anleitung durch, die wir <a class="reference internal" href="../rst_inhalte/01-softwarekenntnisse.html#software-knowledge"><span class="std std-ref">hier</span></a> für Sie vorbereitet haben.</p>
+<p>Falls das Öffnen des <strong>Jupyter Lab</strong> nicht funktioniert gehen Sie am besten noch einmal die Anleitung durch, die wir <a class="reference internal" href="../rst_inhalte/01-softwarekenntnisse.html#software-knowledge"><span class="std std-ref">hier</span></a> für Sie vorbereitet haben.</p>
 </section>
 </section>
 </section>

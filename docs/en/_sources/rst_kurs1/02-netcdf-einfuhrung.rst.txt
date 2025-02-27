@@ -8,26 +8,29 @@ NetCDF Introduction
 Learning Objectives
 -------------------
 
-* :ref:`Structure and Handling of a NetCDF file <netcdf-how-to>`
+* :ref:`Structure and Handling of a file in NetCDF format <netcdf-how-to>`
 	* :ref:`Unpacking the NetCDF Zip file <netcdf-unzip>`
 	* :ref:`Investigate the NetCDF file <netcdf-investigate>`
-* :ref:`Visualization of a Time Series and a Selected Region <netcdf-visualize>`
+* :ref:`Visualization using a Selected Region and a Time Series <netcdf-visualize>`
+    * :ref:`Reading and Exploring the Data <read-and-explore-data>`
+    * :ref:`Creating a Plot (Selected Month) <create-a-plot-of-a-month>`
+    * :ref:`Creating a Plot (Time Series) <create-a-plot-time-series>`
 
 ----
 
-All the steps from this course is also available in a ready-to-use notebook for download from the following link:
+All the steps from this course are also available in a ready-to-use notebook for download from the following links:
+
+.. raw:: html
+    
+    <div class="download-button">
+        <a href="../_static/notebooks/netcdf-introduction-part1.ipynb" download>⇩ NetCDF Introduction: Part 1</a>
+    </div>
 
 .. raw:: html
 
-   <div class="download-button">
-       <a href="../_static/notebooks/netcdf-introduction-part1.ipynb" download>⇩ NetCDF Introduction: Part 1 (Notebook)</a>
-   </div>
-
-.. raw:: html
-
-   <div class="download-button">
-       <a href="../_static/notebooks/netcdf-introduction-part2.ipynb" download>⇩ NetCDF Introduction: Part 2 (Notebook)</a>
-   </div>
+    <div class="download-button">
+        <a href="../_static/notebooks/netcdf-introduction-part2.ipynb" download>⇩ NetCDF Introduction: Part 2</a>
+    </div>
 
 Open the notebook in Jupyter Lab and follow the instructions. Alternatively, you can copy the Python code snippet into your Jupyter Notebook and execute the cell.
 
@@ -71,7 +74,7 @@ The file you downloaded in the first course module (:ref:`CDS API Installation a
        <a href="../_static/notebooks/CDSdata/reanalysis-era5-land.zip" download>⇩ ERA5-Land (Dataset)</a>
    </div>
 
-First, extract the data by copying the following code block into your notebook and modifying the lines as needed:
+First unzip the data, copy the following block into your notebook and modify the lines as required:
 
     .. code-block:: python
 
@@ -79,11 +82,11 @@ First, extract the data by copying the following code block into your notebook a
         import os
 
         # Path to the ZIP file (in the same directory or absolute path)
-        zip_file = './CDSdata/reanalysis-era5-land.zip' # Adjust the path if necessary
+        zip_file = './CDSdata/reanalysis-era5-land.zip'  # Adjust the path if necessary
 
         # Target directory for extraction
         target_directory = 'Era5Data'
-        os.makedirs(target_directory, exist_ok=True) # Create the directory if it doesn't exist
+        os.makedirs(target_directory, exist_ok=True)  # Create the directory if it doesn't exist
 
         # Open and extract the ZIP file
         with zipfile.ZipFile(zip_file, 'r') as zip_ref:
@@ -94,9 +97,9 @@ Now, let's take a closer look at the file.
 
 .. _netcdf-investigate:
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-2. Examining a NetCDF File
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2. Investigate the NetCDF File
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 NetCDF files are structured into dimensions, variables, and attributes. Dimensions serve as the axes along which the variables are arranged. These axes can represent, for example, geographic longitude and latitude or different altitude levels. Variables are the meteorological parameters contained in the file, such as temperature, air pressure, or wind speeds. Attributes of a NetCDF file are the metadata and include the units of the variables, descriptions, and the sources/authors of the data.
 
@@ -131,9 +134,9 @@ Once you have tried out the various commands for a quick overview, you can proce
 
 .. _netcdf-visualize:
 
----------------------------------------
-Visualization and Selection of a Region
----------------------------------------
+-------------------------------------------------------
+Visualization using a Selected Region and a Time Series
+-------------------------------------------------------
 
 To have more options for visualization, you will need an additional dataset. We have already made this available for download. Just like in the previous section, it is a dataset from the ERA-5 reanalysis, containing monthly averages of the 2m temperature for a predefined region in southern Germany.
 
@@ -151,12 +154,14 @@ First, you should define the paths for your output. This step should be included
         
         # ---- Specify directories below ----
         download_folder = r"./era5-land-monthly/download"  # Folder for downloaded data
-        output_folder = r"./era5-land-monthly/output"      # Folder for final outputs
+        output_folder = r"./era5-land-monthly/output"  # Folder for final outputs
         # ---- End of user inputs ----
         
         # Create directories if they do not exist
         os.makedirs(download_folder, exist_ok=True)
         os.makedirs(output_folder, exist_ok=True)
+
+.. _read-and-explore-data:
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 1. Reading and Exploring the Data
@@ -190,7 +195,7 @@ Now, get an overview of the file, including its spatial and temporal extent, as 
 
         # Extract coordinate data and the primary variable's data
         lon_list = dataset['longitude'][:]  # Extract longitude
-        lat_list = dataset['latitude'][:]   # Extract latitude
+        lat_list = dataset['latitude'][:]  # Extract latitude
 
     .. code-block:: python
 
@@ -239,7 +244,9 @@ Now, get an overview of the file, including its spatial and temporal extent, as 
         # Display the summary DataFrame
         dataset_summary
 
-In the generated summary, you can see that the file contains **898** valid time steps. Since the data represents monthly averages and the file starts with its first time step in January 1950, we now know that the last time step is in October 2024: **(2024 − 1950) × 12 + 10 = 898**.
+In the generated summary, you can see that the file contains **898** valid time steps. Since the data represents monthly averages and the file starts with its first time step in January 1950, we now know that the last time step is in October 2024: **(2024 - 1950) x 12 + 10 = 898**.
+
+.. _create-a-plot-of-a-month:
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2. Creating a Plot for August 1980
@@ -379,11 +386,13 @@ Download and extract the **kn_boundary.zip** file into your working folder. Reme
         ax.set_title(f'{summary["Long Name"]} (°C)')
         ax.set_ylabel('Latitude', fontsize=12)
         ax.set_xlabel('Longitude', fontsize=12)
-
+        
         # Display the plot
         plt.show()
 
 With this plot, you can easily get an overview of the spatial characteristics and distribution of a parameter. Try out different configurations to determine which color scheme and scale work best for your purpose.
+
+.. _create-a-plot-time-series:
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 3. Creating a Plot for a Time Series

@@ -1,0 +1,993 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="de" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Temperaturstatistiken für Europa &mdash; Coklimax 1.0.0 Dokumentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=2bfa0ee5" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=f029ec32"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/translations.js?v=9bf55d28"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
+    <link rel="search" title="Suche" href="../../search.html" />
+    <link rel="next" title="Über CoKLIMAx-II Notebooks" href="../../rst_jupyter_bibliothek/index.html" />
+    <link rel="prev" title="Seewassertemperatur aus Satellitendaten abgeleitet" href="02-satellite-lake-water-temperature.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Coklimax
+              <img src="../../_static/coklimax_logo_new.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Dokumentation durchsuchen" aria-label="Dokumentation durchsuchen" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Inhalte:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/01-softwarekenntnisse.html">Notwendige Software und Kenntnisse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/02-kurselemente.html">Die Kurs-Elemente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/03-cds.html">Der Copernicus Climate Data Store (CDS)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kurs 1:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/01-cds-api-installieren-und-herunterladen.html">CDS API Installation und Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/02-netcdf-einfuhrung.html">NetCDF Einführung</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kurs 2:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="01-satellite-lake-water-level.html">Wasserstände von Seen abgleitet aus Satellitendaten</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-satellite-lake-water-temperature.html">Seewassertemperatur aus Satellitendaten abgeleitet</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Temperaturstatistiken für Europa</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#festlegen-der-pfade-und-arbeitsverzeichnisse">1. Festlegen der Pfade und Arbeitsverzeichnisse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#herunterladen-und-entpacken-des-datensatzes">2. Herunterladen und Entpacken des Datensatzes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#authentifizierung">2.1 Authentifizierung</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#definieren-sie-die-request-und-laden-sie-den-datensatz-herunter">2.2 Definieren Sie die „request“ und laden Sie den Datensatz herunter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extrahieren-sie-die-zip-dateien-in-ordner">2.3 Extrahieren Sie die ZIP-Dateien in Ordner</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#untersuchen-die-metadaten-der-netcdf4-datei">3. Untersuchen die Metadaten der NetCDF4-Datei</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#erstellen-eines-dataframe-mit-verfugbaren-netcdf-dateien">3.1 Erstellen eines DataFrame mit verfügbaren netCDF-Dateien</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ubersicht-uber-die-struktur-der-heruntergeladenen-daten">3.2 Übersicht über die Struktur der heruntergeladenen Daten</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#einzigartige-variablennamen-und-verfugbare-variablen-ausgeben">3.3 Einzigartige Variablennamen und verfügbare Variablen ausgeben</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#exportieren-der-netcdf4-dateien-im-csv-format">4. Exportieren der NetCDF4-Dateien im csv-Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exportieren-der-netcdf4-datei-nach-geotiff">5. Exportieren der NetCDF4-Datei nach GeoTIFF</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#analyse-und-visualisierung-optionen">6. Analyse und Visualisierung Optionen</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">The Jupyter Notebook Bibliothek:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/index.html">Über CoKLIMAx-II Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/cds_data/index.html">CDS Datensatz Notebooks </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/satellite_data/index.html">Satellitendaten Notebooks </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/visualizations/index.html">Visualization Options Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Coklimax</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Temperaturstatistiken für Europa</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/notebooks/kurs2_einfache_cds/03-sis-temperature-statistics.ipynb.txt" rel="nofollow"> Quelltext anzeigen</a>
+<div id='language-switcher' style='text-align: right; margin-top: 10px;'>
+    <select onchange="location = this.value;">
+        <option value='/./CoKLIMAx-II/en\notebooks\kurs2_einfache_cds\03-sis-temperature-statistics.html'>EN</option>
+        <option value='/./CoKLIMAx-II/de\notebooks\kurs2_einfache_cds\03-sis-temperature-statistics.html' selected>DE</option>
+    </select>
+</div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="temperaturstatistiken-fur-europa">
+<h1>Temperaturstatistiken für Europa<a class="headerlink" href="#temperaturstatistiken-fur-europa" title="Link to this heading"></a></h1>
+<p>Dieser Datensatz enthält Temperaturstatistiken für Europa, die sich auf die tägliche 2-Meter-Lufttemperatur (Mittelwert, Minimum und Maximum) für ganze Jahre sowie für die Winter- (DJF: Dezember-Januar-Februar) und die Sommersaison (JJA: Juni-Juli-August) konzentrieren. Die Statistiken, die aus den um Verzerrungen bereinigten EURO-CORDEX-Daten abgeleitet wurden, umfassen einen geglätteten 30-Jahres-Durchschnitt von 1971 bis 2100, was zu einer Zeitreihe von 1986 bis 2085 führt, einschließlich der Mittelwerte des Modellensembles und der zugehörigen Standardabweichungen. Diese Temperaturperzentile sind im öffentlichen Gesundheitswesen und in der Epidemiologie von entscheidender Bedeutung für die Bewertung von Gesundheitsrisiken und -auswirkungen und ermöglichen Vergleiche zwischen verschiedenen Regionen unter verschiedenen Klimawandelszenarien.</p>
+<p><strong>Schnellnavigation:</strong></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#herunterladen-und-entpacken-des-datensatzes"><span class="std std-ref">Herunterladen und Entpacken des Datensatzes</span></a></p></li>
+<li><p>Untersuchen der Metadaten der netCDF4-Datei</p></li>
+<li><p><a class="reference internal" href="#exportieren-der-netcdf4-dateien-im-csv-format"><span class="std std-ref">Exportieren der NetCDF4-Dateien im csv-Format</span></a></p></li>
+<li><p>Exportieren der NetCDF4-Datei nach GeoTIFF</p></li>
+<li><p><a class="reference internal" href="#analyse-und-visualisierung-optionen"><span class="std std-ref">Analyse und Visualisierung Optionen</span></a></p></li>
+</ul>
+<p><strong>Information on Dataset:</strong></p>
+<ul class="simple">
+<li><p>Quelle: <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/sis-temperature-statistics?tab=overview" rel="noopener noreferrer" target="_blank">Temperature Statistics for Europe</a></p></li>
+<li><p>Author: T. Tewes (Stadt Konstanz)</p></li>
+<li><p>Notebook Version: 1.1 (Updated: December 17. 2024)</p></li>
+</ul>
+<section id="festlegen-der-pfade-und-arbeitsverzeichnisse">
+<h2>1. Festlegen der Pfade und Arbeitsverzeichnisse<a class="headerlink" href="#festlegen-der-pfade-und-arbeitsverzeichnisse" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="sd">&#39;&#39;&#39; ---- Verzeichnisse hier angeben ---- &#39;&#39;&#39;</span>
+<span class="n">download_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\sis-temperature-statistics\download&quot;</span>
+<span class="n">working_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\sis-temperature-statistics\working&quot;</span>
+<span class="n">geotiff_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\sis-temperature-statistics\geotiff&quot;</span>
+<span class="n">csv_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\sis-temperature-statistics\csv&quot;</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\sis-temperature-statistics\output&quot;</span>
+<span class="sd">&#39;&#39;&#39; ----- Ende der Angaben ---- &#39;&#39;&#39;</span>
+
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">geotiff_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="herunterladen-und-entpacken-des-datensatzes">
+<h2>2. Herunterladen und Entpacken des Datensatzes<a class="headerlink" href="#herunterladen-und-entpacken-des-datensatzes" title="Link to this heading"></a></h2>
+<section id="authentifizierung">
+<h3>2.1 Authentifizierung<a class="headerlink" href="#authentifizierung" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cdsapi</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># API-Key für die Authentifizierung</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;fdae60fd-35d4-436f-825c-c63fedab94a4&quot;</span>
+    <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;https://cds.climate.copernicus.eu/api&quot;</span>
+
+    <span class="c1"># Erstellung des CDS-API-Clients</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">cdsapi</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">api_url</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">api_key</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">client</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="definieren-sie-die-request-und-laden-sie-den-datensatz-herunter">
+<h3>2.2 Definieren Sie die „request“ und laden Sie den Datensatz herunter<a class="headerlink" href="#definieren-sie-die-request-und-laden-sie-den-datensatz-herunter" title="Link to this heading"></a></h3>
+<p>Definieren Sie zusätzliche Anfragefelder, um sicherzustellen, dass die Anfrage innerhalb der Dateigrößenbeschränkung bleibt. Bei der Arbeit mit Geodaten oder APIs, die Karten- oder Satellitenbilder zurückgeben, kann die Begrenzung des geografischen Interessengebiets verhindern, dass Anfragen zu groß werden und die Datei- oder Verarbeitungsgrenzen überschreiten. Begrenzungsrahmen (Bounding Boxes) werden verwendet, um das geografische Gebiet für solche Anfragen festzulegen.</p>
+<p>Die untenstehenden Koordinaten wurden mit dem Tool <a href="https://str-ucture.github.io/bbox-extractor/" target="_blank">BBox Extractor</a> ermittelt.</p>
+<p><em>BBox Extractor ist ein webbasiertes Tool, das Benutzern hilft, interaktiv Begrenzungsrahmen-Koordinaten im WGS84-Format (Breite/Länge) auszuwählen und zu generieren. Dies ist besonders nützlich für APIs oder Datensätze, die eine Eingabe eines geografischen Gebiets erfordern</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definieren der Begrenzungsrahmen-Koordinaten (WGS84-Format)</span>
+<span class="c1"># Das Koordinatenformat lautet: [Norden, Westen, Süden, Osten]</span>
+<span class="n">bbox_wgs84_deutschland</span> <span class="o">=</span> <span class="p">[</span><span class="mf">56.0</span><span class="p">,</span> <span class="mf">5.8</span><span class="p">,</span> <span class="mf">47.2</span><span class="p">,</span> <span class="mf">15.0</span><span class="p">]</span>
+<span class="n">bbox_wgs84_konstanz</span> <span class="o">=</span> <span class="p">[</span><span class="mf">47.9</span><span class="p">,</span> <span class="mf">8.9</span><span class="p">,</span> <span class="mf">47.6</span><span class="p">,</span> <span class="mf">9.3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alternativ können Sie ein Shapefile für eine präzise geografische Filterung verwenden</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="c1"># Beispiel: Shapefile von Konstanz laden (WGS84-Projektion)</span>
+<span class="n">de_shapefile</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;./shapefiles/de_boundary.shp&quot;</span>
+<span class="n">de_gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">de_shapefile</span><span class="p">)</span>
+
+<span class="c1"># Extrahieren Sie den Begrenzungsrahmen des Shapefiles</span>
+<span class="n">de_bounds</span> <span class="o">=</span> <span class="n">de_gdf</span><span class="o">.</span><span class="n">total_bounds</span>
+
+<span class="c1"># Passen Sie den Begrenzungsrahmen an und puffern Sie ihn, um einen etwas größeren</span>
+<span class="n">de_bounds_adjusted</span> <span class="o">=</span> <span class="p">[(</span><span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">de_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">de_bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">de_bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span>
+                      <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">de_bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span> <span class="mi">10</span><span class="p">)</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="o">+</span><span class="mf">0.1</span><span class="p">]</span>
+
+<span class="c1"># Ordnen Sie die Koordinaten in das Format: [Nord, West, Süd, Ost] um.</span>
+<span class="n">bbox_de_bounds_adjusted</span> <span class="o">=</span> <span class="p">[</span><span class="n">de_bounds_adjusted</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">de_bounds_adjusted</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                           <span class="n">de_bounds_adjusted</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">de_bounds_adjusted</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definieren Sie verfügbare Optionen für Zeiträume und Temperaturvariablen</span>
+<span class="n">period_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;summer&quot;</span><span class="p">,</span> <span class="s2">&quot;winter&quot;</span><span class="p">]</span>
+<span class="n">variable_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;average_temperature&quot;</span><span class="p">,</span> <span class="s2">&quot;minimum_temperature&quot;</span><span class="p">,</span> <span class="s2">&quot;maximum_temperature&quot;</span><span class="p">]</span>
+
+<span class="c1"># Wählen Sie den Zeitraum und die Variable für die Verarbeitung aus; ändern Sie diese nach Bedarf</span>
+<span class="c1"># Standardmäßig auf &quot;Jahr&quot; und &quot;Durchschnittstemperatur&quot; eingestellt</span>
+<span class="n">selected_period</span> <span class="o">=</span> <span class="n">period_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Standard: &quot;year&quot;</span>
+<span class="n">selected_variable</span> <span class="o">=</span> <span class="n">variable_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Standard: &quot;average_temperature&quot;</span>
+
+<span class="c1"># Ausgewählte Variable und Periode anzeigen</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ausgewählte Variable: </span><span class="si">{</span><span class="n">selected_variable</span><span class="si">}</span><span class="se">\n</span><span class="s2">Ausgewählter Zeitraum: </span><span class="si">{</span><span class="n">selected_period</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Definieren Sie Statistiken basierend auf der ausgewählten Variable</span>
+<span class="c1"># Fügen Sie für &quot;average_temperature&quot; zusätzliche Statistiken ein; verwenden Sie andernfalls nur &quot;time_average&quot;</span>
+<span class="n">statistic</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">[</span><span class="s1">&#39;time_average&#39;</span><span class="p">,</span> <span class="s1">&#39;10th_percentile&#39;</span><span class="p">,</span> <span class="s1">&#39;90th_percentile&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">selected_variable</span> <span class="o">==</span> <span class="s2">&quot;average_temperature&quot;</span>
+    <span class="k">else</span> <span class="p">[</span><span class="s1">&#39;time_average&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ausgewählte Variable: average_temperature
+Ausgewählter Zeitraum: year
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definition des Datensatzes und der Request-Parameter</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="s2">&quot;sis-temperature-statistics&quot;</span>
+<span class="n">request</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;variable&quot;</span><span class="p">:</span> <span class="n">selected_variable</span><span class="p">,</span>
+    <span class="s2">&quot;period&quot;</span><span class="p">:</span> <span class="n">selected_period</span><span class="p">,</span>
+    <span class="s2">&quot;statistic&quot;</span><span class="p">:</span> <span class="n">statistic</span><span class="p">,</span>
+    <span class="s2">&quot;experiment&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;rcp4_5&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;rcp8_5&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;ensemble_statistic&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;ensemble_members_average&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ensemble_members_standard_deviation&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;area&quot;</span><span class="p">:</span> <span class="n">bbox_de_bounds_adjusted</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Führen Sie es aus, um den Datensatz herunterzuladen:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">main_retrieve</span><span class="p">():</span>
+    <span class="n">dataset_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">selected_period</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">selected_variable</span><span class="si">}</span><span class="s2">.zip&quot;</span>
+    <span class="n">dataset_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">dataset_filename</span><span class="p">)</span>
+    
+    <span class="c1"># Den Datensatz nur herunterladen, wenn er noch nicht heruntergeladen wurde</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">dataset_filepath</span><span class="p">):</span>
+        <span class="c1"># Rufen Sie den CDS-Client nur auf, wenn der Datensatz noch nicht heruntergeladen wurde.</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">main</span><span class="p">()</span>
+        <span class="c1"># Den Datensatz mit den definierten Anforderungsparametern herunterladen</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">dataset_filepath</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Datensatz bereits heruntergeladen.&quot;</span><span class="p">)</span>
+        
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main_retrieve</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Datensatz bereits heruntergeladen.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="extrahieren-sie-die-zip-dateien-in-ordner">
+<h3>2.3 Extrahieren Sie die ZIP-Dateien in Ordner<a class="headerlink" href="#extrahieren-sie-die-zip-dateien-in-ordner" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
+
+<span class="c1"># Definieren Sie den Ordner, in dem die extrahierten Dateien gespeichert werden</span>
+<span class="n">extract_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">selected_period</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Entpacken der ZIP-Datei</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variable_list</span><span class="p">:</span>
+            <span class="c1"># Konstruieren Sie den Dateinamen für die ZIP-Datei basierend auf dem ausgewählten Zeitraum und der Variable</span>
+            <span class="n">dataset_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">selected_period</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">variable</span><span class="si">}</span><span class="s2">.zip&quot;</span>
+            <span class="n">dataset_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">dataset_filename</span><span class="p">)</span>
+            
+            <span class="c1"># Versuchen Sie, die ZIP-Datei zu öffnen und zu extrahieren</span>
+            <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">dataset_filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
+                <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dateien erfolgreich extrahiert nach: </span><span class="si">{</span><span class="n">extract_folder</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ordner ist nicht leer. Entpacken überspringen.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fehler: Die Datei </span><span class="si">{</span><span class="n">dataset_filepath</span><span class="si">}</span><span class="s2"> wurde nicht gefunden.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">BadZipFile</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fehler: Die Datei </span><span class="si">{</span><span class="n">dataset_filepath</span><span class="si">}</span><span class="s2"> ist keine gültige ZIP-Datei.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ein unerwarteter Fehler ist aufgetreten: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ordner ist nicht leer. Entpacken überspringen.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="untersuchen-die-metadaten-der-netcdf4-datei">
+<h2>3. Untersuchen die Metadaten der NetCDF4-Datei<a class="headerlink" href="#untersuchen-die-metadaten-der-netcdf4-datei" title="Link to this heading"></a></h2>
+<p>⚠️ <span style="background-color: red; color: white; padding: 2px 4px;">Wichtig</span> Nachdem Sie die Datensätze heruntergeladen haben, <strong>aktualisieren Sie</strong> <code class="docutils literal notranslate"><span class="pre">selected_period</span></code> im Codeblock unten, um mit der Analyse, Datenextraktion und Visualisierung fortzufahren. Dieser Schritt ist entscheidend, um mit der Analyse, Datenextraktion und Visualisierung fortzufahren.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Legen Sie den ausgewählten Zeitraum für die Analyse fest (0: Jahr, 1: Sommer, 2: Winter)</span>
+<span class="n">selected_period</span> <span class="o">=</span> <span class="n">period_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Ändern Sie diesen Index, um den Zeitraum zu ändern</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ausgewählter Zeitraum: </span><span class="si">{</span><span class="n">selected_period</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Definieren Sie den Pfad des extrahierten Ordners basierend auf dem ausgewählten Zeitraum</span>
+<span class="n">extract_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">selected_period</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ausgewählter Zeitraum: summer
+</pre></div>
+</div>
+</div>
+</div>
+<section id="erstellen-eines-dataframe-mit-verfugbaren-netcdf-dateien">
+<h3>3.1 Erstellen eines DataFrame mit verfügbaren netCDF-Dateien<a class="headerlink" href="#erstellen-eines-dataframe-mit-verfugbaren-netcdf-dateien" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">meta</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="c1"># Überprüfen, ob der Dateiname dem erwarteten Muster entspricht</span>
+    <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+        <span class="sa">r</span><span class="s2">&quot;(?P&lt;ds_statistic&gt;mean|p10|p90)_(?P&lt;ds_variable&gt;Tmean|Tmax|Tmin)_(?P&lt;ds_period&gt;Yearly|Winter|Summer)_(?P&lt;rcp&gt;rcp\d</span><span class="si">{2}</span><span class="s2">)_(?P&lt;rcp_statistic&gt;mean|stdev)_v(?P&lt;version&gt;\d+\.\d+)\.&quot;</span><span class="p">,</span>
+        <span class="n">filename</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Fehler ausgeben, wenn der Dateiname nicht dem erwarteten Schema entspricht</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Der angegebene Dateiname entspricht nicht dem erwarteten Namensschema&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Funktion zum Extrahieren des Variablennamens aus der NetCDF-Datei</span>
+    <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_nc_variable</span><span class="p">():</span>
+        <span class="k">with</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">nc_dataset</span><span class="p">:</span>
+            <span class="n">variable_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+            <span class="n">primary_variable_index</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Diesen Index bei Bedarf anpassen</span>
+            <span class="k">if</span> <span class="n">primary_variable_index</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">variable_names</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;Der Index der Hauptvariable liegt außerhalb des gültigen Bereichs für die NetCDF-Variablen.&quot;</span><span class="p">)</span>
+            
+            <span class="n">primary_variable</span> <span class="o">=</span> <span class="n">variable_names</span><span class="p">[</span><span class="n">primary_variable_index</span><span class="p">]</span>
+            <span class="n">primary_variable_shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">nc_dataset</span><span class="p">[</span><span class="n">primary_variable</span><span class="p">])</span>
+
+            <span class="k">return</span> <span class="n">primary_variable</span><span class="p">,</span> <span class="n">primary_variable_shape</span>
+    
+    <span class="c1"># Metadaten als Dictionary zurückgeben</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+        <span class="n">path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">filename</span><span class="p">),</span>
+        <span class="n">ds_period</span><span class="o">=</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;ds_period&#39;</span><span class="p">),</span>
+        <span class="n">ds_variable</span><span class="o">=</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;ds_variable&#39;</span><span class="p">),</span>
+        <span class="n">ds_statistic</span><span class="o">=</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;ds_statistic&#39;</span><span class="p">),</span>
+        <span class="n">variable_name</span><span class="o">=</span><span class="n">get_nc_variable</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">variable_shape</span><span class="o">=</span><span class="n">get_nc_variable</span><span class="p">()[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">rcp</span><span class="o">=</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;rcp&#39;</span><span class="p">),</span>
+        <span class="n">rcp_statistic</span><span class="o">=</span><span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;rcp_statistic&#39;</span><span class="p">),</span>
+    <span class="p">)</span>
+
+<span class="c1"># Metadaten für alle NetCDF-Dateien im Ordner extrahieren</span>
+<span class="c1"># Das Dictionary &#39;nc_files&#39; enthält alle relevanten Metadaten der verfügbaren NetCDF4-Dateien</span>
+<span class="c1"># Dieses Dictionary wird später verwendet, um die Dateien in GeoTiff zu konvertieren</span>
+<span class="n">nc_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">meta</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.nc&#39;</span><span class="p">)]</span>
+<span class="n">nc_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">nc_files</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s1">&#39;ds_variable&#39;</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;ds_statistic&#39;</span><span class="p">]))</span>
+
+<span class="n">df_nc_files</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">nc_files</span><span class="p">)</span>
+
+<span class="c1"># Pandas-Anzeigeoptionen anpassen</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">max_colwidth</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="c1"># DataFrame anzeigen, ohne die Spalte &#39;path&#39; darzustellen</span>
+<span class="n">df_nc_files</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">df_nc_files</span><span class="o">.</span><span class="n">columns</span> <span class="o">!=</span> <span class="s1">&#39;path&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>filename</th>
+      <th>ds_period</th>
+      <th>ds_variable</th>
+      <th>ds_statistic</th>
+      <th>variable_name</th>
+      <th>variable_shape</th>
+      <th>rcp</th>
+      <th>rcp_statistic</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>mean_Tmax_Summer_rcp45_mea...</td>
+      <td>Summer</td>
+      <td>Tmax</td>
+      <td>mean</td>
+      <td>mean_Tmax_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp45</td>
+      <td>mean</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>mean_Tmax_Summer_rcp45_std...</td>
+      <td>Summer</td>
+      <td>Tmax</td>
+      <td>mean</td>
+      <td>mean_Tmax_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp45</td>
+      <td>stdev</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>mean_Tmax_Summer_rcp85_mea...</td>
+      <td>Summer</td>
+      <td>Tmax</td>
+      <td>mean</td>
+      <td>mean_Tmax_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp85</td>
+      <td>mean</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>mean_Tmax_Summer_rcp85_std...</td>
+      <td>Summer</td>
+      <td>Tmax</td>
+      <td>mean</td>
+      <td>mean_Tmax_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp85</td>
+      <td>stdev</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>mean_Tmean_Summer_rcp45_me...</td>
+      <td>Summer</td>
+      <td>Tmean</td>
+      <td>mean</td>
+      <td>mean_Tmean_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp45</td>
+      <td>mean</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>mean_Tmean_Summer_rcp45_st...</td>
+      <td>Summer</td>
+      <td>Tmean</td>
+      <td>mean</td>
+      <td>mean_Tmean_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp45</td>
+      <td>stdev</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>mean_Tmean_Summer_rcp85_me...</td>
+      <td>Summer</td>
+      <td>Tmean</td>
+      <td>mean</td>
+      <td>mean_Tmean_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp85</td>
+      <td>mean</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>mean_Tmean_Summer_rcp85_st...</td>
+      <td>Summer</td>
+      <td>Tmean</td>
+      <td>mean</td>
+      <td>mean_Tmean_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp85</td>
+      <td>stdev</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>p10_Tmean_Summer_rcp45_mea...</td>
+      <td>Summer</td>
+      <td>Tmean</td>
+      <td>p10</td>
+      <td>p10_Tmean_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp45</td>
+      <td>mean</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>p10_Tmean_Summer_rcp45_std...</td>
+      <td>Summer</td>
+      <td>Tmean</td>
+      <td>p10</td>
+      <td>p10_Tmean_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp45</td>
+      <td>stdev</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>p10_Tmean_Summer_rcp85_mea...</td>
+      <td>Summer</td>
+      <td>Tmean</td>
+      <td>p10</td>
+      <td>p10_Tmean_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp85</td>
+      <td>mean</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>p10_Tmean_Summer_rcp85_std...</td>
+      <td>Summer</td>
+      <td>Tmean</td>
+      <td>p10</td>
+      <td>p10_Tmean_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp85</td>
+      <td>stdev</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>p90_Tmean_Summer_rcp45_mea...</td>
+      <td>Summer</td>
+      <td>Tmean</td>
+      <td>p90</td>
+      <td>p90_Tmean_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp45</td>
+      <td>mean</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>p90_Tmean_Summer_rcp45_std...</td>
+      <td>Summer</td>
+      <td>Tmean</td>
+      <td>p90</td>
+      <td>p90_Tmean_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp45</td>
+      <td>stdev</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>p90_Tmean_Summer_rcp85_mea...</td>
+      <td>Summer</td>
+      <td>Tmean</td>
+      <td>p90</td>
+      <td>p90_Tmean_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp85</td>
+      <td>mean</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>p90_Tmean_Summer_rcp85_std...</td>
+      <td>Summer</td>
+      <td>Tmean</td>
+      <td>p90</td>
+      <td>p90_Tmean_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp85</td>
+      <td>stdev</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>mean_Tmin_Summer_rcp45_mea...</td>
+      <td>Summer</td>
+      <td>Tmin</td>
+      <td>mean</td>
+      <td>mean_Tmin_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp45</td>
+      <td>mean</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>mean_Tmin_Summer_rcp45_std...</td>
+      <td>Summer</td>
+      <td>Tmin</td>
+      <td>mean</td>
+      <td>mean_Tmin_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp45</td>
+      <td>stdev</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>mean_Tmin_Summer_rcp85_mea...</td>
+      <td>Summer</td>
+      <td>Tmin</td>
+      <td>mean</td>
+      <td>mean_Tmin_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp85</td>
+      <td>mean</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>mean_Tmin_Summer_rcp85_std...</td>
+      <td>Summer</td>
+      <td>Tmin</td>
+      <td>mean</td>
+      <td>mean_Tmin_Summer</td>
+      <td>(100, 82, 95)</td>
+      <td>rcp85</td>
+      <td>stdev</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="ubersicht-uber-die-struktur-der-heruntergeladenen-daten">
+<h3>3.2 Übersicht über die Struktur der heruntergeladenen Daten<a class="headerlink" href="#ubersicht-uber-die-struktur-der-heruntergeladenen-daten" title="Link to this heading"></a></h3>
+<p>Das folgende Diagramm veranschaulicht die Struktur der <strong>SIS-Temperaturstatistik-Daten</strong>, die in vier hierarchische Ebenen unterteilt sind:</p>
+<ol class="arabic simple">
+<li><p><strong>Zeitraum</strong>: Gibt die Zeiteinheit der Daten an, die eine der folgenden sein kann:</p>
+<ul class="simple">
+<li><p><strong>Jahr</strong></p></li>
+<li><p><strong>Sommer</strong></p></li>
+<li><p><strong>Winter</strong></p></li>
+</ul>
+</li>
+<li><p><strong>Variable</strong>: Die Daten enthalten drei Temperaturvariablen:</p>
+<ul class="simple">
+<li><p><strong>Durchschnittstemperatur</strong></p></li>
+<li><p><strong>Mindesttemperatur</strong></p></li>
+<li><p><strong>Maximaltemperatur</strong></p></li>
+</ul>
+</li>
+<li><p><strong>Statistik</strong>: Für jede Variable werden folgende Statistiken berechnet:</p>
+<ul class="simple">
+<li><p><strong>Zeitlicher Durchschnitt</strong></p></li>
+<li><p><strong>10. Perzentil</strong> (nur für Durchschnittstemperatur)</p></li>
+<li><p><strong>90. Perzentil</strong> (nur für Durchschnittstemperatur)</p></li>
+</ul>
+</li>
+<li><p><strong>Experiment</strong>: Die Daten werden unter zwei Klimaszenarien bereitgestellt:</p>
+<ul class="simple">
+<li><p><strong>rcp45</strong></p></li>
+<li><p><strong>rcp85</strong></p></li>
+<li><p>Für jedes Szenario liegen die Daten in zwei Formen vor:</p>
+<ul>
+<li><p><strong>rcp45_mean</strong>, <strong>rcp45_std</strong></p></li>
+<li><p><strong>rcp85_mean</strong>, <strong>rcp85_std</strong></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>Die Datenstruktur folgt einer hierarchischen Abfolge von <strong>Zeitraum</strong> zu <strong>Variable</strong>, dann zu <strong>Statistik</strong> und schließlich zu <strong>Experiment</strong>. Diese Hierarchie zeigt, wie die Temperaturdaten organisiert, berechnet und analysiert werden.</p>
+<img src="./images/sis-temperature-statistics-data-structure_v2.jpg" width="550" style="display: block; margin: 0 auto; border: 1px solid #aeaeae">
+</section>
+<section id="einzigartige-variablennamen-und-verfugbare-variablen-ausgeben">
+<h3>3.3 Einzigartige Variablennamen und verfügbare Variablen ausgeben<a class="headerlink" href="#einzigartige-variablennamen-und-verfugbare-variablen-ausgeben" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Variable definieren, um bereits verarbeitete Variablennamen zu speichern und Duplikate zu vermeiden  </span>
+<span class="n">seen_variables</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>  
+
+<span class="c1"># Alle Variablen in jeder NetCDF-Datei auflisten  </span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">nc_file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nc_files</span><span class="p">):</span>  
+    <span class="n">variable_name</span> <span class="o">=</span> <span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;variable_name&#39;</span><span class="p">]</span>  
+    
+    <span class="c1"># Überspringen, wenn die Variable bereits verarbeitet wurde  </span>
+    <span class="k">if</span> <span class="n">variable_name</span> <span class="ow">in</span> <span class="n">seen_variables</span><span class="p">:</span>  
+        <span class="k">continue</span>  
+
+    <span class="c1"># NetCDF-Datei im Lesemodus öffnen  </span>
+    <span class="k">with</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">nc_dataset</span><span class="p">:</span>  
+        <span class="c1"># Alle Variablen im aktuellen Datensatz auflisten  </span>
+        <span class="n">variables_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>  
+        
+        <span class="c1"># Details der Datei und ihrer Variablen ausgeben  </span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">:</span><span class="s2">&lt;2</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">variable_name</span><span class="si">:</span><span class="s2">&lt;18</span><span class="si">}</span><span class="s2">: Verfügbare Variablen: </span><span class="si">{</span><span class="n">variables_list</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  
+    
+    <span class="c1"># Diese Variable als verarbeitet markieren  </span>
+    <span class="n">seen_variables</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">variable_name</span><span class="p">)</span>  
+
+<span class="c1"># Variable definieren, um bereits verarbeitete Variablennamen zu speichern und Duplikate zu vermeiden  </span>
+<span class="n">seen_variables</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1  mean_Tmax_Summer  : Verfügbare Variablen: [&#39;mean_Tmax_Summer&#39;, &#39;height&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;time&#39;]
+5  mean_Tmean_Summer : Verfügbare Variablen: [&#39;mean_Tmean_Summer&#39;, &#39;height&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;time&#39;]
+9  p10_Tmean_Summer  : Verfügbare Variablen: [&#39;p10_Tmean_Summer&#39;, &#39;quantile&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;time&#39;]
+13 p90_Tmean_Summer  : Verfügbare Variablen: [&#39;p90_Tmean_Summer&#39;, &#39;quantile&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;time&#39;]
+17 mean_Tmin_Summer  : Verfügbare Variablen: [&#39;mean_Tmin_Summer&#39;, &#39;height&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;time&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alle Variableninformationen in jeder NetCDF-Datei auflisten  </span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">nc_file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nc_files</span><span class="p">):</span>  
+    <span class="n">variable_name</span> <span class="o">=</span> <span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;variable_name&#39;</span><span class="p">]</span>  
+    
+    <span class="c1"># Überspringen, wenn die Variable bereits verarbeitet wurde  </span>
+    <span class="k">if</span> <span class="n">variable_name</span> <span class="ow">in</span> <span class="n">seen_variables</span><span class="p">:</span>  
+        <span class="k">continue</span>  
+    
+    <span class="c1"># NetCDF-Datei im Lesemodus öffnen  </span>
+    <span class="k">with</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">nc_dataset</span><span class="p">:</span>  
+        <span class="c1"># Primärvariable-Daten abrufen  </span>
+        <span class="n">variable_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">variable_name</span><span class="p">]</span>  
+        
+        <span class="c1"># Zusammenfassung der Primärvariable erstellen  </span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>  
+            <span class="s2">&quot;Variablenname&quot;</span><span class="p">:</span> <span class="n">variable_name</span><span class="p">,</span>  
+            <span class="s2">&quot;Datentyp&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>  
+            <span class="s2">&quot;Form&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>  
+            <span class="s2">&quot;Variableninfo&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_data</span><span class="o">.</span><span class="n">dimensions</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>  
+            <span class="s2">&quot;Einheiten&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>  
+            <span class="s2">&quot;Langer Name&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;long_name&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>  
+        <span class="p">}</span>  
+        
+        <span class="c1"># Datensatz-Zusammenfassung als DataFrame zur besseren Visualisierung anzeigen  </span>
+        <span class="n">nc_summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Beschreibung&#39;</span><span class="p">,</span> <span class="s1">&#39;Bemerkungen&#39;</span><span class="p">])</span>  
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">. Zusammenfassung der Variable &#39;</span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s2">&#39;:&quot;</span><span class="p">)</span>  
+        <span class="n">display</span><span class="p">(</span><span class="n">nc_summary</span><span class="p">)</span>  
+    
+    <span class="c1"># Variablenname zur Liste der bereits verarbeiteten Variablen hinzufügen  </span>
+    <span class="n">seen_variables</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">variable_name</span><span class="p">)</span>  
+    
+    <span class="c1"># Ausgabe begrenzen  </span>
+    <span class="n">output_limit</span> <span class="o">=</span> <span class="mi">2</span>  
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">seen_variables</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">output_limit</span><span class="p">:</span>  
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;.... (Ausgabe auf die ersten </span><span class="si">{</span><span class="n">output_limit</span><span class="si">}</span><span class="s2"> Variablen gekürzt)&quot;</span><span class="p">)</span>  
+        <span class="k">break</span>  
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1. Zusammenfassung der Variable &#39;mean_Tmax_Summer&#39;:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Beschreibung</th>
+      <th>Bemerkungen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Variablenname</td>
+      <td>mean_Tmax_Summer</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Datentyp</td>
+      <td>float32</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Form</td>
+      <td>(100, 82, 95)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Variableninfo</td>
+      <td>('time', 'lat', 'lon')</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Einheiten</td>
+      <td>degrees C</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Langer Name</td>
+      <td>Ensemble members average o...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5. Zusammenfassung der Variable &#39;mean_Tmean_Summer&#39;:
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Beschreibung</th>
+      <th>Bemerkungen</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Variablenname</td>
+      <td>mean_Tmean_Summer</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Datentyp</td>
+      <td>float32</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Form</td>
+      <td>(100, 82, 95)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Variableninfo</td>
+      <td>('time', 'lat', 'lon')</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Einheiten</td>
+      <td>degrees C</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Langer Name</td>
+      <td>Ensemble members average o...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.... (Ausgabe auf die ersten 2 Variablen gekürzt)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="exportieren-der-netcdf4-dateien-im-csv-format">
+<h2>4. Exportieren der NetCDF4-Dateien im csv-Format<a class="headerlink" href="#exportieren-der-netcdf4-dateien-im-csv-format" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Dummy text</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exportieren-der-netcdf4-datei-nach-geotiff">
+<h2>5. Exportieren der NetCDF4-Datei nach GeoTIFF<a class="headerlink" href="#exportieren-der-netcdf4-datei-nach-geotiff" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Dummy text</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="analyse-und-visualisierung-optionen">
+<h2>6. Analyse und Visualisierung Optionen<a class="headerlink" href="#analyse-und-visualisierung-optionen" title="Link to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="02-satellite-lake-water-temperature.html" class="btn btn-neutral float-left" title="Seewassertemperatur aus Satellitendaten abgeleitet" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="../../rst_jupyter_bibliothek/index.html" class="btn btn-neutral float-right" title="Über CoKLIMAx-II Notebooks" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, str.ucture GmbH.</p>
+  </div>
+
+  Erstellt mit <a href="https://www.sphinx-doc.org/">Sphinx</a> mit einem
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    bereitgestellt von <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

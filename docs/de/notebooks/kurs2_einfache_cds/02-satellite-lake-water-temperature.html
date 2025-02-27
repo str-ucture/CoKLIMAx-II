@@ -26,7 +26,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
     <link rel="search" title="Suche" href="../../search.html" />
-    <link rel="next" title="Über CoKLIMAx-II Notebooks" href="../../rst_jupyter_bibliothek/index.html" />
+    <link rel="next" title="Temperaturstatistiken für Europa" href="03-sis-temperature-statistics.html" />
     <link rel="prev" title="Wasserstände von Seen abgleitet aus Satellitendaten" href="01-satellite-lake-water-level.html" /> 
 </head>
 
@@ -58,7 +58,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kurs 1:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/01-cds-api-installieren-und-herunterladen.html">CDS API Installation &amp; Download​</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/01-cds-api-installieren-und-herunterladen.html">CDS API Installation und Download</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/02-netcdf-einfuhrung.html">NetCDF Einführung</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kurs 2:</span></p>
@@ -73,26 +73,27 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#netcdf4-dateien-zu-einer-einzigen-netcdf4-datei-zusammenfuhren">3. NetCDF4-Dateien zu einer einzigen NetCDF4-Datei zusammenführen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#untersuchen-der-metadaten-der-netcdf4-datei">4. Untersuchen der Metadaten der netCDF4-Datei</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#untersuchen-der-metadaten-der-netcdf4-datei">4. Untersuchen der Metadaten der NetCDF4-Datei</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#exportieren-der-zeitreihe-im-csv-format">5. Exportieren der Zeitreihe im csv-Format</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#definieren-sie-eine-funktion-zur-berechnung-des-tagesdurchschnitts">5.1 Definieren Sie eine Funktion zur Berechnung des Tagesdurchschnitts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#erstellen-des-dataframes-fur-jahresdaten-und-export-als-csv">5.2 Erstellen des DataFrames für Jahresdaten und Export als CSV</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#analyse-und-visualisierung">6. Analyse und Visualisierung</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#analyse-und-visualisierung-optionen">6. Analyse und Visualisierung Optionen</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#visualisierung-des-tagesdurchschnitts-mit-liniendiagramm">6.1 Visualisierung des Tagesdurchschnitts mit Liniendiagramm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visualisierung-des-monatlichen-durchschnitts-mit-liniendiagramm">6.2 Visualisierung des monatlichen Durchschnitts mit Liniendiagramm</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visualisierung-des-monatlichen-durchschnitts-mit-balkendiagramm">6.3 Visualisierung des monatlichen Durchschnitts mit Balkendiagramm</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#export-des-netcdf4-datei-nach-geotiff">7. Export des NetCDF4-Datei nach GeoTIFF</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#exportieren-der-netcdf4-datei-nach-geotiff">7. Exportieren der NetCDF4-Datei nach GeoTIFF</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#exportieren-sie-den-jahrlichen-datensatz-als-eine-geotiff-datei">7.1 Exportieren Sie den jährlichen Datensatz als eine GeoTIFF-Datei</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#export-des-jahresdatensatzes-als-einzelne-geotiff-dateien">7.2 Export des Jahresdatensatzes als einzelne GeoTIFF-Dateien</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#export-des-jahresdatensatzes-als-einzelne-geotiff-dateien">7.2 Export des Jahresdatensatzes als einzelne GeoTIFF-Dateien</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#alle-verfugbaren-daten-von-1995-bis-2023-visualisieren">8. Alle verfügbaren Daten von 1995 bis 2023 visualisieren</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zusatzliche-visualisierung-mit-einem-kalenderdiagramm">8. Zusätzliche Visualisierung mit einem Kalenderdiagramm</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="03-sis-temperature-statistics.html">Temperaturstatistiken für Europa</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">The Jupyter Notebook Bibliothek:</span></p>
 <ul>
@@ -141,7 +142,9 @@
 <li><p><a class="reference internal" href="#netcdf4-dateien-zu-einer-einzigen-netcdf4-datei-zusammenfuhren"><span class="std std-ref">NetCDF4-Dateien zu einer einzigen NetCDF4-Datei zusammenführen</span></a></p></li>
 <li><p><a class="reference internal" href="#untersuchen-der-metadaten-der-netcdf4-datei"><span class="std std-ref">Untersuchen der Metadaten der netCDF4-Datei</span></a></p></li>
 <li><p><a class="reference internal" href="#exportieren-der-zeitreihe-im-csv-format"><span class="std std-ref">Exportieren der Zeitreihe im csv-Format</span></a></p></li>
-<li><p><a class="reference internal" href="#analyse-und-visualisierung"><span class="std std-ref">Analyse und Visualisierung</span></a></p></li>
+<li><p><a class="reference internal" href="#analyse-und-visualisierung-optionen"><span class="std std-ref">Analyse und Visualisierung Optionen</span></a></p></li>
+<li><p><a class="reference internal" href="#exportieren-der-netcdf4-datei-nach-geotiff"><span class="std std-ref">Exportieren der NetCDF4-Datei nach GeoTIFF</span></a></p></li>
+<li><p><a class="reference internal" href="#zusatzliche-visualisierung-mit-einem-kalenderdiagramm"><span class="std std-ref">Zusätzliche Visualisierung mit einem Kalenderdiagramm</span></a></p></li>
 </ul>
 <p><strong>Information on Dataset:</strong></p>
 <ul class="simple">
@@ -155,13 +158,13 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
-<span class="sd">&#39;&#39;&#39; ---- Hier die Verzeichnisse angeben ---- &#39;&#39;&#39;</span>
+<span class="sd">&#39;&#39;&#39; ---- Verzeichnisse hier angeben ---- &#39;&#39;&#39;</span>
 <span class="n">download_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-temperature\download&quot;</span>
 <span class="n">working_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-temperature\working&quot;</span>
 <span class="n">geotiff_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-temperature\geotiff&quot;</span>
 <span class="n">csv_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-temperature\csv&quot;</span>
 <span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\satellite-lake-water-temperature\output&quot;</span>
-<span class="sd">&#39;&#39;&#39; ----- Ende der Eingaben ---- &#39;&#39;&#39;</span>
+<span class="sd">&#39;&#39;&#39; ----- Ende der Angaben ---- &#39;&#39;&#39;</span>
 
 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -182,7 +185,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cdsapi</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
-    <span class="c1"># API-Schlüssel für die Authentifizierung</span>
+    <span class="c1"># API-Key für die Authentifizierung</span>
     <span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;fdae60fd-35d4-436f-825c-c63fedab94a4&quot;</span>
     <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;https://cds.climate.copernicus.eu/api&quot;</span>
 
@@ -212,7 +215,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Geben Sie das Jahr von Interesse für die Datenanforderung an.</span>
 <span class="c1"># Die entsprechende Datenversion hängt vom Jahr ab.</span>
-<span class="n">year</span> <span class="o">=</span> <span class="mi">2020</span>
+<span class="n">year</span> <span class="o">=</span> <span class="mi">2007</span>
 
 <span class="c1"># Bestimmen Sie die Datenversion basierend auf dem Jahr:</span>
 <span class="c1"># Version &quot;4_5_1&quot; wird für Jahre bis 2020 verwendet, und &quot;4_5_2&quot; für spätere Jahre.</span>
@@ -291,32 +294,32 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
 
-<span class="c1"># Construct the dataset filename and path</span>
+<span class="c1"># Erstellen des Dateinamens und des Dateipfads für die ZIP-Datei des Datensatzes</span>
 <span class="n">dataset_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">.zip&quot;</span>
 <span class="n">dataset_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">dataset_filename</span><span class="p">)</span>
 <span class="n">extract_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">))</span>
 
-<span class="c1"># Extract the zip file</span>
+<span class="c1"># Entpacken der ZIP-Datei</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">):</span>
         <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">dataset_filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
             <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully extracted files to: </span><span class="si">{</span><span class="n">extract_folder</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dateien erfolgreich extrahiert nach: </span><span class="si">{</span><span class="n">extract_folder</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Folder is not empty. Skipping extraction.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ordner ist nicht leer. Entpacken überspringen.&quot;</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: The file </span><span class="si">{</span><span class="n">dataset_filepath</span><span class="si">}</span><span class="s2"> was not found.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fehler: Die Datei </span><span class="si">{</span><span class="n">dataset_filepath</span><span class="si">}</span><span class="s2"> wurde nicht gefunden.&quot;</span><span class="p">)</span>
 <span class="k">except</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">BadZipFile</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: The file </span><span class="si">{</span><span class="n">dataset_filepath</span><span class="si">}</span><span class="s2"> is not a valid zip file.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Fehler: Die Datei </span><span class="si">{</span><span class="n">dataset_filepath</span><span class="si">}</span><span class="s2"> ist keine gültige ZIP-Datei.&quot;</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An unexpected error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ein unerwarteter Fehler ist aufgetreten: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Folder is not empty. Skipping extraction.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ordner ist nicht leer. Entpacken überspringen.
 </pre></div>
 </div>
 </div>
@@ -362,14 +365,14 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Zusammengeführte NetCDF-Datei für das Jahr 2020 existiert bereits. Überspringe Zusammenführung.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Zusammengeführte NetCDF-Datei für das Jahr 2007 existiert bereits. Überspringe Zusammenführung.
 </pre></div>
 </div>
 </div>
 </div>
 </section>
 <section id="untersuchen-der-metadaten-der-netcdf4-datei">
-<h2>4. Untersuchen der Metadaten der netCDF4-Datei<a class="headerlink" href="#untersuchen-der-metadaten-der-netcdf4-datei" title="Link to this heading"></a></h2>
+<h2>4. Untersuchen der Metadaten der NetCDF4-Datei<a class="headerlink" href="#untersuchen-der-metadaten-der-netcdf4-datei" title="Link to this heading"></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
@@ -383,12 +386,12 @@
 
 <span class="c1"># Auflisten aller Variablen im Datensatz</span>
 <span class="n">variables_list</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Available variables: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">variables_list</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Verfügbare Variablen: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">variables_list</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Available variables: [&#39;lake_surface_water_temperature&#39;, &#39;lswt_uncertainty&#39;, &#39;lswt_quality_level&#39;, &#39;lswt_obs_instr&#39;, &#39;lswt_flag_bias_correction&#39;, &#39;lakeid_CCI&#39;, &#39;lakeid_GloboLakes&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;time&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Verfügbare Variablen: [&#39;lake_surface_water_temperature&#39;, &#39;lswt_uncertainty&#39;, &#39;lswt_quality_level&#39;, &#39;lswt_obs_instr&#39;, &#39;lswt_flag_bias_correction&#39;, &#39;lakeid_CCI&#39;, &#39;lakeid_GloboLakes&#39;, &#39;lat&#39;, &#39;lon&#39;, &#39;time&#39;]
 </pre></div>
 </div>
 </div>
@@ -404,7 +407,7 @@
 <span class="c1"># Erstellen einer Zusammenfassung der Hauptvariablen</span>
 <span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;Variablename&quot;</span><span class="p">:</span> <span class="n">variable_name</span><span class="p">,</span>
-    <span class="s2">&quot;Daten Typ&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+    <span class="s2">&quot;Datentyp&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
     <span class="s2">&quot;Form&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
     <span class="s2">&quot;Variableinfo&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">variable_data</span><span class="o">.</span><span class="n">dimensions</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
     <span class="s2">&quot;Einheiten&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
@@ -450,13 +453,13 @@
     </tr>
     <tr>
       <th>1</th>
-      <td>Daten Typ</td>
+      <td>Datentyp</td>
       <td>int16</td>
     </tr>
     <tr>
       <th>2</th>
       <td>Form</td>
-      <td>(366, 14, 24)</td>
+      <td>(365, 14, 24)</td>
     </tr>
     <tr>
       <th>3</th>
@@ -479,7 +482,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Gib eine Zusammenfassung aller Variablen des Datensatzes aus</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Drucken Sie eine Zusammenfassung aller Variablen des Datensatzes</span>
 <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">variable</span> <span class="ow">in</span> <span class="n">variables_list</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
@@ -529,43 +532,43 @@
       <th>0</th>
       <td>lake_surface_water_temperature</td>
       <td>kelvin</td>
-      <td>(366, 14, 24)</td>
+      <td>(365, 14, 24)</td>
     </tr>
     <tr>
       <th>1</th>
       <td>lswt_uncertainty</td>
       <td>kelvin</td>
-      <td>(366, 14, 24)</td>
+      <td>(365, 14, 24)</td>
     </tr>
     <tr>
       <th>2</th>
       <td>lswt_quality_level</td>
       <td>N/A</td>
-      <td>(366, 14, 24)</td>
+      <td>(365, 14, 24)</td>
     </tr>
     <tr>
       <th>3</th>
       <td>lswt_obs_instr</td>
       <td>N/A</td>
-      <td>(366, 14, 24)</td>
+      <td>(365, 14, 24)</td>
     </tr>
     <tr>
       <th>4</th>
       <td>lswt_flag_bias_correction</td>
       <td>N/A</td>
-      <td>(366, 14, 24)</td>
+      <td>(365, 14, 24)</td>
     </tr>
     <tr>
       <th>5</th>
       <td>lakeid_CCI</td>
       <td>1</td>
-      <td>(366, 14, 24)</td>
+      <td>(365, 14, 24)</td>
     </tr>
     <tr>
       <th>6</th>
       <td>lakeid_GloboLakes</td>
       <td>1</td>
-      <td>(366, 14, 24)</td>
+      <td>(365, 14, 24)</td>
     </tr>
     <tr>
       <th>7</th>
@@ -583,7 +586,7 @@
       <th>9</th>
       <td>time</td>
       <td>seconds since 1970-01-01</td>
-      <td>(366,)</td>
+      <td>(365,)</td>
     </tr>
   </tbody>
 </table>
@@ -598,7 +601,6 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># Funktion zur Konvertierung von NetCDF-Daten in ein Pandas DataFrame</span>
@@ -694,7 +696,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Datei existiert bereits unter .\data\satellite-lake-water-temperature\csv\satellite-lake-water-temperature_daily-mean_2020.csv.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Datei existiert bereits unter .\data\satellite-lake-water-temperature\csv\satellite-lake-water-temperature_daily-mean_2007.csv.
 Überspringe den Export.
 Lese bestehende CSV-Datei ein...
 </pre></div>
@@ -728,48 +730,48 @@ Lese bestehende CSV-Datei ein...
   <tbody>
     <tr>
       <th>0</th>
-      <td>2020-01-01 12:00:00</td>
-      <td>278.33</td>
-      <td>0.95</td>
-      <td>0.23</td>
-      <td>3.89</td>
-      <td>9.00</td>
+      <td>2007-01-02 12:00:00</td>
+      <td>278.46</td>
+      <td>0.11</td>
+      <td>0.43</td>
+      <td>4.86</td>
+      <td>7.00</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2020-01-03 12:00:00</td>
-      <td>272.20</td>
-      <td>0.00</td>
-      <td>0.26</td>
-      <td>1.00</td>
-      <td>1.00</td>
+      <td>2007-01-05 12:00:00</td>
+      <td>275.98</td>
+      <td>0.58</td>
+      <td>0.29</td>
+      <td>3.60</td>
+      <td>5.00</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2020-01-05 12:00:00</td>
-      <td>278.80</td>
-      <td>0.76</td>
-      <td>0.24</td>
-      <td>4.17</td>
-      <td>46.00</td>
+      <td>2007-01-06 12:00:00</td>
+      <td>278.64</td>
+      <td>0.00</td>
+      <td>0.34</td>
+      <td>4.00</td>
+      <td>1.00</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2020-01-06 12:00:00</td>
-      <td>278.11</td>
-      <td>0.16</td>
-      <td>0.20</td>
-      <td>2.00</td>
-      <td>3.00</td>
+      <td>2007-01-11 12:00:00</td>
+      <td>277.96</td>
+      <td>1.43</td>
+      <td>0.18</td>
+      <td>3.14</td>
+      <td>7.00</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>2020-01-07 12:00:00</td>
-      <td>274.36</td>
-      <td>1.44</td>
-      <td>0.28</td>
-      <td>1.62</td>
-      <td>8.00</td>
+      <td>2007-01-14 12:00:00</td>
+      <td>278.68</td>
+      <td>0.76</td>
+      <td>0.19</td>
+      <td>4.30</td>
+      <td>20.00</td>
     </tr>
   </tbody>
 </table>
@@ -777,8 +779,8 @@ Lese bestehende CSV-Datei ein...
 </div>
 </section>
 </section>
-<section id="analyse-und-visualisierung">
-<h2>6. Analyse und Visualisierung<a class="headerlink" href="#analyse-und-visualisierung" title="Link to this heading"></a></h2>
+<section id="analyse-und-visualisierung-optionen">
+<h2>6. Analyse und Visualisierung Optionen<a class="headerlink" href="#analyse-und-visualisierung-optionen" title="Link to this heading"></a></h2>
 <section id="visualisierung-des-tagesdurchschnitts-mit-liniendiagramm">
 <h3>6.1 Visualisierung des Tagesdurchschnitts mit Liniendiagramm<a class="headerlink" href="#visualisierung-des-tagesdurchschnitts-mit-liniendiagramm" title="Link to this heading"></a></h3>
 <blockquote>
@@ -850,6 +852,8 @@ Lese bestehende CSV-Datei ein...
     <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+
 <span class="c1"># Layout anpassen und das Diagramm anzeigen</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -857,7 +861,7 @@ Lese bestehende CSV-Datei ein...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/3b36a0765f75560c06213961136468d52673e6af5cd44fd597e0bbcad62494ed.png" src="../../_images/3b36a0765f75560c06213961136468d52673e6af5cd44fd597e0bbcad62494ed.png" />
+<img alt="../../_images/b44e6e3b94190a42f6b3f5c1ccd7c64492e960b19af784b3d49726543863da00.png" src="../../_images/b44e6e3b94190a42f6b3f5c1ccd7c64492e960b19af784b3d49726543863da00.png" />
 </div>
 </div>
 </section>
@@ -921,43 +925,43 @@ Lese bestehende CSV-Datei ein...
   <tbody>
     <tr>
       <th>0</th>
-      <td>2020-01-01</td>
-      <td>277.17</td>
-      <td>1.12</td>
-      <td>0.23</td>
-      <td>3.21</td>
+      <td>2007-01-01</td>
+      <td>277.77</td>
+      <td>0.63</td>
+      <td>0.31</td>
+      <td>4.16</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>2020-02-01</td>
-      <td>277.13</td>
-      <td>1.00</td>
-      <td>0.29</td>
-      <td>3.79</td>
+      <td>2007-02-01</td>
+      <td>277.36</td>
+      <td>0.35</td>
+      <td>0.23</td>
+      <td>4.14</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>2020-03-01</td>
-      <td>278.94</td>
-      <td>1.06</td>
-      <td>0.26</td>
-      <td>3.72</td>
+      <td>2007-03-01</td>
+      <td>279.02</td>
+      <td>1.16</td>
+      <td>0.28</td>
+      <td>3.70</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2020-04-01</td>
-      <td>284.05</td>
-      <td>1.53</td>
-      <td>0.26</td>
-      <td>3.82</td>
+      <td>2007-04-01</td>
+      <td>285.22</td>
+      <td>1.27</td>
+      <td>0.27</td>
+      <td>3.41</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>2020-05-01</td>
-      <td>288.05</td>
-      <td>1.15</td>
-      <td>0.48</td>
-      <td>3.85</td>
+      <td>2007-05-01</td>
+      <td>288.30</td>
+      <td>1.75</td>
+      <td>0.42</td>
+      <td>3.28</td>
     </tr>
   </tbody>
 </table>
@@ -1015,6 +1019,8 @@ Lese bestehende CSV-Datei ein...
     <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+
 <span class="c1"># Layout anpassen und das Diagramm anzeigen</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1022,7 +1028,7 @@ Lese bestehende CSV-Datei ein...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/89f2c6c899f266bd68e3a1d51336f19e4380abca250b83286551d35801f4e6ae.png" src="../../_images/89f2c6c899f266bd68e3a1d51336f19e4380abca250b83286551d35801f4e6ae.png" />
+<img alt="../../_images/f7b1d32c504eff68bde47c90854a8938eacaf02c011020f0c7c15e18ca8a6e56.png" src="../../_images/f7b1d32c504eff68bde47c90854a8938eacaf02c011020f0c7c15e18ca8a6e56.png" />
 </div>
 </div>
 </section>
@@ -1058,7 +1064,7 @@ Lese bestehende CSV-Datei ein...
 <span class="c1"># Setzen der Achsenbeschriftungen und Titel des Diagramms</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Monate&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Temperatur (K)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Monatliche durchschnittliche Oberflächenwassertemperatur des Sees, </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Monatliche durchschnittliche Oberflächenwassertemperatur des Bodensees, </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
 
 <span class="c1"># Hinzufügen eines Rasters zum Diagramm und Formatierung der y-Achse</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
@@ -1081,6 +1087,8 @@ Lese bestehende CSV-Datei ein...
     <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+
 <span class="c1"># Layout anpassen und das Diagramm anzeigen</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1088,13 +1096,13 @@ Lese bestehende CSV-Datei ein...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/cbc2e8f1962cf8d67f16f11fb6039da1e9347fa7b8d8936710f773e448026f97.png" src="../../_images/cbc2e8f1962cf8d67f16f11fb6039da1e9347fa7b8d8936710f773e448026f97.png" />
+<img alt="../../_images/decc61104fcdf182f3aea0582ee9c403cd7155485db423370f098e05e13c89da.png" src="../../_images/decc61104fcdf182f3aea0582ee9c403cd7155485db423370f098e05e13c89da.png" />
 </div>
 </div>
 </section>
 </section>
-<section id="export-des-netcdf4-datei-nach-geotiff">
-<h2>7. Export des NetCDF4-Datei nach GeoTIFF<a class="headerlink" href="#export-des-netcdf4-datei-nach-geotiff" title="Link to this heading"></a></h2>
+<section id="exportieren-der-netcdf4-datei-nach-geotiff">
+<h2>7. Exportieren der NetCDF4-Datei nach GeoTIFF<a class="headerlink" href="#exportieren-der-netcdf4-datei-nach-geotiff" title="Link to this heading"></a></h2>
 <section id="exportieren-sie-den-jahrlichen-datensatz-als-eine-geotiff-datei">
 <h3>7.1 Exportieren Sie den jährlichen Datensatz als eine GeoTIFF-Datei<a class="headerlink" href="#exportieren-sie-den-jahrlichen-datensatz-als-eine-geotiff-datei" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
@@ -1171,15 +1179,14 @@ Lese bestehende CSV-Datei ein...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;lake_surface_water_temperature_2020_merged.tif&#39; existiert bereits. Export überspringen.
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;lake_surface_water_temperature_2007_merged.tif&#39; existiert bereits. Export überspringen.
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-</section>
 <section id="export-des-jahresdatensatzes-als-einzelne-geotiff-dateien">
-<h2>7.2 Export des Jahresdatensatzes als einzelne GeoTIFF-Dateien<a class="headerlink" href="#export-des-jahresdatensatzes-als-einzelne-geotiff-dateien" title="Link to this heading"></a></h2>
+<h3>7.2 Export des Jahresdatensatzes als einzelne GeoTIFF-Dateien<a class="headerlink" href="#export-des-jahresdatensatzes-als-einzelne-geotiff-dateien" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">rasterio</span>  
@@ -1261,8 +1268,9 @@ Lese bestehende CSV-Datei ein...
 </div>
 </div>
 </section>
-<section id="alle-verfugbaren-daten-von-1995-bis-2023-visualisieren">
-<h2>8. Alle verfügbaren Daten von 1995 bis 2023 visualisieren<a class="headerlink" href="#alle-verfugbaren-daten-von-1995-bis-2023-visualisieren" title="Link to this heading"></a></h2>
+</section>
+<section id="zusatzliche-visualisierung-mit-einem-kalenderdiagramm">
+<h2>8. Zusätzliche Visualisierung mit einem Kalenderdiagramm<a class="headerlink" href="#zusatzliche-visualisierung-mit-einem-kalenderdiagramm" title="Link to this heading"></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>  
@@ -1460,7 +1468,7 @@ Es werden Daten aus dem Jahr 2020 verwendet.
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="01-satellite-lake-water-level.html" class="btn btn-neutral float-left" title="Wasserstände von Seen abgleitet aus Satellitendaten" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
-        <a href="../../rst_jupyter_bibliothek/index.html" class="btn btn-neutral float-right" title="Über CoKLIMAx-II Notebooks" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="03-sis-temperature-statistics.html" class="btn btn-neutral float-right" title="Temperaturstatistiken für Europa" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

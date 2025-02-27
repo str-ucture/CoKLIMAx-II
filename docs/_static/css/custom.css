@@ -75,3 +75,7 @@ div.cell_output table {
 .rst-content img {
     margin: 8px 0px;
 }
+
+[id^="codecell"] {
+    text-align: left;
+}

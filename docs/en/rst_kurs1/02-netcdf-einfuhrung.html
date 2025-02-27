@@ -11,7 +11,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=91fa011e" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=822aaed9" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -62,10 +62,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#learning-objectives">Learning Objectives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#handling-netcdf-files">Handling NetCDF Files</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#unpacking-the-netcdf-zip-file">1. Unpacking the NetCDF Zip file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#examining-a-netcdf-file">2. Examining a NetCDF File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#investigate-the-netcdf-file">2. Investigate the NetCDF File</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#visualization-and-selection-of-a-region">Visualization and Selection of a Region</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#visualization-using-a-selected-region-and-a-time-series">Visualization using a Selected Region and a Time Series</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#reading-and-exploring-the-data">1. Reading and Exploring the Data</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#creating-a-plot-for-august-1980">2. Creating a Plot for August 1980</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#creating-a-plot-for-a-time-series">3. Creating a Plot for a Time Series</a></li>
@@ -124,21 +124,29 @@
 <h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading"></a></h2>
 <ul class="simple">
 <li><dl class="simple">
-<dt><a class="reference internal" href="#netcdf-how-to"><span class="std std-ref">Structure and Handling of a NetCDF file</span></a></dt><dd><ul>
+<dt><a class="reference internal" href="#netcdf-how-to"><span class="std std-ref">Structure and Handling of a file in NetCDF format</span></a></dt><dd><ul>
 <li><p><a class="reference internal" href="#netcdf-unzip"><span class="std std-ref">Unpacking the NetCDF Zip file</span></a></p></li>
 <li><p><a class="reference internal" href="#netcdf-investigate"><span class="std std-ref">Investigate the NetCDF file</span></a></p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><p><a class="reference internal" href="#netcdf-visualize"><span class="std std-ref">Visualization of a Time Series and a Selected Region</span></a></p></li>
+<li><dl class="simple">
+<dt><a class="reference internal" href="#netcdf-visualize"><span class="std std-ref">Visualization using a Selected Region and a Time Series</span></a></dt><dd><ul>
+<li><p><a class="reference internal" href="#read-and-explore-data"><span class="std std-ref">Reading and Exploring the Data</span></a></p></li>
+<li><p><a class="reference internal" href="#create-a-plot-of-a-month"><span class="std std-ref">Creating a Plot (Selected Month)</span></a></p></li>
+<li><p><a class="reference internal" href="#create-a-plot-time-series"><span class="std std-ref">Creating a Plot (Time Series)</span></a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 <hr class="docutils" />
-<p>All the steps from this course is also available in a ready-to-use notebook for download from the following link:</p>
+<p>All the steps from this course are also available in a ready-to-use notebook for download from the following links:</p>
 <div class="download-button">
-    <a href="../_static/notebooks/netcdf-introduction-part1.ipynb" download>⇩ NetCDF Introduction: Part 1 (Notebook)</a>
+    <a href="../_static/notebooks/netcdf-introduction-part1.ipynb" download>⇩ NetCDF Introduction: Part 1</a>
 </div><div class="download-button">
-    <a href="../_static/notebooks/netcdf-introduction-part2.ipynb" download>⇩ NetCDF Introduction: Part 2 (Notebook)</a>
+    <a href="../_static/notebooks/netcdf-introduction-part2.ipynb" download>⇩ NetCDF Introduction: Part 2</a>
 </div><p>Open the notebook in Jupyter Lab and follow the instructions. Alternatively, you can copy the Python code snippet into your Jupyter Notebook and execute the cell.</p>
 <hr class="docutils" />
 </section>
@@ -164,17 +172,17 @@
 <p>The file you downloaded in the first course module (<a class="reference internal" href="01-cds-api-installieren-und-herunterladen.html#kurs1-cds-api-installation-and-download"><span class="std std-ref">CDS API Installation and Download</span></a>) is in NetCDF format but is still compressed in a ZIP file. Alternatively, you can download the dataset from <strong>CDS API Installation and Download</strong> here and move it inside “CDSdata” folder inside the current working folder in Jupyter Lab:</p>
 <div class="download-button">
     <a href="../_static/notebooks/CDSdata/reanalysis-era5-land.zip" download>⇩ ERA5-Land (Dataset)</a>
-</div><p>First, extract the data by copying the following code block into your notebook and modifying the lines as needed:</p>
+</div><p>First unzip the data, copy the following block into your notebook and modify the lines as required:</p>
 <blockquote>
 <div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">zipfile</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="c1"># Path to the ZIP file (in the same directory or absolute path)</span>
-<span class="n">zip_file</span> <span class="o">=</span> <span class="s1">&#39;./CDSdata/reanalysis-era5-land.zip&#39;</span> <span class="c1"># Adjust the path if necessary</span>
+<span class="n">zip_file</span> <span class="o">=</span> <span class="s1">&#39;./CDSdata/reanalysis-era5-land.zip&#39;</span>  <span class="c1"># Adjust the path if necessary</span>
 
 <span class="c1"># Target directory for extraction</span>
 <span class="n">target_directory</span> <span class="o">=</span> <span class="s1">&#39;Era5Data&#39;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">target_directory</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># Create the directory if it doesn&#39;t exist</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">target_directory</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Create the directory if it doesn&#39;t exist</span>
 
 <span class="c1"># Open and extract the ZIP file</span>
 <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zip_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
@@ -185,8 +193,8 @@
 </div></blockquote>
 <p>Now, let’s take a closer look at the file.</p>
 </section>
-<section id="examining-a-netcdf-file">
-<span id="netcdf-investigate"></span><h3>2. Examining a NetCDF File<a class="headerlink" href="#examining-a-netcdf-file" title="Link to this heading"></a></h3>
+<section id="investigate-the-netcdf-file">
+<span id="netcdf-investigate"></span><h3>2. Investigate the NetCDF File<a class="headerlink" href="#investigate-the-netcdf-file" title="Link to this heading"></a></h3>
 <p>NetCDF files are structured into dimensions, variables, and attributes. Dimensions serve as the axes along which the variables are arranged. These axes can represent, for example, geographic longitude and latitude or different altitude levels. Variables are the meteorological parameters contained in the file, such as temperature, air pressure, or wind speeds. Attributes of a NetCDF file are the metadata and include the units of the variables, descriptions, and the sources/authors of the data.</p>
 <p>First, get an overview of the dataset.</p>
 <blockquote>
@@ -216,8 +224,8 @@
 <hr class="docutils" />
 </section>
 </section>
-<section id="visualization-and-selection-of-a-region">
-<span id="netcdf-visualize"></span><h2>Visualization and Selection of a Region<a class="headerlink" href="#visualization-and-selection-of-a-region" title="Link to this heading"></a></h2>
+<section id="visualization-using-a-selected-region-and-a-time-series">
+<span id="netcdf-visualize"></span><h2>Visualization using a Selected Region and a Time Series<a class="headerlink" href="#visualization-using-a-selected-region-and-a-time-series" title="Link to this heading"></a></h2>
 <p>To have more options for visualization, you will need an additional dataset. We have already made this available for download. Just like in the previous section, it is a dataset from the ERA-5 reanalysis, containing monthly averages of the 2m temperature for a predefined region in southern Germany.</p>
 <div class="download-button">
     <a href="../_static/notebooks/era5-land-monthly/download/reanalysis-era5-land-monthly-means_2m_temperature_1950_2024.nc" download>⇩ Dataset for Visualization</a>
@@ -227,7 +235,7 @@
 
 <span class="c1"># ---- Specify directories below ----</span>
 <span class="n">download_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;./era5-land-monthly/download&quot;</span>  <span class="c1"># Folder for downloaded data</span>
-<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;./era5-land-monthly/output&quot;</span>      <span class="c1"># Folder for final outputs</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;./era5-land-monthly/output&quot;</span>  <span class="c1"># Folder for final outputs</span>
 <span class="c1"># ---- End of user inputs ----</span>
 
 <span class="c1"># Create directories if they do not exist</span>
@@ -237,7 +245,7 @@
 </div>
 </div></blockquote>
 <section id="reading-and-exploring-the-data">
-<h3>1. Reading and Exploring the Data<a class="headerlink" href="#reading-and-exploring-the-data" title="Link to this heading"></a></h3>
+<span id="read-and-explore-data"></span><h3>1. Reading and Exploring the Data<a class="headerlink" href="#reading-and-exploring-the-data" title="Link to this heading"></a></h3>
 <p>In the following steps, we will use some useful Python libraries, such as the data analysis library <strong>pandas</strong>. Further information on each library can be found online, as they are not included in the resources of <strong>CoKLIMAx II</strong>. The code blocks contain comments that document each step in text form.</p>
 <p>In addition to defining storage paths, you should also specify the paths to the files you want to work with.</p>
 <blockquote>
@@ -263,7 +271,7 @@
 
 <span class="c1"># Extract coordinate data and the primary variable&#39;s data</span>
 <span class="n">lon_list</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;longitude&#39;</span><span class="p">][:]</span>  <span class="c1"># Extract longitude</span>
-<span class="n">lat_list</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">][:]</span>   <span class="c1"># Extract latitude</span>
+<span class="n">lat_list</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">][:]</span>  <span class="c1"># Extract latitude</span>
 </pre></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -312,10 +320,10 @@
 </pre></div>
 </div>
 </div></blockquote>
-<p>In the generated summary, you can see that the file contains <strong>898</strong> valid time steps. Since the data represents monthly averages and the file starts with its first time step in January 1950, we now know that the last time step is in October 2024: <strong>(2024 − 1950) × 12 + 10 = 898</strong>.</p>
+<p>In the generated summary, you can see that the file contains <strong>898</strong> valid time steps. Since the data represents monthly averages and the file starts with its first time step in January 1950, we now know that the last time step is in October 2024: <strong>(2024 - 1950) x 12 + 10 = 898</strong>.</p>
 </section>
 <section id="creating-a-plot-for-august-1980">
-<h3>2. Creating a Plot for August 1980<a class="headerlink" href="#creating-a-plot-for-august-1980" title="Link to this heading"></a></h3>
+<span id="create-a-plot-of-a-month"></span><h3>2. Creating a Plot for August 1980<a class="headerlink" href="#creating-a-plot-for-august-1980" title="Link to this heading"></a></h3>
 <p>With the following code blocks, you can create a flexible plotting script that allows you to quickly switch between visualizations for different months.</p>
 <p>To achieve this, define aliases for the year and month at the beginning, just as you did for the storage and file paths.</p>
 <blockquote>
@@ -449,7 +457,7 @@
 <p>With this plot, you can easily get an overview of the spatial characteristics and distribution of a parameter. Try out different configurations to determine which color scheme and scale work best for your purpose.</p>
 </section>
 <section id="creating-a-plot-for-a-time-series">
-<h3>3. Creating a Plot for a Time Series<a class="headerlink" href="#creating-a-plot-for-a-time-series" title="Link to this heading"></a></h3>
+<span id="create-a-plot-time-series"></span><h3>3. Creating a Plot for a Time Series<a class="headerlink" href="#creating-a-plot-for-a-time-series" title="Link to this heading"></a></h3>
 <p>To analyze the trend of aggregated monthly temperature averages for August across all years in a specific region, a <strong>line plot</strong> is well suited. You can generate this using the following code block. This approach utilizes the DataFrame structure, a format that organizes variables into sorted groups (similar to a table with rows and columns). This structure is particularly useful when working with large datasets.</p>
 <p>More information on the proper use of lists, arrays, and DataFrames in Python can be found online.</p>
 <blockquote>

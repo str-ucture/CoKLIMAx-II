@@ -58,7 +58,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kurs 1:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/01-cds-api-installieren-und-herunterladen.html">CDS API Installation &amp; Download​</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/01-cds-api-installieren-und-herunterladen.html">CDS API Installation und Download</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/02-netcdf-einfuhrung.html">NetCDF Einführung</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kurs 2:</span></p>
@@ -71,13 +71,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#extrahieren-sie-die-zip-dateien-in-ordner">2.3 Extrahieren Sie die ZIP-Dateien in Ordner</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#untersuchen-der-metadaten-der-netcdf4-datei">3. Untersuchen der Metadaten der netCDF4-Datei</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#untersuchen-der-metadaten-der-netcdf4-datei">3. Untersuchen der Metadaten der NetCDF4-Datei</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#exportieren-der-zeitreihe-im-csv-format">4. Exportieren der Zeitreihe im csv-Format</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#definieren-sie-eine-funktion-zur-berechnung-des-tagesdurchschnitts">4.1 Definieren Sie eine Funktion zur Berechnung des Tagesdurchschnitts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#erstellen-des-dataframes-und-export-als-csv">4.2 Erstellen des DataFrames und Export als CSV</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#analyse-und-visualisierungsmoglichkeiten">5. Analyse und Visualisierungsmöglichkeiten</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#analyse-und-visualisierung-optionen">5. Analyse und Visualisierung Optionen</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#visualisierung-aller-daten-ohne-karte">5.1 Visualisierung aller Daten (ohne Karte)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visualisierung-der-monatlichen-mittelwerte-ohne-karte">5.2 Visualisierung der monatlichen Mittelwerte (ohne Karte)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#visualisierung-aller-daten-mit-karte">5.3 Visualisierung aller Daten (mit Karte)</a></li>
@@ -87,6 +87,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="02-satellite-lake-water-temperature.html">Seewassertemperatur aus Satellitendaten abgeleitet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-sis-temperature-statistics.html">Temperaturstatistiken für Europa</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">The Jupyter Notebook Bibliothek:</span></p>
 <ul>
@@ -148,7 +149,7 @@
 </li>
 <li><p><a class="reference internal" href="#untersuchen-der-metadaten-der-netcdf4-datei"><span class="std std-ref">Untersuchen der Metadaten der netCDF4-Datei</span></a></p></li>
 <li><p><a class="reference internal" href="#exportieren-der-zeitreihe-im-csv-format"><span class="std std-ref">Exportieren der Zeitreihe im csv-Format</span></a></p></li>
-<li><p>Analyse und Visualisierung</p></li>
+<li><p><a class="reference internal" href="#analyse-und-visualisierung-optionen"><span class="std std-ref">Analyse und Visualisierung Optionen</span></a></p></li>
 </ul>
 <p><strong>Informationen zum Datensatz:</strong></p>
 <ul class="simple">
@@ -189,7 +190,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cdsapi</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
-    <span class="c1"># API-Schlüssel für die Authentifizierung</span>
+    <span class="c1"># API-Key für die Authentifizierung</span>
     <span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;fdae60fd-35d4-436f-825c-c63fedab94a4&quot;</span>
     <span class="n">api_url</span> <span class="o">=</span> <span class="s2">&quot;https://cds.climate.copernicus.eu/api&quot;</span>
     
@@ -281,7 +282,7 @@
 </section>
 </section>
 <section id="untersuchen-der-metadaten-der-netcdf4-datei">
-<h2>3. Untersuchen der Metadaten der netCDF4-Datei<a class="headerlink" href="#untersuchen-der-metadaten-der-netcdf4-datei" title="Link to this heading"></a></h2>
+<h2>3. Untersuchen der Metadaten der NetCDF4-Datei<a class="headerlink" href="#untersuchen-der-metadaten-der-netcdf4-datei" title="Link to this heading"></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
@@ -313,7 +314,7 @@
 <span class="c1"># Erstellen einer Zusammenfassung der Hauptvariablen</span>
 <span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;Variablenname&quot;</span><span class="p">:</span> <span class="n">variable_name</span><span class="p">,</span>
-    <span class="s2">&quot;Daten Typ&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+    <span class="s2">&quot;Datentyp&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
     <span class="s2">&quot;Form&quot;</span><span class="p">:</span> <span class="n">variable_data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
     <span class="s2">&quot;Variableninfo&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">variable_data</span><span class="o">.</span><span class="n">dimensions</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
     <span class="s2">&quot;Einheiten&quot;</span><span class="p">:</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">variable_data</span><span class="p">,</span> <span class="s2">&quot;units&quot;</span><span class="p">,</span> <span class="s2">&quot;N/A&quot;</span><span class="p">),</span>
@@ -359,7 +360,7 @@
     </tr>
     <tr>
       <th>1</th>
-      <td>Daten Typ</td>
+      <td>Datentyp</td>
       <td>float64</td>
     </tr>
     <tr>
@@ -557,8 +558,8 @@ Lese bestehende CSV-Datei ein...
 </div>
 </section>
 </section>
-<section id="analyse-und-visualisierungsmoglichkeiten">
-<h2>5. Analyse und Visualisierungsmöglichkeiten<a class="headerlink" href="#analyse-und-visualisierungsmoglichkeiten" title="Link to this heading"></a></h2>
+<section id="analyse-und-visualisierung-optionen">
+<h2>5. Analyse und Visualisierung Optionen<a class="headerlink" href="#analyse-und-visualisierung-optionen" title="Link to this heading"></a></h2>
 <section id="visualisierung-aller-daten-ohne-karte">
 <h3>5.1 Visualisierung aller Daten (ohne Karte)<a class="headerlink" href="#visualisierung-aller-daten-ohne-karte" title="Link to this heading"></a></h3>
 <div class="cell docutils container">

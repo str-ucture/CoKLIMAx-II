@@ -1,8 +1,8 @@
 .. _kurs1-cds-api-installation-and-download:
 
-===============================
-CDS API Installation & Download​
-===============================
+=================================
+CDS API Installation und Download
+=================================
 
 ---------
 Lernziele
@@ -10,22 +10,22 @@ Lernziele
 
 * :ref:`Einrichtung der API des Copernicus Climate Data Store (CDS API) <setup-api>`
 	* :ref:`Persönlicher API-Key <personal-api-key>`
-	* :ref:`Installation der CDS API <install-cds-api>`
+	* :ref:`Installation der CDS-API <install-cds-api>`
 * :ref:`Download des ersten Klima-Datensatzes <cds-download>`
 	* :ref:`Erstellen der API-Request <api-request>`
 	* :ref:`Die API-Request im Jupyter Notebook <api-jupyter>`
 
 ----
 
-Wir haben für dich ein Jupyter Notebook vorbereitet, bei dem du nur noch den Ausgabeordner und deinen API-Key anpassen musst. Das Notebook kannst du unter folgendem Link herunterladen:
+Wir haben für Sie ein Jupyter Notebook vorbereitet, bei dem Sie lediglich den Ausgabeordner und Ihren API-Schlüssel anpassen müssen. Das Notebook können Sie unter folgendem Link herunterladen:
 
 .. raw:: html
 
    <div class="download-button">
-       <a href="../_static/notebooks/cds-api-installieren-und-herunterladen.ipynb" download>⇩ CDS API Installation and Download (Notebook)</a>
+       <a href="../_static/notebooks/cds-api-installieren-und-herunterladen.ipynb" download>⇩ CDS API Installation und Download (Notebook)</a>
    </div>
 
-Öffnen Sie das Notebook in Jupyter Lab und folgen Sie den Anweisungen. Alternativ können Sie den Python-Codeausschnitt in Ihr Jupyter-Notebook kopieren und die Zelle ausführen.
+Öffnen Sie das Notebook in Jupyter Lab und folgen Sie den Anweisungen. Alternativ können Sie den Python-Codeausschnitt in Ihr Jupyter-Notebook kopieren und die Zellen ausführen.
 
 .. image:: /_static/gif/01-tutorial-02.gif
    :width: 600px
@@ -102,7 +102,7 @@ Sie sollten nun alle Voraussetzungen erfüllt haben um Daten aus dem CDS herunte
 Download von Klimadaten aus dem CDS
 -----------------------------------
 
-Unser Testdatensatz ist der Reanalyse-Datensatz ERA5. Falls Sie sich mit dem Datensatz gut auskennen, können Sie den Infokasten überspringen und gleich zum :ref:`nächsten Schritt <api_request>` übergehen.
+Unser Testdatensatz ist der **Reanalyse-Datensatz ERA5**. Falls Sie sich mit dem Datensatz gut auskennen, können Sie den Infokasten überspringen und gleich zum :ref:`nächsten Schritt <api-request>` übergehen.
 
 .. note::
 	Der ERA5-Klimadatensatz ist eine umfangreiche Sammlung von Wetter- und Klimadaten, die von der 	Europäischen Organisation für die Nutzung meteorologischer Satelliten (ECMWF) erstellt wurde. Es 	handelt sich dabei um eine historische Wetter- und Klimadatenbank, die auf modernen Rechenmodellen und 	Satellitenmessungen basiert. ERA5 umfasst kontinuierliche Wetterdaten der letzten Jahrzehnte, von 1950 	bis in die Gegenwart. Diese Daten umfassen unter anderem Temperatur, Luftfeuchtigkeit oder 	Windgeschwindigkeit.
@@ -124,7 +124,7 @@ Um die gewünschten Daten automatisiert über die CDS API herunterzuladen müsse
 Gehen Sie auf den `Download <https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=download>`_ tab und wählen Sie die Parameter wie folgt aus:
 
 	* **Temperature**: 2m temperature
-	* **Year**:2024
+	* **Year**: 2024
 	* **Month**: October
 	* **Day**: 01
 	* **Time**: Select all
@@ -150,7 +150,7 @@ Für die weiteren Parameter Datenformat und Komprimierung setzen Sie die Felder 
 	:class: no-scaled-link
 	:alt: Data and Download Fromat
 
-Sobald Sie die Nutzungsbedingungen akzeptiert haben müssen Sie nur noch auf "Show API request code" klicken und der automatisch generierte API request code erscheint. Für unsere Testdaten sieht dieser wie folgt aus:
+Sobald Sie die Nutzungsbedingungen akzeptiert haben müssen Sie nur noch auf **Show API request code** klicken und der automatisch generierte API request code erscheint. Für unsere Testdaten sieht dieser wie folgt aus:
 
 .. _dataset-and-request-parameters:
 
@@ -184,9 +184,12 @@ Sobald Sie die Nutzungsbedingungen akzeptiert haben müssen Sie nur noch auf "Sh
 
 		# Dateiname definieren und herunterladen
 		download_folder = os.path.join(os.getcwd(), "CDSdata")		
-		os.makedirs(download_folder, exist_ok=True) # Verzeichnis erstellen, falls nicht vorhanden
+		os.makedirs(download_folder, exist_ok=True)  # Verzeichnis erstellen, falls nicht vorhanden
 
+		# Download-Dateipfad definieren
 		download_filepath = os.path.join(download_folder, f"{dataset}.zip")
+
+		# Laden Sie den Datensatz herunter
 		client.retrieve(dataset, request, download_filepath)
 
 
@@ -202,4 +205,4 @@ Sobald Sie die Nutzungsbedingungen akzeptiert haben müssen Sie nur noch auf "Sh
 
 		jupyter lab
 
-Falls das Öffnen des Jupyter labs nicht funktioniert gehen Sie am besten noch einmal die Anleitung durch, die wir :ref:`hier <software-knowledge>` für Sie vorbereitet haben.
+Falls das Öffnen des **Jupyter Lab** nicht funktioniert gehen Sie am besten noch einmal die Anleitung durch, die wir :ref:`hier <software-knowledge>` für Sie vorbereitet haben.

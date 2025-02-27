@@ -8,28 +8,31 @@ NetCDF Einführung
 Lernziele
 ---------
 
-* :ref:`Aufbau und Umgang mit einer Datei im NetCDF-Format<netcdf-how-to>`
-	* :ref:`Entpacken der NetCDF zip-Datei<netcdf-unzip>`
-  	* :ref:`Untersuchen der NetCDF-Datei<netcdf-investigate>`
-* :ref:`Visualisierung einer Zeitreihe und einer gewählten Region <netcdf-visualize>`
+* :ref:`Aufbau und Umgang mit einer Datei im NetCDF-Format <netcdf-how-to>`
+	* :ref:`Entpacken der NetCDF zip-Datei <netcdf-unzip>`
+  	* :ref:`Untersuchen der NetCDF-Datei <netcdf-investigate>`
+* :ref:`Visualisierung mit einer gewählten Region und einer Zeitreihe <netcdf-visualize>`
+	* :ref:`Daten lesen und untersuchen <read-and-explore-data>`
+	* :ref:`Diagramm erstellen (ausgewählter Monat) <create-a-plot-of-a-month>`
+	* :ref:`Diagramm erstellen (Zeitreihe) <create-a-plot-time-series>`
 
 ----
 
-Alle Schritte dieses Kurses stehen auch in einem gebrauchsfertigen Notizbuch zum Download unter dem folgenden Link zur Verfügung:
+Alle Schritte aus diesem Kurs sind auch in einem gebrauchsfertigen Notizbuch verfügbar, das Sie unter den folgenden Links herunterladen können:
 
 .. raw:: html
 
    <div class="download-button">
-       <a href="../_static/notebooks/netcdf-introduction-part1.ipynb" download>⇩ NetCDF Einführung: Teil 1 (Notebook)</a>
+       <a href="../_static/notebooks/netcdf-introduction-part1.ipynb" download>⇩ NetCDF Einführung: Teil 1</a>
    </div>
 
 .. raw:: html
 
    <div class="download-button">
-       <a href="../_static/notebooks/netcdf-introduction-part2.ipynb" download>⇩ NetCDF Introduction: Teil 2 (Notebook)</a>
+       <a href="../_static/notebooks/netcdf-introduction-part2.ipynb" download>⇩ NetCDF Introduction: Teil 2</a>
    </div>
 
-Öffnen Sie das Notebook in Jupyter Lab und folgen Sie den Anweisungen. Alternativ können Sie den Python-Codeausschnitt in Ihr Jupyter-Notebook kopieren und die Zelle ausführen.
+Öffnen Sie das Notizbuch in Jupyter Lab und folgen Sie den Anweisungen. Alternativ können Sie den Python-Code-Schnipsel in Ihr Jupyter Notebook kopieren und die Zelle ausführen.
 
 ----
 
@@ -51,9 +54,9 @@ Um mit den NetCDF Dateien arbeiten zu können installieren Sie zunächst die not
 
 .. _netcdf-unzip:
 
-^^^^^^^^^^^^^^^^^^^^^^^^^
-1. NetCDF-Datei entpacken
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+1. NetCDF-Zip-Datei entpacken
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Öffnen Sie Ihr Jupyter lab über die Eingabeaufforderung (cmd):
 
@@ -61,9 +64,9 @@ Um mit den NetCDF Dateien arbeiten zu können installieren Sie zunächst die not
 
 		jupyter lab
 
-Öffnen Sie ein Notebook in einem Ordner Ihrer Wahl. Sie können den "CDSdata" Ordner aus dem (:ref:`CDS API Installation & Download​ <kurs1-cds-api-installation-and-download>`) nehmen, in diesem befinden sich die Daten, mit denen wir arbeiten wollen.
+Öffnen Sie ein Notebook in einem Ordner Ihrer Wahl. Sie können den „CDSdata“ Ordner aus dem ersten Kursmodul (:ref:`CDS API Installation und Download <kurs1-cds-api-installation-and-download>`) nehmen, in diesem befinden sich die Daten, mit denen wir arbeiten wollen.
 
-Die Datei die Sie im (:ref:`CDS API Installation & Download​ <kurs1-cds-api-installation-and-download>`) heruntergeladen haben ist im NetCDF Format, jedoch noch in einer Zip Datei komprimiert.Zunächst entpacken Sie die Daten, kopieren Sie sich folgenden Block in Ihr Notebook und modifizieren Sie die Zeilen wie benötigt:
+Die Datei die Sie im ersten Kursmodul (:ref:`CDS API Installation und Download <kurs1-cds-api-installation-and-download>`) heruntergeladen haben ist im NetCDF-Format, jedoch noch in einer Zip Datei komprimiert. Alternativ können Sie den Datensatz von **CDS API Installation und Download** hier herunterladen und in den Ordner „CDSdata“ innerhalb des aktuellen Arbeitsordners in Jupyter Lab verschieben:
 
 .. raw:: html
 
@@ -71,7 +74,7 @@ Die Datei die Sie im (:ref:`CDS API Installation & Download​ <kurs1-cds-api-in
        <a href="../_static/notebooks/CDSdata/reanalysis-era5-land.zip" download>⇩ ERA5-Land (Datensatz)</a>
    </div>
 
-Extrahieren Sie zunächst die Daten, indem Sie den folgenden Codeblock in Ihr Notebook kopieren und die Zeilen nach Bedarf ändern: 
+Zunächst entpacken Sie die Daten, kopieren Sie sich folgenden Block in Ihr Notebook und modifizieren Sie die Zeilen wie benötigt.
 
 	..  code-block:: python
 
@@ -79,11 +82,11 @@ Extrahieren Sie zunächst die Daten, indem Sie den folgenden Codeblock in Ihr No
 		import os
 
 		# Pfad zur ZIP-Datei (im selben Verzeichnis oder absoluter Pfad)
-		zip_datei = './CDSdata/reanalysis-era5-land.zip'
+		zip_datei = './CDSdata/reanalysis-era5-land.zip'  # Passen Sie den Pfad bei Bedarf an
 
 		# Zielverzeichnis zum Entpacken
 		zielverzeichnis = 'Era5Data'
-		os.makedirs(zielverzeichnis, exist_ok=True) # Verzeichnis erstellen, falls nicht vorhanden
+		os.makedirs(zielverzeichnis, exist_ok=True)  # Verzeichnis erstellen, falls nicht vorhanden
 		
 		# ZIP-Datei öffnen und extrahieren
 			with zipfile.ZipFile(zip_datei, 'r') as zip_ref:
@@ -131,9 +134,8 @@ Wenn Sie die verschiedenen Commands für den schnellen Überblick ausprobiert ha
 
 .. _netcdf-visualize:
 
----------------------------------------
-Visualisierung und Auswahl einer Region
----------------------------------------
+-------------------------------------------------------------
+Visualisierung mit einer gewählten Region und einer Zeitreihe -------------------------------------------------------------
 
 Um für die Visualisierung mehr Möglichkeiten zu haben benötigen Sie einen weiteren Datensatz. Diesen haben wir Ihnen bereits zum Download zur Verfügung gestellt. Es handelt sich genau wie im vorangegangenen Abschnitt um einen Datensatz aus der ERA-5 Reanalyse, die Monatsmittel der 2m-Temperatur für eine vordefinierte Region in Süddeutschland.
 
@@ -151,13 +153,14 @@ Zunächst sollten Sie die Pfade für Ihren Output definieren. Damit sollen Sie j
 
 		# ---- Verzeichnisse unten angeben ----
 		download_folder = r"./era5-land-monthly/download"  # Ordner für heruntergeladene Daten
-		output_folder = r"./era5-land-monthly/output"      # Ordner für die endgültigen Ausgaben
+		output_folder = r"./era5-land-monthly/output"  # Ordner für die endgültigen Ausgaben
 		# ---- Ende der Benutzereingaben ----
 
 		# Verzeichnis erstellen, falls nicht vorhanden
 		os.makedirs(download_folder, exist_ok=True)
 		os.makedirs(output_folder, exist_ok=True)
 
+.. _read-and-explore-data:
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 1. Einlesen und Kennenlernen der Daten
@@ -191,7 +194,7 @@ Nun verschaffen Sie sich einen Überblick über die Datei, die räumliche und ze
 
         # Extrahiere Koordinatendaten und die Daten der Hauptvariablen
         lon_list = dataset['longitude'][:]  # Längengrad extrahieren
-        lat_list = dataset['latitude'][:]   # Breitengrad extrahieren
+        lat_list = dataset['latitude'][:]  # Breitengrad extrahieren
 
     .. code-block:: python
 
@@ -242,6 +245,8 @@ Nun verschaffen Sie sich einen Überblick über die Datei, die räumliche und ze
 
 
 Im erstellten Summary sehen Sie, dass die Datei **898** valide Zeitschritte enthält. Da es sich um monatliche Mittelwerte handelt un die Datei im Januar 1950 ihren ersten Zeitschritt hat, wissen wir nun, dass im Oktober 2024 der letzte Zeitschritt ist: **(2024 - 1950) x 12 + 10 = 898**.
+
+.. _create-a-plot-of-a-month:
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 2. Erstellen eines Plots für August 1980
@@ -294,8 +299,8 @@ Im folgenden Block legen Sie noch einige Visualisierungsoptionen fest, bevor Sie
             f'{summary["Long Name"]} ({summary["Einheiten"]}) - {selected_year}-{selected_month:02d}',
             fontsize=14,
         )
-        ax.set_xlabel("Longitude", fontsize=12)
-        ax.set_ylabel("Latitude", fontsize=12)
+        ax.set_ylabel('Breitengrad', fontsize=12)
+        ax.set_xlabel('Längengrad', fontsize=12)
 
         # Diagramm anzeigen
         plt.tight_layout()
@@ -311,7 +316,7 @@ Das benötigte Shapefile von Konstanz können Sie sich hier herunterladen:
        <a href="../_static/zip/kn_boundary.zip" download>⇩ Shapefile von Konstanz</a>
    </div>
 
-Denken Sie daran, im folgenden den Dateipfad zum Shapefile anzupassen, damit das Skript darauf zugreifen kann.
+Laden Sie die Datei **kn_boundary.zip** herunter und entpacken Sie sie in Ihren Arbeitsordner. Denken Sie daran, im folgenden den Dateipfad zum Shapefile anzupassen, damit das Skript darauf zugreifen kann.
 
     .. code-block:: python
 
@@ -382,9 +387,12 @@ Denken Sie daran, im folgenden den Dateipfad zum Shapefile anzupassen, damit das
         ax.set_ylabel('Breitengrad', fontsize=12)
         ax.set_xlabel('Längengrad', fontsize=12)
 
+		# Diagramm anzeigen
         plt.show()
 
 Mit dem Plot können Sie sich einfach einen Überblick über die räumliche Ausprägung und Verteilung eines Paramenters verschaffen. Probieren Sie verschiedene Konfigurationen aus um herauszufinden, welche Farbgebung und Skala für Ihren Zweck am besten funktioniert.
+
+.. _create-a-plot-time-series:
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 3. Erstellen eines Plots für eine Zeitserie
@@ -396,67 +404,66 @@ Mehr Informationen zum richtigen Einsatz von Listen, Arrays und Dataframes in Py
 
 	.. code-block:: python
 
-		# Initialize lists to store statistics
+		# Listen zum Speichern von Statistiken initialisieren
 		mean_values_list = []
 		median_values_list = []
 		std_values_list = []
 
-		# Calculate the total number of time bands
+		# Gesamtanzahl der Zeitbänder berechnen
 		total_bands = range(variable_data.shape[0])
 
-		# Derive year and month lists based on the time index
+		# Listen für Jahr und Monat basierend auf dem Zeitindex ableiten
 		year_list = [(band_index // 12) + 1950 for band_index in total_bands]
 		month_list = [(band_index % 12) + 1 for band_index in total_bands]
 
-		# Iterate over all bands to compute statistics
+		# Über alle Bänder iterieren, um Statistiken zu berechnen
 		for band_index in total_bands:
-			# Convert Kelvin to Celsius
+			# Kelvin in Celsius umrechnen
 			band_data = variable_data[band_index, :, :] - 273.15
 
-			# Compute and append statistics
-			mean_values_list.append(np.nanmean(band_data))  # Mean excluding NaNs
-			median_values_list.append(np.ma.median(band_data))  # Median for masked arrays
-			std_values_list.append(np.nanstd(band_data))  # Standard deviation excluding NaNs
+			# Statistiken berechnen und hinzufügen
+			mean_values_list.append(np.nanmean(band_data))  # Mittelwert ohne NaNs
+			median_values_list.append(np.ma.median(band_data))  # Median für maskierte Arrays
+			std_values_list.append(np.nanstd(band_data))  # Standardabweichung ohne NaNs
 
-		# Create a dictionary to store results
+		# Ein Dictionary zur Speicherung der Ergebnisse erstellen
 		df_data = {
-			'Year': year_list,
-			'Month': month_list,
-			'Mean': mean_values_list,
+			'Jahr': year_list,
+			'Monat': month_list,
+			'Mittelwerd': mean_values_list,
 			'Median': median_values_list,
-			"Std Dev": std_values_list
+			'Standardabweichung': std_values_list
 		}
 
-		# Convert dictionary to DataFrame
+		# Dictionary in ein DataFrame umwandeln
 		df_statistics = pd.DataFrame(df_data)
 
-		# Display the first few rows of the DataFrame
+		# Die ersten Zeilen des DataFrames anzeigen
 		df_statistics.head()
-
 
 	.. code-block:: python
 
 		import matplotlib.ticker as ticker
 
-		# Filter the statistics DataFrame by the selected month (August)
+		# Das Statistik-DataFrame nach dem ausgewählten Monat (August) filtern
 		selected_month = 8  # August
 		df_statistics_filtered = df_statistics[df_statistics['Month'] == selected_month]
 
-		# Initialize the plot
+		# Diagramm initialisieren
 		fig, ax = plt.subplots(figsize=(14, 8), facecolor='#f1f1f1')
 
-		# Titles and labels
+		# Titel und Achsenbeschriftungen
 		ax.set_title(
-			f'Average {summary["Long Name"]} for August (°C)',
+			f'Durchschnittliche  {summary["Long Name"]} für August (°C)',
 			fontsize=20,
 			fontweight='bold',
 			color='#333333',
 			pad=20
 		)
-		ax.set_xlabel("Year", fontsize=16, color='#555555')
+		ax.set_xlabel("Jahr", fontsize=16, color='#555555')
 		ax.set_ylabel(f'{summary["Long Name"]} (°C)', fontsize=16, color='#555555')
 
-		# Update plot parameters for consistency
+		# Diagrammparameter für Konsistenz aktualisieren
 		params = {
 			'axes.labelsize': 16,
 			'axes.titlesize': 18,
@@ -465,47 +472,47 @@ Mehr Informationen zum richtigen Einsatz von Listen, Arrays und Dataframes in Py
 		}
 		plt.rcParams.update(params)
 
-		# Add grid and tick formatting
+		# Raster und Tick-Formatierung hinzufügen
 		ax.grid(visible=True, color='#b0b0b0', linestyle='--', linewidth=0.8, alpha=0.6)
 		ax.yaxis.set_major_formatter(ticker.FormatStrFormatter('%0.2f'))
 		ax.tick_params(axis='y', which='both', color='#b0b0b0')
 
-		# Define yaxis limits
+		# Begrenzung der y-Achse definieren
 		ax.set_ylim(15,24)
 
-		# Plot the mean temperature trend
+		# Durchschnittliche Temperatur-Trendlinie zeichnen
 		line1, = ax.plot(
-			df_statistics_filtered['Year'],
-			df_statistics_filtered['Mean'].astype(float),
-			label='Mean Temperature',
+			df_statistics_filtered['Jahr'],
+			df_statistics_filtered['Mittelwert'].astype(float),
+			label='Durchschnittstemperatur',
 			color='#ff6f61',
 			linestyle='-.',
 			marker='o',
 			linewidth=2.5
 		)
 
-		# Fit a quadratic curve (degree 2) for the trend line
-		degree = 2  # Quadratic fit
+		# Quadratische Anpassung (Grad 2) für die Trendlinie berechnen
+		degree = 2  # Quadratische Anpassung
 		coefficients = np.polyfit( 
-			df_statistics_filtered['Year'],
-			df_statistics_filtered['Mean'].astype(float),
+			df_statistics_filtered['Jahr'],
+			df_statistics_filtered['Mittelwert'].astype(float),
 			degree
 		)
 		curve_fit = np.poly1d(coefficients)
 
-		# Plot the curve fit trend line
+		# Angepasste Trendlinie zeichnen
 		ax.plot(
-			df_statistics_filtered['Year'],
-			curve_fit(df_statistics_filtered['Year']),
-			label=f'Curve Fit (Degree {degree})',
+			df_statistics_filtered['Jahr'],
+			curve_fit(df_statistics_filtered['Jahr']),
+			label=f'Kurvenanpassung (Grad {degree})',
 			color='blue',
 			linestyle='--',
 			linewidth=1.5
 		)
 
-		# Add legend
+		# Legende hinzufügen
 		ax.legend(loc='upper left', fontsize=12, frameon=True, facecolor='#ffffff', 	edgecolor='#b0b0b0')
 
-		# Display the plot
+		# Diagramm anzeigen
 		plt.tight_layout()
 		plt.show()

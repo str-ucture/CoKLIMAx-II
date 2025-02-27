@@ -124,7 +124,7 @@ To automate the download of the desired data via the CDS API, you first need to 
 Go to the `Download <https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=download>`_ tab and select the parameters as follows:
 
 	* **Temperature**: 2m temperature
-	* **Year**:2024
+	* **Year**: 2024
 	* **Month**: October
 	* **Day**: 01
 	* **Time**: Select all
@@ -184,7 +184,7 @@ Once you have accepted the terms of use, simply click **"Show API request code"*
 
 		# Define download folder
 		download_folder = os.path.join(os.getcwd(), "CDSdata")		
-		os.makedirs(download_folder, exist_ok=True) # Create the directory if it doesn't exist
+		os.makedirs(download_folder, exist_ok=True)  # Create the directory if it doesn't exist
 
 		# Define download file path
 		download_filepath = os.path.join(download_folder, f"{dataset}.zip")
@@ -205,5 +205,3 @@ Open Jupyter Lab via the command prompt (cmd) and run the codes above to downloa
 		jupyter lab
 
 If **Jupyter Lab** does not open, please review the instructions we have prepared for you :ref:`here <software-knowledge>`.
-
-.. Before you click "continue" on this page, go to your Jupyter Lab and open the notebook you just downloaded. Use the instructions in the notebook to test whether your CDS API is working. You can then return to this page and continue the course structure

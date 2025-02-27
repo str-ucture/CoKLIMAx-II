@@ -11,7 +11,7 @@
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
       <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=91fa011e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=822aaed9" />
 
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -84,12 +84,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#visualization-of-monthly-average-with-bar-graph">6.3 Visualization of Monthly Average with Bar Graph</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#export-the-merged-netcdf4-file-to-geotiff">7. Export the Merged NetCDF4 file to GeoTIFF</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#export-the-merged-netcdf4-file-to-geotiff">7. Export the merged NetCDF4 file to GeoTIFF</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#export-all-year-dataset-as-merged-geotiff-file">7.1 Export All-Year Dataset as Merged GeoTIFF File</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#export-all-year-dataset-as-individual-geotiff-file">7.2 Export All-Year Dataset as Individual GeoTIFF File</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#visualize-all-available-data-from-1995-to-2023">8. Visualize all available data from 1995 to 2023</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-visualization-using-a-calendar-plot">8. Additional Visualization using a Calendar Plot</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="03-sis-temperature-statistics.html">Temperature Statistics for Europe</a></li>
@@ -139,9 +139,11 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="#download-and-extract-the-dataset"><span class="std std-ref">Download and Extract the Dataset</span></a></p></li>
 <li><p><a class="reference internal" href="#merge-netcdf4-files-into-a-single-netcdf4-file"><span class="std std-ref">Merge NetCDF4 Files into a Single NetCDF4 File</span></a></p></li>
-<li><p><a class="reference internal" href="#investigate-the-metadata-of-the-netcdf4-file"><span class="std std-ref">Examine the metadata of the netCDF4 file</span></a></p></li>
+<li><p><a class="reference internal" href="#investigate-the-metadata-of-the-netcdf4-file"><span class="std std-ref">Investigate the Metadata of the NetCDF4 file</span></a></p></li>
 <li><p><a class="reference internal" href="#export-the-time-series-in-csv-format"><span class="std std-ref">Export the time series in CSV format</span></a></p></li>
-<li><p><a class="reference internal" href="#analysis-and-visualization-options"><span class="std std-ref">Analysis and Visualization</span></a></p></li>
+<li><p><a class="reference internal" href="#analysis-and-visualization-options"><span class="std std-ref">Analysis and Visualization Options</span></a></p></li>
+<li><p><a class="reference internal" href="#export-the-merged-netcdf4-file-to-geotiff"><span class="std std-ref">Export the merged NetCDF4 file to GeoTIFF</span></a></p></li>
+<li><p><a class="reference internal" href="#additional-visualization-using-a-calendar-plot"><span class="std std-ref">Additional Visualization using a Calendar Plot</span></a></p></li>
 </ul>
 <p><strong>Information on Dataset:</strong></p>
 <ul class="simple">
@@ -377,6 +379,10 @@ the geographic area for such requests.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
+
+<span class="c1"># Define the file path for the merged netCDF dataset</span>
+<span class="n">nc_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;satellite-lake-water-temperature_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">.nc&quot;</span>
+<span class="n">nc_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">nc_filename</span><span class="p">)</span>
 
 <span class="c1"># Open the merged NetCDF file in read mode</span>
 <span class="n">nc_dataset</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">Dataset</span><span class="p">(</span><span class="n">nc_filepath_merged</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
@@ -849,6 +855,8 @@ Reading existing CSV file...
     <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+
 <span class="c1"># Adjust layout and display the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -856,7 +864,7 @@ Reading existing CSV file...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1e39f41ede3809d3787ac3f9fe1a879f12d2c9e7b1d6574f2daf037fde4becd4.png" src="../../_images/1e39f41ede3809d3787ac3f9fe1a879f12d2c9e7b1d6574f2daf037fde4becd4.png" />
+<img alt="../../_images/aca1d31aff37fa0bfa909d760295b7814ef3e7565022f73c35ae3600db0670a2.png" src="../../_images/aca1d31aff37fa0bfa909d760295b7814ef3e7565022f73c35ae3600db0670a2.png" />
 </div>
 </div>
 </section>
@@ -1014,6 +1022,8 @@ Reading existing CSV file...
     <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+
 <span class="c1"># Adjust layout and display the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1021,7 +1031,7 @@ Reading existing CSV file...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/3af97d3d6c5cae72cd3285bdb4a98b5820310f0d25e278de49c226ec2936788c.png" src="../../_images/3af97d3d6c5cae72cd3285bdb4a98b5820310f0d25e278de49c226ec2936788c.png" />
+<img alt="../../_images/4d63861b911fe0c11efe2d7008625067777dd5ee0bcb931f0bc00a87a808d486.png" src="../../_images/4d63861b911fe0c11efe2d7008625067777dd5ee0bcb931f0bc00a87a808d486.png" />
 </div>
 </div>
 </section>
@@ -1056,7 +1066,7 @@ Reading existing CSV file...
 <span class="c1"># Set axis labels and chart title</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Months&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Temperature (K)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Average Monthly Lake Surface Water Temperature, </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Average Monthly Surface Water Temperature of Lake Constance, </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add grid to the plot and format y-axis</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
@@ -1079,6 +1089,8 @@ Reading existing CSV file...
     <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+
 <span class="c1"># Adjust layout and display the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1086,13 +1098,13 @@ Reading existing CSV file...
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/7a40d5242b6e06d9d2ff84e6c61a96b0b23e0db32e5a55ef902f301ddd0d43ae.png" src="../../_images/7a40d5242b6e06d9d2ff84e6c61a96b0b23e0db32e5a55ef902f301ddd0d43ae.png" />
+<img alt="../../_images/d1cecb4f8065eaeedf5d7f8c5acb340ddd73d783543f4aaa2f592797a61a0f7e.png" src="../../_images/d1cecb4f8065eaeedf5d7f8c5acb340ddd73d783543f4aaa2f592797a61a0f7e.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="export-the-merged-netcdf4-file-to-geotiff">
-<h2>7. Export the Merged NetCDF4 file to GeoTIFF<a class="headerlink" href="#export-the-merged-netcdf4-file-to-geotiff" title="Link to this heading"></a></h2>
+<h2>7. Export the merged NetCDF4 file to GeoTIFF<a class="headerlink" href="#export-the-merged-netcdf4-file-to-geotiff" title="Link to this heading"></a></h2>
 <section id="export-all-year-dataset-as-merged-geotiff-file">
 <h3>7.1 Export All-Year Dataset as Merged GeoTIFF File<a class="headerlink" href="#export-all-year-dataset-as-merged-geotiff-file" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
@@ -1257,8 +1269,8 @@ Reading existing CSV file...
 </div>
 </section>
 </section>
-<section id="visualize-all-available-data-from-1995-to-2023">
-<h2>8. Visualize all available data from 1995 to 2023<a class="headerlink" href="#visualize-all-available-data-from-1995-to-2023" title="Link to this heading"></a></h2>
+<section id="additional-visualization-using-a-calendar-plot">
+<h2>8. Additional Visualization using a Calendar Plot<a class="headerlink" href="#additional-visualization-using-a-calendar-plot" title="Link to this heading"></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>

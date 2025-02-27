@@ -32,7 +32,7 @@ Im ersten Teil der Dokumentation geht es um die Vorbereitung Ihres Computers auf
 .. toctree::
   :maxdepth: 2
   :caption: The Jupyter Notebook Bibliothek:
-  
+    
   /rst_jupyter_bibliothek/index
   /rst_jupyter_bibliothek/cds_data/index
   /rst_jupyter_bibliothek/satellite_data/index

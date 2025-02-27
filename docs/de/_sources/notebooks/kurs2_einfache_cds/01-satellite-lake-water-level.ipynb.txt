@@ -26,7 +26,7 @@
     "    * Entpacken der heruntergeladenen Datei\n",
     "* [Untersuchen der Metadaten der netCDF4-Datei](#untersuchen-der-metadaten-der-netcdf4-datei)\n",
     "* [Exportieren der Zeitreihe im csv-Format](#exportieren-der-zeitreihe-im-csv-format)\n",
-    "* [Analyse und Visualisierung](#analyse-und-visualisierung)\n",
+    "* [Analyse und Visualisierung Optionen](#analyse-und-visualisierung-optionen)\n",
     "\n",
     "**Informationen zum Datensatz:**\n",
     "* Quelle: <a href=\"https://cds.climate.copernicus.eu/datasets/satellite-lake-water-level?tab=overview\" target=\"_blank\">Satellite Lake Water Levels</a>\n",
@@ -44,7 +44,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 1,
+   "execution_count": 9,
    "id": "a74e11ed",
    "metadata": {},
    "outputs": [],
@@ -63,7 +63,7 @@
     "os.makedirs(working_folder, exist_ok=True)\n",
     "os.makedirs(geotiff_folder, exist_ok=True)\n",
     "os.makedirs(csv_folder, exist_ok=True)\n",
-    "os.makedirs(output_folder, exist_ok=True)\n"
+    "os.makedirs(output_folder, exist_ok=True)"
    ]
   },
   {
@@ -86,7 +86,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 2,
+   "execution_count": 10,
    "id": "507616bf",
    "metadata": {},
    "outputs": [],
@@ -94,7 +94,7 @@
     "import cdsapi\n",
     "\n",
     "def main():\n",
-    "    # API-Schlüssel für die Authentifizierung\n",
+    "    # API-Key für die Authentifizierung\n",
     "    api_key = \"fdae60fd-35d4-436f-825c-c63fedab94a4\"\n",
     "    api_url = \"https://cds.climate.copernicus.eu/api\"\n",
     "    \n",
@@ -113,7 +113,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 3,
+   "execution_count": 11,
    "id": "a199e44d",
    "metadata": {},
    "outputs": [],
@@ -129,7 +129,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 4,
+   "execution_count": 12,
    "id": "cff16f16",
    "metadata": {},
    "outputs": [
@@ -170,7 +170,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 5,
+   "execution_count": 13,
    "id": "1e6bc1af",
    "metadata": {},
    "outputs": [
@@ -213,12 +213,12 @@
     "jp-MarkdownHeadingCollapsed": true
    },
    "source": [
-    "## 3. Untersuchen der Metadaten der netCDF4-Datei"
+    "## 3. Untersuchen der Metadaten der NetCDF4-Datei"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 6,
+   "execution_count": 14,
    "id": "8491c236",
    "metadata": {},
    "outputs": [
@@ -244,7 +244,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 7,
+   "execution_count": 15,
    "id": "131d71a3",
    "metadata": {},
    "outputs": [
@@ -281,7 +281,7 @@
        "    </tr>\n",
        "    <tr>\n",
        "      <th>1</th>\n",
-       "      <td>Daten Typ</td>\n",
+       "      <td>Datentyp</td>\n",
        "      <td>float64</td>\n",
        "    </tr>\n",
        "    <tr>\n",
@@ -311,14 +311,14 @@
       "text/plain": [
        "    Beschreibung                                 Bemerkungen\n",
        "0  Variablenname  water_surface_height_above_reference_datum\n",
-       "1      Daten Typ                                     float64\n",
+       "1       Datentyp                                     float64\n",
        "2           Form                                      (101,)\n",
        "3  Variableninfo                                   ('time',)\n",
        "4      Einheiten                                           m\n",
        "5    Langer Name            water surface height above geoid"
       ]
      },
-     "execution_count": 7,
+     "execution_count": 15,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -333,7 +333,7 @@
     "# Erstellen einer Zusammenfassung der Hauptvariablen\n",
     "summary = {\n",
     "    \"Variablenname\": variable_name,\n",
-    "    \"Daten Typ\": variable_data.dtype,\n",
+    "    \"Datentyp\": variable_data.dtype,\n",
     "    \"Form\": variable_data.shape,\n",
     "    \"Variableninfo\": f\"{variable_data.dimensions}\",\n",
     "    \"Einheiten\": getattr(variable_data, \"units\", \"N/A\"),\n",
@@ -367,7 +367,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 8,
+   "execution_count": 16,
    "id": "fc0d3553",
    "metadata": {},
    "outputs": [],
@@ -414,7 +414,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 9,
+   "execution_count": 17,
    "id": "30f7039e",
    "metadata": {},
    "outputs": [
@@ -422,7 +422,9 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "Gefilterte Daten erfolgreich exportiert nach .\\data\\satellite-lake-water-level\\csv\\satellite-lake-water-level.csv\n"
+      "Datei existiert bereits unter .\\data\\satellite-lake-water-level\\csv\\satellite-lake-water-level.csv.\n",
+      "Überspringe den Export.\n",
+      "Lese bestehende CSV-Datei ein...\n"
      ]
     },
     {
@@ -503,7 +505,7 @@
        "2016-07-09 20:44:59.998283264              0.13  "
       ]
      },
-     "execution_count": 9,
+     "execution_count": 17,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -534,7 +536,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 10,
+   "execution_count": 18,
    "id": "71a70abf",
    "metadata": {},
    "outputs": [
@@ -579,7 +581,7 @@
    "id": "0d05ea02",
    "metadata": {},
    "source": [
-    "## 5. Analyse und Visualisierungsmöglichkeiten"
+    "## 5. Analyse und Visualisierung Optionen"
    ]
   },
   {
@@ -592,7 +594,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 11,
+   "execution_count": 19,
    "id": "9ee6f4d5",
    "metadata": {},
    "outputs": [
@@ -676,7 +678,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 12,
+   "execution_count": 20,
    "id": "9913d5a8",
    "metadata": {},
    "outputs": [
@@ -780,7 +782,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 13,
+   "execution_count": 21,
    "id": "03574e8a",
    "metadata": {},
    "outputs": [
@@ -892,7 +894,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 14,
+   "execution_count": 22,
    "id": "e1326ca8",
    "metadata": {},
    "outputs": [
