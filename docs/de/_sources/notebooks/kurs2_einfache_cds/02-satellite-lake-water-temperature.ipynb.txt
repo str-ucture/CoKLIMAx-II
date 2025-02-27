@@ -223,6 +223,8 @@
     "# Erstellen des Dateinamens und des Dateipfads für die ZIP-Datei des Datensatzes\n",
     "dataset_filename = f\"{dataset}_{year}.zip\"\n",
     "dataset_filepath = os.path.join(download_folder, dataset_filename)\n",
+    "\n",
+    "# Erstellen Sie einen Ordner zum Extrahieren der ZIP-Datei basierend auf dem ausgewählten Jahr\n",
     "extract_folder = os.path.join(working_folder, str(year))\n",
     "\n",
     "# Entpacken der ZIP-Datei\n",
@@ -230,6 +232,7 @@
     "    os.makedirs(extract_folder, exist_ok=True)\n",
     "    \n",
     "    if not os.listdir(extract_folder):\n",
+    "        # Versuchen Sie, die ZIP-Datei zu öffnen und zu extrahieren\n",
     "        with zipfile.ZipFile(dataset_filepath, 'r') as zip_ref:\n",
     "            zip_ref.extractall(extract_folder)\n",
     "            print(f\"Dateien erfolgreich extrahiert nach: {extract_folder}\")\n",
@@ -383,7 +386,7 @@
    "id": "9cd664fe",
    "metadata": {},
    "source": [
-    "## 5. Exportieren der Zeitreihe im csv-Format"
+    "## 5. Exportieren der Zeitreihe im CSV-Format"
    ]
   },
   {
@@ -1104,7 +1107,7 @@
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.10.16"
+   "version": "undefined.undefined.undefined"
   },
   "widgets": {
    "application/vnd.jupyter.widget-state+json": {

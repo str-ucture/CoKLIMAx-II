@@ -10,8 +10,15 @@ Satellite Data Notebooks |satellite-data-logo|
   :class: no-scaled-link
   :alt: Satellite Data Logo
 
+The **Satellite Data Notebooks** is a curated set of Jupyter notebooks designed to help users access, process, and visualize satellite imagery from various sources. This collection covers data retrieval from platforms such as **sentinelhub**, **landsatxplorer**, and **raw satellite datasets**, providing hands-on examples for remote sensing applications.
 
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+Users can expect:
+
+* Tutorials on accessing Sentinel and Landsat imagery via APIs and web platforms.
+** Step-by-step guides for processing raw satellite data, including atmospheric corrections and cloud masking.
+** Techniques for visualizing and analyzing multispectral and thermal imagery.
+
+Whether you're working on environmental monitoring, land use classification, or disaster assessment, these notebooks offer practical workflows to enhance your satellite data analysis skills.
 
 ----
 

@@ -4,7 +4,7 @@
 Visualization Options Library
 =============================
 
-This section of the documentation provides an overview of the various visualization options available in our library. Each notebook linked below demonstrates a specific type of plot followed by example on how the visualization can be used for CDS dataset.
+The **Visualization Options Library** is a comprehensive collection of Jupyter notebooks showcasing different techniques for visualizing geospatial and climate data. This section of the documentation provides an overview of various visualization methods, helping users effectively interpret and present datasets from the Copernicus Data Store (CDS).
 
 .. toctree::
   :maxdepth: 1

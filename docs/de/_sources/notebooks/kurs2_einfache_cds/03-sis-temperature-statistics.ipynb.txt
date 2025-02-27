@@ -336,7 +336,7 @@
    "id": "76aabe6e",
    "metadata": {},
    "source": [
-    "### 3.1 Erstellen eines DataFrame mit verfügbaren netCDF-Dateien"
+    "### 3.1 Erstellen eines DataFrame mit verfügbaren NetCDF-Dateien"
    ]
   },
   {
@@ -1019,7 +1019,7 @@
    "id": "148f6823",
    "metadata": {},
    "source": [
-    "## 4. Exportieren der NetCDF4-Dateien im csv-Format"
+    "## 4. Exportieren der NetCDF4-Dateien im CSV-Format"
    ]
   },
   {
@@ -1765,7 +1765,23 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 73,
+   "execution_count": 1,
+   "id": "f9c4701e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Zusätzliche Anforderungsfelder definieren, um sicherzustellen, dass die Anfrage innerhalb der Dateigrößenbegrenzung bleibt.\n",
+    "# Diese Koordinaten wurden mit dem BBox Extractor Tool erhalten:\n",
+    "# https://str-ucture.github.io/bbox-extractor/\n",
+    "\n",
+    "# Begrenzungsbox für die Region Konstanz (WGS84-Projektion):\n",
+    "bbox_wgs84_konstanz = [47.9, 8.9, 47.6, 9.3]  # Format: [Norden, Westen, Süden, Osten]\n",
+    "bbox_wgs84_konstanz_standard = [9.0, 47.6, 9.3, 47.8]  # Standardformat: [Westen, Süden, Osten, Norden]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
    "id": "9fd7515d",
    "metadata": {},
    "outputs": [
@@ -2405,14 +2421,6 @@
     }
    ],
    "source": [
-    "# Zusätzliche Anforderungsfelder definieren, um sicherzustellen, dass die Anfrage innerhalb der Dateigrößenbegrenzung bleibt.\n",
-    "# Diese Koordinaten wurden mit dem BBox Extractor Tool erhalten:\n",
-    "# https://str-ucture.github.io/bbox-extractor/\n",
-    "\n",
-    "# Begrenzungsbox für die Region Konstanz (WGS84-Projektion):\n",
-    "bbox_wgs84_konstanz = [47.9, 8.9, 47.6, 9.3]  # Format: [Norden, Westen, Süden, Osten]\n",
-    "bbox_wgs84_konstanz_standard = [9.0, 47.6, 9.3, 47.8]  # Standardformat: [Westen, Süden, Osten, Norden]\n",
-    "\n",
     "# CSV-Dateiname und Pfad für die Ausgabe definieren\n",
     "csv_filename = f\"{dataset}-subset-{nc_files[0]['ds_period']}.csv.zip\"\n",
     "csv_filepath = os.path.join(csv_folder, csv_filename)\n",
@@ -2460,7 +2468,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 74,
+   "execution_count": null,
    "id": "7fe9985b",
    "metadata": {},
    "outputs": [],
@@ -2530,9 +2538,11 @@
     "        if start_year and end_year:\n",
     "            # Passen Sie start_year und end_year basierend auf dem verfügbaren Zeitraum an\n",
     "            if start_year < min_year:\n",
-    "                print(f\"Das angegebene Startjahr {start_year} liegt vor dem Datensatzbereich. Das Startjahr wird auf {min_year} angepasst.\")\n",
+    "                print(f\"Das angegebene Startjahr {start_year} liegt vor dem Datensatzbereich.\")\n",
+    "                print(f\"Das Startjahr wird auf {min_year} angepasst.\")\n",
     "            if end_year > max_year:\n",
-    "                print(f\"Das angegebene Endjahr {end_year} liegt nach dem Datensatzbereich. Das Endjahr wird auf {max_year} angepasst.\")\n",
+    "                print(f\"Das angegebene Endjahr {end_year} liegt nach dem Datensatzbereich.\")\n",
+    "                print(f\"Das Endjahr wird auf {max_year} angepasst.\")\n",
     "            start_year = max(start_year, min_year)\n",
     "            end_year = min(end_year, max_year)\n",
     "\n",

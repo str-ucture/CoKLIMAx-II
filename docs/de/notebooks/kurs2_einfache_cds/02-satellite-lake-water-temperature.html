@@ -74,7 +74,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#netcdf4-dateien-zu-einer-einzigen-netcdf4-datei-zusammenfuhren">3. NetCDF4-Dateien zu einer einzigen NetCDF4-Datei zusammenführen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#untersuchen-der-metadaten-der-netcdf4-datei">4. Untersuchen der Metadaten der NetCDF4-Datei</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#exportieren-der-zeitreihe-im-csv-format">5. Exportieren der Zeitreihe im csv-Format</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#exportieren-der-zeitreihe-im-csv-format">5. Exportieren der Zeitreihe im CSV-Format</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#definieren-sie-eine-funktion-zur-berechnung-des-tagesdurchschnitts">5.1 Definieren Sie eine Funktion zur Berechnung des Tagesdurchschnitts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#erstellen-des-dataframes-fur-jahresdaten-und-export-als-csv">5.2 Erstellen des DataFrames für Jahresdaten und Export als CSV</a></li>
 </ul>
@@ -297,6 +297,8 @@
 <span class="c1"># Erstellen des Dateinamens und des Dateipfads für die ZIP-Datei des Datensatzes</span>
 <span class="n">dataset_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">.zip&quot;</span>
 <span class="n">dataset_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">dataset_filename</span><span class="p">)</span>
+
+<span class="c1"># Erstellen Sie einen Ordner zum Extrahieren der ZIP-Datei basierend auf dem ausgewählten Jahr</span>
 <span class="n">extract_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">year</span><span class="p">))</span>
 
 <span class="c1"># Entpacken der ZIP-Datei</span>
@@ -304,6 +306,7 @@
     <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     
     <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">):</span>
+        <span class="c1"># Versuchen Sie, die ZIP-Datei zu öffnen und zu extrahieren</span>
         <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">dataset_filepath</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_ref</span><span class="p">:</span>
             <span class="n">zip_ref</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dateien erfolgreich extrahiert nach: </span><span class="si">{</span><span class="n">extract_folder</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -594,7 +597,7 @@
 </div>
 </section>
 <section id="exportieren-der-zeitreihe-im-csv-format">
-<h2>5. Exportieren der Zeitreihe im csv-Format<a class="headerlink" href="#exportieren-der-zeitreihe-im-csv-format" title="Link to this heading"></a></h2>
+<h2>5. Exportieren der Zeitreihe im CSV-Format<a class="headerlink" href="#exportieren-der-zeitreihe-im-csv-format" title="Link to this heading"></a></h2>
 <section id="definieren-sie-eine-funktion-zur-berechnung-des-tagesdurchschnitts">
 <h3>5.1 Definieren Sie eine Funktion zur Berechnung des Tagesdurchschnitts<a class="headerlink" href="#definieren-sie-eine-funktion-zur-berechnung-des-tagesdurchschnitts" title="Link to this heading"></a></h3>
 <div class="cell docutils container">

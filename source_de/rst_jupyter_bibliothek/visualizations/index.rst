@@ -4,7 +4,7 @@
 Visualization Options Library
 =============================
 
-Dieser Abschnitt der Dokumentation bietet einen Überblick über die verschiedenen Visualisierungsoptionen, die in unserer Bibliothek verfügbar sind. Jedes unten verlinkte Notebook zeigt einen bestimmten Diagrammtyp, gefolgt von einem Beispiel, wie die Visualisierung für CDS-Datensätze verwendet werden kann.
+Die **Visualization Options Library** ist eine umfassende Sammlung von Jupyter-Notebooks, die verschiedene Techniken zur Visualisierung von Geodaten und Klimadaten zeigen. Dieser Abschnitt der Dokumentation bietet einen Überblick über verschiedene Visualisierungsmethoden und hilft Benutzern, Datensätze aus dem Copernicus Data Store (CDS) effektiv zu interpretieren und zu präsentieren.
 
 .. toctree::
   :maxdepth: 1

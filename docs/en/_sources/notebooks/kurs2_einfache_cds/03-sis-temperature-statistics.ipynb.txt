@@ -1885,7 +1885,23 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 275,
+   "execution_count": null,
+   "id": "0503947d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Define additional request fields to ensure the request stays within the file size limit.\n",
+    "# These coordinates were obtained using the BBox Extractor tool:\n",
+    "# https://str-ucture.github.io/bbox-extractor/\n",
+    "\n",
+    "# Bounding box for the Konstanz region (WGS84 projection):\n",
+    "bbox_wgs84_konstanz = [47.9, 8.9, 47.6, 9.3]  # Format: [North, West, South, East]\n",
+    "bbox_wgs84_konstanz_standard = [9.0, 47.6, 9.3, 47.8]  # Standard format: [West, South, East, North]"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
    "id": "2474ba53",
    "metadata": {},
    "outputs": [
@@ -2525,14 +2541,6 @@
     }
    ],
    "source": [
-    "# Define additional request fields to ensure the request stays within the file size limit.\n",
-    "# These coordinates were obtained using the BBox Extractor tool:\n",
-    "# https://str-ucture.github.io/bbox-extractor/\n",
-    "\n",
-    "# Bounding box for the Konstanz region (WGS84 projection):\n",
-    "bbox_wgs84_konstanz = [47.9, 8.9, 47.6, 9.3]  # Format: [North, West, South, East]\n",
-    "bbox_wgs84_konstanz_standard = [9.0, 47.6, 9.3, 47.8]  # Standard format: [West, South, East, North]\n",
-    "\n",
     "# Define csv filename and filepath for the output\n",
     "csv_filename = f\"{dataset}-subset-{nc_files[0]['ds_period']}.csv.zip\"\n",
     "csv_filepath = os.path.join(csv_folder, csv_filename)\n",
@@ -2574,12 +2582,12 @@
    "id": "e997a3d4",
    "metadata": {},
    "source": [
-    "### 5.1 Define a Function to exort the NetCDF4 file as GeoTIFF File(s)"
+    "### 5.1 Define a Function to export the NetCDF4 file as GeoTIFF File(s)"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 276,
+   "execution_count": null,
    "id": "f4c38a88",
    "metadata": {},
    "outputs": [],
@@ -2649,9 +2657,12 @@
     "        if start_year and end_year:\n",
     "            # Adjust start_year and end_year based on the available cftime range\n",
     "            if start_year < min_year:\n",
-    "                print(f\"Provided start year {start_year} is earlier than the dataset range. Adjusting start year to {min_year}.\")\n",
+    "                print(f\"Provided start year {start_year} is earlier than the dataset range.\")\n",
+    "                print(f\"Adjusting start year to {min_year}.\")\n",
     "            if end_year > max_year:\n",
-    "                print(f\"Provided end year {end_year} is later than the dataset range. Adjusting end year to {max_year}.\")\n",
+    "                print(f\"Provided end year {end_year} is later than the dataset range.\")\n",
+    "                print(f\"Adjusting end year to {max_year}.\")\n",
+    "                \n",
     "            start_year = max(start_year, min_year)\n",
     "            end_year = min(end_year, max_year)\n",
     "\n",
