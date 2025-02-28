@@ -4,10 +4,6 @@ myenv/
 env/
 cds_venv/
 
-# Untrack extrac files and folders
-.vscode/
-utils_and_extra/
-
 # Secrets and API keys
 source/secrets/
 **/.cdsapirc
@@ -41,12 +37,16 @@ source/secrets/
 # Allow everything inside the docs (ignore previously ignored files)
 # Ignore large CSV files inside docs
 !docs/
+!docs/*
 docs/**/*.csv
 docs/*.csv
 
+# Include jupyter execute
+jupyter_execute/
+
 # Allow PNG & GIF files inside source/_static
-!source_en/_static/*.png
-!source_de/_static/*.png
+!source_en/_static/
+!source_de/_static/
 
 # Specific scripts & batch files
 update_dropdown.py
