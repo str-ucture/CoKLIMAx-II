@@ -2543,6 +2543,7 @@
     "            if end_year > max_year:\n",
     "                print(f\"Das angegebene Endjahr {end_year} liegt nach dem Datensatzbereich.\")\n",
     "                print(f\"Das Endjahr wird auf {max_year} angepasst.\")\n",
+    "                \n",
     "            start_year = max(start_year, min_year)\n",
     "            end_year = min(end_year, max_year)\n",
     "\n",

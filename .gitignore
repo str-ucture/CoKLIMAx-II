@@ -4,13 +4,6 @@ myenv/
 env/
 cds_venv/
 
-# Ignore everything in this folder except explicitly allowed files
-source/notebooks/kurs_not_defined/data/landsatxplorer/working/*
-
-kurs_backups/
-kurs_ArcGIS/
-sentinel2-without-esri/
-
 # Secrets and API keys
 source/secrets/
 **/.cdsapirc
@@ -39,14 +32,13 @@ source/secrets/
 *.png
 *.gif
 
-# Allow everything inside the docs folder (overriding previous rules)
-!docs/
-!docs/**
+# Allow everything inside the docs folder except CSV files
+docs/**/*.csv
+docs/*.csv
 
 # Allow PNG & GIF files inside source/_static
 !source_en/_static/*.png
 !source_de/_static/*.png
-
 
 # Specific scripts & batch files
 copy_images.bat

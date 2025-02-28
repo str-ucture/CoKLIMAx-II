@@ -13,8 +13,7 @@ conda activate cds_env
 python .\update_dropdown.py
 python .\update_images.py
 
-
 git add .
-git commit -m "cleaned codes and translated"
+git commit -m "updates"
 git push
 

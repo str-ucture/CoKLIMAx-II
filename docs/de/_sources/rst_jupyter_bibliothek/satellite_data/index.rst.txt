@@ -10,15 +10,9 @@ Satellitendaten Notebooks |satellite-data-logo|
   :class: no-scaled-link
   :alt: Satellitendaten-Logo
 
-Die **Satellite Data Notebooks** sind eine kuratierte Sammlung von Jupyter-Notebooks, die Benutzern dabei helfen sollen, Satellitenbilder aus verschiedenen Quellen abzurufen, zu verarbeiten und zu visualisieren. Diese Sammlung umfasst den Datenabruf von Plattformen wie **sentinelhub**, **landsatxplorer** und **Rohdatensätzen von Satelliten** und bietet praktische Beispiele für Fernerkundungsanwendungen.
+Neben den Klimadaten aus dem **Copernicus Climate Data Store (CDS)** spielen **Satellitendaten** eine entscheidende Rolle im **Monitoring von Klimafolgen und Umweltveränderungen**. Besonders Missionen wie **Sentinel-2** und **Landsat** liefern wertvolle Informationen, die Städte und Kommunen bei der **Erfassung von Landnutzungsänderungen, Vegetationsanalysen und der Identifikation urbaner Wärmeinseln** unterstützen können.
 
-Benutzer können Folgendes erwarten:
-
-* Tutorials zum Zugriff auf Sentinel- und Landsat-Bilder über APIs und Webplattformen.
-** Schritt-für-Schritt-Anleitungen zur Verarbeitung von Rohsatellitendaten, einschließlich atmosphärischer Korrekturen und Wolkenmaskierung.
-** Techniken zur Visualisierung und Analyse von multispektralen und thermischen Bildern.
-
-Egal, ob Sie an Umweltüberwachung, Landnutzungsklassifizierung oder Katastrophenbewertung arbeiten, diese Notebooks bieten praktische Arbeitsabläufe zur Verbesserung Ihrer Fähigkeiten zur Satellitendatenanalyse.
+In dieser Sektion stellen wir Ihnen eine Sammlung von **praxisnahen Jupyter Notebooks** bereit, die demonstrieren, wie Sentinel-2- und Landsat-Daten **abgerufen, verarbeitet und analysiert** werden können. Diese Beispiele bieten wertvolle Einblicke in die Nutzung satellitengestützter Erdbeobachtung für eine nachhaltige und klimaresiliente Stadtentwicklung.
 
 ----
 

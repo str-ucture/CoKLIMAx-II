@@ -10,15 +10,9 @@ CDS Dataset Notebooks |cds-logo|
   :class: no-scaled-link
   :alt: CDS Logo
 
-The **CDS Dataset Notebooks** provide a structured collection of Jupyter notebooks designed to help users explore and interact with various datasets available from the **Copernicus Data Store (CDS)**. These notebooks serve as practical guides for accessing, processing, and visualizing climate and atmospheric data, making it easier to understand and utilize the vast resources provided by Copernicus.
+In this section, we provide a selection of interactive Jupyter Notebooks for working with datasets from the **Copernicus Climate Data Store (CDS)**. The Climate Data Store offers a comprehensive collection of **high-quality climate data**, which can be applied in **environmental analysis, urban planning, and climate impact research**.
 
-Users can expect:
-
-* Step-by-step tutorials on retrieving data from CDS APIs.
-* Examples covering different datasets, including climate reanalysis and seasonal forecasts.
-* Hands-on demonstrations for processing and visualizing geospatial and temporal data.
-
-Whether you're a beginner or an experienced researcher, these notebooks will assist you in efficiently working with CDS datasets for climate and environmental studies.
+The notebooks available here offer **step-by-step demonstrations** on how to efficiently **retrieve, process, and analyze** these datasets. They are designed for both **scientific studies** and **practical applications**, helping cities and municipalities better understand climate-related challenges and make informed decisions.
 
 ----
 
