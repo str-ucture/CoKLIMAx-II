@@ -442,10 +442,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-02-28 10:50:00,480 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-02-28 11:01:26,272 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-02-28 10:50:00,481 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-02-28 11:01:26,273 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset already downloaded.
@@ -893,116 +893,97 @@
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">17</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">subset_csv_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">17</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">for</span> <span class="n">nc_file</span> <span class="ow">in</span> <span class="n">nc_files</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">6</span>     <span class="n">dataframe</span> <span class="o">=</span> <span class="n">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="o">=</span><span class="n">nc_file</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">dataframe</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subset_csv_folder</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">dataframe</span> <span class="o">=</span> <span class="n">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="o">=</span><span class="n">nc_file</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">7</span>     <span class="n">dataframe</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">subset_csv_folder</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">))</span>
 <span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">dataframe</span>
 
-<span class="nn">Cell In[15], line 5,</span> in <span class="ni">netcdf_to_dataframe</span><span class="nt">(nc_file, bounding_box)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">def</span><span class="w"> </span><span class="nf">netcdf_to_dataframe</span><span class="p">(</span><span class="n">nc_file</span><span class="p">,</span> <span class="n">bounding_box</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="ne">----&gt; </span><span class="mi">5</span>     <span class="k">with</span> <span class="n">xr</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span> <span class="k">as</span> <span class="n">nc_dataset</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>         <span class="n">variable_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="p">[</span><span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;variable_name&#39;</span><span class="p">]]</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>         <span class="c1"># Ensure latitude and longitude names are correct</span>
+<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\pandas\util\_decorators.py:333,</span> in <span class="ni">deprecate_nonkeyword_arguments.&lt;locals&gt;.decorate.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">327</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">num_allow_args</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">328</span>     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">329</span>         <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arguments</span><span class="o">=</span><span class="n">_format_argument_list</span><span class="p">(</span><span class="n">allow_args</span><span class="p">)),</span>
+<span class="g g-Whitespace">    </span><span class="mi">330</span>         <span class="ne">FutureWarning</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">331</span>         <span class="n">stacklevel</span><span class="o">=</span><span class="n">find_stack_level</span><span class="p">(),</span>
+<span class="g g-Whitespace">    </span><span class="mi">332</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">333</span> <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\xarray\backends\api.py:686,</span> in <span class="ni">open_dataset</span><span class="nt">(filename_or_obj, engine, chunks, cache, decode_cf, mask_and_scale, decode_times, decode_timedelta, use_cftime, concat_characters, decode_coords, drop_variables, inline_array, chunked_array_type, from_array_kwargs, backend_kwargs, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">674</span> <span class="n">decoders</span> <span class="o">=</span> <span class="n">_resolve_decoders_kwargs</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">675</span>     <span class="n">decode_cf</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">676</span>     <span class="n">open_backend_dataset_parameters</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">open_dataset_parameters</span><span class="p">,</span>
+<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\pandas\core\generic.py:3967,</span> in <span class="ni">NDFrame.to_csv</span><span class="nt">(self, path_or_buf, sep, na_rep, float_format, columns, header, index, index_label, mode, encoding, compression, quoting, quotechar, lineterminator, chunksize, date_format, doublequote, escapechar, decimal, errors, storage_options)</span>
+<span class="g g-Whitespace">   </span><span class="mi">3956</span> <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ABCDataFrame</span><span class="p">)</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">3958</span> <span class="n">formatter</span> <span class="o">=</span> <span class="n">DataFrameFormatter</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">3959</span>     <span class="n">frame</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3960</span>     <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">,</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">682</span>     <span class="n">decode_coords</span><span class="o">=</span><span class="n">decode_coords</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">683</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">685</span> <span class="n">overwrite_encoded_chunks</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;overwrite_encoded_chunks&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">686</span> <span class="n">backend_ds</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">687</span>     <span class="n">filename_or_obj</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">688</span>     <span class="n">drop_variables</span><span class="o">=</span><span class="n">drop_variables</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">689</span>     <span class="o">**</span><span class="n">decoders</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">690</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">691</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">692</span> <span class="n">ds</span> <span class="o">=</span> <span class="n">_dataset_from_backend_dataset</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">693</span>     <span class="n">backend_ds</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">694</span>     <span class="n">filename_or_obj</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3964</span>     <span class="n">decimal</span><span class="o">=</span><span class="n">decimal</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3965</span> <span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">3967</span> <span class="k">return</span> <span class="n">DataFrameRenderer</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">3968</span>     <span class="n">path_or_buf</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3969</span>     <span class="n">lineterminator</span><span class="o">=</span><span class="n">lineterminator</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3970</span>     <span class="n">sep</span><span class="o">=</span><span class="n">sep</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3971</span>     <span class="n">encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3972</span>     <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3973</span>     <span class="n">compression</span><span class="o">=</span><span class="n">compression</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3974</span>     <span class="n">quoting</span><span class="o">=</span><span class="n">quoting</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3975</span>     <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3976</span>     <span class="n">index_label</span><span class="o">=</span><span class="n">index_label</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3977</span>     <span class="n">mode</span><span class="o">=</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3978</span>     <span class="n">chunksize</span><span class="o">=</span><span class="n">chunksize</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3979</span>     <span class="n">quotechar</span><span class="o">=</span><span class="n">quotechar</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3980</span>     <span class="n">date_format</span><span class="o">=</span><span class="n">date_format</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3981</span>     <span class="n">doublequote</span><span class="o">=</span><span class="n">doublequote</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3982</span>     <span class="n">escapechar</span><span class="o">=</span><span class="n">escapechar</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3983</span>     <span class="n">storage_options</span><span class="o">=</span><span class="n">storage_options</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">3984</span> <span class="p">)</span>
+
+<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\pandas\io\formats\format.py:1014,</span> in <span class="ni">DataFrameRenderer.to_csv</span><span class="nt">(self, path_or_buf, encoding, sep, columns, index_label, mode, compression, quoting, quotechar, lineterminator, chunksize, date_format, doublequote, escapechar, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">993</span>     <span class="n">created_buffer</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="g g-Whitespace">    </span><span class="mi">995</span> <span class="n">csv_formatter</span> <span class="o">=</span> <span class="n">CSVFormatter</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">996</span>     <span class="n">path_or_buf</span><span class="o">=</span><span class="n">path_or_buf</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">997</span>     <span class="n">lineterminator</span><span class="o">=</span><span class="n">lineterminator</span><span class="p">,</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">704</span>     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">705</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">706</span> <span class="k">return</span> <span class="n">ds</span>
+<span class="g g-Whitespace">   </span><span class="mi">1012</span>     <span class="n">formatter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fmt</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1013</span> <span class="p">)</span>
+<span class="ne">-&gt; </span><span class="mi">1014</span> <span class="n">csv_formatter</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1016</span> <span class="k">if</span> <span class="n">created_buffer</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1017</span>     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path_or_buf</span><span class="p">,</span> <span class="n">StringIO</span><span class="p">)</span>
 
-<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\xarray\backends\netCDF4_.py:681,</span> in <span class="ni">NetCDF4BackendEntrypoint.open_dataset</span><span class="nt">(self, filename_or_obj, mask_and_scale, decode_times, concat_characters, decode_coords, drop_variables, use_cftime, decode_timedelta, group, mode, format, clobber, diskless, persist, auto_complex, lock, autoclose)</span>
-<span class="g g-Whitespace">    </span><span class="mi">679</span> <span class="n">store_entrypoint</span> <span class="o">=</span> <span class="n">StoreBackendEntrypoint</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">680</span> <span class="k">with</span> <span class="n">close_on_error</span><span class="p">(</span><span class="n">store</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">681</span>     <span class="n">ds</span> <span class="o">=</span> <span class="n">store_entrypoint</span><span class="o">.</span><span class="n">open_dataset</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">682</span>         <span class="n">store</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">683</span>         <span class="n">mask_and_scale</span><span class="o">=</span><span class="n">mask_and_scale</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">684</span>         <span class="n">decode_times</span><span class="o">=</span><span class="n">decode_times</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">685</span>         <span class="n">concat_characters</span><span class="o">=</span><span class="n">concat_characters</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">686</span>         <span class="n">decode_coords</span><span class="o">=</span><span class="n">decode_coords</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">687</span>         <span class="n">drop_variables</span><span class="o">=</span><span class="n">drop_variables</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">688</span>         <span class="n">use_cftime</span><span class="o">=</span><span class="n">use_cftime</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">689</span>         <span class="n">decode_timedelta</span><span class="o">=</span><span class="n">decode_timedelta</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">690</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">691</span> <span class="k">return</span> <span class="n">ds</span>
-
-<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\xarray\backends\store.py:44,</span> in <span class="ni">StoreBackendEntrypoint.open_dataset</span><span class="nt">(self, filename_or_obj, mask_and_scale, decode_times, concat_characters, decode_coords, drop_variables, use_cftime, decode_timedelta)</span>
-<span class="g g-Whitespace">     </span><span class="mi">30</span> <span class="k">def</span><span class="w"> </span><span class="nf">open_dataset</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">31</span>     <span class="bp">self</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">32</span>     <span class="n">filename_or_obj</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="n">ReadBuffer</span> <span class="o">|</span> <span class="n">AbstractDataStore</span><span class="p">,</span>
+<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\pandas\io\formats\csvs.py:270,</span> in <span class="ni">CSVFormatter.save</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">251</span> <span class="k">with</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">252</span>     <span class="bp">self</span><span class="o">.</span><span class="n">filepath_or_buffer</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span>     <span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">40</span>     <span class="n">decode_timedelta</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">41</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dataset</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">42</span>     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filename_or_obj</span><span class="p">,</span> <span class="n">AbstractDataStore</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">44</span>     <span class="nb">vars</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="n">filename_or_obj</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">45</span>     <span class="n">encoding</span> <span class="o">=</span> <span class="n">filename_or_obj</span><span class="o">.</span><span class="n">get_encoding</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span>     <span class="nb">vars</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">coord_names</span> <span class="o">=</span> <span class="n">conventions</span><span class="o">.</span><span class="n">decode_cf_variables</span><span class="p">(</span>
-<span class="g g-Whitespace">     </span><span class="mi">48</span>         <span class="nb">vars</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">49</span>         <span class="n">attrs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span> <span class="p">)</span> <span class="k">as</span> <span class="n">handles</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span>     <span class="c1"># Note: self.encoding is irrelevant here</span>
+<span class="g g-Whitespace">    </span><span class="mi">260</span>     <span class="bp">self</span><span class="o">.</span><span class="n">writer</span> <span class="o">=</span> <span class="n">csvlib</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">261</span>         <span class="n">handles</span><span class="o">.</span><span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">262</span>         <span class="n">lineterminator</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lineterminator</span><span class="p">,</span>
    <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">56</span>         <span class="n">decode_timedelta</span><span class="o">=</span><span class="n">decode_timedelta</span><span class="p">,</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">267</span>         <span class="n">quotechar</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">quotechar</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">268</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">270</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_save</span><span class="p">()</span>
 
-<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\xarray\backends\common.py:312,</span> in <span class="ni">AbstractDataStore.load</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">293</span> <span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">294</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">295</span><span class="sd">     This loads the variables and attributes simultaneously.</span>
-<span class="g g-Whitespace">    </span><span class="mi">296</span><span class="sd">     A centralized loading function makes it easier to create</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">309</span><span class="sd">     are requested, so care should be taken to make sure its fast.</span>
-<span class="g g-Whitespace">    </span><span class="mi">310</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span>     <span class="n">variables</span> <span class="o">=</span> <span class="n">FrozenDict</span><span class="p">(</span>
-<span class="nn">--&gt; 312         (_decode_variable_name(k), v) for k, v</span> in <span class="ni">self.get_variables().items</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">313</span>     <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span>     <span class="n">attributes</span> <span class="o">=</span> <span class="n">FrozenDict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_attrs</span><span class="p">())</span>
-<span class="g g-Whitespace">    </span><span class="mi">315</span>     <span class="k">return</span> <span class="n">variables</span><span class="p">,</span> <span class="n">attributes</span>
+<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\pandas\io\formats\csvs.py:275,</span> in <span class="ni">CSVFormatter._save</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">273</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_need_to_save_header</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">274</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_save_header</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">275</span> <span class="bp">self</span><span class="o">.</span><span class="n">_save_body</span><span class="p">()</span>
 
-<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\xarray\backends\netCDF4_.py:507,</span> in <span class="ni">NetCDF4DataStore.get_variables</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">506</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">507</span>     <span class="k">return</span> <span class="n">FrozenDict</span><span class="p">(</span>
-<span class="nn">    508         (k, self.open_store_variable(k, v)) for k, v</span> in <span class="ni">self.ds.variables.items</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">509</span>     <span class="p">)</span>
+<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\pandas\io\formats\csvs.py:313,</span> in <span class="ni">CSVFormatter._save_body</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">311</span> <span class="k">if</span> <span class="n">start_i</span> <span class="o">&gt;=</span> <span class="n">end_i</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span>     <span class="k">break</span>
+<span class="ne">--&gt; </span><span class="mi">313</span> <span class="bp">self</span><span class="o">.</span><span class="n">_save_chunk</span><span class="p">(</span><span class="n">start_i</span><span class="p">,</span> <span class="n">end_i</span><span class="p">)</span>
 
-<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\xarray\core\utils.py:457,</span> in <span class="ni">FrozenDict</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">456</span> <span class="k">def</span><span class="w"> </span><span class="nf">FrozenDict</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Frozen</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">457</span>     <span class="k">return</span> <span class="n">Frozen</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
+<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\pandas\io\formats\csvs.py:324,</span> in <span class="ni">CSVFormatter._save_chunk</span><span class="nt">(self, start_i, end_i)</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span> <span class="n">data</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">_iter_column_arrays</span><span class="p">())</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span> <span class="n">ix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_index</span><span class="p">[</span><span class="n">slicer</span><span class="p">]</span><span class="o">.</span><span class="n">_get_values_for_csv</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_number_format</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">324</span> <span class="n">libwriters</span><span class="o">.</span><span class="n">write_csv_rows</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">325</span>     <span class="n">data</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span>     <span class="n">ix</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">327</span>     <span class="bp">self</span><span class="o">.</span><span class="n">nlevels</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">328</span>     <span class="bp">self</span><span class="o">.</span><span class="n">cols</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">329</span>     <span class="bp">self</span><span class="o">.</span><span class="n">writer</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">330</span> <span class="p">)</span>
 
-<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\xarray\backends\netCDF4_.py:508,</span> in <span class="ni">&lt;genexpr&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">506</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_variables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">507</span>     <span class="k">return</span> <span class="n">FrozenDict</span><span class="p">(</span>
-<span class="nn">--&gt; 508         (k, self.open_store_variable(k, v)) for k, v</span> in <span class="ni">self.ds.variables.items</span><span class="nt">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">509</span>     <span class="p">)</span>
-
-<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\xarray\backends\netCDF4_.py:467,</span> in <span class="ni">NetCDF4DataStore.open_store_variable</span><span class="nt">(self, name, var)</span>
-<span class="g g-Whitespace">    </span><span class="mi">464</span> <span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span>
-<span class="g g-Whitespace">    </span><span class="mi">466</span> <span class="n">dimensions</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">dimensions</span>
-<span class="ne">--&gt; </span><span class="mi">467</span> <span class="n">attributes</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">var</span><span class="o">.</span><span class="n">getncattr</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">var</span><span class="o">.</span><span class="n">ncattrs</span><span class="p">()}</span>
-<span class="g g-Whitespace">    </span><span class="mi">468</span> <span class="n">data</span> <span class="o">=</span> <span class="n">indexing</span><span class="o">.</span><span class="n">LazilyIndexedArray</span><span class="p">(</span><span class="n">NetCDF4ArrayWrapper</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">469</span> <span class="n">encoding</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-
-<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\xarray\backends\netCDF4_.py:467,</span> in <span class="ni">&lt;dictcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">    </span><span class="mi">464</span> <span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span>
-<span class="g g-Whitespace">    </span><span class="mi">466</span> <span class="n">dimensions</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">dimensions</span>
-<span class="ne">--&gt; </span><span class="mi">467</span> <span class="n">attributes</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">var</span><span class="o">.</span><span class="n">getncattr</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">var</span><span class="o">.</span><span class="n">ncattrs</span><span class="p">()}</span>
-<span class="g g-Whitespace">    </span><span class="mi">468</span> <span class="n">data</span> <span class="o">=</span> <span class="n">indexing</span><span class="o">.</span><span class="n">LazilyIndexedArray</span><span class="p">(</span><span class="n">NetCDF4ArrayWrapper</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">469</span> <span class="n">encoding</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="nn">File writers.pyx:65,</span> in <span class="ni">pandas._libs.writers.write_csv_rows</span><span class="nt">()</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

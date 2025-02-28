@@ -6,8 +6,7 @@ cds_venv/
 
 # Untrack extrac files and folders
 .vscode/
-jupyter_execute/
-utils_and_extras/
+utils_and_extra/
 
 # Secrets and API keys
 source/secrets/

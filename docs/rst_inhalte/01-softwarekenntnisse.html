@@ -1,0 +1,229 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Required Software and Knowledge &mdash; CoKLIMAx 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=822aaed9" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The Course Elements" href="02-kurselemente.html" />
+    <link rel="prev" title="CoKLIMAx II Resources for Data Processing" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CoKLIMAx
+              <img src="../_static/coklimax_logo_new.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Required Software and Knowledge</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-the-infrastructure-on-a-windows-system">Setting Up the Infrastructure on a Windows System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-python-and-jupyter-notebook">Installing Python and Jupyter Notebook</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#python-and-pip">1. Python and Pip:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-jupyter-notebook">2. Installing Jupyter Notebook</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#starting-jupyter-notebook-for-course-elements">Starting Jupyter Notebook for Course Elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#required-knowledge">Required Knowledge</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="02-kurselemente.html">The Course Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-cds.html">The Copernicus Climate Data Store (CDS)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Course 1:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../rst_kurs1/01-cds-api-installieren-und-herunterladen.html">CDS API Installation and Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rst_kurs1/02-netcdf-einfuhrung.html">NetCDF Introduction</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Course 2:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/kurs2_einfache_cds/01-satellite-lake-water-level.html">Lake Water Levels from Satellite Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/kurs2_einfache_cds/02-satellite-lake-water-temperature.html">Lake Water Temperature from Satellite Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notebooks/kurs2_einfache_cds/03-sis-temperature-statistics.html">Temperature Statistics for Europe</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">The Jupyter Notebook Library:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../rst_jupyter_bibliothek/index.html">About CoKLIMAx-II Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rst_jupyter_bibliothek/cds_data/index.html">CDS Dataset Notebooks </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rst_jupyter_bibliothek/satellite_data/index.html">Satellite Data Notebooks </a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rst_jupyter_bibliothek/visualizations/index.html">Visualization Options Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CoKLIMAx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Required Software and Knowledge</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/rst_inhalte/01-softwarekenntnisse.rst.txt" rel="nofollow"> View page source</a>
+<div id='language-switcher' style='text-align: right; margin-top: 10px;'>
+    <select onchange="location = this.value;">
+        <option value='/./CoKLIMAx-II/en/rst_inhalte\01-softwarekenntnisse.html' selected>EN</option>
+        <option value='/./CoKLIMAx-II/de/rst_inhalte\01-softwarekenntnisse.html'>DE</option>
+    </select>
+</div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="required-software-and-knowledge">
+<span id="software-knowledge"></span><h1>Required Software and Knowledge<a class="headerlink" href="#required-software-and-knowledge" title="Link to this heading"></a></h1>
+<h2>Learning Objectives</h2><ul class="simple">
+<li><p><a class="reference internal" href="#setup-infrastructure"><span class="std std-ref">Setting Up the Infrastructure on a Windows System</span></a></p></li>
+<li><p><a class="reference internal" href="#python-and-jupyter-install"><span class="std std-ref">Installing Python and Jupyter Notebooks</span></a></p></li>
+<li><p><a class="reference internal" href="#jupyter-start"><span class="std std-ref">Starting Jupyter Notebook for the Course Elements</span></a></p></li>
+</ul>
+<p>Jupyter Notebooks are a powerful environment for interactive programming, data analysis, and visualization. To use Jupyter Notebooks on a Windows PC, you need an appropriate software infrastructre. The following steps show you how to prepare your computer and which freely available resources you can use to acquire basic knowledge before starting the courses.</p>
+<hr class="docutils" />
+<section id="setting-up-the-infrastructure-on-a-windows-system">
+<span id="setup-infrastructure"></span><h2>Setting Up the Infrastructure on a Windows System<a class="headerlink" href="#setting-up-the-infrastructure-on-a-windows-system" title="Link to this heading"></a></h2>
+<p>While preparing for course units, we will use the Windows Command Prompt (CMD) at certain points. The Command Prompt is a command-line environment that allows you to interact directly with your operating system by entering text commands. It enables you to launch programs, manage files, and control system processes. CMD is particularly useful for developers to execute installations or configure tools such as Python and Jupyter.</p>
+<p>You can open the Command Prompt by pressing the Windows key, typing “cmd” directly in the search bar, and pressing Enter (see figure).</p>
+<img alt="Commant Prompt (Windows)" class="no-scaled-link align-center" src="../_images/01-cmd.png" style="width: 600px;" />
+<p>A complete reference of commands and syntax can be found in the Microsoft documentation or by entering <code class="docutils literal notranslate"><span class="pre">help</span></code> in the Command Prompt.</p>
+<hr class="docutils" />
+</section>
+<section id="installing-python-and-jupyter-notebook">
+<span id="python-and-jupyter-install"></span><h2>Installing Python and Jupyter Notebook<a class="headerlink" href="#installing-python-and-jupyter-notebook" title="Link to this heading"></a></h2>
+<p>Jupyter Notebooks are based on <strong>Python</strong>, so you first need to install <strong>Python</strong>.</p>
+<section id="python-and-pip">
+<h3>1. Python and Pip:<a class="headerlink" href="#python-and-pip" title="Link to this heading"></a></h3>
+<p>Download the latest version of Python from the official <a class="reference external" href="https://www.python.org/downloads/" rel="noopener noreferrer" target="_blank">Python Website</a> and install it. Ensure that the <em>“☑ Add Python to PATH”</em> option is checked during installation.</p>
+<p>If Python is not automatically added to the <strong>PATH</strong>, you can configure it manually. The <strong>PATH</strong> is an environment variable that informs the operating system where to find executable files like Python. To add Python to the PATH, follow these steps:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Open the Start menu, search for <strong>Edit the system environment variables</strong>, and open the corresponding settings.</p></li>
+<li><p>Click on <strong>Environment Variables…</strong> at the bottom of the window.</p></li>
+<li><p>In the <strong>System variables</strong> or <strong>User variables</strong> section, find the variable <strong>Path</strong> and click <strong>Edit</strong>.</p></li>
+<li><dl class="simple">
+<dt>Add a <strong>New</strong> entry pointing to the <strong>Python installation directory</strong>, for example:</dt><dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">C:\Python39\</span></code> (for Python 3.9)</p></li>
+<li><p>Additionally: <code class="docutils literal notranslate"><span class="pre">C:\Python39\Scripts\</span></code>, as tools like <code class="docutils literal notranslate"><span class="pre">pip</span></code> are located there.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Confirm the changes and restart the <strong>Command Prompt</strong> for the changes to take effect.</p></li>
+</ul>
+</div></blockquote>
+<p>After this step, Python should be executable from the Command Prompt using the command <code class="docutils literal notranslate"><span class="pre">python</span></code> or <code class="docutils literal notranslate"><span class="pre">python3</span></code>. You can verify this by entering <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code> to verify the installed Python version.</p>
+</section>
+<section id="installing-jupyter-notebook">
+<h3>2. Installing Jupyter Notebook<a class="headerlink" href="#installing-jupyter-notebook" title="Link to this heading"></a></h3>
+<p>To work with Jupyter Notebooks on your local computer, you need to install the necessary components. The following guide assumes that you have already installed <strong>Python</strong> and <code class="docutils literal notranslate"><span class="pre">pip</span></code>. Open the Command Prompt (CMD) and run the following commands sequentially:</p>
+<blockquote>
+<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>jupyterlab
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>notebook
+</pre></div>
+</div>
+</div></blockquote>
+<p>The installation process should take less than 5 minutes and no additional input is required during installation.</p>
+<hr class="docutils" />
+</section>
+</section>
+<section id="starting-jupyter-notebook-for-course-elements">
+<span id="jupyter-start"></span><h2>Starting Jupyter Notebook for Course Elements<a class="headerlink" href="#starting-jupyter-notebook-for-course-elements" title="Link to this heading"></a></h2>
+<p>Once the installation is complete, start <strong>JupyterLab</strong> using the following command in the Command Prompt:</p>
+<blockquote>
+<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>lab
+</pre></div>
+</div>
+</div></blockquote>
+<p>A browser window should open, displaying your <strong>Computer’s folder structure</strong> on the left side (e.g., “Downloads,” “Documents,” etc.). Navigate to the folder where you want to create your first notebook.</p>
+<p>If the <strong>Launcher-Tab</strong> does not open automatically, click the <img alt="Jupyter Lab New Launcher Button" class="no-scaled-link" src="../_images/jupyter-lab-new-launcher.png" style="width: 72px; height: 21px;" /> icon in the top-left corner:</p>
+<img alt="Jupyter: New Launcher" class="no-scaled-link align-center" src="../_images/02-jupyter-1.png" style="width: 600px;" />
+<p>Now, open a new notebook:</p>
+<img alt="Jupyter: Create New Notebook" class="no-scaled-link align-center" src="../_images/02-jupyter-2.png" style="width: 600px;" />
+<p>In the upcoming course elements, we will only work with <strong>Python3</strong>, so kernel selection is not relevant yet. You can complete all course elements using the <strong>Python3 kernel</strong>. If you later want to work with different programming languages and Python environments, you should explore the various available options.</p>
+<p>Now, you have created your first Jupyter Notebook and are ready to start. Name your notebook – by default, a new notebook is created with the name “Untitled.” You can rename it in the overview tab on the left side with “Right-click &gt; Rename.”</p>
+</section>
+<hr class="docutils" />
+<section id="required-knowledge">
+<h2>Required Knowledge<a class="headerlink" href="#required-knowledge" title="Link to this heading"></a></h2>
+<p>Within the CoKLIMAx-II resources, we do not provide in-depth Python training. The Notebooks and learning materials we have developed and provided can be used without prior programming experience. If you are interested in improving your Python skills, we recommend using freely available resources such as those on <strong>YouTube</strong>.</p>
+<p>For questions and issues while creating your own Jupyter Notebooks, the best place to seek help is <strong>Stack Overflow</strong>, where most common questions have already been answered.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="CoKLIMAx II Resources for Data Processing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="02-kurselemente.html" class="btn btn-neutral float-right" title="The Course Elements" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, str.ucture GmbH.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
