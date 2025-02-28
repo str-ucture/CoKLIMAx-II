@@ -4,6 +4,11 @@ myenv/
 env/
 cds_venv/
 
+# Untrack extrac files and folders
+.vscode/
+jupyter_execute/
+utils_and_extras/
+
 # Secrets and API keys
 source/secrets/
 **/.cdsapirc
@@ -28,11 +33,15 @@ source/secrets/
 *.tif*
 *.TIF*
 
-# Ignore all image files globally
+# Ignore all image
+*.jpg
+*.jpeg
 *.png
 *.gif
 
-# Allow everything inside the docs folder except CSV files
+# Allow everything inside the docs (ignore previously ignored files)
+# Ignore large CSV files inside docs
+!docs/
 docs/**/*.csv
 docs/*.csv
 
@@ -41,10 +50,5 @@ docs/*.csv
 !source_de/_static/*.png
 
 # Specific scripts & batch files
-copy_images.bat
-setup_env.bat
-update_buttons.py
 update_dropdown.py
-update_dropdown_v2.py
-update_html.py
 update_images.py
