@@ -22,7 +22,7 @@ Wir haben für Sie ein Jupyter Notebook vorbereitet, bei dem Sie lediglich den A
 .. raw:: html
 
    <div class="download-button">
-       <a href="../_static/notebooks/cds-api-installieren-und-herunterladen.ipynb" download>⇩ CDS API Installation und Download (Notebook)</a>
+       <a href="../_static/notebooks/cds-api-installation-and-download.ipynb" download>⇩ CDS API Installation und Download</a>
    </div>
 
 Öffnen Sie das Notebook in Jupyter Lab und folgen Sie den Anweisungen. Alternativ können Sie den Python-Codeausschnitt in Ihr Jupyter-Notebook kopieren und die Zellen ausführen.

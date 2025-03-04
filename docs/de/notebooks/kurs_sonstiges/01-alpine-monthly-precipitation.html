@@ -26,7 +26,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
     <link rel="search" title="Suche" href="../../search.html" />
-    <link rel="next" title="Satellitendaten Notebooks" href="../../rst_jupyter_bibliothek/satellite_data/index.html" />
+    <link rel="next" title="Klimaindikatoren für Europa" href="04-climate-indicators.html" />
     <link rel="prev" title="CDS Datensatz Notebooks" href="../../rst_jupyter_bibliothek/cds_data/index.html" /> 
 </head>
 
@@ -87,8 +87,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#monatliche-durchschnittswerte-fur-einen-definierten-zeitraum-darstellen">4.4 Monatliche Durchschnittswerte für einen definierten Zeitraum darstellen</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#exportieren-der-netcdf4-dateien-nach-geotiff">5. Exportieren der NetCDF4-Dateien nach GeoTIFF</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="04-climate-indicators.html">Klimaindikatoren für Europa</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/satellite_data/index.html">Satellitendaten Notebooks </a></li>
@@ -128,21 +130,18 @@
              
   <section id="alpine-monatliche-niederschlagsdaten">
 <h1>Alpine monatliche Niederschlagsdaten<a class="headerlink" href="#alpine-monatliche-niederschlagsdaten" title="Link to this heading"></a></h1>
-<p>Alpine monatliche Niederschlagsdaten seit 1871, abgeleitet aus stationären Beobachtungen</p>
-<p>Der LAPrec-Datensatz (Long-term Alpine Precipitation Reconstruction) bietet monatliche Niederschlagsdaten für die Alpenregion und basiert auf stationären Beobachtungen. Es gibt zwei Versionen:</p>
+<p>Alpine monatliche Niederschlagsdaten seit 1871, abgeleitet aus stationären Beobachtungen: Der LAPrec-Datensatz (Long-term Alpine Precipitation Reconstruction) bietet monatliche Niederschlagsdaten für die Alpenregion und basiert auf stationären Beobachtungen. Es gibt zwei Versionen:</p>
 <ul class="simple">
 <li><p>LAPrec1871 (ab 1871, 85 Eingabereihen)</p></li>
 <li><p>LAPrec1901 (ab 1901, 165 Eingabereihen)</p></li>
 </ul>
-<p>Der Datensatz erfüllt hohe klimatische Standards und ist eine wertvolle Grundlage für historische Klimaanalysen in den Alpen, einer Region, die stark vom Klimawandel betroffen ist. Es kombiniert die Datenquellen HISTALP (homogenisierte stationäre Niederschlagsdaten) und APGD (tägliche Rasterdaten von 1971–2008) und nutzt die Methode der Reduced Space Optimal Interpolation (RSOI).</p>
-<p>LAPrec wird alle zwei Jahre aktualisiert und wurde im Rahmen des Copernicus Climate Change Service in Zusammenarbeit mit den Wetterdiensten von Schweiz (MeteoSwiss) und Österreich (ZAMG) entwickelt.</p>
+<p>Der Datensatz erfüllt hohe klimatische Standards und ist eine wertvolle Grundlage für historische Klimaanalysen in den Alpen, einer Region, die stark vom Klimawandel betroffen ist. Es kombiniert die Datenquellen HISTALP (homogenisierte stationäre Niederschlagsdaten) und APGD (tägliche Rasterdaten von 1971–2008) und nutzt die Methode der Reduced Space Optimal Interpolation (RSOI). LAPrec wird alle zwei Jahre aktualisiert und wurde im Rahmen des Copernicus Climate Change Service in Zusammenarbeit mit den Wetterdiensten von Schweiz (MeteoSwiss) und Österreich (ZAMG) entwickelt.</p>
 <p><strong>Informationen zum Datensatz:</strong></p>
 <ul class="simple">
-<li><p>Source: <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/insitu-gridded-observations-alpine-precipitation?tab=overview" rel="noopener noreferrer" target="_blank">Alpine Monthly Precipitation</a></p></li>
+<li><p>Quelle: <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/insitu-gridded-observations-alpine-precipitation?tab=overview" rel="noopener noreferrer" target="_blank">Alpine Monthly Precipitation</a></p></li>
 <li><p>Author: T. Tewes (City of Konstanz)</p></li>
 <li><p>Notebook Version: 1.1 (Updated: December 05, 2024)</p></li>
 </ul>
-<p>Zitieren: Copernicus Climate Change Service, Climate Data Store, (2021): Alpine gridded monthly precipitation data since 1871 derived from in-situ observations. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). DOI: 10.24381/cds.6a6d1bc3 (Accessed on DD-MMM-YYYY)</p>
 <section id="festlegen-der-pfade-und-arbeitsverzeichnisse">
 <h2>1. Festlegen der Pfade und Arbeitsverzeichnisse<a class="headerlink" href="#festlegen-der-pfade-und-arbeitsverzeichnisse" title="Link to this heading"></a></h2>
 <div class="cell docutils container">
@@ -1163,6 +1162,9 @@ Bestehende CSV-Datei wird eingelesen...
 </div>
 </section>
 </section>
+<section id="exportieren-der-netcdf4-dateien-nach-geotiff">
+<h2>5. Exportieren der NetCDF4-Dateien nach GeoTIFF<a class="headerlink" href="#exportieren-der-netcdf4-dateien-nach-geotiff" title="Link to this heading"></a></h2>
+</section>
 </section>
 
 
@@ -1170,7 +1172,7 @@ Bestehende CSV-Datei wird eingelesen...
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../../rst_jupyter_bibliothek/cds_data/index.html" class="btn btn-neutral float-left" title="CDS Datensatz Notebooks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
-        <a href="../../rst_jupyter_bibliothek/satellite_data/index.html" class="btn btn-neutral float-right" title="Satellitendaten Notebooks" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="04-climate-indicators.html" class="btn btn-neutral float-right" title="Klimaindikatoren für Europa" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

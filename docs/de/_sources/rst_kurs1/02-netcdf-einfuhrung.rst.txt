@@ -29,7 +29,7 @@ Alle Schritte aus diesem Kurs sind auch in einem gebrauchsfertigen Notizbuch ver
 .. raw:: html
 
    <div class="download-button">
-       <a href="../_static/notebooks/netcdf-introduction-part2.ipynb" download>⇩ NetCDF Introduction: Teil 2</a>
+       <a href="../_static/notebooks/netcdf-introduction-part2.ipynb" download>⇩ NetCDF Einführung: Teil 2</a>
    </div>
 
 Öffnen Sie das Notizbuch in Jupyter Lab und folgen Sie den Anweisungen. Alternativ können Sie den Python-Code-Schnipsel in Ihr Jupyter Notebook kopieren und die Zelle ausführen.
@@ -387,7 +387,7 @@ Laden Sie die Datei **kn_boundary.zip** herunter und entpacken Sie sie in Ihren 
         ax.set_ylabel('Breitengrad', fontsize=12)
         ax.set_xlabel('Längengrad', fontsize=12)
 
-		# Diagramm anzeigen
+        # Diagramm anzeigen
         plt.show()
 
 Mit dem Plot können Sie sich einfach einen Überblick über die räumliche Ausprägung und Verteilung eines Paramenters verschaffen. Probieren Sie verschiedene Konfigurationen aus um herauszufinden, welche Farbgebung und Skala für Ihren Zweck am besten funktioniert.
@@ -511,7 +511,7 @@ Mehr Informationen zum richtigen Einsatz von Listen, Arrays und Dataframes in Py
 		)
 
 		# Legende hinzufügen
-		ax.legend(loc='upper left', fontsize=12, frameon=True, facecolor='#ffffff', 	edgecolor='#b0b0b0')
+		ax.legend(loc='upper left', fontsize=12, frameon=True, facecolor='#ffffff', edgecolor='#b0b0b0')
 
 		# Diagramm anzeigen
 		plt.tight_layout()

@@ -632,7 +632,8 @@
         <span class="n">temperature_data</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;lake_surface_water_temperature&quot;</span><span class="p">][:]</span>
         <span class="n">temperature_data_units</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;lake_surface_water_temperature&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">units</span>
 
-        <span class="c1"># Berechne die mittlere Temperatur und die Standardabweichung für jeden Zeitschritt (gemittelt über die räumlichen Dimensionen)</span>
+        <span class="c1"># Berechnen Sie die Durchschnittstemperatur und die Standardabweichung für jeden Zeitschritt.</span>
+        <span class="c1"># Gemittelt über die räumlichen Dimensionen</span>
         <span class="n">temperature_mean_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">temperature_data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
         <span class="n">temperature_std_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanstd</span><span class="p">(</span><span class="n">temperature_data</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
         
@@ -643,7 +644,7 @@
         <span class="n">lswt_uncertainty</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;lswt_uncertainty&quot;</span><span class="p">][:]</span>
         <span class="n">lswt_uncertainty_units</span> <span class="o">=</span> <span class="n">nc_dataset</span><span class="o">.</span><span class="n">variables</span><span class="p">[</span><span class="s2">&quot;lswt_uncertainty&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">units</span>
 
-        <span class="c1"># Berechne die Unsicherheit der mittleren Temperatur mittels der Quadratwurzel der gemittelten Unsicherheitsquadrate</span>
+        <span class="c1"># Berechnen Sie die Unsicherheit der Durchschnittstemperatur</span>
         <span class="n">lswt_uncertainty_squared</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nanmean</span><span class="p">(</span><span class="n">lswt_uncertainty</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
         <span class="n">lswt_mean_uncertainty</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">lswt_uncertainty_squared</span><span class="p">)</span>
         
@@ -658,7 +659,7 @@
                 <span class="sa">f</span><span class="s2">&quot;Mittlere Temperatur (</span><span class="si">{</span><span class="n">temperature_data_units</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">:</span> <span class="n">temperature_mean_list</span><span class="p">,</span>
                 <span class="s2">&quot;Standardabweichung&quot;</span><span class="p">:</span> <span class="n">temperature_std_list</span><span class="p">,</span>
                 <span class="sa">f</span><span class="s2">&quot;Unsicherheit (</span><span class="si">{</span><span class="n">lswt_uncertainty_units</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">:</span> <span class="n">lswt_mean_uncertainty</span><span class="p">,</span>
-                <span class="sa">f</span><span class="s2">&quot;Mittlere Qualitätsstufe&quot;</span><span class="p">:</span> <span class="n">lswt_quality_level_mean_list</span><span class="p">,</span>
+                <span class="s2">&quot;Mittlere Qualitätsstufe&quot;</span><span class="p">:</span> <span class="n">lswt_quality_level_mean_list</span><span class="p">,</span>
                 <span class="s2">&quot;Nicht-Null-Anzahl&quot;</span><span class="p">:</span><span class="n">nonzero_count_list</span><span class="p">,</span>
             <span class="p">}</span>
         <span class="p">)</span>

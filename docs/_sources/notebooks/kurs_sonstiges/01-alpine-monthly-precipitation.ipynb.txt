@@ -6,23 +6,17 @@
    "source": [
     "# Alpine monatliche Niederschlagsdaten\n",
     "\n",
-    "Alpine monthly precipitation data since 1871, derived from stationary observations\n",
-    "\n",
-    "The LAPrec (Long-term Alpine Precipitation Reconstruction) dataset provides monthly precipitation data for the Alpine region and is based on stationary observations. There are two versions:\n",
+    "Alpine monthly precipitation data since 1871, derived from stationary observations: The LAPrec (Long-term Alpine Precipitation Reconstruction) dataset provides monthly precipitation data for the Alpine region and is based on stationary observations. There are two versions:\n",
     "\n",
     "* LAPrec1871 (from 1871, 85 input series)\n",
     "* LAPrec1901 (from 1901, 165 input series)\n",
     "\n",
-    "The dataset meets high climatic standards and is a valuable basis for historical climate analyses in the Alps, a region strongly affected by climate change. It combines the data sources HISTALP (homogenized stationary precipitation data) and APGD (daily gridded data from 1971–2008) and uses the Reduced Space Optimal Interpolation (RSOI) method.\n",
-    "\n",
-    "LAPrec is updated every two years and was developed as part of the Copernicus Climate Change Service in cooperation with the weather services of Switzerland (MeteoSwiss) and Austria (ZAMG).\n",
+    "The dataset meets high climatic standards and is a valuable basis for historical climate analyses in the Alps, a region strongly affected by climate change. It combines the data sources HISTALP (homogenized stationary precipitation data) and APGD (daily gridded data from 1971–2008) and uses the Reduced Space Optimal Interpolation (RSOI) method. LAPrec is updated every two years and was developed as part of the Copernicus Climate Change Service in cooperation with the weather services of Switzerland (MeteoSwiss) and Austria (ZAMG).\n",
     "\n",
     "**Information on Dataset:**\n",
     "* Source: <a href=\"https://cds.climate.copernicus.eu/datasets/insitu-gridded-observations-alpine-precipitation?tab=overview\" target=\"_blank\">Alpine Monthly Precipitation</a>\n",
     "* Author: T. Tewes (City of Konstanz)\n",
-    "* Notebook Version: 1.1 (Updated: December 05, 2024)\n",
-    "\n",
-    "Cite: Copernicus Climate Change Service, Climate Data Store, (2021): Alpine gridded monthly precipitation data since 1871 derived from in-situ observations. Copernicus Climate Change Service (C3S) Climate Data Store (CDS). DOI: 10.24381/cds.6a6d1bc3 (Accessed on DD-MMM-YYYY)"
+    "* Notebook Version: 1.1 (Updated: December 05, 2024)"
    ]
   },
   {
