@@ -1430,6 +1430,10 @@ Reading existing CSV file...
                                 <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;#ffffff&#39;</span><span class="p">,</span>
                                 <span class="n">dayticks</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                                 <span class="p">)</span>
+
+    <span class="c1"># Remove grid lines</span>
+    <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axs</span><span class="o">.</span><span class="n">flatten</span><span class="p">():</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
     
     <span class="c1"># Add a colorbar to the right side of the plot</span>
     <span class="n">cax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">1.005</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">])</span>
@@ -1458,8 +1462,8 @@ Selecting the latest available year.
 Using data from the year 2020.
 </pre></div>
 </div>
-<img alt="../../_images/9ff2af06f3f92628941abb2da8ec32fc4a6f712b55df546cecf6ef96451ec1db.png" src="../../_images/9ff2af06f3f92628941abb2da8ec32fc4a6f712b55df546cecf6ef96451ec1db.png" />
-<img alt="../../_images/c3e01b7effbb1a95df4fe3af7bcfa1abee492288913bbff41e6bf20040aa9172.png" src="../../_images/c3e01b7effbb1a95df4fe3af7bcfa1abee492288913bbff41e6bf20040aa9172.png" />
+<img alt="../../_images/d6c23899cecfee68f336060cf83a85e56bdd0f5490620b1af5012f4df20b72a9.png" src="../../_images/d6c23899cecfee68f336060cf83a85e56bdd0f5490620b1af5012f4df20b72a9.png" />
+<img alt="../../_images/7f4763160d77bcaed3ca3101b414d9d7338967b30c23a6762abf70295d03eee2.png" src="../../_images/7f4763160d77bcaed3ca3101b414d9d7338967b30c23a6762abf70295d03eee2.png" />
 </div>
 </div>
 </section>

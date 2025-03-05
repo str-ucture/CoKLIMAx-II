@@ -13,6 +13,7 @@ conda activate cds_env
 python .\update_dropdown.py
 python .\update_images.py
 git add .
+git add -f docs/
 git commit -m "updates"
 git push
 
