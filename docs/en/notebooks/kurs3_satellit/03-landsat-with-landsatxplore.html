@@ -71,7 +71,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/index.html">About CoKLIMAx-II Notebooks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/cds_data/index.html">CDS Dataset Notebooks </a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../rst_jupyter_bibliothek/satellite_data/index.html">Satellite Data Notebooks </a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="01-senthub-downloader.html">SentinelHub Satellite Data Explorer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-senthub-downloader.html">Satellite Data Explorer and Downloader using SentinelHub</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02-sentinel2-without-esri.html">Sentinel 2 - Workflow</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Landsat Downloader</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#specifying-the-paths-and-working-directories">1. Specifying the Paths and Working Directories</a></li>
@@ -201,33 +201,18 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">landsatxplore.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">API</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Load credentials from the local JSON file</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;D:/usgs.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">credentials</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">username</span> <span class="o">=</span> <span class="n">credentials</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span>
-
-<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\IPython\core\interactiveshell.py:324,</span> in <span class="ni">_modified_open</span><span class="nt">(file, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">317</span> <span class="k">if</span> <span class="n">file</span> <span class="ow">in</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">}:</span>
-<span class="g g-Whitespace">    </span><span class="mi">318</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span>         <span class="sa">f</span><span class="s2">&quot;IPython won&#39;t let you open fd=</span><span class="si">{</span><span class="n">file</span><span class="si">}</span><span class="s2"> by default &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">320</span>         <span class="s2">&quot;as it is likely to crash IPython. If you know what you are doing, &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">321</span>         <span class="s2">&quot;you can use builtins&#39; open.&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">322</span>     <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">324</span> <span class="k">return</span> <span class="n">io_open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;D:/usgs.json&#39;
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">insta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ERROR: unknown command &quot;insta&quot; - maybe you meant &quot;install&quot;
 </pre></div>
 </div>
 </div>
@@ -257,7 +242,36 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8 scenes found.
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">USGSError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Authenticate with the USGS API</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Search for available scenes</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">scenes</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">dataset</span><span class="o">=</span><span class="s1">&#39;landsat_ot_c2_l2&#39;</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">latitude</span><span class="o">=</span><span class="mf">47.6780</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">max_cloud_cover</span><span class="o">=</span><span class="mi">10</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="p">)</span>
+
+<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\landsatxplore\api.py:39,</span> in <span class="ni">API.__init__</span><span class="nt">(self, username, password)</span>
+<span class="g g-Whitespace">     </span><span class="mi">37</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">API_URL</span>
+<span class="g g-Whitespace">     </span><span class="mi">38</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="ne">---&gt; </span><span class="mi">39</span> <span class="bp">self</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+
+<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\landsatxplore\api.py:107,</span> in <span class="ni">API.login</span><span class="nt">(self, username, password)</span>
+<span class="g g-Whitespace">    </span><span class="mi">105</span> <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">username</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">password</span><span class="p">}</span>
+<span class="g g-Whitespace">    </span><span class="mi">106</span> <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">login_url</span><span class="p">,</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">))</span>
+<span class="ne">--&gt; </span><span class="mi">107</span> <span class="bp">self</span><span class="o">.</span><span class="n">raise_api_error</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">108</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;X-Auth-Token&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+
+<span class="nn">File c:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\landsatxplore\api.py:59,</span> in <span class="ni">API.raise_api_error</span><span class="nt">(response)</span>
+<span class="g g-Whitespace">     </span><span class="mi">57</span>     <span class="k">raise</span> <span class="n">USGSRateLimitError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">error_code</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">error_msg</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">58</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">59</span>     <span class="k">raise</span> <span class="n">USGSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">error_code</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">error_msg</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+<span class="ne">USGSError</span>: NOT_FOUND: Invalid Endpoint.
 </pre></div>
 </div>
 </div>
