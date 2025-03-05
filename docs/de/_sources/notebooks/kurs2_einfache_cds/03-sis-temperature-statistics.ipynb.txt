@@ -27,13 +27,15 @@
    "id": "09e2a88f",
    "metadata": {},
    "source": [
-    "You can also download a copy of this notebook:\n",
+    "---\n",
     "\n",
-    "<div class=\"download-button\"> <a href=\"../jupyter_execute/notebooks/kurs2_einfache_cds/03-sis-temperature-statistics.ipynb\" download>⇩ Climate Indicators Notebook</a> </div>\n",
+    "Laden Sie bitte über den unten stehenden Link eine Kopie dieses Notebooks herunter, um es lokal auf Ihrem System auszuprobieren:\n",
     "\n",
-    "Try it out for yourself! Simply download the notebook, open it in Jupyter Notebook, and start executing the code step by step.\n",
+    "<div class=\"download-button\"> <a href=\"/CoKLIMAx-II/jupyter_execute/notebooks/kurs2_einfache_cds/03-sis-temperature-statistics.ipynb\" download>⇩ Climate Indicators Notebook</a> </div>\n",
     "\n",
-    "<div class=\"download-button\"> <a href=\"/CoKLIMAx-II/jupyter_execute/notebooks/kurs2_einfache_cds/03-sis-temperature-statistics.ipynb\" download>⇩ Climate Indicators Notebook</a> </div>\n"
+    "Öffnen Sie es nach dem Download in Jupyter Notebook und beginnen Sie mit der schrittweisen Ausführung des Codes.\n",
+    "\n",
+    "---"
    ]
   },
   {

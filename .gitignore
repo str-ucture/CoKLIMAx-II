@@ -9,6 +9,9 @@ source/secrets/
 **/.cdsapirc
 **/cds_api
 
+# Ignore log files
+*.log
+
 # Archived & compressed data
 *.zip
 *.tar*
@@ -45,7 +48,7 @@ docs/*.csv
 # Include jupyter execute
 jupyter_execute/
 
-# Allow PNG & GIF files inside source/_static
+# Allow files inside source/_static
 !source_en/_static/
 !source_de/_static/
 
