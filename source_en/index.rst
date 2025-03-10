@@ -1,3 +1,19 @@
+======================
+CoKLIMAx II Background
+======================
+
+The **CoKLIMAx project** aims to develop climate-resilient urban planning strategies based on **Copernicus data and information**. In response to the growing challenges of climate change—such as rising temperatures, increasing occurrences of extreme weather events, and their impact on urban infrastructure and populations—the project focuses on creating **technical tools and workflows** that facilitate access to and use of relevant climate and environmental data for municipal stakeholders. The goal is to **provide municipalities with well-founded decision-making tools** to effectively address climate change challenges, particularly in the areas of **heat, water, and vegetation**.
+
+To achieve this, **low-threshold tools and efficient processes for data collection, processing, analysis, and application are being developed**. A key component is the **AMCDS-Toolbox**, which integrates Copernicus data with local information to support urban planning processes. Beyond technical solutions, the project also aims to **optimize organizational and planning processes within municipalities** to facilitate decision-making and the implementation of climate adaptation measures.
+By doing so, **CoKLIMAx makes an important contribution to promoting climate resilience and sustainable urban development.**
+
+**Funding Reference:**
+
+  * 50EW2103 - CoKLIMAx (Phase I):  11.2024 - 10.2024
+  * 50EW2410 - CoKLIMAx (Phase II): 10.2024 - 05.2025
+
+*Funded under the directive "Development and Implementation Preparation of Copernicus Services for Public Needs on Climate Adaptation Strategies for Municipal Applications in Germany" by the German Federal Ministry for Digital and Transport (BMDV).*
+
 =========================================
 CoKLIMAx II Resources for Data Processing
 =========================================

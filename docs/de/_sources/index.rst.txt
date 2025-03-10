@@ -1,3 +1,19 @@
+==============================
+CoKLIMAx II Projekthintergrund
+==============================
+
+Das Projekt **CoKLIMAx - Nutzung von Copernicus-Daten zur klimaresilienten Stadtplanung am Beispiel von Wasser, Wärme und Vegetation** zielt darauf ab, klimaresiliente Stadtplanungsstrategien zu entwickeln, die auf der Nutzung von **Copernicus-Daten und -Informationen** basieren. Angesichts der zunehmenden Herausforderungen durch den Klimawandel - wie steigende Temperaturen, häufigeres Auftreten von Extremwetterereignissen und deren Auswirkungen auf die städtische Infrastruktur und Bevölkerung - fokussiert das Projekt darauf, **technische Werkzeuge und Arbeitsprozesse zu schaffen**, die den Zugang und die Nutzung relevanter Klima- und Umweltdaten für kommunale Akteure vereinfachen. Ziel ist es, **Kommunen fundierte Entscheidungsgrundlagen bereitzustellen**, um den Herausforderungen des Klimawandels - insbesondere in den Bereichen **Wärme, Wasser und Vegetation** - effektiv zu begegnen.
+
+Dafür werden **niedrigschwellige Werkzeuge und effiziente Arbeitsprozesse zur Datenerfassung, -verarbeitung, - auswertung und -anwendung entwickelt**. Ein zentrales Element ist die **AMCDS-Toolbox**, die Copernicus-Daten mit lokalen Informationen kombiniert und so Planungsprozesse unterstützt. Dabei sollen nicht nur technische Lösungen entwickelt werden, sondern auch **die organisatorischen und planerischen Prozesse in Kommunen optimiert werden, um die Entscheidungsfindung und Umsetzung von Klimaanpassungsmaßnahmen zu erleichtern**. Es leistet somit einen wichtigen Beitrag zur Förderung der Klimaresilienz und nachhaltigen Stadtentwicklung.
+
+**Förderkennzeichen:**
+
+  * 50EW2103 - CoKLIMAx (Phase I):  11.2024 - 10.2024
+  * 50EW2410 - CoKLIMAx (Phase II): 10.2024 - 05.2025
+
+
+*Gefördert im Rahmen der Förderrichtlinie „Entwicklung und Implementierungsvorbereitung von Copernicus Diensten für den öffentlichen Bedarf zum Thema Klimaanpassungsstrategien für kommunale Anwendungen in Deutschland“. des Bundesministeriums für Digitales und Verkehr (BMDV).*
+
 ============================================
 CoKLIMAx II Ressourcen zur Datenverarbeitung
 ============================================
