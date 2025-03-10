@@ -23,13 +23,11 @@
       <script src="../../_static/copybutton.js?v=f281be69"></script>
       <script src="../../_static/translations.js?v=9bf55d28"></script>
       <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-      <script type="application/vnd.jupyter.widget-state+json">{"state": {"67387c60e7514e0ca184e13a4d268c6e": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "StyleView", "description_width": "auto"}}, "3a9eac149de34cd0bfb69956f05ae57e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "2.0.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "2.0.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "2.0.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border_bottom": null, "border_left": null, "border_right": null, "border_top": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "0df52853cdf3491ea2a0f5278373e582": {"model_name": "DropdownModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "2.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "2.0.0", "_model_name": "DropdownModel", "_options_labels": ["growing_degree_days", "heating_degree_days", "cooling_degree_days", "tropical_nights", "hot_days", "warmest_three_day_period", "heat_waves_climatological", "high_utci_days", "frost_days", "total_precipitation", "maximum_five_days_precipitation", "extreme_precipitation_total", "frequency_of_extreme_precipitation", "consecutive_dry_days", "duration_of_meteorological_droughts", "magnitude_of_meteorological_droughts", "days_with_high_fire_danger", "extreme_wind_speed_days", "fire_weather_index"], "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "2.0.0", "_view_name": "DropdownView", "description": "Eine Variable ausw\u00e4hlen:", "description_allow_html": false, "disabled": false, "index": 0, "layout": "IPY_MODEL_3a9eac149de34cd0bfb69956f05ae57e", "style": "IPY_MODEL_67387c60e7514e0ca184e13a4d268c6e", "tabbable": null, "tooltip": null}}}, "version_major": 2, "version_minor": 0}</script>
-      <script crossorigin="anonymous" data-jupyter-widgets-cdn="https://cdn.jsdelivr.net/npm/" src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@1.0.6/dist/embed-amd.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Stichwortverzeichnis" href="../../genindex.html" />
     <link rel="search" title="Suche" href="../../search.html" />
     <link rel="next" title="Satellitendaten Notebooks" href="../../rst_jupyter_bibliothek/satellite_data/index.html" />
-    <link rel="prev" title="Alpine monatliche Niederschlagsdaten" href="01-alpine-monthly-precipitation.html" /> 
+    <link rel="prev" title="Heat Wave and Cold Spells" href="02-sis-heat-wave-and-cold-spells.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,6 +72,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/index.html">Über CoKLIMAx-II Notebooks</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../rst_jupyter_bibliothek/cds_data/index.html">CDS Datensatz Notebooks </a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01-alpine-monthly-precipitation.html">Alpine monatliche Niederschlagsdaten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-sis-heat-wave-and-cold-spells.html">Heat Wave and Cold Spells</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Klimaindikatoren für Europa</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#festlegen-der-pfade-und-arbeitsverzeichnisse">1. Festlegen der Pfade und Arbeitsverzeichnisse</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#herunterladen-und-entpacken-des-datensatzes">2. Herunterladen und Entpacken des Datensatzes</a><ul>
@@ -149,7 +148,7 @@
 <p>Die Indizes basieren auf Daten aus verschiedenen CDS-Datensätzen und umfassen Temperatur-, Niederschlags- und Windindikatoren. Sie wurden aus den Datensätzen „Climate and energy indicators for Europe from 2005 to 2100“ und „ERA5 hourly data on single levels from 1940 to present“ berechnet. Weitere Indizes stammen aus thematischen Projekten des CDS.</p>
 <p><strong>Informationen zum Datensatz:</strong></p>
 <ul class="simple">
-<li><p>Quelle: <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/sis-ecde-climate-indicators?tab=download" rel="noopener noreferrer" target="_blank">Climate Indicators</a></p></li>
+<li><p>Quelle: <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/sis-ecde-climate-indicators?tab=download" rel="noreferrer" target="_blank">Climate Indicators</a></p></li>
 <li><p>Author: T. Tewes (City of Konstanz)</p></li>
 <li><p>Notebook Version: 1.2 (Updated: December 13, 2024)</p></li>
 </ul>
@@ -352,8 +351,19 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Datensatz bereits heruntergeladen.
-Datensatz bereits heruntergeladen.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 12:30:55,896 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 12:30:55,899 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 12:30:56,076 INFO Request ID is 93550c6c-6e65-4eaf-ad54-38bd18fb7c98
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 12:30:56,156 INFO status has been updated to accepted
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 12:31:04,896 INFO status has been updated to running
 </pre></div>
 </div>
 </div>
@@ -427,7 +437,7 @@ Ordner ist nicht leer. Entpacken überspringen.
 
     <span class="c1"># Fehler ausgeben, wenn der Dateiname nicht dem erwarteten Schema entspricht</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
-        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?P&lt;index&gt;\w+?)_(?P&lt;ds_variable&gt;[a-zA-Z_]+?)-(?P&lt;ds_origin&gt;\w+?)-(?P&lt;ds_temporal_aggregation&gt;\w+)(?:-(?P&lt;ds_stat&gt;min|max|mean))?(?:-(?P&lt;ds_grid&gt;\d+deg))?(?:-(?P&lt;ds_rcp&gt;rcp_\d+_\d+))?&quot;</span><span class="p">,</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;Der angegebene Dateiname entspricht nicht dem erwarteten Benennungsschema.&quot;</span><span class="p">)</span>
 
     <span class="c1"># Funktion zum Extrahieren des Variablennamens aus der NetCDF-Datei</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_nc_variable</span><span class="p">():</span>
@@ -642,6 +652,7 @@ Ordner ist nicht leer. Entpacken überspringen.
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Alle Variableninformationen in jeder NetCDF-Datei auflisten  </span>
 <span class="n">seen_variables</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
+<span class="c1"># Alle variablen Informationen in jeder NetCDF-Datei auflisten</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">nc_file</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nc_files</span><span class="p">):</span>
     <span class="n">variable_name</span> <span class="o">=</span> <span class="n">nc_file</span><span class="p">[</span><span class="s1">&#39;variable_name&#39;</span><span class="p">]</span>
     
@@ -1031,7 +1042,7 @@ Letzte vorhandene CSV-Datei lesen...
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "0df52853cdf3491ea2a0f5278373e582"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"model_id": "b843d991dad74710a438512090cca8ff", "version_major": 2, "version_minor": 0}</script></div>
 </div>
 </section>
 <section id="definieren-farbkodierte-designstile-fur-die-visualisierung">
@@ -1753,7 +1764,7 @@ Letzte vorhandene CSV-Datei lesen...
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="01-alpine-monthly-precipitation.html" class="btn btn-neutral float-left" title="Alpine monatliche Niederschlagsdaten" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
+        <a href="02-sis-heat-wave-and-cold-spells.html" class="btn btn-neutral float-left" title="Heat Wave and Cold Spells" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Zurück</a>
         <a href="../../rst_jupyter_bibliothek/satellite_data/index.html" class="btn btn-neutral float-right" title="Satellitendaten Notebooks" accesskey="n" rel="next">Weiter <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -16,4 +16,3 @@ git add .
 git add -f docs/
 git commit -m "updates"
 git push
-

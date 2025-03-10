@@ -360,7 +360,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 10,
+   "execution_count": null,
    "id": "3185b323",
    "metadata": {},
    "outputs": [
@@ -541,7 +541,7 @@
     "\n",
     "    # Fehler ausgeben, wenn der Dateiname nicht dem erwarteten Schema entspricht\n",
     "    if not match:\n",
-    "        match = re.search(r\"(?P<index>\\w+?)_(?P<ds_variable>[a-zA-Z_]+?)-(?P<ds_origin>\\w+?)-(?P<ds_temporal_aggregation>\\w+)(?:-(?P<ds_stat>min|max|mean))?(?:-(?P<ds_grid>\\d+deg))?(?:-(?P<ds_rcp>rcp_\\d+_\\d+))?\",filename)\n",
+    "        match = re.search(\"Der angegebene Dateiname entspricht nicht dem erwarteten Benennungsschema.\")\n",
     "\n",
     "    # Funktion zum Extrahieren des Variablennamens aus der NetCDF-Datei\n",
     "    def get_nc_variable():\n",
@@ -630,7 +630,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 32,
+   "execution_count": null,
    "id": "f89a7481",
    "metadata": {},
    "outputs": [
@@ -806,6 +806,7 @@
     "# Alle Variableninformationen in jeder NetCDF-Datei auflisten  \n",
     "seen_variables = set()\n",
     "\n",
+    "# Alle variablen Informationen in jeder NetCDF-Datei auflisten\n",
     "for i, nc_file in enumerate(nc_files):\n",
     "    variable_name = nc_file['variable_name']\n",
     "    \n",

@@ -150,7 +150,7 @@
 </section>
 <section id="einrichtung-der-cds-api">
 <span id="setup-api"></span><h2>Einrichtung der CDS API<a class="headerlink" href="#einrichtung-der-cds-api" title="Link to this heading"></a></h2>
-<p>Zur Einrichtung der CDS API (Application Programming Interface, notwendige Installation um Daten aus dem CDS herunterzuladen) benötigen Sie einen Nutzeraccount im Copernicus Climate Data Store (CDS). Diesen richten Sie direkt über den <a class="reference external" href="https://cds.climate.copernicus.eu/" rel="noopener noreferrer" target="_blank">CDS</a> ein.</p>
+<p>Zur Einrichtung der CDS API (Application Programming Interface, notwendige Installation um Daten aus dem CDS herunterzuladen) benötigen Sie einen Nutzeraccount im Copernicus Climate Data Store (CDS). Diesen richten Sie direkt über den <a class="reference external" href="https://cds.climate.copernicus.eu/" rel="noreferrer" target="_blank">CDS</a> ein.</p>
 <p>Falls Sie noch keinen Nutzeraccount haben erstellen Sie sich einen Account über die Startseite. Oben rechts im Fenster klicken Sie auf <strong>„Login - Register“</strong>. Das Dialogfenster erscheint wie unten angezeigt. Erstellen Sie sich einen ECMWF-Account wie beschrieben und loggen Sie sich dann mit Ihrem ECMWF-Nutzernamen und Passwort im Copernicus CDS ein.</p>
 <img alt="CDS Login - Register" class="no-scaled-link align-center" src="../_images/03-kurs-1-cds-1.png" style="width: 600px;" />
 <section id="personlicher-api-key">
@@ -192,8 +192,8 @@
 <section id="erstellen-der-api-request">
 <span id="api-request"></span><h3>1. Erstellen der API-Request<a class="headerlink" href="#erstellen-der-api-request" title="Link to this heading"></a></h3>
 <p>Die im CDS verfügbaren Datensätze können durch die räumliche und zeitliche Abdeckung schnell mehrere Gigabyte Größe erreichen. Im CDS haben Sie die Möglichkeit, individuell Variablen, Zeiträume und Regionen auszwählen, damit der Datensatz nicht unnötig Speicherplatz auf Ihrem Computer verbraucht. Für den Test laden wir nur einen kleinen Teil des Datensatzes herunter (eine Variable für einen Tag im Oktober 2024).</p>
-<p>Um die gewünschten Daten automatisiert über die CDS API herunterzuladen müssen Sie zunächst einen API request code erzeugen. Dafür gehen Sie in den Copernicus Climate Data store, loggen sich ein und suchen nach dem Datensatz <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=overview" rel="noopener noreferrer" target="_blank">ERA5-Land hourly data from 1950 to present</a></p>
-<p>Gehen Sie auf den <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=download" rel="noopener noreferrer" target="_blank">Download</a> tab und wählen Sie die Parameter wie folgt aus:</p>
+<p>Um die gewünschten Daten automatisiert über die CDS API herunterzuladen müssen Sie zunächst einen API request code erzeugen. Dafür gehen Sie in den Copernicus Climate Data store, loggen sich ein und suchen nach dem Datensatz <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=overview" rel="noreferrer" target="_blank">ERA5-Land hourly data from 1950 to present</a></p>
+<p>Gehen Sie auf den <a class="reference external" href="https://cds.climate.copernicus.eu/datasets/reanalysis-era5-land?tab=download" rel="noreferrer" target="_blank">Download</a> tab und wählen Sie die Parameter wie folgt aus:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><strong>Temperature</strong>: 2m temperature</p></li>
@@ -208,7 +208,7 @@
 <img alt="Download Region" class="no-scaled-link align-center" src="../_images/04-kurs-1-cds-4.png" style="width: 600px;" />
 <div class="admonition note">
 <p class="admonition-title">Bemerkung</p>
-<p>Ihre eigenen Wunschkoordinaten können Sie sich ganz einfach im von uns entwickelten <a class="reference external" href="https://str-ucture.github.io/bbox-extractor/" rel="noopener noreferrer" target="_blank">Bbox-Generator</a> erstellen. Kopieren Sie sich die Koordinaten in die Zwischenablage oder in ein Textdokument. Diese können später auch noch direkt im Jupyter-Notebook eingegeben werden. Alternativ können Sie den Begrenzungsrahmenwert in <code class="docutils literal notranslate"><span class="pre">&quot;area&quot;:</span> <span class="pre">​​[48.7,</span> <span class="pre">7,</span> <span class="pre">47.1,</span> <span class="pre">11]</span></code> aktualisieren, um den Datenumfang zu definieren, siehe <a class="reference internal" href="#dataset-and-request-parameters"><span class="std std-ref">Sub-region Bounding Box</span></a></p>
+<p>Ihre eigenen Wunschkoordinaten können Sie sich ganz einfach im von uns entwickelten <a class="reference external" href="https://str-ucture.github.io/bbox-extractor/" rel="noreferrer" target="_blank">Bbox-Generator</a> erstellen. Kopieren Sie sich die Koordinaten in die Zwischenablage oder in ein Textdokument. Diese können später auch noch direkt im Jupyter-Notebook eingegeben werden. Alternativ können Sie den Begrenzungsrahmenwert in <code class="docutils literal notranslate"><span class="pre">&quot;area&quot;:</span> <span class="pre">​​[48.7,</span> <span class="pre">7,</span> <span class="pre">47.1,</span> <span class="pre">11]</span></code> aktualisieren, um den Datenumfang zu definieren, siehe <a class="reference internal" href="#dataset-and-request-parameters"><span class="std std-ref">Sub-region Bounding Box</span></a></p>
 </div>
 <p>Für die weiteren Parameter Datenformat und Komprimierung setzen Sie die Felder in der Eingabemaske bitte wie in der folgenden Abbildung gezeigt.</p>
 <img alt="Data and Download Fromat" class="no-scaled-link align-center" src="../_images/04-kurs-1-cds-5.png" style="width: 600px;" />

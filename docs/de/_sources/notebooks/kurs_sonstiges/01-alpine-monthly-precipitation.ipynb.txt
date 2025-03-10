@@ -21,8 +21,13 @@
     "**Informationen zum Datensatz:**\n",
     "* Quelle: [Alpine Monthly Precipitation](https://cds.climate.copernicus.eu/datasets/insitu-gridded-observations-alpine-precipitation?tab=overview)\n",
     "* Author: T. Tewes (City of Konstanz)\n",
-    "* Notebook Version: 1.1 (Updated: December 05, 2024)"
+    "* Notebook-Version: 1.1 (Aktualisiert: Dezember 05, 2024)"
    ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": []
   },
   {
    "cell_type": "markdown",
@@ -90,7 +95,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### 2.2 Definieren Sie die „request“ und laden Sie den Datensatz herunter"
+    "### 2.2 Definieren die „request“ und laden Sie den Datensatz herunter"
    ]
   },
   {
@@ -147,7 +152,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "### 2.3 Extrahieren Sie die ZIP-Datei in Ordner"
+    "### 2.3 Extrahieren die ZIP-Datei in Ordner"
    ]
   },
   {
@@ -1475,7 +1480,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 34,
    "metadata": {},
    "outputs": [
     {
