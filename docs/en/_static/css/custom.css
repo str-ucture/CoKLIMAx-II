@@ -1,0 +1,81 @@
+/* * {
+    text-align: justify;
+} */
+
+.wy-nav-content {
+    max-width: 950px;
+    position: relative;
+    left: 50px;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* img {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+} */
+
+.rst-content .align-center {
+    margin-bottom: 20px;
+    border: 1px solid rgba(78, 78, 78, 0.2);
+}
+
+@media screen and (min-width: 768px) {
+    .wy-menu-vertical, .wy-side-nav-search, .wy-nav-side {
+        width: 350px;
+    }
+    .wy-side-scroll {
+        width: 370px;
+    }   
+}
+
+.rst-content div[class^=highlight] pre {
+    white-space: pre-wrap
+}
+
+div.cell_output table {
+    font-size: .8em;
+}
+
+.wy-side-nav-search .wy-dropdown>a img.logo, .wy-side-nav-search>a img.logo {
+    max-width: 70%;
+}
+
+.dataframe {
+    max-width: 100%;
+    overflow-x: auto;
+    display: block;
+}
+
+.download-button {
+    background-color: DodgerBlue;
+    border-radius: 5px 5px; 
+    margin-bottom: 50px;
+    cursor: pointer;
+    width: 250px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding: 8px 16px;
+    text-align: center;
+}
+
+.download-button:hover {
+    background-color: RoyalBlue;
+}
+
+.download-button a {
+    color: white;
+    text-decoration: none;
+}
+
+.download-button a:hover {
+    color: white;
+}
+
+.rst-content img {
+    margin: 8px 0px;
+}
+
+[id^="codecell"] {
+    text-align: left;
+}

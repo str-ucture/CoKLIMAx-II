@@ -351,19 +351,99 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 12:30:55,896 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 13:30:10,816 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 12:30:55,899 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 13:30:10,818 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 12:30:56,076 INFO Request ID is 93550c6c-6e65-4eaf-ad54-38bd18fb7c98
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 13:30:11,001 INFO Request ID is 75a07222-322b-419d-ade7-10ce2f7f4c6a
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 12:30:56,156 INFO status has been updated to accepted
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 13:30:11,073 INFO status has been updated to accepted
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 12:31:04,896 INFO status has been updated to running
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 13:30:24,629 INFO status has been updated to successful
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "6a4e24d346634e00ba85e63632fe935e"}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 13:30:28,131 INFO [2024-09-26T00:00:00] Watch our [Forum](https://forum.ecmwf.int/) for Announcements, news and other discussed topics.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 13:30:28,133 WARNING [2024-06-16T00:00:00] CDS API syntax is changed and some keys or parameter names may have also changed. To avoid requests failing, please use the &quot;Show API request code&quot; tool on the dataset Download Form to check you are using the correct syntax for your API request.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 13:30:28,318 INFO Request ID is d9a6e9ce-87da-4eb2-b3ae-f79670f3a25c
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 13:30:28,433 INFO status has been updated to accepted
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-03-10 13:30:36,882 INFO status has been updated to running
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">17</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Datensatz bereits heruntergeladen.&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="ne">---&gt; </span><span class="mi">17</span>     <span class="n">main_retrieve</span><span class="p">()</span>
+
+<span class="nn">Cell In[7], line 12,</span> in <span class="ni">main_retrieve</span><span class="nt">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">client</span> <span class="o">=</span> <span class="n">main</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="c1"># Den Datensatz mit den definierten Anforderungsparametern herunterladen</span>
+<span class="ne">---&gt; </span><span class="mi">12</span>     <span class="n">client</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">dataset_filepath</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Datensatz bereits heruntergeladen.&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\envs\cds_env\lib\site-packages\datapi\legacy_api_client.py:169,</span> in <span class="ni">LegacyApiClient.retrieve</span><span class="nt">(self, name, request, target)</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span> <span class="n">submitted</span><span class="p">:</span> <span class="n">Remote</span> <span class="o">|</span> <span class="n">Results</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">wait_until_complete</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">169</span>     <span class="n">submitted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">submit_and_wait_on_results</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span>         <span class="n">collection_id</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">171</span>         <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">172</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">173</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span>     <span class="n">submitted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span>         <span class="n">collection_id</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">176</span>         <span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span>     <span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\envs\cds_env\lib\site-packages\datapi\api_client.py:399,</span> in <span class="ni">ApiClient.submit_and_wait_on_results</span><span class="nt">(self, collection_id, request)</span>
+<span class="g g-Whitespace">    </span><span class="mi">383</span> <span class="k">def</span><span class="w"> </span><span class="nf">submit_and_wait_on_results</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">384</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">collection_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">385</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">datapi</span><span class="o">.</span><span class="n">Results</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">386</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Submit a request and wait for the results to be ready.</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">388</span><span class="sd">     Parameters</span>
+<span class="sd">   (...)</span>
+<span class="g g-Whitespace">    </span><span class="mi">397</span><span class="sd">     datapi.Results</span>
+<span class="g g-Whitespace">    </span><span class="mi">398</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">399</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_retrieve_api</span><span class="o">.</span><span class="n">submit</span><span class="p">(</span><span class="n">collection_id</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span><span class="o">.</span><span class="n">get_results</span><span class="p">()</span>
+
+<span class="nn">File ~\anaconda3\envs\cds_env\lib\site-packages\datapi\processing.py:545,</span> in <span class="ni">Remote.get_results</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">538</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Results</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">539</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Retrieve results.</span>
+<span class="g g-Whitespace">    </span><span class="mi">540</span><span class="sd"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">541</span><span class="sd">     Returns</span>
+<span class="g g-Whitespace">    </span><span class="mi">542</span><span class="sd">     -------</span>
+<span class="g g-Whitespace">    </span><span class="mi">543</span><span class="sd">     datapi.Results</span>
+<span class="g g-Whitespace">    </span><span class="mi">544</span><span class="sd">     &quot;&quot;&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">545</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_results</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nn">File ~\anaconda3\envs\cds_env\lib\site-packages\datapi\processing.py:520,</span> in <span class="ni">Remote._make_results</span><span class="nt">(self, wait)</span>
+<span class="g g-Whitespace">    </span><span class="mi">518</span> <span class="k">def</span><span class="w"> </span><span class="nf">_make_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wait</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Results</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">519</span>     <span class="k">if</span> <span class="n">wait</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">520</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_wait_on_results</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">521</span>     <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_api_response</span><span class="p">(</span><span class="s2">&quot;get&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">522</span>     <span class="k">try</span><span class="p">:</span>
+
+<span class="nn">File ~\anaconda3\envs\cds_env\lib\site-packages\datapi\processing.py:500,</span> in <span class="ni">Remote._wait_on_results</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">498</span> <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">results_ready</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">499</span>     <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;results not ready, waiting for </span><span class="si">{</span><span class="n">sleep</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">500</span>     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">sleep</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">501</span>     <span class="n">sleep</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">sleep</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">sleep_max</span><span class="p">)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>

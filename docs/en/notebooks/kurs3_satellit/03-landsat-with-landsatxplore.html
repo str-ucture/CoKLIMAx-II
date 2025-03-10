@@ -1,0 +1,1466 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landsat Data: Explore and Download using landsatxplore &mdash; CoKLIMAx 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=822aaed9" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Visualization Options Library" href="../../rst_jupyter_bibliothek/visualizations/index.html" />
+    <link rel="prev" title="Sentinel 2 - Workflow" href="02-sentinel2-without-esri.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CoKLIMAx
+              <img src="../../_static/coklimax_logo_new.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/01-softwarekenntnisse.html">Required Software and Knowledge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/02-kurselemente.html">The Course Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_inhalte/03-cds.html">The Copernicus Climate Data Store (CDS)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Course 1:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/01-cds-api-installieren-und-herunterladen.html">CDS API Installation and Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_kurs1/02-netcdf-einfuhrung.html">NetCDF Introduction</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Course 2:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../kurs2_einfache_cds/01-satellite-lake-water-level.html">Lake Water Levels from Satellite Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kurs2_einfache_cds/02-satellite-lake-water-temperature.html">Lake Water Temperature from Satellite Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../kurs2_einfache_cds/03-sis-temperature-statistics.html">Temperature Statistics for Europe</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">The Jupyter Notebook Library:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/index.html">About CoKLIMAx-II Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/cds_data/index.html">CDS Dataset Notebooks </a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../rst_jupyter_bibliothek/satellite_data/index.html">Satellite Data Notebooks </a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01-senthub-downloader.html">Sentinel Data: Explore and Download using sentinelhub-py</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-sentinel2-without-esri.html">Sentinel 2 - Workflow</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Landsat Data: Explore and Download using landsatxplore</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filter-and-retrieve-satellite-images-metadata">2. Filter and Retrieve Satellite Images Metadata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#api-and-authentication">2.1 API and Authentication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#define-data-query-parameters">2.2 Define Data Query Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#search-the-available-scenes">2.2 Search the Available Scenes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-a-dictionary-to-store-all-the-scene-information">2.3 Create a Dictionary to store all the Scene Information</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#visuale-the-scenes-as-polygons-over-a-map">2.4 Visuale the Scenes as Polygons over a Map</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#download-scene-s-using-the-display-id">2.5 Download Scene(s) using the Display ID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#extract-the-tar-file-in-folder">2.6 Extract the TAR file in folder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#merge-rgb-bands-into-a-single-geotiff-file">3. Merge RGB Bands into a Single GeoTIFF File</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#create-a-dataframe-of-all-the-available-files">3.1 Create a Dataframe of all the Available Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#define-a-dictionary-for-band-names-mapping">3.2 Define a Dictionary for Band names mapping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#define-a-function-to-save-a-merged-geotiff-raster">3.3 Define a Function to save a merged GeoTIFF raster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#save-geotiff-raster">3.4 Save GeoTIFF raster</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#satellite-image-analysis-and-visualization">4. Satellite Image Analysis and Visualization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#remote-sensing-indices">4.1 Remote Sensing Indices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#normalized-vegetation-index-ndvi">4.2 Normalized Vegetation Index (NDVI)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#land-surface-temperature">5. Land Surface Temperature</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#plot-lst-for-complete-dataset">5.1 Plot LST for Complete Dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plot-lst-for-area-of-interest">5.2 Plot LST for Area of Interest</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/visualizations/index.html">Visualization Options Library</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CoKLIMAx</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../rst_jupyter_bibliothek/satellite_data/index.html">Satellite Data Notebooks </a></li>
+      <li class="breadcrumb-item active">Landsat Data: Explore and Download using landsatxplore</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/notebooks/kurs3_satellit/03-landsat-with-landsatxplore.ipynb.txt" rel="nofollow"> View page source</a>
+<div id='language-switcher' style='text-align: right; margin-top: 10px;'>
+    <select onchange="location = this.value;">
+        <option value='/./CoKLIMAx-II/en\notebooks\kurs3_satellit\03-landsat-with-landsatxplore.html' selected>EN</option>
+        <option value='/./CoKLIMAx-II/de\notebooks\kurs3_satellit\03-landsat-with-landsatxplore.html'>DE</option>
+    </select>
+</div>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="landsat-data-explore-and-download-using-landsatxplore">
+<h1>Landsat Data: Explore and Download using landsatxplore<a class="headerlink" href="#landsat-data-explore-and-download-using-landsatxplore" title="Link to this heading"></a></h1>
+<p><strong>landsatxplorer</strong> is a Python library designed for searching and downloading Landsat imagery from the USGS EarthExplorer platform. It allows users to query Landsat datasets by various parameters like location, date, and cloud cover, and download the corresponding images. This tool simplifies the process of accessing and working with satellite imagery for analysis and visualization in Python</p>
+<p><strong>Information on Library:</strong></p>
+<ul class="simple">
+<li><p>Library: landsatxplore</p></li>
+<li><p>Author: str.ucture GmbH</p></li>
+<li><p>Notebook Version: 1.3 (Updated: January 10, 2024)</p></li>
+</ul>
+<p>While the library is open-source, it has several limitations:</p>
+<ul class="simple">
+<li><p>Downloads satellite images as <strong>.tar</strong> files, with each band stored as a separate GeoTIFF.</p></li>
+<li><p>Lacks functionality to filter or clip images by bounding box, requiring additional post-processing.</p></li>
+<li><p>Outdated (last updated 3 years ago); installing it may disrupt other libraries. Use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--upgrade</span> <span class="pre">libraryName</span></code> if issues arise.</p></li>
+</ul>
+<section id="specifying-the-paths-and-working-directories">
+<h2>1. Specifying the paths and working directories<a class="headerlink" href="#specifying-the-paths-and-working-directories" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="sd">&#39;&#39;&#39; ---- Hier die Verzeichnisse angeben ---- &#39;&#39;&#39;</span>
+<span class="n">download_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\landsatxplorer\download&quot;</span>
+<span class="n">working_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\landsatxplorer\working&quot;</span>
+<span class="n">geotiff_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\landsatxplorer\geotiff&quot;</span>
+<span class="n">csv_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\landsatxplorer\csv&quot;</span>
+<span class="n">output_folder</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;.\data\landsatxplorer\output&quot;</span>
+<span class="sd">&#39;&#39;&#39; ----- Ende der Eingaben ---- &#39;&#39;&#39;</span>
+
+<span class="c1"># Create directories if they do not exist</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">geotiff_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">csv_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="filter-and-retrieve-satellite-images-metadata">
+<h2>2. Filter and Retrieve Satellite Images Metadata<a class="headerlink" href="#filter-and-retrieve-satellite-images-metadata" title="Link to this heading"></a></h2>
+<section id="api-and-authentication">
+<h3>2.1 API and Authentication<a class="headerlink" href="#api-and-authentication" title="Link to this heading"></a></h3>
+<p>To authenticate with the USGS API, follow these steps:</p>
+<ol class="arabic simple">
+<li><p><strong>Register</strong>: Create an account at the <a class="reference external" href="https://ers.cr.usgs.gov/register/" rel="noreferrer" target="_blank">USGS registration page</a>.</p></li>
+<li><p><strong>Obtain Credentials</strong>: After registering, go to <strong>“Application Tokens”</strong> and click <strong>“Create Application Token.”</strong></p>
+<ul class="simple">
+<li><p>Choose a name for the token and set an expiration date.</p></li>
+<li><p>Ensure that <strong>M2M API</strong> is selected.</p></li>
+<li><p>Once the token is created, copy it and store it securely, as it will no longer be visible after <strong>60 seconds</strong>.</p></li>
+</ul>
+</li>
+</ol>
+<section id="example">
+<h4><strong>Example</strong>:<a class="headerlink" href="#example" title="Link to this heading"></a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">*.json</span></code> file should have the following format:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your_username&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your_token&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><strong>Important</strong>: Due to changes in the authentication process at USGS, an API token is now required instead of a password. Additionally, since the original contributor no longer maintains landsatxplore, this notebook uses a different GitHub repository where another contributor has implemented the necessary authentication updates.</p></li>
+<li><p>To install the working version of landsatxplore, run the following command:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/jsearcy1/landsatxplore.git</span></code></p></li>
+</ul>
+<hr class="docutils" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">landsatxplore.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">API</span>
+
+<span class="c1"># Load credentials from the local JSON file</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;D:/usgs.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+    <span class="n">credentials</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="n">username</span> <span class="o">=</span> <span class="n">credentials</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span>
+<span class="n">token</span> <span class="o">=</span> <span class="n">credentials</span><span class="p">[</span><span class="s2">&quot;token&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="define-data-query-parameters">
+<h3>2.2 Define Data Query Parameters<a class="headerlink" href="#define-data-query-parameters" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define dataset name and search parameters</span>
+<span class="c1"># Dataset Name and Dataset ID can be found at https://github.com/yannforget/landsatxplore</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="s1">&#39;landsat_ot_c2_l2&#39;</span>
+<span class="n">latlon</span> <span class="o">=</span> <span class="p">[</span><span class="mf">47.6780</span><span class="p">,</span> <span class="mf">9.1737</span><span class="p">]</span>  <span class="c1"># Konstanz</span>
+<span class="n">start_date</span> <span class="o">=</span> <span class="s1">&#39;2020-01-01&#39;</span>
+<span class="n">end_date</span> <span class="o">=</span> <span class="s1">&#39;2020-10-01&#39;</span>
+<span class="n">max_cloud_cover</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="search-the-available-scenes">
+<h3>2.2 Search the Available Scenes<a class="headerlink" href="#search-the-available-scenes" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authenticate with the USGS API</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
+
+<span class="c1"># Search for available scenes for the given dataset</span>
+<span class="n">scenes</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">,</span>
+    <span class="n">latitude</span> <span class="o">=</span> <span class="n">latlon</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="n">longitude</span> <span class="o">=</span> <span class="n">latlon</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+    <span class="n">start_date</span> <span class="o">=</span> <span class="n">start_date</span><span class="p">,</span>
+    <span class="n">end_date</span> <span class="o">=</span> <span class="n">end_date</span><span class="p">,</span>
+    <span class="n">max_cloud_cover</span> <span class="o">=</span> <span class="n">max_cloud_cover</span>
+<span class="p">)</span>
+
+<span class="c1"># Output the number of scenes found</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">scenes</span><span class="p">)</span><span class="si">}</span><span class="s2"> scenes found.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Logout from the API</span>
+<span class="n">api</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8 scenes found.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="create-a-dictionary-to-store-all-the-scene-information">
+<h3>2.3 Create a Dictionary to store all the Scene Information<a class="headerlink" href="#create-a-dictionary-to-store-all-the-scene-information" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Convert scene data into a Dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;entity_id&quot;</span><span class="p">:</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&quot;entity_id&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;display_id&quot;</span><span class="p">:</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&quot;display_id&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;acq_date&quot;</span><span class="p">:</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&quot;acquisition_date&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;scene_cloud_cover&quot;</span><span class="p">:</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&quot;scene_cloud_cover&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;land_cloud_cover&quot;</span><span class="p">:</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&quot;land_cloud_cover&quot;</span><span class="p">],</span>
+        <span class="c1"># &quot;image_quality&quot;: scene[&quot;image_quality&quot;],  # Uncomment if needed</span>
+        <span class="c1"># &quot;day_night&quot;: scene[&quot;day-night_indicator&quot;],  # Uncomment if needed</span>
+        <span class="s2">&quot;sun_azimuth&quot;</span><span class="p">:</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&quot;sun_azimuth_l0ra&quot;</span><span class="p">],</span>  <span class="c1"># Recommended range: 90-270 degrees</span>
+        <span class="s2">&quot;sun_elevation&quot;</span><span class="p">:</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&quot;sun_elevation_l0ra&quot;</span><span class="p">]</span>  <span class="c1"># Recommended range: 50-90 degrees</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="n">scene</span> <span class="ow">in</span> <span class="n">scenes</span>
+<span class="p">])</span>
+
+<span class="c1"># Modify the Pandas display options</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+
+<span class="c1"># Display the DataFrame</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>entity_id</th>
+      <th>display_id</th>
+      <th>acq_date</th>
+      <th>scene_cloud_cover</th>
+      <th>land_cloud_cover</th>
+      <th>sun_azimuth</th>
+      <th>sun_elevation</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>LC819502720...</td>
+      <td>LC08_L2SP_1...</td>
+      <td>2020-09-12</td>
+      <td>9.18</td>
+      <td>9.18</td>
+      <td>156.215019</td>
+      <td>44.101558</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>LC819402720...</td>
+      <td>LC08_L2SP_1...</td>
+      <td>2020-08-20</td>
+      <td>5.51</td>
+      <td>5.51</td>
+      <td>149.829906</td>
+      <td>51.441079</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>LC819502720...</td>
+      <td>LC08_L2SP_1...</td>
+      <td>2020-08-11</td>
+      <td>8.02</td>
+      <td>8.02</td>
+      <td>147.421532</td>
+      <td>53.924649</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>LC819502720...</td>
+      <td>LC08_L2SP_1...</td>
+      <td>2020-06-24</td>
+      <td>3.12</td>
+      <td>3.12</td>
+      <td>141.817662</td>
+      <td>61.728886</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LC819402720...</td>
+      <td>LC08_L2SP_1...</td>
+      <td>2020-06-01</td>
+      <td>5.08</td>
+      <td>5.08</td>
+      <td>144.886824</td>
+      <td>61.052324</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>LC819502720...</td>
+      <td>LC08_L2SP_1...</td>
+      <td>2020-05-07</td>
+      <td>1.80</td>
+      <td>1.80</td>
+      <td>149.179967</td>
+      <td>56.408805</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>LC819502720...</td>
+      <td>LC08_L2SP_1...</td>
+      <td>2020-04-05</td>
+      <td>2.01</td>
+      <td>2.01</td>
+      <td>152.809102</td>
+      <td>45.887567</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>LC819502720...</td>
+      <td>LC08_L2SP_1...</td>
+      <td>2020-01-16</td>
+      <td>1.56</td>
+      <td>1.56</td>
+      <td>159.999515</td>
+      <td>19.169424</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="visuale-the-scenes-as-polygons-over-a-map">
+<h3>2.4 Visuale the Scenes as Polygons over a Map<a class="headerlink" href="#visuale-the-scenes-as-polygons-over-a-map" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">folium</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shapely</span><span class="w"> </span><span class="kn">import</span> <span class="n">wkt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># Define colormap with normalized indices</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s2">&quot;turbo&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="c1"># Initialize folium map with a default location</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">47.5</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">],</span>
+               <span class="n">zoom_start</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span>
+               <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span>
+               <span class="n">scrollWheelZoom</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Loop through scenes to add polygons</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">scene</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scenes</span><span class="p">):</span>
+    <span class="n">entity_id</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s1">&#39;entity_id&#39;</span><span class="p">]</span>
+    <span class="n">entity_cc</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s1">&#39;cloud_cover&#39;</span><span class="p">]</span>
+    <span class="n">polygon_wkt</span> <span class="o">=</span> <span class="n">scene</span><span class="p">[</span><span class="s2">&quot;spatial_coverage&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Parse polygon from WKT string</span>
+    <span class="n">polygon</span> <span class="o">=</span> <span class="n">wkt</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">polygon_wkt</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">polygon_wkt</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">polygon_wkt</span>
+
+    <span class="c1"># Generate color based on the index</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">c</span> <span class="o">*</span> <span class="mi">255</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cmap</span><span class="p">(</span><span class="n">i</span><span class="p">)[:</span><span class="mi">3</span><span class="p">]]</span>
+
+    <span class="c1"># Create feature group for each scene</span>
+    <span class="n">polygon_fg</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">FeatureGroup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;ID: </span><span class="si">{</span><span class="n">entity_id</span><span class="si">}</span><span class="s2"> (CC: </span><span class="si">{</span><span class="n">entity_cc</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Add polygon to the map</span>
+    <span class="n">folium</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span>
+        <span class="n">locations</span><span class="o">=</span><span class="p">[(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span> <span class="k">for</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span> <span class="ow">in</span> <span class="n">polygon</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">coords</span><span class="p">],</span>
+        <span class="n">color</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;rgb(</span><span class="si">{</span><span class="n">color</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">color</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">color</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+        <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">polygon_fg</span><span class="p">)</span>
+
+    <span class="c1"># Add feature group to the map</span>
+    <span class="n">polygon_fg</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="c1"># Add layer control and display the map</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">LayerControl</span><span class="p">()</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    
+        &lt;script&gt;
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        &lt;/script&gt;
+    
+    &lt;style&gt;html, body {width: 100%;height: 100%;margin: 0;padding: 0;}&lt;/style&gt;
+    &lt;style&gt;#map {position:absolute;top:0;bottom:0;right:0;left:0;}&lt;/style&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_fd3ddbcd3353a13b8ece9fc15bf134e1 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 450.0px;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+        
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_fd3ddbcd3353a13b8ece9fc15bf134e1&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_fd3ddbcd3353a13b8ece9fc15bf134e1 = L.map(
+                &quot;map_fd3ddbcd3353a13b8ece9fc15bf134e1&quot;,
+                {
+                    center: [47.5, 8.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  &quot;zoom&quot;: 7,
+  &quot;zoomControl&quot;: true,
+  &quot;preferCanvas&quot;: false,
+  &quot;scrollWheelZoom&quot;: false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_28bdcd6a4208e2c9918beca63d5b07bf = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {
+  &quot;minZoom&quot;: 0,
+  &quot;maxZoom&quot;: 19,
+  &quot;maxNativeZoom&quot;: 19,
+  &quot;noWrap&quot;: false,
+  &quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;,
+  &quot;subdomains&quot;: &quot;abc&quot;,
+  &quot;detectRetina&quot;: false,
+  &quot;tms&quot;: false,
+  &quot;opacity&quot;: 1,
+}
+
+            );
+        
+    
+            tile_layer_28bdcd6a4208e2c9918beca63d5b07bf.addTo(map_fd3ddbcd3353a13b8ece9fc15bf134e1);
+        
+    
+            var feature_group_b06b9ef3f0309c0c7a9cbe9d9e683dfd = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var polygon_b386326246287e1895c150e3ed97d0ad = L.polygon(
+                [[46.80577, 6.4291], [46.36914, 8.84615], [48.07038, 9.54652], [48.51237, 7.05177], [46.80577, 6.4291]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(48, 18, 59)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(48, 18, 59)&quot;, &quot;fillOpacity&quot;: 0.1, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_b06b9ef3f0309c0c7a9cbe9d9e683dfd);
+        
+    
+            feature_group_b06b9ef3f0309c0c7a9cbe9d9e683dfd.addTo(map_fd3ddbcd3353a13b8ece9fc15bf134e1);
+        
+    
+            var feature_group_21846ba9f3a2c2b62010c41e1adc159c = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var polygon_0b48d72a55d75504ace85552b2987019 = L.polygon(
+                [[46.8056, 7.99131], [46.36892, 10.40793], [48.07023, 11.10851], [48.51226, 8.61421], [46.8056, 7.99131]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(61, 55, 145)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(61, 55, 145)&quot;, &quot;fillOpacity&quot;: 0.1, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_21846ba9f3a2c2b62010c41e1adc159c);
+        
+    
+            feature_group_21846ba9f3a2c2b62010c41e1adc159c.addTo(map_fd3ddbcd3353a13b8ece9fc15bf134e1);
+        
+    
+            var feature_group_473907d496401daad7a15f5ec780ec03 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var polygon_2935dd79403c18360bb059ef3ace6b61 = L.polygon(
+                [[46.80565, 6.45436], [46.36907, 8.8704], [48.07049, 9.571], [48.51243, 7.07728], [46.80565, 6.45436]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(69, 91, 206)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(69, 91, 206)&quot;, &quot;fillOpacity&quot;: 0.1, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_473907d496401daad7a15f5ec780ec03);
+        
+    
+            feature_group_473907d496401daad7a15f5ec780ec03.addTo(map_fd3ddbcd3353a13b8ece9fc15bf134e1);
+        
+    
+            var feature_group_91326f6ca46083604ae9339b12faf5b3 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var polygon_7f5995fa4d165d440ec8da10076deade = L.polygon(
+                [[46.80596, 6.4331], [46.3692, 8.84952], [48.07053, 9.5503], [48.51266, 7.05617], [46.80596, 6.4331]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(70, 127, 246)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(70, 127, 246)&quot;, &quot;fillOpacity&quot;: 0.1, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_91326f6ca46083604ae9339b12faf5b3);
+        
+    
+            feature_group_91326f6ca46083604ae9339b12faf5b3.addTo(map_fd3ddbcd3353a13b8ece9fc15bf134e1);
+        
+    
+            var feature_group_e53f6a946fc1af7c4e5dffd7b82a9b28 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var polygon_7c62a2c938e64cf72c27e4eed390a1a6 = L.polygon(
+                [[46.80604, 7.99023], [46.3691, 10.40725], [48.07029, 11.10803], [48.5126, 8.6133], [46.80604, 7.99023]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(59, 160, 252)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(59, 160, 252)&quot;, &quot;fillOpacity&quot;: 0.1, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_e53f6a946fc1af7c4e5dffd7b82a9b28);
+        
+    
+            feature_group_e53f6a946fc1af7c4e5dffd7b82a9b28.addTo(map_fd3ddbcd3353a13b8ece9fc15bf134e1);
+        
+    
+            var feature_group_a1a5540c14715e11e18faf0a823ed5af = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var polygon_4674de3ee63884528f50d4d167d443d7 = L.polygon(
+                [[46.80476, 6.3759], [46.3697, 8.79304], [48.07143, 9.49114], [48.5118, 6.99625], [46.80476, 6.3759]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(35, 194, 228)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(35, 194, 228)&quot;, &quot;fillOpacity&quot;: 0.1, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_a1a5540c14715e11e18faf0a823ed5af);
+        
+    
+            feature_group_a1a5540c14715e11e18faf0a823ed5af.addTo(map_fd3ddbcd3353a13b8ece9fc15bf134e1);
+        
+    
+            var feature_group_0581472a5b503c63dda8d0be2686c57c = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var polygon_fed509fde58ea28bb381b71a41d4cf94 = L.polygon(
+                [[46.80459, 6.40358], [46.36947, 8.82002], [48.07129, 9.51843], [48.51172, 7.02425], [46.80459, 6.40358]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(23, 220, 194)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(23, 220, 194)&quot;, &quot;fillOpacity&quot;: 0.1, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_0581472a5b503c63dda8d0be2686c57c);
+        
+    
+            feature_group_0581472a5b503c63dda8d0be2686c57c.addTo(map_fd3ddbcd3353a13b8ece9fc15bf134e1);
+        
+    
+            var feature_group_9e45f5cd56704e016139ac8185bf073c = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var polygon_75fb26b7abcaa9f1ff5d7f42d8ce294e = L.polygon(
+                [[46.80518, 6.43038], [46.36934, 8.84755], [48.07084, 9.54674], [48.512, 7.05183], [46.80518, 6.43038]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(44, 239, 157)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(44, 239, 157)&quot;, &quot;fillOpacity&quot;: 0.1, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(feature_group_9e45f5cd56704e016139ac8185bf073c);
+        
+    
+            feature_group_9e45f5cd56704e016139ac8185bf073c.addTo(map_fd3ddbcd3353a13b8ece9fc15bf134e1);
+        
+    
+            var layer_control_714d996983fa9d8e4becc61211a2f8e3_layers = {
+                base_layers : {
+                    &quot;openstreetmap&quot; : tile_layer_28bdcd6a4208e2c9918beca63d5b07bf,
+                },
+                overlays :  {
+                    &quot;ID: LC81950272020256LGN00 (CC: 9)&quot; : feature_group_b06b9ef3f0309c0c7a9cbe9d9e683dfd,
+                    &quot;ID: LC81940272020233LGN00 (CC: 6)&quot; : feature_group_21846ba9f3a2c2b62010c41e1adc159c,
+                    &quot;ID: LC81950272020224LGN00 (CC: 8)&quot; : feature_group_473907d496401daad7a15f5ec780ec03,
+                    &quot;ID: LC81950272020176LGN00 (CC: 3)&quot; : feature_group_91326f6ca46083604ae9339b12faf5b3,
+                    &quot;ID: LC81940272020153LGN00 (CC: 5)&quot; : feature_group_e53f6a946fc1af7c4e5dffd7b82a9b28,
+                    &quot;ID: LC81950272020128LGN00 (CC: 2)&quot; : feature_group_a1a5540c14715e11e18faf0a823ed5af,
+                    &quot;ID: LC81950272020096LGN00 (CC: 2)&quot; : feature_group_0581472a5b503c63dda8d0be2686c57c,
+                    &quot;ID: LC81950272020016LGN00 (CC: 2)&quot; : feature_group_9e45f5cd56704e016139ac8185bf073c,
+                },
+            };
+            let layer_control_714d996983fa9d8e4becc61211a2f8e3 = L.control.layers(
+                layer_control_714d996983fa9d8e4becc61211a2f8e3_layers.base_layers,
+                layer_control_714d996983fa9d8e4becc61211a2f8e3_layers.overlays,
+                {
+  &quot;position&quot;: &quot;topright&quot;,
+  &quot;collapsed&quot;: true,
+  &quot;autoZIndex&quot;: true,
+}
+            ).addTo(map_fd3ddbcd3353a13b8ece9fc15bf134e1);
+
+        
+&lt;/script&gt;
+&lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
+</div>
+</section>
+<section id="download-scene-s-using-the-display-id">
+<h3>2.5 Download Scene(s) using the Display ID<a class="headerlink" href="#download-scene-s-using-the-display-id" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">landsatxplore.earthexplorer</span><span class="w"> </span><span class="kn">import</span> <span class="n">EarthExplorer</span>
+
+<span class="c1"># Initialize EarthExplorer</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">API</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
+<span class="n">ee</span> <span class="o">=</span> <span class="n">EarthExplorer</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">token</span><span class="p">)</span>
+
+<span class="c1"># Define the scene identifier and download path</span>
+<span class="n">identifier</span> <span class="o">=</span> <span class="s1">&#39;LC08_L2SP_195027_20200624_20200824_02_T1&#39;</span>
+<span class="n">download_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="s2">.tar&quot;</span>
+<span class="n">download_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">download_folder</span><span class="p">,</span> <span class="n">download_filename</span><span class="p">)</span>
+
+<span class="c1"># Download the dataset only if the dataset has not been downloaded before</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">download_filepath</span><span class="p">):</span>
+    <span class="n">ee</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="n">identifier</span><span class="p">,</span> <span class="n">output_dir</span><span class="o">=</span><span class="n">download_folder</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The dataset </span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="s2"> is already downloaded. Skipping download.&quot;</span><span class="p">)</span>
+
+<span class="c1"># Logout from the API and EarthExplorer</span>
+<span class="n">api</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
+<span class="n">ee</span><span class="o">.</span><span class="n">logout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The dataset LC08_L2SP_195027_20200624_20200824_02_T1 is already downloaded. Skipping download.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="extract-the-tar-file-in-folder">
+<h3>2.6 Extract the TAR file in folder<a class="headerlink" href="#extract-the-tar-file-in-folder" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">tarfile</span>
+
+<span class="c1"># Define extraction folder path</span>
+<span class="n">extract_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">working_folder</span><span class="p">,</span> <span class="n">identifier</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Extract the ZIP file</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">tarfile</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">download_filepath</span><span class="p">)</span> <span class="k">as</span> <span class="n">tar</span><span class="p">:</span>
+            <span class="n">tar</span><span class="o">.</span><span class="n">extractall</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="n">extract_folder</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully extracted files to: </span><span class="si">{</span><span class="n">extract_folder</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Folder is not empty. Skipping extraction.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: The file </span><span class="si">{</span><span class="n">download_filepath</span><span class="si">}</span><span class="s2"> was not found.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">BadZipFile</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: The file </span><span class="si">{</span><span class="n">download_filepath</span><span class="si">}</span><span class="s2"> is not a valid zip file.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An unexpected error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Folder is not empty. Skipping extraction.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="merge-rgb-bands-into-a-single-geotiff-file">
+<h2>3. Merge RGB Bands into a Single GeoTIFF File<a class="headerlink" href="#merge-rgb-bands-into-a-single-geotiff-file" title="Link to this heading"></a></h2>
+<section id="create-a-dataframe-of-all-the-available-files">
+<h3>3.1 Create a Dataframe of all the Available Files<a class="headerlink" href="#create-a-dataframe-of-all-the-available-files" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+
+<span class="c1"># Extract metadata from the filename.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">meta</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">filename</span><span class="o">=</span><span class="n">filename</span><span class="p">,</span>
+        <span class="n">path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">,</span> <span class="n">filename</span><span class="p">),</span>
+        <span class="n">bandname</span><span class="o">=</span><span class="n">filename</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">identifier</span><span class="si">}</span><span class="s2">_&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;.TIF&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="c1"># Create a DataFrame from the list of .TIF files in the extracted directory</span>
+<span class="n">file_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">meta</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">extract_folder</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.TIF&#39;</span><span class="p">)]</span>
+<span class="n">df_files</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">file_list</span><span class="p">)</span>
+
+<span class="c1"># Display the DataFrame</span>
+<span class="n">df_files</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>filename</th>
+      <th>path</th>
+      <th>bandname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>QA_PIXEL</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>QA_RADSAT</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>SR_B1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>SR_B2</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>SR_B3</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>SR_B4</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>SR_B5</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>SR_B6</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>SR_B7</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>SR_QA_AEROSOL</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>ST_ATRAN</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>ST_B10</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>ST_CDIST</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>ST_DRAD</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>ST_EMIS</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>ST_EMSD</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>ST_QA</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>ST_TRAD</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>LC08_L2SP_1...</td>
+      <td>.\data\land...</td>
+      <td>ST_URAD</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="define-a-dictionary-for-band-names-mapping">
+<h3>3.2 Define a Dictionary for Band names mapping<a class="headerlink" href="#define-a-dictionary-for-band-names-mapping" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dictionary mapping band names to their descriptions</span>
+<span class="n">band_descriptions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;QA_PIXEL&#39;</span><span class="p">:</span> <span class="s1">&#39;Quality Assessment Pixel (general quality information about each pixel)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;QA_RADSAT&#39;</span><span class="p">:</span> <span class="s1">&#39;Quality Assessment for Rad Saturation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SR_B1&#39;</span><span class="p">:</span> <span class="s1">&#39;Band 1: Coastal/Aerosol (430-450 nm)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SR_B2&#39;</span><span class="p">:</span> <span class="s1">&#39;Band 2: Blue (450-515 nm)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SR_B3&#39;</span><span class="p">:</span> <span class="s1">&#39;Band 3: Green (525-600 nm)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SR_B4&#39;</span><span class="p">:</span> <span class="s1">&#39;Band 4: Red (630-680 nm)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SR_B5&#39;</span><span class="p">:</span> <span class="s1">&#39;Band 5: Near Infrared (NIR) (850-880 nm)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SR_B6&#39;</span><span class="p">:</span> <span class="s1">&#39;Band 6: Shortwave Infrared 1 (SWIR1) (1570-1650 nm)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SR_B7&#39;</span><span class="p">:</span> <span class="s1">&#39;Band 7: Shortwave Infrared 2 (SWIR2) (2110-2290 nm)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SR_QA_AEROSOL&#39;</span><span class="p">:</span> <span class="s1">&#39;Quality Assessment for Aerosol (related to atmospheric conditions)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ST_ATRAN&#39;</span><span class="p">:</span> <span class="s1">&#39;Atmospheric Transmission (fraction of incoming solar radiation)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ST_B10&#39;</span><span class="p">:</span> <span class="s1">&#39;Band 10: Thermal Infrared 1 (TIR1) (10.60-11.19 µm)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ST_CDIST&#39;</span><span class="p">:</span> <span class="s1">&#39;Cloud Distance (distance to the closest cloud)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ST_DRAD&#39;</span><span class="p">:</span> <span class="s1">&#39;Radiance (measure of energy per unit area)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ST_EMIS&#39;</span><span class="p">:</span> <span class="s1">&#39;Emissivity (related to surface temperature)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ST_EMSD&#39;</span><span class="p">:</span> <span class="s1">&#39;Emissivity Standard Deviation&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ST_QA&#39;</span><span class="p">:</span> <span class="s1">&#39;Quality Assessment for thermal bands&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ST_TRAD&#39;</span><span class="p">:</span> <span class="s1">&#39;Radiant Temperature (measured in Kelvin)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;ST_URAD&#39;</span><span class="p">:</span> <span class="s1">&#39;Upwelling Radiance (energy coming from the surface)&#39;</span>
+<span class="p">}</span>
+
+<span class="c1"># Modify the Pandas display options</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">reset_option</span><span class="p">(</span><span class="s1">&#39;display.max_colwidth&#39;</span><span class="p">)</span>
+
+<span class="c1"># Map band names to descriptions and create a new &#39;remarks&#39; column</span>
+<span class="n">df_files</span><span class="p">[</span><span class="s1">&#39;remarks&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_files</span><span class="p">[</span><span class="s1">&#39;bandname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">band_descriptions</span><span class="p">)</span>
+
+<span class="c1"># Display only relevant columns</span>
+<span class="n">df_files</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">df_files</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;bandname&#39;</span><span class="p">,</span> <span class="s1">&#39;remarks&#39;</span><span class="p">])]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>bandname</th>
+      <th>remarks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>QA_PIXEL</td>
+      <td>Quality Assessment Pixel (general quality info...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>QA_RADSAT</td>
+      <td>Quality Assessment for Rad Saturation</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>SR_B1</td>
+      <td>Band 1: Coastal/Aerosol (430-450 nm)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>SR_B2</td>
+      <td>Band 2: Blue (450-515 nm)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>SR_B3</td>
+      <td>Band 3: Green (525-600 nm)</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>SR_B4</td>
+      <td>Band 4: Red (630-680 nm)</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>SR_B5</td>
+      <td>Band 5: Near Infrared (NIR) (850-880 nm)</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>SR_B6</td>
+      <td>Band 6: Shortwave Infrared 1 (SWIR1) (1570-165...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>SR_B7</td>
+      <td>Band 7: Shortwave Infrared 2 (SWIR2) (2110-229...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>SR_QA_AEROSOL</td>
+      <td>Quality Assessment for Aerosol (related to atm...</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>ST_ATRAN</td>
+      <td>Atmospheric Transmission (fraction of incoming...</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>ST_B10</td>
+      <td>Band 10: Thermal Infrared 1 (TIR1) (10.60-11.1...</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>ST_CDIST</td>
+      <td>Cloud Distance (distance to the closest cloud)</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>ST_DRAD</td>
+      <td>Radiance (measure of energy per unit area)</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>ST_EMIS</td>
+      <td>Emissivity (related to surface temperature)</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>ST_EMSD</td>
+      <td>Emissivity Standard Deviation</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>ST_QA</td>
+      <td>Quality Assessment for thermal bands</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>ST_TRAD</td>
+      <td>Radiant Temperature (measured in Kelvin)</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>ST_URAD</td>
+      <td>Upwelling Radiance (energy coming from the sur...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="define-a-function-to-save-a-merged-geotiff-raster">
+<h3>3.3 Define a Function to save a merged GeoTIFF raster<a class="headerlink" href="#define-a-function-to-save-a-merged-geotiff-raster" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">rasterio</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">apply_reflectance_correction</span><span class="p">(</span><span class="n">band_data</span><span class="p">,</span> <span class="n">bandname</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">bandname</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;SR_B1&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B2&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B3&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B4&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B5&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B6&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B7&#39;</span><span class="p">]:</span>
+        <span class="c1"># Apply the reflectance correction (for bands 1-7)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">band_data</span> <span class="o">*</span> <span class="mf">2.75e-5</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.2</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">band_data</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">apply_thermal_correction</span><span class="p">(</span><span class="n">band_data</span><span class="p">,</span> <span class="n">bandname</span><span class="p">,</span> <span class="n">no_data_value</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">bandname</span> <span class="o">==</span> <span class="s1">&#39;ST_B10&#39;</span><span class="p">:</span>
+        <span class="c1"># Apply the thermal correction (for band 10)</span>
+        <span class="n">corrected_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">band_data</span> <span class="o">*</span> <span class="mf">0.00341802</span><span class="p">)</span> <span class="o">+</span> <span class="mf">149.0</span>
+        
+        <span class="c1"># Set values of 0 to NoData (cloud cover) using the NoData value</span>
+        <span class="n">corrected_data</span><span class="p">[</span><span class="n">band_data</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">no_data_value</span>
+        
+        <span class="k">return</span> <span class="n">corrected_data</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">band_data</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">merge_tif</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="n">bandname_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">file_list</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">stacked_data</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># Open the first file to determine the NoData value for the output</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;path&#39;</span><span class="p">])</span> <span class="k">as</span> <span class="n">first_band</span><span class="p">:</span>
+        <span class="n">no_data_value</span> <span class="o">=</span> <span class="n">first_band</span><span class="o">.</span><span class="n">nodata</span>  <span class="c1"># Retrieve the NoData value from the input raster</span>
+    
+    <span class="k">for</span> <span class="n">bandname</span> <span class="ow">in</span> <span class="n">bandname_list</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">file</span><span class="p">[</span><span class="s1">&#39;bandname&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">bandname</span><span class="p">:</span>
+                <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span> <span class="k">as</span> <span class="n">band_data</span><span class="p">:</span>
+                    <span class="n">band_array</span> <span class="o">=</span> <span class="n">band_data</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Read the first band as array</span>
+                    <span class="c1"># Apply corrections based on bandname</span>
+                    <span class="k">if</span> <span class="n">bandname</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;SR_B1&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B2&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B3&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B4&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B5&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B6&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B7&#39;</span><span class="p">]:</span>
+                        <span class="n">band_array</span> <span class="o">=</span> <span class="n">apply_reflectance_correction</span><span class="p">(</span><span class="n">band_array</span><span class="p">,</span> <span class="n">bandname</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">bandname</span> <span class="o">==</span> <span class="s1">&#39;ST_B10&#39;</span><span class="p">:</span>
+                        <span class="n">band_array</span> <span class="o">=</span> <span class="n">apply_thermal_correction</span><span class="p">(</span><span class="n">band_array</span><span class="p">,</span> <span class="n">bandname</span><span class="p">,</span> <span class="n">no_data_value</span><span class="p">)</span>
+                    <span class="n">stacked_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">band_array</span><span class="p">)</span>
+
+    <span class="c1"># Write the merged bands into a new raster file</span>
+    <span class="n">output_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">geotiff_folder</span><span class="p">,</span><span class="n">output_filename</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span>
+        <span class="n">output_filepath</span><span class="p">,</span>
+        <span class="s1">&#39;w&#39;</span><span class="p">,</span>
+        <span class="n">driver</span><span class="o">=</span><span class="s1">&#39;GTiff&#39;</span><span class="p">,</span>
+        <span class="n">height</span><span class="o">=</span><span class="n">stacked_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">width</span><span class="o">=</span><span class="n">stacked_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">count</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">bandname_list</span><span class="p">),</span>
+        <span class="n">dtype</span><span class="o">=</span><span class="n">stacked_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+        <span class="n">crs</span><span class="o">=</span><span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;path&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file_list</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;path&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span>
+        <span class="n">nodata</span><span class="o">=</span><span class="n">no_data_value</span>  <span class="c1"># Set the NoData value for the output file</span>
+    <span class="p">)</span> <span class="k">as</span> <span class="n">dest</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">band_data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">stacked_data</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">dest</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">band_data</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="save-geotiff-raster">
+<h3>3.4 Save GeoTIFF raster<a class="headerlink" href="#save-geotiff-raster" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Example use case</span>
+    <span class="n">bandname_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SR_B1&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B2&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B3&#39;</span><span class="p">]</span>
+    <span class="n">merge_tif</span><span class="p">(</span><span class="n">output_filename</span><span class="o">=</span><span class="s2">&quot;merged_rgb.tif&quot;</span><span class="p">,</span> <span class="n">bandname_list</span><span class="o">=</span><span class="n">bandname_list</span><span class="p">,</span> <span class="n">file_list</span><span class="o">=</span><span class="n">file_list</span><span class="p">)</span>
+
+    <span class="c1"># Example use case</span>
+    <span class="n">bandname_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ST_B10&#39;</span><span class="p">]</span>
+    <span class="n">merge_tif</span><span class="p">(</span><span class="n">output_filename</span><span class="o">=</span><span class="s2">&quot;ST_B10_LST.tif&quot;</span><span class="p">,</span> <span class="n">bandname_list</span><span class="o">=</span><span class="n">bandname_list</span><span class="p">,</span> <span class="n">file_list</span><span class="o">=</span><span class="n">file_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="satellite-image-analysis-and-visualization">
+<h2>4. Satellite Image Analysis and Visualization<a class="headerlink" href="#satellite-image-analysis-and-visualization" title="Link to this heading"></a></h2>
+<section id="remote-sensing-indices">
+<h3>4.1 Remote Sensing Indices<a class="headerlink" href="#remote-sensing-indices" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Normalized Vegetation Index: NDVI = (NIR-Red)/(NIR+Red)</p></li>
+<li><p>Normalized Difference Water Index: NDWI = (Green-NIR)/(Green+NIR)</p></li>
+<li><p>Enhanced Vegetation Index : EVI = G * (NIR-Red)/(NIR+C1 x Red-C2 x Blue+L), where G=2.5, C1,C2=6,7.5, L=10000</p></li>
+<li><p>Soil Adjusted Vegetation Index: SAVI = {(NIR-Red)*(1+L)}/{NIR + Red + L}, where L: 0.5 (Typically)</p></li>
+<li><p>Built-up Index: BUI = (SWIR-NIR)/(SWIR+NIR)</p></li>
+</ul>
+</section>
+<section id="normalized-vegetation-index-ndvi">
+<h3>4.2 Normalized Vegetation Index (NDVI)<a class="headerlink" href="#normalized-vegetation-index-ndvi" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="c1"># Define the NIR (SR_B5) and Red (SR_B4) bands from the satellite data</span>
+<span class="n">required_bandname_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SR_B5&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B4&#39;</span><span class="p">]</span>
+
+<span class="n">stacked_data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">bandname</span> <span class="ow">in</span> <span class="n">required_bandname_list</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">file</span><span class="p">[</span><span class="s1">&#39;bandname&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">bandname</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span> <span class="k">as</span> <span class="n">band_data</span><span class="p">:</span>
+                <span class="n">band_array</span> <span class="o">=</span> <span class="n">band_data</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">stacked_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">band_array</span><span class="p">)</span>
+
+<span class="c1"># Compute NDVI (Add a small number to the denominator to avoid division by zero)</span>
+<span class="n">ndvi</span> <span class="o">=</span> <span class="p">(</span><span class="n">stacked_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">stacked_data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">stacked_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">stacked_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mf">1e-10</span><span class="p">)</span>
+
+<span class="n">ndvi_masked</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_where</span><span class="p">(</span><span class="n">ndvi</span> <span class="o">==</span><span class="mi">0</span><span class="p">,</span> <span class="n">ndvi</span><span class="p">)</span>
+
+<span class="c1"># Plot NDVI</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;RdYlGn&#39;</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">cmap</span><span class="o">.</span><span class="n">set_bad</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ndvi_masked</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Add a color bar</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NDVI&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set the title for the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="c1"># Remove axis ticks for a cleaner display</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/b4b076b6bd02d27ffda6a531d7a111c50aa162a4d6718fc05934137ee85c90d2.png" src="../../_images/b4b076b6bd02d27ffda6a531d7a111c50aa162a4d6718fc05934137ee85c90d2.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the NIR (SR_B5) and SWIR (SR_B6) bands from the satellite data</span>
+<span class="n">required_bandname_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SR_B5&#39;</span><span class="p">,</span> <span class="s1">&#39;SR_B6&#39;</span><span class="p">]</span>
+
+<span class="n">stacked_data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">bandname</span> <span class="ow">in</span> <span class="n">required_bandname_list</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">file</span><span class="p">[</span><span class="s1">&#39;bandname&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">bandname</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span> <span class="k">as</span> <span class="n">band_data</span><span class="p">:</span>
+                <span class="n">band_array</span> <span class="o">=</span> <span class="n">band_data</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">stacked_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">band_array</span><span class="p">)</span>
+
+<span class="c1"># Compute NDMI (Add a small number to the denominator to avoid division by zero)</span>
+<span class="n">ndmi</span> <span class="o">=</span> <span class="p">(</span><span class="n">stacked_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">stacked_data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">stacked_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">stacked_data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1e-10</span><span class="p">)</span>
+
+<span class="c1"># Mask zero values for better visualization</span>
+<span class="n">ndmi_masked</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_where</span><span class="p">(</span><span class="n">ndmi</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ndmi</span><span class="p">)</span>
+
+<span class="c1"># Plot NDMI</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;BrBG&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">cmap</span><span class="o">.</span><span class="n">set_bad</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ndmi_masked</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Add a color bar</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;NDMI&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set the title for the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;NDMI&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="c1"># Remove axis ticks for a cleaner display</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/94bfa5002dd4fb3b722d586ba44a6010386a9975b0554710590eb62e7388ec54.png" src="../../_images/94bfa5002dd4fb3b722d586ba44a6010386a9975b0554710590eb62e7388ec54.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="land-surface-temperature">
+<h2>5. Land Surface Temperature<a class="headerlink" href="#land-surface-temperature" title="Link to this heading"></a></h2>
+<section id="plot-lst-for-complete-dataset">
+<h3>5.1 Plot LST for Complete Dataset<a class="headerlink" href="#plot-lst-for-complete-dataset" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">band_name</span> <span class="o">=</span> <span class="s1">&#39;ST_B10&#39;</span>
+
+<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">file</span><span class="p">[</span><span class="s1">&#39;bandname&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">band_name</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span> <span class="k">as</span> <span class="n">band_data</span><span class="p">:</span>
+            <span class="n">no_data_value</span> <span class="o">=</span> <span class="n">band_data</span><span class="o">.</span><span class="n">nodata</span>        
+            <span class="n">band_data_array</span> <span class="o">=</span> <span class="n">band_data</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">masked_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">band_data_array</span><span class="p">,</span> <span class="n">no_data_value</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">band_data_array</span><span class="p">)</span>
+            <span class="n">corrected_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">masked_data</span> <span class="o">*</span> <span class="mf">0.00341802</span> <span class="o">+</span> <span class="mf">149.0</span><span class="p">)</span> <span class="o">-</span> <span class="mf">273.15</span>
+
+<span class="c1"># Plot LST</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">cmap</span><span class="o">.</span><span class="n">set_bad</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">corrected_data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">10</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.046</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Land Surface Temperature (LST), °C&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Land Surface Temperature&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="c1"># plt.axis(&#39;off&#39;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/829c311a019b759b66197b9cc31cfab9fc483f01306229a99ccce59d51e16a0d.png" src="../../_images/829c311a019b759b66197b9cc31cfab9fc483f01306229a99ccce59d51e16a0d.png" />
+</div>
+</div>
+</section>
+<section id="plot-lst-for-area-of-interest">
+<h3>5.2 Plot LST for Area of Interest<a class="headerlink" href="#plot-lst-for-area-of-interest" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">ticker</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.transforms</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyproj</span><span class="w"> </span><span class="kn">import</span> <span class="n">Transformer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rasterio.windows</span><span class="w"> </span><span class="kn">import</span> <span class="n">from_bounds</span>
+
+<span class="c1"># Load the shapefile of Konstanz (WGS84 projection) for geographic boundary filtering</span>
+<span class="n">shapefile</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;./shapefiles/kn_boundary.shp&quot;</span>
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">shapefile</span><span class="p">)</span>
+
+<span class="c1"># Extract the bounding box and CRS of the shapefile</span>
+<span class="n">shapefile_bounds</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">total_bounds</span>
+<span class="n">shapefile_crs</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">crs</span>
+
+<span class="c1"># Define the target CRS and define transformer</span>
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span> <span class="k">as</span> <span class="n">band_data</span><span class="p">:</span>
+    <span class="n">target_crs</span> <span class="o">=</span> <span class="n">band_data</span><span class="o">.</span><span class="n">crs</span>
+
+<span class="c1"># target_crs = &quot;EPSG:32632&quot;</span>
+<span class="n">transformer</span> <span class="o">=</span> <span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span><span class="n">shapefile_crs</span><span class="p">,</span> <span class="n">target_crs</span><span class="p">,</span> <span class="n">always_xy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Transform coordinates for the area of interst</span>
+<span class="n">minx</span><span class="p">,</span> <span class="n">miny</span><span class="p">,</span> <span class="n">maxx</span><span class="p">,</span> <span class="n">maxy</span> <span class="o">=</span> <span class="n">shapefile_bounds</span>
+<span class="n">minx_new</span><span class="p">,</span> <span class="n">miny_new</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">minx</span><span class="p">,</span> <span class="n">miny</span><span class="p">)</span>
+<span class="n">maxx_new</span><span class="p">,</span> <span class="n">maxy_new</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">maxx</span><span class="p">,</span> <span class="n">maxy</span><span class="p">)</span>
+<span class="n">aoi_bounds</span> <span class="o">=</span> <span class="p">(</span><span class="n">minx_new</span><span class="p">,</span> <span class="n">miny_new</span><span class="p">,</span> <span class="n">maxx_new</span><span class="p">,</span> <span class="n">maxy_new</span><span class="p">)</span>
+
+<span class="c1"># Extract band data for LST calculation and plotting</span>
+<span class="n">band_name</span> <span class="o">=</span> <span class="s1">&#39;ST_B10&#39;</span>
+
+<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">file</span><span class="p">[</span><span class="s1">&#39;bandname&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">band_name</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">file</span><span class="p">[</span><span class="s1">&#39;path&#39;</span><span class="p">])</span> <span class="k">as</span> <span class="n">band_data</span><span class="p">:</span>
+            <span class="c1"># Extract NoData value for masking</span>
+            <span class="n">no_data_value</span> <span class="o">=</span> <span class="n">band_data</span><span class="o">.</span><span class="n">nodata</span>
+
+            <span class="c1"># Define AOI window and read the data</span>
+            <span class="n">aoi_window</span> <span class="o">=</span> <span class="n">from_bounds</span><span class="p">(</span><span class="o">*</span><span class="n">aoi_bounds</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">band_data</span><span class="o">.</span><span class="n">transform</span><span class="p">)</span>
+            <span class="n">band_data_array</span> <span class="o">=</span> <span class="n">band_data</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">aoi_window</span><span class="p">)</span>
+            
+            <span class="c1"># Mask out NoData values</span>
+            <span class="n">masked_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">band_data_array</span><span class="p">,</span> <span class="n">no_data_value</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">),</span>
+                                   <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">,</span> <span class="n">band_data_array</span><span class="p">)</span>
+            
+            <span class="c1"># Apply corrections: https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature</span>
+            <span class="n">corrected_data</span> <span class="o">=</span> <span class="p">(</span><span class="n">masked_data</span> <span class="o">*</span> <span class="mf">0.00341802</span> <span class="o">+</span> <span class="mf">149.0</span><span class="p">)</span> <span class="o">-</span> <span class="mf">273.15</span>
+            
+            <span class="c1"># Calculate the transform for the window</span>
+            <span class="n">window_transform</span> <span class="o">=</span> <span class="n">band_data</span><span class="o">.</span><span class="n">window_transform</span><span class="p">(</span><span class="n">aoi_window</span><span class="p">)</span>
+
+<span class="c1"># Plot Land Surface Temperature</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;jet&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">cmap</span><span class="o">.</span><span class="n">set_bad</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="c1"># Define the extent for the image</span>
+<span class="n">extent</span> <span class="o">=</span> <span class="p">(</span><span class="n">aoi_bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">aoi_bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">aoi_bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">aoi_bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">corrected_data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">)</span>
+
+<span class="c1"># Add a color bar</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Land Surface Temperature (LST), °C&#39;</span><span class="p">)</span>
+
+<span class="c1"># Format xaxis and yaxis ticks</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fmt_two_digits</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">axis</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">FuncFormatter</span><span class="p">(</span><span class="n">fmt_two_digits</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">FuncFormatter</span><span class="p">(</span><span class="n">fmt_two_digits</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">():</span>
+    <span class="n">label</span><span class="o">.</span><span class="n">set_rotation</span><span class="p">(</span><span class="mi">90</span><span class="p">)</span>
+    <span class="n">label</span><span class="o">.</span><span class="n">set_verticalalignment</span><span class="p">(</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set the title for the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Land Surface Temperature&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add Grid</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+<span class="c1"># Add Text</span>
+<span class="n">text</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CRS: </span><span class="si">{</span><span class="n">target_crs</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Add Description</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span><span class="mf">0.21</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+
+<span class="c1"># Display the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e35ee852340b7d7e64d0bdf49528f8acacfd9658bbeddc8653056a131e7f84d4.png" src="../../_images/e35ee852340b7d7e64d0bdf49528f8acacfd9658bbeddc8653056a131e7f84d4.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="02-sentinel2-without-esri.html" class="btn btn-neutral float-left" title="Sentinel 2 - Workflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../rst_jupyter_bibliothek/visualizations/index.html" class="btn btn-neutral float-right" title="Visualization Options Library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, str.ucture GmbH.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -12,6 +12,7 @@ conda activate cds_env
 .\make_de.bat html
 python .\update_dropdown.py
 python .\update_images.py
+
 git add .
 git add -f docs/
 git commit -m "updates"
