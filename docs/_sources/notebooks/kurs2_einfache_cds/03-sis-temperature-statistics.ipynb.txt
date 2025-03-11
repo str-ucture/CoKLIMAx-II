@@ -2587,7 +2587,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 18,
+   "execution_count": null,
    "id": "f4c38a88",
    "metadata": {},
    "outputs": [],
@@ -2607,8 +2607,6 @@
     "    output_directory=None):\n",
     "    \n",
     "    \"\"\"\n",
-    "    Export the entire multi-year dataset or a specified range as a single merged GeoTIFF file.\n",
-    "\n",
     "    Parameters:\n",
     "        nc_file (dict): A dictionary with keys 'path' (file path), 'variable', 'rcp', and 'statistic'.\n",
     "        bounding_box (list): [lon_min, lat_min, lon_max, lat_max] (optional).\n",
@@ -3793,7 +3791,7 @@
    "id": "af498e22",
    "metadata": {},
    "source": [
-    "### 6.4 Visualization"
+    "### 6.4 Visualization of Line Graph with error"
    ]
   },
   {

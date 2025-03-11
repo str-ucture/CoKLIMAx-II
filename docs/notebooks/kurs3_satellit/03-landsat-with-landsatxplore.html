@@ -26,7 +26,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Visualization Options Library" href="../../rst_jupyter_bibliothek/visualizations/index.html" />
-    <link rel="prev" title="Sentinel 2 - Workflow" href="02-sentinel2-without-esri.html" /> 
+    <link rel="prev" title="Sentinel2 Data: With Code-De Platform" href="02-sentinel2-without-esri.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -72,7 +72,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/cds_data/index.html">CDS Dataset Notebooks </a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../rst_jupyter_bibliothek/satellite_data/index.html">Satellite Data Notebooks </a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01-senthub-downloader.html">Sentinel Data: Explore and Download using sentinelhub-py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02-sentinel2-without-esri.html">Sentinel 2 - Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-sentinel2-without-esri.html">Sentinel2 Data: With Code-De Platform</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Landsat Data: Explore and Download using landsatxplore</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#specifying-the-paths-and-working-directories">1. Specifying the paths and working directories</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#filter-and-retrieve-satellite-images-metadata">2. Filter and Retrieve Satellite Images Metadata</a><ul>
@@ -497,7 +497,7 @@
             &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
             &lt;style&gt;
-                #map_9b24d1bd21315e01d081d9ecd49339c1 {
+                #map_0418d01e315a383378206800b16b752e {
                     position: relative;
                     width: 100.0%;
                     height: 450.0px;
@@ -511,14 +511,14 @@
 &lt;body&gt;
     
     
-            &lt;div class=&quot;folium-map&quot; id=&quot;map_9b24d1bd21315e01d081d9ecd49339c1&quot; &gt;&lt;/div&gt;
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_0418d01e315a383378206800b16b752e&quot; &gt;&lt;/div&gt;
         
 &lt;/body&gt;
 &lt;script&gt;
     
     
-            var map_9b24d1bd21315e01d081d9ecd49339c1 = L.map(
-                &quot;map_9b24d1bd21315e01d081d9ecd49339c1&quot;,
+            var map_0418d01e315a383378206800b16b752e = L.map(
+                &quot;map_0418d01e315a383378206800b16b752e&quot;,
                 {
                     center: [47.5, 8.0],
                     crs: L.CRS.EPSG3857,
@@ -536,7 +536,7 @@
 
         
     
-            var tile_layer_7a9f4e2ce1921dd2d34df55de899dfe2 = L.tileLayer(
+            var tile_layer_02709cbaa1959a0a1497c2dee07fe775 = L.tileLayer(
                 &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
                 {
   &quot;minZoom&quot;: 0,
@@ -553,153 +553,153 @@
             );
         
     
-            tile_layer_7a9f4e2ce1921dd2d34df55de899dfe2.addTo(map_9b24d1bd21315e01d081d9ecd49339c1);
+            tile_layer_02709cbaa1959a0a1497c2dee07fe775.addTo(map_0418d01e315a383378206800b16b752e);
         
     
-            var feature_group_08c3dd3734b9b536a54b0f8b26650b57 = L.featureGroup(
+            var feature_group_9e72e4a3cd20a9abcf58d8a7d3bfe7c2 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_f30fd5170eb46cf967cf8f1967f52c3d = L.polygon(
+            var polygon_672d7c832bbd23f8eedddbe033525c40 = L.polygon(
                 [[46.80577, 6.4291], [46.36914, 8.84615], [48.07038, 9.54652], [48.51237, 7.05177], [46.80577, 6.4291]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(48, 18, 59)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(48, 18, 59)&quot;, &quot;fillOpacity&quot;: 0.1, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_08c3dd3734b9b536a54b0f8b26650b57);
+            ).addTo(feature_group_9e72e4a3cd20a9abcf58d8a7d3bfe7c2);
         
     
-            feature_group_08c3dd3734b9b536a54b0f8b26650b57.addTo(map_9b24d1bd21315e01d081d9ecd49339c1);
+            feature_group_9e72e4a3cd20a9abcf58d8a7d3bfe7c2.addTo(map_0418d01e315a383378206800b16b752e);
         
     
-            var feature_group_642021c8d81aeb0a956a64eddd40dfb7 = L.featureGroup(
+            var feature_group_e49db9283ab564721022ce72e53f1e2b = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_b8ecbea9a396f044b95c52d59a461bc7 = L.polygon(
+            var polygon_d3e2baa8134cd0c29418a08fb2b78fbc = L.polygon(
                 [[46.8056, 7.99131], [46.36892, 10.40793], [48.07023, 11.10851], [48.51226, 8.61421], [46.8056, 7.99131]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(61, 55, 145)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(61, 55, 145)&quot;, &quot;fillOpacity&quot;: 0.1, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_642021c8d81aeb0a956a64eddd40dfb7);
+            ).addTo(feature_group_e49db9283ab564721022ce72e53f1e2b);
         
     
-            feature_group_642021c8d81aeb0a956a64eddd40dfb7.addTo(map_9b24d1bd21315e01d081d9ecd49339c1);
+            feature_group_e49db9283ab564721022ce72e53f1e2b.addTo(map_0418d01e315a383378206800b16b752e);
         
     
-            var feature_group_2f9ef5105c9d33e09f1316e610b00432 = L.featureGroup(
+            var feature_group_27a4ffb30c33da976d7010ba06ac2f32 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_c88ed1aef49e2c6361b3399103556c73 = L.polygon(
+            var polygon_44cf10948bfaa1c62517c532fa94a24d = L.polygon(
                 [[46.80565, 6.45436], [46.36907, 8.8704], [48.07049, 9.571], [48.51243, 7.07728], [46.80565, 6.45436]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(69, 91, 206)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(69, 91, 206)&quot;, &quot;fillOpacity&quot;: 0.1, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_2f9ef5105c9d33e09f1316e610b00432);
+            ).addTo(feature_group_27a4ffb30c33da976d7010ba06ac2f32);
         
     
-            feature_group_2f9ef5105c9d33e09f1316e610b00432.addTo(map_9b24d1bd21315e01d081d9ecd49339c1);
+            feature_group_27a4ffb30c33da976d7010ba06ac2f32.addTo(map_0418d01e315a383378206800b16b752e);
         
     
-            var feature_group_ef48f7e4a1826b8f821e256021233d9b = L.featureGroup(
+            var feature_group_3f1ad0a5e81c44cb3bf31180f4bb7e6a = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_6930c0a58d9f5d306f1d4a7cf95db58e = L.polygon(
+            var polygon_d22135f7d76ecf92808721483f888d54 = L.polygon(
                 [[46.80596, 6.4331], [46.3692, 8.84952], [48.07053, 9.5503], [48.51266, 7.05617], [46.80596, 6.4331]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(70, 127, 246)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(70, 127, 246)&quot;, &quot;fillOpacity&quot;: 0.1, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_ef48f7e4a1826b8f821e256021233d9b);
+            ).addTo(feature_group_3f1ad0a5e81c44cb3bf31180f4bb7e6a);
         
     
-            feature_group_ef48f7e4a1826b8f821e256021233d9b.addTo(map_9b24d1bd21315e01d081d9ecd49339c1);
+            feature_group_3f1ad0a5e81c44cb3bf31180f4bb7e6a.addTo(map_0418d01e315a383378206800b16b752e);
         
     
-            var feature_group_0e27d14f94dde16640db13ed2bc384b4 = L.featureGroup(
+            var feature_group_6668e697638f0bb756f1909d9d08e4e1 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_5bf08f35976b17596085e4c0e8b0d6c6 = L.polygon(
+            var polygon_0338c2a795015d944444b84105f62d59 = L.polygon(
                 [[46.80604, 7.99023], [46.3691, 10.40725], [48.07029, 11.10803], [48.5126, 8.6133], [46.80604, 7.99023]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(59, 160, 252)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(59, 160, 252)&quot;, &quot;fillOpacity&quot;: 0.1, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_0e27d14f94dde16640db13ed2bc384b4);
+            ).addTo(feature_group_6668e697638f0bb756f1909d9d08e4e1);
         
     
-            feature_group_0e27d14f94dde16640db13ed2bc384b4.addTo(map_9b24d1bd21315e01d081d9ecd49339c1);
+            feature_group_6668e697638f0bb756f1909d9d08e4e1.addTo(map_0418d01e315a383378206800b16b752e);
         
     
-            var feature_group_ba6480fb654309a5143ee7805421ec2e = L.featureGroup(
+            var feature_group_418826094ba92780c1fd7f5d043917cb = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_c5dad5c6ca5d881bcf9d1c0bb65545d9 = L.polygon(
+            var polygon_b43f0601222c73371d63c196be23536c = L.polygon(
                 [[46.80476, 6.3759], [46.3697, 8.79304], [48.07143, 9.49114], [48.5118, 6.99625], [46.80476, 6.3759]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(35, 194, 228)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(35, 194, 228)&quot;, &quot;fillOpacity&quot;: 0.1, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_ba6480fb654309a5143ee7805421ec2e);
+            ).addTo(feature_group_418826094ba92780c1fd7f5d043917cb);
         
     
-            feature_group_ba6480fb654309a5143ee7805421ec2e.addTo(map_9b24d1bd21315e01d081d9ecd49339c1);
+            feature_group_418826094ba92780c1fd7f5d043917cb.addTo(map_0418d01e315a383378206800b16b752e);
         
     
-            var feature_group_bfd79d30318d37547624967882190ddd = L.featureGroup(
+            var feature_group_eaa0738b7c6780810e4ed107b48af004 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_f01b42dd057760bf5aa1ca92c1f0fc15 = L.polygon(
+            var polygon_e0337a5e8cfbd50ee945cfa15770ac93 = L.polygon(
                 [[46.80459, 6.40358], [46.36947, 8.82002], [48.07129, 9.51843], [48.51172, 7.02425], [46.80459, 6.40358]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(23, 220, 194)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(23, 220, 194)&quot;, &quot;fillOpacity&quot;: 0.1, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_bfd79d30318d37547624967882190ddd);
+            ).addTo(feature_group_eaa0738b7c6780810e4ed107b48af004);
         
     
-            feature_group_bfd79d30318d37547624967882190ddd.addTo(map_9b24d1bd21315e01d081d9ecd49339c1);
+            feature_group_eaa0738b7c6780810e4ed107b48af004.addTo(map_0418d01e315a383378206800b16b752e);
         
     
-            var feature_group_3c7a44032476288defc9e2ca9d431174 = L.featureGroup(
+            var feature_group_0e12f64f6ca38721e8af11cc525da8a2 = L.featureGroup(
                 {
 }
             );
         
     
-            var polygon_3e792b58ddf3f09b2858fce70d772a3c = L.polygon(
+            var polygon_d0ace88c641ac320bd4b39f832531163 = L.polygon(
                 [[46.80518, 6.43038], [46.36934, 8.84755], [48.07084, 9.54674], [48.512, 7.05183], [46.80518, 6.43038]],
                 {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;rgb(44, 239, 157)&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;rgb(44, 239, 157)&quot;, &quot;fillOpacity&quot;: 0.1, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
-            ).addTo(feature_group_3c7a44032476288defc9e2ca9d431174);
+            ).addTo(feature_group_0e12f64f6ca38721e8af11cc525da8a2);
         
     
-            feature_group_3c7a44032476288defc9e2ca9d431174.addTo(map_9b24d1bd21315e01d081d9ecd49339c1);
+            feature_group_0e12f64f6ca38721e8af11cc525da8a2.addTo(map_0418d01e315a383378206800b16b752e);
         
     
-            var layer_control_9d5940ecfe66ed46ff4474d81ad23a66_layers = {
+            var layer_control_cf60c582ff59eec5765f08a52b483a53_layers = {
                 base_layers : {
-                    &quot;openstreetmap&quot; : tile_layer_7a9f4e2ce1921dd2d34df55de899dfe2,
+                    &quot;openstreetmap&quot; : tile_layer_02709cbaa1959a0a1497c2dee07fe775,
                 },
                 overlays :  {
-                    &quot;ID: LC81950272020256LGN00 (CC: 9)&quot; : feature_group_08c3dd3734b9b536a54b0f8b26650b57,
-                    &quot;ID: LC81940272020233LGN00 (CC: 6)&quot; : feature_group_642021c8d81aeb0a956a64eddd40dfb7,
-                    &quot;ID: LC81950272020224LGN00 (CC: 8)&quot; : feature_group_2f9ef5105c9d33e09f1316e610b00432,
-                    &quot;ID: LC81950272020176LGN00 (CC: 3)&quot; : feature_group_ef48f7e4a1826b8f821e256021233d9b,
-                    &quot;ID: LC81940272020153LGN00 (CC: 5)&quot; : feature_group_0e27d14f94dde16640db13ed2bc384b4,
-                    &quot;ID: LC81950272020128LGN00 (CC: 2)&quot; : feature_group_ba6480fb654309a5143ee7805421ec2e,
-                    &quot;ID: LC81950272020096LGN00 (CC: 2)&quot; : feature_group_bfd79d30318d37547624967882190ddd,
-                    &quot;ID: LC81950272020016LGN00 (CC: 2)&quot; : feature_group_3c7a44032476288defc9e2ca9d431174,
+                    &quot;ID: LC81950272020256LGN00 (CC: 9)&quot; : feature_group_9e72e4a3cd20a9abcf58d8a7d3bfe7c2,
+                    &quot;ID: LC81940272020233LGN00 (CC: 6)&quot; : feature_group_e49db9283ab564721022ce72e53f1e2b,
+                    &quot;ID: LC81950272020224LGN00 (CC: 8)&quot; : feature_group_27a4ffb30c33da976d7010ba06ac2f32,
+                    &quot;ID: LC81950272020176LGN00 (CC: 3)&quot; : feature_group_3f1ad0a5e81c44cb3bf31180f4bb7e6a,
+                    &quot;ID: LC81940272020153LGN00 (CC: 5)&quot; : feature_group_6668e697638f0bb756f1909d9d08e4e1,
+                    &quot;ID: LC81950272020128LGN00 (CC: 2)&quot; : feature_group_418826094ba92780c1fd7f5d043917cb,
+                    &quot;ID: LC81950272020096LGN00 (CC: 2)&quot; : feature_group_eaa0738b7c6780810e4ed107b48af004,
+                    &quot;ID: LC81950272020016LGN00 (CC: 2)&quot; : feature_group_0e12f64f6ca38721e8af11cc525da8a2,
                 },
             };
-            let layer_control_9d5940ecfe66ed46ff4474d81ad23a66 = L.control.layers(
-                layer_control_9d5940ecfe66ed46ff4474d81ad23a66_layers.base_layers,
-                layer_control_9d5940ecfe66ed46ff4474d81ad23a66_layers.overlays,
+            let layer_control_cf60c582ff59eec5765f08a52b483a53 = L.control.layers(
+                layer_control_cf60c582ff59eec5765f08a52b483a53_layers.base_layers,
+                layer_control_cf60c582ff59eec5765f08a52b483a53_layers.overlays,
                 {
   &quot;position&quot;: &quot;topright&quot;,
   &quot;collapsed&quot;: true,
   &quot;autoZIndex&quot;: true,
 }
-            ).addTo(map_9b24d1bd21315e01d081d9ecd49339c1);
+            ).addTo(map_0418d01e315a383378206800b16b752e);
 
         
 &lt;/script&gt;
@@ -708,6 +708,29 @@
 </section>
 <section id="download-scene-s-using-the-display-id">
 <h3>2.5 Download Scene(s) using the Display ID<a class="headerlink" href="#download-scene-s-using-the-display-id" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>Important: Modify the value of identifier or <strong>dispaly_id</strong> below to download the desired dataset</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;display_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;bound method Series.unique of 0    LC08_L2SP_1...
+1    LC08_L2SP_1...
+2    LC08_L2SP_1...
+3    LC08_L2SP_1...
+4    LC08_L2SP_1...
+5    LC08_L2SP_1...
+6    LC08_L2SP_1...
+7    LC08_L2SP_1...
+Name: display_id, dtype: object&gt;
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">landsatxplore.earthexplorer</span><span class="w"> </span><span class="kn">import</span> <span class="n">EarthExplorer</span>
@@ -1408,7 +1431,9 @@
     <span class="n">label</span><span class="o">.</span><span class="n">set_verticalalignment</span><span class="p">(</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 
 <span class="c1"># Set the title for the plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Land Surface Temperature&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">acq_date</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;display_id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">identifier</span><span class="p">,</span> <span class="s1">&#39;acq_date&#39;</span><span class="p">]</span>
+<span class="n">acq_date_value</span> <span class="o">=</span> <span class="n">acq_date</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">date</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Land Surface Temperature, </span><span class="si">{</span><span class="n">acq_date_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
 
 <span class="c1"># Add Grid</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
@@ -1425,7 +1450,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/e35ee852340b7d7e64d0bdf49528f8acacfd9658bbeddc8653056a131e7f84d4.png" src="../../_images/e35ee852340b7d7e64d0bdf49528f8acacfd9658bbeddc8653056a131e7f84d4.png" />
+<img alt="../../_images/ef7b5a86c4936cce61988349c962a6fbe1221818de2a464493473209eaf388bc.png" src="../../_images/ef7b5a86c4936cce61988349c962a6fbe1221818de2a464493473209eaf388bc.png" />
 </div>
 </div>
 </section>
@@ -1436,7 +1461,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="02-sentinel2-without-esri.html" class="btn btn-neutral float-left" title="Sentinel 2 - Workflow" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="02-sentinel2-without-esri.html" class="btn btn-neutral float-left" title="Sentinel2 Data: With Code-De Platform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../../rst_jupyter_bibliothek/visualizations/index.html" class="btn btn-neutral float-right" title="Visualization Options Library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

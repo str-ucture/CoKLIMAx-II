@@ -110,9 +110,9 @@ Falls der **Launcher-Tab** nicht automatisch geöffnet wird, klicken Sie auf das
 
 .. image:: /_static/02-jupyter-2.png
     :width: 600px
-	:align: center
-	:class: no-scaled-link
-	:alt: Jupyter: neues Notizbuch erstellen
+    :align: center
+    :class: no-scaled-link
+    :alt: Jupyter: neues Notizbuch erstellen
 
 In den folgenden Kurs-Elementen werden wir nur mit **Python3** arbeiten, daher ist die Kernel-Auswahl noch nicht relevant. Sie können alle Kurs-Elemente auf dem **Python3 Kernel** durchführen. Falls Sie später mit verschiedenen Programmiersprachen und Python-Umgebungen arbeiten möchten, sollten Sie sich bezüglich der verschiedenen Möglichkeiten weiter informieren.
 

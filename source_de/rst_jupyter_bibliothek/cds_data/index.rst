@@ -22,4 +22,5 @@ Die hier bereitgestellten Notebooks demonstrieren **Schritt für Schritt**, wie 
 
   /notebooks/kurs_sonstiges/01-alpine-monthly-precipitation
   /notebooks/kurs_sonstiges/02-sis-heat-wave-and-cold-spells
+  /notebooks/kurs_sonstiges/03-sis-health-vector
   /notebooks/kurs_sonstiges/04-climate-indicators

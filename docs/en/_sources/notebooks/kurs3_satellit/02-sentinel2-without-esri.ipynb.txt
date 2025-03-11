@@ -5,16 +5,21 @@
    "id": "906a33bb-1023-4f4b-8ae5-6c49b7cf4d94",
    "metadata": {},
    "source": [
-    "# Sentinel 2 - Workflow\n",
-    "_Version: 0.4 &nbsp;\n",
-    "Author: T.Tewes_\n",
-    "> Verarbeitet Sentinel 2-Aufnahmen, die in einem Ordner liegen, anhand einer benuterdefinierten Auswahl;\n",
-    "> Zuschneiden auf eine AOI;\n",
-    "> NDVI-Berechnen, Statistische Auswertungen (folgen noch)\n",
+    "# Sentinel2 Data: With Code-De Platform\n",
     "\n",
-    "Download der Sentinel 2-Aufnahmen, z.B. über den EO-Explorer von CODE-DE. Es sollte auf eine geringe Wolkenbedeckung sowie eine Produktklassifikation L1C oder L2A geachtet werden. Alle heruntergeladenen Aufnahmen sollten in einem Ordner (siehe Pfade und Arbeitsbereich festlegen) gespeichert werden, wobei die original Ordnerstruktur der Sentinel 2 Szenen beibehalten werden sollte.\n",
+    "This notebook demonstrates how to download Sentinel-2 satellite data from the EO-Explorer on the CODE-DE platform. It provides a step-by-step guide to accessing, filtering, and retrieving the desired imagery for various applications. Additionally, it covers key aspects such as data formats, preprocessing options, and best practices for efficient data handling\n",
     "\n",
-    "**SCL Korrektur funktioniert noch nicht**"
+    "**Information on Dataest:**\n",
+    "* Library: [Code-de](https://explore.code-de.org/search)\n",
+    "* Author: T. Tewes (Stadt Konstanz)\n",
+    "* Notebook Version: 1.1 (Updated: March 10, 2025)\n",
+    "\n",
+    "Download the Sentinel 2 images, e.g. via the EO-Explorer from CODE-DE. Attention should be paid to low cloud cover and a product classification of L1C or L2A. All downloaded images should be saved in a folder (see Specify paths and workspace), whereby the original folder structure of the Sentinel 2 scenes should be retained.\n",
+    "\n",
+    "**Key Features of This Notebook:**\n",
+    "* **Processes Sentinel 2** recordings located in a folder based on a user-defined selection.\n",
+    "* **Crop to an AOI**.\n",
+    "* **NDVI calculation** and **Statistical Analyses**"
    ]
   },
   {
@@ -27,20 +32,20 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 1,
+   "execution_count": 2,
    "id": "9c56013d",
    "metadata": {},
    "outputs": [],
    "source": [
     "import os\n",
     "\n",
-    "''' ---- Hier die Verzeichnisse angeben ---- '''\n",
+    "''' ---- Specify Directories Here ---- '''\n",
     "download_folder = r\".\\data\\sentinel2-without-esri\\download\"\n",
     "working_folder = r\".\\data\\sentinel2-without-esri\\working\"\n",
     "geotiff_folder = r\".\\data\\sentinel2-without-esri\\geotiff\"\n",
     "csv_folder = r\".\\data\\sentinel2-without-esri\\csv\"\n",
     "output_folder = r\".\\data\\sentinel2-without-esri\\output\"\n",
-    "''' ----- Ende der Eingaben ---- '''\n",
+    "''' ----- End of Declaration ---- '''\n",
     "\n",
     "os.makedirs(download_folder, exist_ok=True)\n",
     "os.makedirs(working_folder, exist_ok=True)\n",
@@ -75,14 +80,14 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 2,
+   "execution_count": null,
    "id": "2258e5fa",
    "metadata": {},
    "outputs": [
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "d319df7740214029a8715c1678c39ae6",
+       "model_id": "d349143fd02147dea89e97502a17880c",
        "version_major": 2,
        "version_minor": 0
       },
@@ -162,14 +167,14 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 3,
+   "execution_count": null,
    "id": "a45514cb",
    "metadata": {},
    "outputs": [
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "3c50f54264e54292bebe557c2af34224",
+       "model_id": "5e9a8edc2149408ab1a1e226baa6167d",
        "version_major": 2,
        "version_minor": 0
       },
@@ -233,7 +238,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 10,
+   "execution_count": 8,
    "id": "459af3fb",
    "metadata": {},
    "outputs": [],
@@ -302,7 +307,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 11,
+   "execution_count": 10,
    "id": "f63c8b89",
    "metadata": {},
    "outputs": [],
@@ -369,7 +374,7 @@
  ],
  "metadata": {
   "kernelspec": {
-   "display_name": "myenv",
+   "display_name": "cds_env",
    "language": "python",
    "name": "python3"
   },

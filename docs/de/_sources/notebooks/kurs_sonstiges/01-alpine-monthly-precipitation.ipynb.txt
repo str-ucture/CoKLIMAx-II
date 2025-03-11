@@ -27,11 +27,6 @@
   {
    "cell_type": "markdown",
    "metadata": {},
-   "source": []
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
    "source": [
     "## 1. Festlegen der Pfade und Arbeitsverzeichnisse"
    ]
