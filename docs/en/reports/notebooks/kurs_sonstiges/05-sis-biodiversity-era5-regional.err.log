@@ -1,0 +1,55 @@
+Traceback (most recent call last):
+  File "C:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\nbclient\client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "C:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "C:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\asyncio\base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "C:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\ShaileshShrestha\anaconda3\envs\cds_env\lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+if __name__ == "__main__":
+    # Export all NetCDF file as merged GeoTIFF file
+    for nc_file in nc_files_subset:
+        main_export_geotiff(
+            nc_file=nc_file,
+            bounding_box=None,
+            merged=True
+        )
+------------------
+
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mNameError[0m                                 Traceback (most recent call last)
+Cell [1;32mIn[15], line 4[0m
+[0;32m      1[0m [38;5;28;01mif[39;00m [38;5;18m__name__[39m [38;5;241m==[39m [38;5;124m"[39m[38;5;124m__main__[39m[38;5;124m"[39m:
+[0;32m      2[0m     [38;5;66;03m# Export all NetCDF file as merged GeoTIFF file[39;00m
+[0;32m      3[0m     [38;5;28;01mfor[39;00m nc_file [38;5;129;01min[39;00m nc_files_subset:
+[1;32m----> 4[0m         [43mmain_export_geotiff[49m[43m([49m
+[0;32m      5[0m [43m            [49m[43mnc_file[49m[38;5;241;43m=[39;49m[43mnc_file[49m[43m,[49m
+[0;32m      6[0m [43m            [49m[43mbounding_box[49m[38;5;241;43m=[39;49m[38;5;28;43;01mNone[39;49;00m[43m,[49m
+[0;32m      7[0m [43m            [49m[43mmerged[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m
+[0;32m      8[0m [43m        [49m[43m)[49m
+
+Cell [1;32mIn[14], line 83[0m, in [0;36mmain_export_geotiff[1;34m(nc_file, bounding_box, merged, output_directory)[0m
+[0;32m     69[0m [38;5;66;03m# Create a GeoTIFF with multiple bands for each time slice[39;00m
+[0;32m     70[0m [38;5;28;01mwith[39;00m rasterio[38;5;241m.[39mopen(
+[0;32m     71[0m     output_filepath,
+[0;32m     72[0m     [38;5;124m"[39m[38;5;124mw[39m[38;5;124m"[39m,
+[1;32m   (...)[0m
+[0;32m     80[0m     transform[38;5;241m=[39mtransform,        
+[0;32m     81[0m ) [38;5;28;01mas[39;00m dst:
+[0;32m     82[0m     [38;5;28;01mfor[39;00m year_index [38;5;129;01min[39;00m tqdm([38;5;28mrange[39m(variable_data_subset[38;5;241m.[39mshape[[38;5;241m0[39m]),
+[1;32m---> 83[0m                         desc[38;5;241m=[39m[38;5;124mf[39m[38;5;124m"[39m[38;5;124mExporting merged GeoTIFF file from [39m[38;5;132;01m{[39;00m[43mstart_year[49m[38;5;132;01m}[39;00m[38;5;124m to [39m[38;5;132;01m{[39;00mend_year[38;5;132;01m}[39;00m[38;5;124m"[39m):
+[0;32m     84[0m         band_data [38;5;241m=[39m variable_data_subset[year_index,:,:]
+[0;32m     85[0m         dt [38;5;241m=[39m cftime[start_index [38;5;241m+[39m year_index]
+
+[1;31mNameError[0m: name 'start_year' is not defined
+

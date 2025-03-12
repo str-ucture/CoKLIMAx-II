@@ -197,7 +197,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 69,
+   "execution_count": null,
    "id": "80dd9e85-f124-4457-808e-b6ff3df3989f",
    "metadata": {},
    "outputs": [
@@ -215,7 +215,7 @@
     "# Define a extract folder to ZIP file same as the working folder\n",
     "extract_folder = working_folder\n",
     "\n",
-    "# Extract the zip file\n",
+    "# Extract the ZIP file\n",
     "try:\n",
     "    if not os.listdir(extract_folder):\n",
     "        dataset_filename = f\"{dataset}.zip\"\n",
