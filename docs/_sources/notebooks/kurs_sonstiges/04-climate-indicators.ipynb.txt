@@ -27,7 +27,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 7,
+   "execution_count": 3,
    "id": "3706e3e7",
    "metadata": {},
    "outputs": [],
@@ -67,7 +67,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 8,
+   "execution_count": 4,
    "id": "9e224adf",
    "metadata": {},
    "outputs": [],
@@ -107,24 +107,18 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 9,
-   "id": "11966ded",
+   "execution_count": 5,
+   "id": "d3292922",
    "metadata": {},
    "outputs": [],
    "source": [
     "# Define the bounding box coordinates (WGS84 format)\n",
     "# The coordinates are in the format: [North, West, South, East]\n",
     "bbox_wgs84_deutschland = [56.0, 5.8, 47.2, 15.0]\n",
-    "bbox_wgs84_konstanz = [47.9, 8.9, 47.6, 9.3]"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": 10,
-   "id": "d3292922",
-   "metadata": {},
-   "outputs": [],
-   "source": [
+    "bbox_wgs84_de_standard = [5.7, 47.1, 15.2, 55.2]\n",
+    "bbox_wgs84_konstanz = [47.9, 8.9, 47.6, 9.3]\n",
+    "bbox_wgs84_konstanz_standard = [9.0, 47.6, 9.3, 47.8]  # Standard format: [West, South, East, North]\n",
+    "\n",
     "# Alternatively, use a shapefile for precise geographic filtering\n",
     "import geopandas as gpd\n",
     "import math\n",
@@ -149,7 +143,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 11,
+   "execution_count": 6,
    "id": "6c0cc4e1",
    "metadata": {},
    "outputs": [],
@@ -194,7 +188,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 12,
+   "execution_count": 7,
    "id": "17b5f41f",
    "metadata": {},
    "outputs": [],
@@ -245,7 +239,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 13,
+   "execution_count": 8,
    "id": "9b61f5a2",
    "metadata": {},
    "outputs": [
@@ -288,7 +282,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 14,
+   "execution_count": 9,
    "id": "987b266f",
    "metadata": {},
    "outputs": [
@@ -339,7 +333,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 15,
+   "execution_count": 10,
    "id": "f0fa5ba5",
    "metadata": {},
    "outputs": [],
@@ -361,7 +355,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 16,
+   "execution_count": 11,
    "id": "3185b323",
    "metadata": {},
    "outputs": [
@@ -526,7 +520,7 @@
        "9                  yearly  high_utci_days    None   None  "
       ]
      },
-     "execution_count": 16,
+     "execution_count": 11,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -587,7 +581,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 17,
+   "execution_count": 12,
    "id": "5a9b04e5",
    "metadata": {},
    "outputs": [
@@ -631,7 +625,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 18,
+   "execution_count": 13,
    "id": "f89a7481",
    "metadata": {},
    "outputs": [
@@ -863,7 +857,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 19,
+   "execution_count": 14,
    "id": "9160d0aa",
    "metadata": {},
    "outputs": [],
@@ -911,31 +905,23 @@
    "id": "89e2e158",
    "metadata": {},
    "source": [
-    "### 4.2 Filter by Bounding Box, Create DataFrame and Export as CSV file"
+    "### 4.2 Create DataFrame and Export as CSV file"
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 20,
+   "execution_count": 15,
    "id": "169642dd",
    "metadata": {},
    "outputs": [],
    "source": [
-    "# Define additional request fields to ensure the request stays within the file size limit.\n",
-    "# These coordinates were obtained using the BBox Extractor tool:\n",
-    "# https://str-ucture.github.io/bbox-extractor/\n",
-    "\n",
-    "# Bounding box for the Konstanz region (WGS84 projection):\n",
-    "bbox_wgs84_konstanz = [47.9, 8.9, 47.6, 9.3]  # Format: [North, West, South, East]\n",
-    "bbox_wgs84_konstanz_standard = [9.0, 47.6, 9.3, 47.8]  # Standard format: [West, South, East, North]\n",
-    "\n",
     "# Define the origin of the data, either \"projections\"\" or \"reanalysis\"\n",
     "origin = \"projections\""
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 21,
+   "execution_count": null,
    "id": "25c44df8",
    "metadata": {},
    "outputs": [
@@ -1067,7 +1053,7 @@
        "[102144 rows x 2 columns]"
       ]
      },
-     "execution_count": 21,
+     "execution_count": 16,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -1088,9 +1074,7 @@
     "        dataframe = netcdf_to_dataframe(nc_file=nc_file)\n",
     "        dataframe.to_csv(csv_filepath, sep=\",\", encoding='utf8')\n",
     "    else:\n",
-    "        print(f\"File already exists at {csv_filepath}.\\nSkipping export.\")\n",
-    "        csv_filename_latest = csv_filepath\n",
-    "        \n",
+    "        print(f\"File already exists at {csv_filepath}.\\nSkipping export.\")       \n",
     "        break\n",
     "\n",
     "print(\"Reading the last CSV file...\")\n",
@@ -1115,19 +1099,19 @@
    "source": [
     "### 5.1 Define an interactive Widget to select a Variable for the Visualisation\n",
     "\n",
-    "> Important: Select the variable that is of interest for the visualisation."
+    "> Important: Select the **variable** that is of interest for the visualisation."
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 22,
+   "execution_count": 17,
    "id": "8c09e1a4",
    "metadata": {},
    "outputs": [
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "752ee22f46ea44418efc55c220a8bef2",
+       "model_id": "86cebfa19ad54c6786493d64152215b6",
        "version_major": 2,
        "version_minor": 0
       },
@@ -1135,7 +1119,7 @@
        "Dropdown(description='Select a variable:', options=('growing_degree_days', 'heating_degree_days', 'cooling_deg…"
       ]
      },
-     "execution_count": 22,
+     "execution_count": 17,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -1166,7 +1150,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 23,
+   "execution_count": 18,
    "id": "d238d0eb",
    "metadata": {},
    "outputs": [],
@@ -1241,7 +1225,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 24,
+   "execution_count": 19,
    "id": "c89f705e",
    "metadata": {},
    "outputs": [
@@ -1322,7 +1306,7 @@
        "2                  yearly     tasAdjust    None  rcp_8_5  "
       ]
      },
-     "execution_count": 24,
+     "execution_count": 19,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -1348,7 +1332,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 25,
+   "execution_count": 20,
    "id": "5a7ef6ea",
    "metadata": {},
    "outputs": [],
@@ -1382,7 +1366,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 26,
+   "execution_count": 21,
    "id": "64511cf8",
    "metadata": {},
    "outputs": [
@@ -1470,7 +1454,7 @@
        "1944 1944-01-01          0.0  1942.366699 -127.859436"
       ]
      },
-     "execution_count": 26,
+     "execution_count": 21,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -1519,7 +1503,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 27,
+   "execution_count": 22,
    "id": "af792bd7",
    "metadata": {},
    "outputs": [
@@ -1612,7 +1596,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 28,
+   "execution_count": 23,
    "id": "dffd3ce9",
    "metadata": {},
    "outputs": [
@@ -1713,7 +1697,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 29,
+   "execution_count": 24,
    "id": "a7a9d8ed",
    "metadata": {},
    "outputs": [],
@@ -1781,7 +1765,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 30,
+   "execution_count": 25,
    "id": "a202d0ae",
    "metadata": {},
    "outputs": [
@@ -1900,7 +1884,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 31,
+   "execution_count": 26,
    "id": "203efc12",
    "metadata": {},
    "outputs": [

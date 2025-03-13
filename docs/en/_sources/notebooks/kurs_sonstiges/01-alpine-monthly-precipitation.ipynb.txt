@@ -1466,13 +1466,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
+   "execution_count": 29,
    "metadata": {},
    "outputs": [
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "ff8981805e8641f9b7fd300106992a9f",
+       "model_id": "746c619071c847d18484848b9dea0f42",
        "version_major": 2,
        "version_minor": 0
       },
@@ -1484,21 +1484,14 @@
      "output_type": "display_data"
     },
     {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "Start year 1890 is before dataset range. Adjusting to 1901.\n"
-     ]
-    },
-    {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "7ab3f8fd12c5454ba102206afd94fd03",
+       "model_id": "fc7038726ca14f888f45961fe7f462b9",
        "version_major": 2,
        "version_minor": 0
       },
       "text/plain": [
-       "Exporting individual GeoTIFF files from 1901 to 2000:   0%|          | 0/1200 [00:00<?, ?it/s]"
+       "Exporting individual GeoTIFF files from 1995 to 2000:   0%|          | 0/72 [00:00<?, ?it/s]"
       ]
      },
      "metadata": {},
@@ -1526,7 +1519,7 @@
     "        nc_filepath = nc_filepath,\n",
     "        nc_file_variable = variable_name,\n",
     "        bounding_box = None,\n",
-    "        start_year = 1990,\n",
+    "        start_year = 1995,\n",
     "        end_year = 2000,\n",
     "        merged = False,\n",
     "        )"

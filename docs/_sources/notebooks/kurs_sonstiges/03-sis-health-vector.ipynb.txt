@@ -95,7 +95,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 3,
+   "execution_count": null,
    "id": "7e6c35ec",
    "metadata": {},
    "outputs": [],
@@ -103,6 +103,7 @@
     "# Define the bounding box coordinates (WGS84 format)\n",
     "# The coordinates are in the format: [North, West, South, East]\n",
     "bbox_wgs84_deutschland = [56.0, 5.8, 47.2, 15.0]\n",
+    "bbox_wgs84_de_standard = [5.7, 47.1, 15.2, 55.2]\n",
     "bbox_wgs84_konstanz = [47.9, 8.9, 47.6, 9.3]\n",
     "bbox_wgs84_konstanz_standard = [9.0, 47.6, 9.3, 47.8]  # Standard format: [West, South, East, North]\n",
     "\n",
@@ -900,7 +901,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 13,
+   "execution_count": null,
    "id": "a8e496bf",
    "metadata": {},
    "outputs": [
@@ -1170,7 +1171,7 @@
     "    df_merged = pd.concat(dataframes, axis=1)\n",
     "    df_merged.to_csv(csv_path, sep=',', encoding='utf8', compression='zip')\n",
     "else:\n",
-    "    print(f\"File already exists at {csv_path}. Skipping export.\")\n",
+    "    print(f\"File already exists at {csv_path}.\\nSkipping export.\")\n",
     "    print(\"Reading existing CSV file...\")\n",
     "    df_merged = pd.read_csv(csv_path).set_index(['time', 'lat', 'lon'])\n",
     "    \n",
@@ -1274,8 +1275,10 @@
     "            # Customise start_year and end_year based on the available time period\n",
     "            if start_year < min_year:\n",
     "                print(f\"Start year {start_year} is before dataset range. Adjusting to {min_year}.\")\n",
+    "                print(f\"The start year is adjusted to {min_year}.\")\n",
     "            if end_year > max_year:\n",
     "                print(f\"End year {end_year} exceeds dataset range. Adjusting to {max_year}.\")\n",
+    "                print(f\"The end year is adjusted to {max_year}.\")\n",
     "\n",
     "            start_year = max(start_year, min_year)\n",
     "            end_year = min(end_year, max_year)\n",
@@ -2029,7 +2032,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 45,
+   "execution_count": null,
    "id": "da174a8e",
    "metadata": {},
    "outputs": [
@@ -2056,6 +2059,7 @@
    ],
    "source": [
     "if __name__ == \"__main__\":\n",
+    "    # Example usage case\n",
     "    plot_mosquito_season(filtered_df_average=filtered_df_average,\n",
     "                         variable_name='season_length')\n",
     "    \n",

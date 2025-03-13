@@ -95,7 +95,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 5,
+   "execution_count": null,
    "id": "7e6c35ec",
    "metadata": {},
    "outputs": [],
@@ -103,6 +103,7 @@
     "# Definieren der Begrenzungsrahmen-Koordinaten (WGS84-Format)\n",
     "# Das Koordinatenformat lautet: [Norden, Westen, Süden, Osten]\n",
     "bbox_wgs84_deutschland = [56.0, 5.8, 47.2, 15.0]\n",
+    "bbox_wgs84_de_standard = [5.7, 47.1, 15.2, 55.2]\n",
     "bbox_wgs84_konstanz = [47.9, 8.9, 47.6, 9.3]\n",
     "bbox_wgs84_konstanz_standard = [9.0, 47.6, 9.3, 47.8]  # [West, South, East, North]\n",
     "\n",
@@ -1213,7 +1214,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 15,
+   "execution_count": null,
    "id": "e7b2627b",
    "metadata": {},
    "outputs": [],
@@ -1373,7 +1374,7 @@
     "                ) as dst:\n",
     "                    year_precipitation_data = variable_data_subset[year_index, :, :]\n",
     "                    dst.write(year_precipitation_data, 1)\n",
-    "                    dst.set_band_description(1, f\"{dt.year:04d}-{dt.month:02d}-{dt.day:02d}\")\n"
+    "                    dst.set_band_description(1, f\"{dt.year:04d}-{dt.month:02d}-{dt.day:02d}\")"
    ]
   },
   {
@@ -1928,7 +1929,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 19,
+   "execution_count": null,
    "id": "54bd9ad9",
    "metadata": {},
    "outputs": [],
@@ -2024,7 +2025,6 @@
     "            'Klimatische Eignung für die Präsenz und saisonale Aktivität der Aedes albopictus-Mücke in Europa,\\n'\n",
     "            'based on climate projections. Daten bereitgestellt vom Copernicus Climate Change Service (C3S) Climate Data Store (CDS).\\n'\n",
     "            'DOI: 10.24381/cds.d08ed09a (Zugriff: 14-10-2024).'\n",
-    "\n",
     "        ),\n",
     "        ha='left',\n",
     "        va='center',\n",
@@ -2048,7 +2048,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 20,
+   "execution_count": null,
    "id": "da174a8e",
    "metadata": {},
    "outputs": [
@@ -2075,6 +2075,7 @@
    ],
    "source": [
     "if __name__ == \"__main__\":\n",
+    "    # Beispiel für einen Anwendungsfall\n",
     "    plot_mosquito_season(filtered_df_average=filtered_df_average,\n",
     "                         variable_name='season_length')\n",
     "    \n",
