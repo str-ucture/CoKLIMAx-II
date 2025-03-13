@@ -203,7 +203,7 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "['LAPrec1871.v1.2.nc', 'LAPrec1901.v1.2.nc']\n"
+      "['LAPrec1871.v1.2.nc', 'LAPrec1901.v1.2.nc', 'LAPrec1901.v1.2.nc.aux.xml']\n"
      ]
     }
    ],
@@ -1466,13 +1466,13 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 23,
+   "execution_count": null,
    "metadata": {},
    "outputs": [
     {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "e0d8ebc75df447bb9465946dce73f570",
+       "model_id": "ff8981805e8641f9b7fd300106992a9f",
        "version_major": 2,
        "version_minor": 0
       },
@@ -1484,14 +1484,21 @@
      "output_type": "display_data"
     },
     {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Start year 1890 is before dataset range. Adjusting to 1901.\n"
+     ]
+    },
+    {
      "data": {
       "application/vnd.jupyter.widget-view+json": {
-       "model_id": "0ffa5832c53d4172aec63c168a3a4b39",
+       "model_id": "7ab3f8fd12c5454ba102206afd94fd03",
        "version_major": 2,
        "version_minor": 0
       },
       "text/plain": [
-       "Exporting individual GeoTIFF files from 1995 to 2000:   0%|          | 0/72 [00:00<?, ?it/s]"
+       "Exporting individual GeoTIFF files from 1901 to 2000:   0%|          | 0/1200 [00:00<?, ?it/s]"
       ]
      },
      "metadata": {},
@@ -1519,7 +1526,7 @@
     "        nc_filepath = nc_filepath,\n",
     "        nc_file_variable = variable_name,\n",
     "        bounding_box = None,\n",
-    "        start_year = 1995,\n",
+    "        start_year = 1990,\n",
     "        end_year = 2000,\n",
     "        merged = False,\n",
     "        )"
