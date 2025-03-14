@@ -25,4 +25,4 @@ Die hier bereitgestellten Notebooks demonstrieren **Schritt für Schritt**, wie 
   /notebooks/kurs_sonstiges/03-sis-health-vector
   /notebooks/kurs_sonstiges/04-climate-indicators
   /notebooks/kurs_sonstiges/05-sis-biodiversity-era5-regional
-  /notebooks/kurs_sonstiges/06-era5-land-hourly-data
+  /notebooks/kurs_sonstiges/06-era5-land-hourly
