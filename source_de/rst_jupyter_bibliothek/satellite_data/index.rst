@@ -21,5 +21,4 @@ In dieser Sektion stellen wir Ihnen eine Sammlung von **praxisnahen Jupyter Note
   :caption: Satellitendaten:
 
   /notebooks/kurs3_satellit/01-senthub-downloader
-  /notebooks/kurs3_satellit/02-sentinel2-without-esri
   /notebooks/kurs3_satellit/03-landsat-with-landsatxplore

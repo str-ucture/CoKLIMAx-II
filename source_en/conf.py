@@ -14,9 +14,6 @@ release = '1.0.0'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-import plotly.io as pio
-pio.renderers.default = 'sphinx_gallery'
-
 extensions = [
     'sphinx_copybutton',
     'myst_nb',

@@ -119,12 +119,6 @@
       <li class="breadcrumb-item active">Lake Water Temperature from Satellite Data</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/notebooks/kurs2_einfache_cds/02-satellite-lake-water-temperature.ipynb.txt" rel="nofollow"> View page source</a>
-<div id='language-switcher' style='text-align: right; margin-top: 10px;'>
-    <select onchange="location = this.value;">
-        <option value='/./CoKLIMAx-II/en\notebooks\kurs2_einfache_cds\02-satellite-lake-water-temperature.html' selected>EN</option>
-        <option value='/./CoKLIMAx-II/de\notebooks\kurs2_einfache_cds\02-satellite-lake-water-temperature.html'>DE</option>
-    </select>
-</div>
       </li>
   </ul>
   <hr/>
@@ -1389,6 +1383,9 @@ Reading existing CSV file...
 
     <span class="c1"># Ensure the index of the result is datetime</span>
     <span class="n">df2</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">index</span><span class="p">)</span> 
+    
+    <span class="c1"># Convert to °C</span>
+    <span class="n">df2</span> <span class="o">=</span> <span class="n">df2</span><span class="o">-</span><span class="mf">273.15</span>
 
     <span class="c1"># Plot a calendar heatmap of the mean temperature values</span>
     <span class="c1"># Plot the calendar heatmap</span>
@@ -1396,7 +1393,7 @@ Reading existing CSV file...
                                 <span class="n">fig_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;figsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">)},</span>
                                 <span class="n">yearlabel_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">22</span><span class="p">},</span>
                                 <span class="n">subplot_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Calendar Heatmap of </span><span class="si">{</span><span class="n">variable_name</span><span class="si">}</span><span class="s1"> for </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,},</span>
-                                <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;YlGnBu&#39;</span><span class="p">,</span>
+                                <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;turbo&#39;</span><span class="p">,</span>
                                 <span class="n">fillcolor</span><span class="o">=</span><span class="s1">&#39;#efefef&#39;</span><span class="p">,</span>
                                 <span class="n">daylabels</span><span class="o">=</span><span class="s1">&#39;MTWTFSS&#39;</span><span class="p">,</span>
                                 <span class="n">linecolor</span><span class="o">=</span><span class="s1">&#39;#ffffff&#39;</span><span class="p">,</span>
@@ -1412,7 +1409,7 @@ Reading existing CSV file...
     <span class="n">vmin</span><span class="o">=</span><span class="n">ma</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">//</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
     <span class="n">vmax</span><span class="o">=</span><span class="n">ma</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">df2</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">//</span><span class="mi">5</span><span class="o">*</span><span class="mi">5</span><span class="p">)</span>
 
-    <span class="n">sm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ScalarMappable</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;YlGnBu&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">))</span>
+    <span class="n">sm</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">ScalarMappable</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;turbo&#39;</span><span class="p">,</span> <span class="n">norm</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">))</span>
     <span class="n">cbar</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">sm</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">cax</span><span class="p">)</span>
 
     <span class="c1"># Customize the ticks on the colorbar</span>
@@ -1432,15 +1429,13 @@ Reading existing CSV file...
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No NetCDF file found for the specified year.
 Selecting the latest available year.
 Using data from the year 2007.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No NetCDF file found for the specified year.
+No NetCDF file found for the specified year.
 Selecting the latest available year.
 Using data from the year 2007.
 </pre></div>
 </div>
-<img alt="../../_images/73209ecad5eb6af36559ab6c9cd9d104725bb4531a648ad2a4d2e2a0099003ac.png" src="../../_images/73209ecad5eb6af36559ab6c9cd9d104725bb4531a648ad2a4d2e2a0099003ac.png" />
-<img alt="../../_images/f99fcd96d86f980341fd463c98c045cb105b9c1c5e3e0a1fd9ffe25302f1f4aa.png" src="../../_images/f99fcd96d86f980341fd463c98c045cb105b9c1c5e3e0a1fd9ffe25302f1f4aa.png" />
+<img alt="../../_images/70ebe81e0ff7690f9fe165fb03a2603e647856a7f4980aaa23b49a0948f38fcf.png" src="../../_images/70ebe81e0ff7690f9fe165fb03a2603e647856a7f4980aaa23b49a0948f38fcf.png" />
+<img alt="../../_images/5312e26b0278b622da89be6a17c568bab082acb6ede37e25767e663ec19edaed.png" src="../../_images/5312e26b0278b622da89be6a17c568bab082acb6ede37e25767e663ec19edaed.png" />
 </div>
 </div>
 </section>

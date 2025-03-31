@@ -19,6 +19,7 @@ source/secrets/
 *.rar
 *.gz
 *.SAFE
+*.pack
 
 # Temporary & auxiliary files
 *.aux.xml
@@ -36,14 +37,12 @@ source/secrets/
 *.jpeg
 *.png
 *.gif
+*.jp2
 
 # Allow everything inside the docs (ignore previously ignored files)
 # Use "git add -f docs/" to force adding the docs folder, if needed
 # Ignore large CSV files inside docs
-!docs/
-!docs/*
-docs/**/*.csv
-docs/*.csv
+*.csv
 
 # Include jupyter execute
 jupyter_execute/
