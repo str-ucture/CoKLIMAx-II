@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Line Graph &mdash; Coklimax 1.0.0 Dokumentation</title>
+  <title>Liniendiagramm &mdash; Coklimax 1.0.0 Dokumentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -73,9 +73,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/cds_data/index.html">CDS Datensatz Notebooks </a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../rst_jupyter_bibliothek/satellite_data/index.html">Satellitendaten Notebooks </a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../rst_jupyter_bibliothek/visualizations/index.html">Visualization Options Library</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Line Graph</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#basic-line-graph">1. Basic Line Graph</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#line-graph-using-cds-dataset">2. Line Graph using CDS Dataset</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Liniendiagramm</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#grundlegendes-liniendiagramm">1. Grundlegendes Liniendiagramm</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#liniendiagramm-mit-cds-datensatz">2. Liniendiagramm mit CDS-Datensatz</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="03-bargraph-with-error.html">Bar Graph</a></li>
@@ -99,9 +99,15 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../rst_jupyter_bibliothek/visualizations/index.html">Visualization Options Library</a></li>
-      <li class="breadcrumb-item active">Line Graph</li>
+      <li class="breadcrumb-item active">Liniendiagramm</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/notebooks/kurs4_vis_optionen/01-linegraph.ipynb.txt" rel="nofollow"> Quelltext anzeigen</a>
+<div id='language-switcher' style='text-align: right; margin-top: 10px;'>
+    <select onchange="location = this.value;">
+        <option value='/./CoKLIMAx-II/en\notebooks\kurs4_vis_optionen\01-linegraph.html'>EN</option>
+        <option value='/./CoKLIMAx-II/de\notebooks\kurs4_vis_optionen\01-linegraph.html' selected>DE</option>
+    </select>
+</div>
       </li>
   </ul>
   <hr/>
@@ -109,25 +115,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="line-graph">
-<h1>Line Graph<a class="headerlink" href="#line-graph" title="Link to this heading"></a></h1>
-<p>This notebook demonstrates how to create a simple line graph using Python’s <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>. We’ll start with sample data and then show you how to load and visualize your own dataset.</p>
-<section id="basic-line-graph">
-<h2>1. Basic Line Graph<a class="headerlink" href="#basic-line-graph" title="Link to this heading"></a></h2>
+  <section id="liniendiagramm">
+<h1>Liniendiagramm<a class="headerlink" href="#liniendiagramm" title="Link to this heading"></a></h1>
+<p>Dieses Notizbuch zeigt, wie man ein einfaches Liniendiagramm mit Pythons <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> erstellt. Wir beginnen mit Beispieldaten und zeigen Ihnen dann, wie Sie Ihren eigenen Datensatz laden und visualisieren können.</p>
+<section id="grundlegendes-liniendiagramm">
+<h2>1. Grundlegendes Liniendiagramm<a class="headerlink" href="#grundlegendes-liniendiagramm" title="Link to this heading"></a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Step 1: Import Libraries</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Schritt 1: Python Libraries importieren</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="c1"># Step 2: Create Sample Data</span>
+<span class="c1"># Schritt 2: Beispieldaten erstellen</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="mi">24</span><span class="p">)</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">noise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="mi">9</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">12</span><span class="p">)</span> <span class="o">+</span> <span class="n">noise</span>
 
-<span class="c1"># Step 3: Plotting the Basic Line Graph</span>
+<span class="c1"># Schritt 3: Plotten des grundlegenden Liniendiagramms</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;sin(x)&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Basic Line Graph&#39;</span><span class="p">)</span>
@@ -140,12 +146,83 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/ade1cadb1876e53a4271f530026ddeb07f56e760122d060eaf6c6524b7f75594.png" src="../../_images/ade1cadb1876e53a4271f530026ddeb07f56e760122d060eaf6c6524b7f75594.png" />
+<img alt="../../_images/84b2e8e551675c67f59c65db150ddce2a9908f42d1287e17e0dccb4cc76271bb.png" src="../../_images/84b2e8e551675c67f59c65db150ddce2a9908f42d1287e17e0dccb4cc76271bb.png" />
 </div>
 </div>
 </section>
-<section id="line-graph-using-cds-dataset">
-<h2>2. Line Graph using CDS Dataset<a class="headerlink" href="#line-graph-using-cds-dataset" title="Link to this heading"></a></h2>
+<section id="liniendiagramm-mit-cds-datensatz">
+<h2>2. Liniendiagramm mit CDS-Datensatz<a class="headerlink" href="#liniendiagramm-mit-cds-datensatz" title="Link to this heading"></a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.dates</span><span class="w"> </span><span class="kn">import</span> <span class="n">DateFormatter</span><span class="p">,</span> <span class="n">YearLocator</span><span class="p">,</span> <span class="n">MonthLocator</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ticker</span>
+
+<span class="c1"># Lese die CSV-Datei mit Datums-Parsing</span>
+<span class="n">csv_filepath</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;./data/satellite-lake-water-level.csv&quot;</span>
+<span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_filepath</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+
+<span class="c1"># Erstelle die Figur und Achsen</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#f1f1f1&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plotten der Wasserstandsdaten</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="p">,</span>
+    <span class="n">dataframe</span><span class="p">[</span><span class="s1">&#39;water_surface_height_above_reference_datum&#39;</span><span class="p">],</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+    <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1877F2&#39;</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Wasserstand&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Formatieren der x-Achse für bessere Lesbarkeit</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">YearLocator</span><span class="p">())</span>  <span class="c1"># Haupt-Ticks für jedes Jahr</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_minor_locator</span><span class="p">(</span><span class="n">MonthLocator</span><span class="p">())</span>  <span class="c1"># Kleine Ticks für jeden Monat</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">DateFormatter</span><span class="p">(</span><span class="s1">&#39;%Y&#39;</span><span class="p">))</span> 
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;inout&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s1">&#39;inout&#39;</span><span class="p">)</span>
+
+<span class="c1"># Setzen der y-Achsen-Grenzen</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">393.5</span><span class="p">,</span> <span class="mf">396.5</span><span class="p">)</span>
+
+<span class="c1"># Setzen der Achsenbeschriftungen und Titel des Diagramms</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Jahr&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Wasserstand (m)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Wasserstand des Bodensees&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+
+<span class="c1"># Hinzufügen eines Rasters zum Diagramm und Formatierung der y-Achse</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#b0b0b0&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">FormatStrFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%0.2f</span><span class="s1">&#39;</span><span class="p">))</span>
+
+<span class="c1"># Hinzufügen einer Beschreibung und Quelleninformation</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figtext</span><span class="p">(</span>
+    <span class="mf">0.4</span><span class="p">,</span>
+    <span class="o">-</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="p">(</span>
+        <span class="s1">&#39;Beschreibung: Wasserstand des Bodensees, abgeleitet aus Satellitendaten des CDS.</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="s1">&#39;Quelle: Copernicus Climate Change Service, Climate Data Store, (2020): Seepegelstände von 1992 &#39;</span>
+        <span class="s1">&#39;bis heute, abgeleitet aus Satellitendaten. Copernicus Climate Change Service (C3S) Climate Data &#39;</span>
+        <span class="s1">&#39;Store (CDS). DOI: 10.24381/cds.5714c668 (Zugriff am 16-10-2024)&#39;</span>
+    <span class="p">),</span>
+    <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span>
+    <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+    <span class="n">wrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">backgroundcolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Layout anpassen und das Diagramm anzeigen</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/44d5f821902868c3ce13f691e6ab022e87671d7556be1211de5f7036a5ae43eb.png" src="../../_images/44d5f821902868c3ce13f691e6ab022e87671d7556be1211de5f7036a5ae43eb.png" />
+</div>
+</div>
 </section>
 </section>
 

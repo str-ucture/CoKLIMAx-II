@@ -119,6 +119,12 @@
       <li class="breadcrumb-item active">Lake Water Temperature from Satellite Data</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/notebooks/kurs2_einfache_cds/02-satellite-lake-water-temperature.ipynb.txt" rel="nofollow"> View page source</a>
+<div id='language-switcher' style='text-align: right; margin-top: 10px;'>
+    <select onchange="location = this.value;">
+        <option value='/./CoKLIMAx-II/en/notebooks\kurs2_einfache_cds\02-satellite-lake-water-temperature.html' selected>EN</option>
+        <option value='/./CoKLIMAx-II/de/notebooks\kurs2_einfache_cds\02-satellite-lake-water-temperature.html'>DE</option>
+    </select>
+</div>
       </li>
   </ul>
   <hr/>
@@ -693,7 +699,9 @@ the geographic area for such requests.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filtered data exported successfully to .\data\satellite-lake-water-temperature\csv\satellite-lake-water-temperature_daily-mean_2007.csv
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File already exists at .\data\satellite-lake-water-temperature\csv\satellite-lake-water-temperature_daily-mean_2007.csv.
+Skipping export.
+Reading existing CSV file...
 </pre></div>
 </div>
 <div class="output text_html"><div>
@@ -856,7 +864,7 @@ the geographic area for such requests.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a3b060f16dbbe4c98869bcc72df8104e8866ea5ded92f0ee07f262433bdf243d.png" src="../../_images/a3b060f16dbbe4c98869bcc72df8104e8866ea5ded92f0ee07f262433bdf243d.png" />
+<img alt="../../_images/9889a51dac57c7cb9258cee0a833e94dd1f7314dbcae96439da3592014e4ceb2.png" src="../../_images/9889a51dac57c7cb9258cee0a833e94dd1f7314dbcae96439da3592014e4ceb2.png" />
 </div>
 </div>
 </section>
@@ -1023,7 +1031,7 @@ the geographic area for such requests.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/1a6ab56503d3f880c347638d1793a0c1bdae2eb6bb722c0913231cf858809bfc.png" src="../../_images/1a6ab56503d3f880c347638d1793a0c1bdae2eb6bb722c0913231cf858809bfc.png" />
+<img alt="../../_images/26521ef2dbf902533360423b658b04068a3065a15ab8162544f5900d3aecacbd.png" src="../../_images/26521ef2dbf902533360423b658b04068a3065a15ab8162544f5900d3aecacbd.png" />
 </div>
 </div>
 </section>
@@ -1424,16 +1432,17 @@ the geographic area for such requests.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>No NetCDF file found for the specified year.
-Selecting the latest available year.
-Using data from the year 2007.
-No NetCDF file found for the specified year.
-Selecting the latest available year.
-Using data from the year 2007.
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">21</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">calmap</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;calmap&#39;
 </pre></div>
 </div>
-<img alt="../../_images/70ebe81e0ff7690f9fe165fb03a2603e647856a7f4980aaa23b49a0948f38fcf.png" src="../../_images/70ebe81e0ff7690f9fe165fb03a2603e647856a7f4980aaa23b49a0948f38fcf.png" />
-<img alt="../../_images/5312e26b0278b622da89be6a17c568bab082acb6ede37e25767e663ec19edaed.png" src="../../_images/5312e26b0278b622da89be6a17c568bab082acb6ede37e25767e663ec19edaed.png" />
 </div>
 </div>
 </section>

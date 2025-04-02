@@ -105,6 +105,12 @@
       <li class="breadcrumb-item active">Line Graph</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/notebooks/kurs4_vis_optionen/01-linegraph.ipynb.txt" rel="nofollow"> View page source</a>
+<div id='language-switcher' style='text-align: right; margin-top: 10px;'>
+    <select onchange="location = this.value;">
+        <option value='/./CoKLIMAx-II/en\notebooks\kurs4_vis_optionen\01-linegraph.html' selected>EN</option>
+        <option value='/./CoKLIMAx-II/de\notebooks\kurs4_vis_optionen\01-linegraph.html'>DE</option>
+    </select>
+</div>
       </li>
   </ul>
   <hr/>
@@ -170,7 +176,25 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/4d7da244a92f3929a6be1383e3108e3a440b4f321e684754f1ce49b225ebe8c7.png" src="../../_images/4d7da244a92f3929a6be1383e3108e3a440b4f321e684754f1ce49b225ebe8c7.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">netCDF4</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nc</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">utils.compute_linegraph</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_df_stats</span><span class="p">,</span> <span class="n">plot_linegraph</span><span class="p">,</span> <span class="n">plot_linegraph_with_slider</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># Read netCDF file and variable data</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">filepath</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;./data/reanalysis-era5-land-monthly-means_2m_temperature_1950_2024.nc&quot;</span>
+
+<span class="n">File</span> <span class="n">H</span><span class="p">:</span>\<span class="n">CoKLIMAx</span><span class="o">-</span><span class="n">II</span>\<span class="n">source_en</span>\<span class="n">notebooks</span>\<span class="n">kurs4_vis_optionen</span>\<span class="n">utils</span>\<span class="n">compute_linegraph</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">7</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.ticker</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ticker</span>
+<span class="ne">----&gt; </span><span class="mi">7</span> <span class="kn">import</span><span class="w"> </span><span class="nn">plotly.graph_objects</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">go</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span><span class="w"> </span><span class="nn">calendar</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="k">def</span><span class="w"> </span><span class="nf">compute_df_stats</span><span class="p">(</span><span class="n">variable_data</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="c1"># Initialize lists to store statistics</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;plotly&#39;
+</pre></div>
+</div>
 </div>
 </div>
 </section>

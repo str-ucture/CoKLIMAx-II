@@ -1,0 +1,281 @@
+Traceback (most recent call last):
+  File "f:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "f:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\nbclient\client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "f:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "f:\ProgramFiles\condaEnvs\cds_env\lib\asyncio\base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "f:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "f:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "f:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import pandas as pd
+
+# Initialisieren des SentinelHubCatalog mit der Konfiguration
+catalog = SentinelHubCatalog(config=config)
+
+# Durchsuchen der Sentinel-2 L2A-Datensammlung mit den definierten Parametern
+search_iterator = catalog.search(
+    DataCollection.SENTINEL2_L2A,
+    bbox=aoi_bbox,
+    time=time_interval,
+    filter=f"eo:cloud_cover <= {cloud_cover_input.value}",
+)
+
+# Konvertieren der Suchergebnisse in eine Liste
+results = list(search_iterator)
+print("Gesamtanzahl der Ergebnisse:", len(results))
+
+# Verarbeitung der Ergebnisse in eine strukturierte Liste von Dictionaries
+data = []
+for entry in results:
+    id = entry['id']
+    dt = entry['properties']['datetime']
+    date, time = dt.split('T')
+    time = time.replace('Z', '')
+    cloud_cover = entry['properties']['eo:cloud_cover']
+    data.append({
+        'Datum': date,
+        'Uhrzeit': time,
+        'Wolkenbedeckung (%)': cloud_cover,
+        'Id': id,
+    }),
+    
+# Konvertieren der Liste in ein Pandas DataFrame und Anzeigen der ersten 8 Zeilen
+df = pd.DataFrame(data).sort_values(by='Wolkenbedeckung (%)').reset_index(drop=True)
+df.head(8)
+
+------------------
+
+
+[1;31m---------------------------------------------------------------------------[0m
+[1;31mInvalidClientError[0m                        Traceback (most recent call last)
+Cell [1;32mIn[9], line 15[0m
+[0;32m      7[0m search_iterator [38;5;241m=[39m catalog[38;5;241m.[39msearch(
+[0;32m      8[0m     DataCollection[38;5;241m.[39mSENTINEL2_L2A,
+[0;32m      9[0m     bbox[38;5;241m=[39maoi_bbox,
+[0;32m     10[0m     time[38;5;241m=[39mtime_interval,
+[0;32m     11[0m     [38;5;28mfilter[39m[38;5;241m=[39m[38;5;124mf[39m[38;5;124m"[39m[38;5;124meo:cloud_cover <= [39m[38;5;132;01m{[39;00mcloud_cover_input[38;5;241m.[39mvalue[38;5;132;01m}[39;00m[38;5;124m"[39m,
+[0;32m     12[0m )
+[0;32m     14[0m [38;5;66;03m# Konvertieren der Suchergebnisse in eine Liste[39;00m
+[1;32m---> 15[0m results [38;5;241m=[39m [38;5;28;43mlist[39;49m[43m([49m[43msearch_iterator[49m[43m)[49m
+[0;32m     16[0m [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mGesamtanzahl der Ergebnisse:[39m[38;5;124m"[39m, [38;5;28mlen[39m(results))
+[0;32m     18[0m [38;5;66;03m# Verarbeitung der Ergebnisse in eine strukturierte Liste von Dictionaries[39;00m
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\base.py:277[0m, in [0;36mFeatureIterator.__next__[1;34m(self)[0m
+[0;32m    272[0m [38;5;250m[39m[38;5;124;03m"""Method called to provide the next feature in iteration[39;00m
+[0;32m    273[0m 
+[0;32m    274[0m [38;5;124;03m:return: the next feature[39;00m
+[0;32m    275[0m [38;5;124;03m"""[39;00m
+[0;32m    276[0m [38;5;28;01mwhile[39;00m [38;5;28mself[39m[38;5;241m.[39mindex [38;5;241m>[39m[38;5;241m=[39m [38;5;28mlen[39m([38;5;28mself[39m[38;5;241m.[39mfeatures) [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m[38;5;241m.[39mfinished:
+[1;32m--> 277[0m     new_features [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_fetch_features[49m[43m([49m[43m)[49m
+[0;32m    278[0m     [38;5;28mself[39m[38;5;241m.[39mfeatures[38;5;241m.[39mextend(new_features)
+[0;32m    280[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mindex [38;5;241m<[39m [38;5;28mlen[39m([38;5;28mself[39m[38;5;241m.[39mfeatures):
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\api\catalog.py:245[0m, in [0;36mCatalogSearchIterator._fetch_features[1;34m(self)[0m
+[0;32m    242[0m [38;5;250m[39m[38;5;124;03m"""Collects more results from the service"""[39;00m
+[0;32m    243[0m payload [38;5;241m=[39m remove_undefined({[38;5;241m*[39m[38;5;241m*[39m[38;5;28mself[39m[38;5;241m.[39mparams, [38;5;124m"[39m[38;5;124mnext[39m[38;5;124m"[39m: [38;5;28mself[39m[38;5;241m.[39mnext})
+[1;32m--> 245[0m results [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mclient[49m[38;5;241;43m.[39;49m[43mget_json_dict[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43murl[49m[43m,[49m[43m [49m[43mpost_values[49m[38;5;241;43m=[39;49m[43mpayload[49m[43m,[49m[43m [49m[43muse_session[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m)[49m
+[0;32m    247[0m [38;5;28mself[39m[38;5;241m.[39mnext [38;5;241m=[39m results[[38;5;124m"[39m[38;5;124mcontext[39m[38;5;124m"[39m][38;5;241m.[39mget([38;5;124m"[39m[38;5;124mnext[39m[38;5;124m"[39m)
+[0;32m    248[0m new_features [38;5;241m=[39m results[[38;5;124m"[39m[38;5;124mfeatures[39m[38;5;124m"[39m]
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\download\client.py:248[0m, in [0;36mDownloadClient.get_json_dict[1;34m(self, url, extract_key, *args, **kwargs)[0m
+[0;32m    240[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21mget_json_dict[39m([38;5;28mself[39m, url: [38;5;28mstr[39m, [38;5;241m*[39margs: Any, extract_key: [38;5;28mstr[39m [38;5;241m|[39m [38;5;28;01mNone[39;00m [38;5;241m=[39m [38;5;28;01mNone[39;00m, [38;5;241m*[39m[38;5;241m*[39mkwargs: Any) [38;5;241m-[39m[38;5;241m>[39m JsonDict:
+[0;32m    241[0m [38;5;250m    [39m[38;5;124;03m"""Download request as JSON data type, failing if the result is not a dictionary[39;00m
+[0;32m    242[0m 
+[0;32m    243[0m [38;5;124;03m    For other parameters see `get_json` method.[39;00m
+[1;32m   (...)[0m
+[0;32m    246[0m [38;5;124;03m    :param extract_key: If provided, the field is automatically extracted, checked, and returned[39;00m
+[0;32m    247[0m [38;5;124;03m    """[39;00m
+[1;32m--> 248[0m     response [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mget_json(url, [38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs)
+[0;32m    250[0m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(response, [38;5;28mdict[39m):
+[0;32m    251[0m         [38;5;28;01mraise[39;00m MissingDataInRequestException(
+[0;32m    252[0m             [38;5;124mf[39m[38;5;124m"[39m[38;5;124mResponse from [39m[38;5;132;01m{[39;00murl[38;5;132;01m}[39;00m[38;5;124m was expected to be a dictionary, but got [39m[38;5;132;01m{[39;00m[38;5;28mtype[39m(response)[38;5;132;01m}[39;00m[38;5;124m.[39m[38;5;124m"[39m
+[0;32m    253[0m         )
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\download\client.py:238[0m, in [0;36mDownloadClient.get_json[1;34m(self, url, post_values, headers, request_type, **kwargs)[0m
+[0;32m    227[0m     json_headers [38;5;241m=[39m {[38;5;124m"[39m[38;5;124mContent-Type[39m[38;5;124m"[39m: MimeType[38;5;241m.[39mJSON[38;5;241m.[39mget_string(), [38;5;241m*[39m[38;5;241m*[39mjson_headers}
+[0;32m    229[0m request [38;5;241m=[39m DownloadRequest(
+[0;32m    230[0m     url[38;5;241m=[39murl,
+[0;32m    231[0m     headers[38;5;241m=[39mjson_headers,
+[1;32m   (...)[0m
+[0;32m    235[0m     [38;5;241m*[39m[38;5;241m*[39mkwargs,
+[0;32m    236[0m )
+[1;32m--> 238[0m [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_single_download_decoded[49m[43m([49m[43mrequest[49m[43m)[49m
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\download\client.py:116[0m, in [0;36mDownloadClient._single_download_decoded[1;34m(self, request)[0m
+[0;32m    114[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21m_single_download_decoded[39m([38;5;28mself[39m, request: DownloadRequest) [38;5;241m-[39m[38;5;241m>[39m Any:
+[0;32m    115[0m [38;5;250m    [39m[38;5;124;03m"""Downloads a response and decodes it into data. By decoding a single response"""[39;00m
+[1;32m--> 116[0m     response [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_single_download[49m[43m([49m[43mrequest[49m[43m)[49m
+[0;32m    117[0m     [38;5;28;01mreturn[39;00m [38;5;28;01mNone[39;00m [38;5;28;01mif[39;00m response [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;28;01melse[39;00m response[38;5;241m.[39mdecode()
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\download\client.py:129[0m, in [0;36mDownloadClient._single_download[1;34m(self, request)[0m
+[0;32m    127[0m no_local_data [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mredownload [38;5;129;01mor[39;00m response_path [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mor[39;00m [38;5;129;01mnot[39;00m os[38;5;241m.[39mpath[38;5;241m.[39mexists(response_path)
+[0;32m    128[0m [38;5;28;01mif[39;00m no_local_data:
+[1;32m--> 129[0m     response [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_execute_download[49m[43m([49m[43mrequest[49m[43m)[49m
+[0;32m    130[0m [38;5;28;01melse[39;00m:
+[0;32m    131[0m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m request[38;5;241m.[39mreturn_data [38;5;129;01mor[39;00m response_path [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\download\handlers.py:67[0m, in [0;36mretry_temporary_errors.<locals>.new_download_func[1;34m(self, request)[0m
+[0;32m     65[0m [38;5;28;01mfor[39;00m attempt_idx [38;5;129;01min[39;00m [38;5;28mrange[39m(download_attempts):
+[0;32m     66[0m     [38;5;28;01mtry[39;00m:
+[1;32m---> 67[0m         [38;5;28;01mreturn[39;00m [43mdownload_func[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43mrequest[49m[43m)[49m
+[0;32m     69[0m     [38;5;28;01mexcept[39;00m requests[38;5;241m.[39mRequestException [38;5;28;01mas[39;00m exception:  [38;5;66;03m# noqa: PERF203[39;00m
+[0;32m     70[0m         attempts_left [38;5;241m=[39m download_attempts [38;5;241m-[39m (attempt_idx [38;5;241m+[39m [38;5;241m1[39m)
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\download\handlers.py:40[0m, in [0;36mfail_user_errors.<locals>.new_download_func[1;34m(self, request)[0m
+[0;32m     37[0m [38;5;129m@functools[39m[38;5;241m.[39mwraps(download_func)
+[0;32m     38[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21mnew_download_func[39m([38;5;28mself[39m: Self, request: DownloadRequest) [38;5;241m-[39m[38;5;241m>[39m T:
+[0;32m     39[0m     [38;5;28;01mtry[39;00m:
+[1;32m---> 40[0m         [38;5;28;01mreturn[39;00m [43mdownload_func[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43mrequest[49m[43m)[49m
+[0;32m     41[0m     [38;5;28;01mexcept[39;00m requests[38;5;241m.[39mHTTPError [38;5;28;01mas[39;00m exception:
+[0;32m     42[0m         [38;5;28;01mif[39;00m (
+[0;32m     43[0m             exception[38;5;241m.[39mresponse[38;5;241m.[39mstatus_code [38;5;241m<[39m requests[38;5;241m.[39mstatus_codes[38;5;241m.[39mcodes[38;5;241m.[39mINTERNAL_SERVER_ERROR
+[0;32m     44[0m             [38;5;129;01mand[39;00m exception[38;5;241m.[39mresponse[38;5;241m.[39mstatus_code [38;5;241m!=[39m requests[38;5;241m.[39mstatus_codes[38;5;241m.[39mcodes[38;5;241m.[39mTOO_MANY_REQUESTS
+[0;32m     45[0m         ):
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\download\sentinelhub_client.py:90[0m, in [0;36mSentinelHubDownloadClient._execute_download[1;34m(self, request)[0m
+[0;32m     83[0m download_attempts [38;5;241m+[39m[38;5;241m=[39m [38;5;241m1[39m
+[0;32m     84[0m LOGGER[38;5;241m.[39mdebug(
+[0;32m     85[0m     [38;5;124m"[39m[38;5;124mSending [39m[38;5;132;01m%s[39;00m[38;5;124m request to [39m[38;5;132;01m%s[39;00m[38;5;124m. Hash of sent request is [39m[38;5;132;01m%s[39;00m[38;5;124m"[39m,
+[0;32m     86[0m     request[38;5;241m.[39mrequest_type[38;5;241m.[39mvalue,
+[0;32m     87[0m     request[38;5;241m.[39murl,
+[0;32m     88[0m     request[38;5;241m.[39mget_hashed_name(),
+[0;32m     89[0m )
+[1;32m---> 90[0m response [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_do_download[49m[43m([49m[43mrequest[49m[43m)[49m
+[0;32m     92[0m [38;5;28;01mif[39;00m response[38;5;241m.[39mstatus_code [38;5;241m==[39m requests[38;5;241m.[39mstatus_codes[38;5;241m.[39mcodes[38;5;241m.[39mTOO_MANY_REQUESTS:
+[0;32m     93[0m     warnings[38;5;241m.[39mwarn([38;5;124m"[39m[38;5;124mDownload rate limit hit[39m[38;5;124m"[39m, category[38;5;241m=[39mSHRateLimitWarning)
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\download\sentinelhub_client.py:125[0m, in [0;36mSentinelHubDownloadClient._do_download[1;34m(self, request)[0m
+[0;32m    118[0m [38;5;28;01mif[39;00m request[38;5;241m.[39murl [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[0;32m    119[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([38;5;124mf[39m[38;5;124m"[39m[38;5;124mFaulty request [39m[38;5;132;01m{[39;00mrequest[38;5;132;01m}[39;00m[38;5;124m, no URL specified.[39m[38;5;124m"[39m)
+[0;32m    121[0m [38;5;28;01mreturn[39;00m requests[38;5;241m.[39mrequest(
+[0;32m    122[0m     request[38;5;241m.[39mrequest_type[38;5;241m.[39mvalue,
+[0;32m    123[0m     url[38;5;241m=[39mrequest[38;5;241m.[39murl,
+[0;32m    124[0m     json[38;5;241m=[39mrequest[38;5;241m.[39mpost_values,
+[1;32m--> 125[0m     headers[38;5;241m=[39m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_prepare_headers[49m[43m([49m[43mrequest[49m[43m)[49m,
+[0;32m    126[0m     timeout[38;5;241m=[39m[38;5;28mself[39m[38;5;241m.[39mconfig[38;5;241m.[39mdownload_timeout_seconds,
+[0;32m    127[0m )
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\download\sentinelhub_client.py:136[0m, in [0;36mSentinelHubDownloadClient._prepare_headers[1;34m(self, request)[0m
+[0;32m    134[0m session_headers: JsonDict [38;5;241m=[39m {}
+[0;32m    135[0m [38;5;28;01mif[39;00m request[38;5;241m.[39muse_session:
+[1;32m--> 136[0m     session_headers [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_execute_thread_safe[49m[43m([49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_get_session_headers[49m[43m)[49m
+[0;32m    138[0m [38;5;28;01mreturn[39;00m {[38;5;241m*[39m[38;5;241m*[39mSHConstants[38;5;241m.[39mHEADERS, [38;5;241m*[39m[38;5;241m*[39msession_headers, [38;5;241m*[39m[38;5;241m*[39mrequest[38;5;241m.[39mheaders}
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\download\sentinelhub_client.py:111[0m, in [0;36mSentinelHubDownloadClient._execute_thread_safe[1;34m(self, thread_unsafe_function, *args, **kwargs)[0m
+[0;32m    109[0m [38;5;250m[39m[38;5;124;03m"""Executes a function inside a thread lock and handles potential errors"""[39;00m
+[0;32m    110[0m [38;5;28;01mif[39;00m [38;5;28mself[39m[38;5;241m.[39mlock [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[1;32m--> 111[0m     [38;5;28;01mreturn[39;00m thread_unsafe_function([38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs)
+[0;32m    113[0m [38;5;28;01mwith[39;00m [38;5;28mself[39m[38;5;241m.[39mlock:
+[0;32m    114[0m     [38;5;28;01mreturn[39;00m thread_unsafe_function([38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs)
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\download\sentinelhub_client.py:146[0m, in [0;36mSentinelHubDownloadClient._get_session_headers[1;34m(self)[0m
+[0;32m    140[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21m_get_session_headers[39m([38;5;28mself[39m) [38;5;241m-[39m[38;5;241m>[39m JsonDict:
+[0;32m    141[0m [38;5;250m    [39m[38;5;124;03m"""Provides up-to-date session headers[39;00m
+[0;32m    142[0m 
+[0;32m    143[0m [38;5;124;03m    Note that calling session_headers property triggers update if session has expired therefore this has to be[39;00m
+[0;32m    144[0m [38;5;124;03m    called in a thread-safe way[39;00m
+[0;32m    145[0m [38;5;124;03m    """[39;00m
+[1;32m--> 146[0m     [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mget_session[49m[43m([49m[43m)[49m[38;5;241m.[39msession_headers
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\download\sentinelhub_client.py:162[0m, in [0;36mSentinelHubDownloadClient.get_session[1;34m(self)[0m
+[0;32m    160[0m     session [38;5;241m=[39m SentinelHubDownloadClient[38;5;241m.[39m_CACHED_SESSIONS[SentinelHubDownloadClient[38;5;241m.[39m_UNIVERSAL_CACHE_KEY]
+[0;32m    161[0m [38;5;28;01melse[39;00m:
+[1;32m--> 162[0m     session [38;5;241m=[39m [43mSentinelHubSession[49m[43m([49m[43mconfig[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mconfig[49m[43m)[49m
+[0;32m    163[0m     SentinelHubDownloadClient[38;5;241m.[39m_CACHED_SESSIONS[cache_key] [38;5;241m=[39m session
+[0;32m    165[0m [38;5;28;01mreturn[39;00m session
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\download\session.py:73[0m, in [0;36mSentinelHubSession.__init__[1;34m(self, config, refresh_before_expiry, _token)[0m
+[0;32m     66[0m [38;5;28;01mif[39;00m token_fetching_required [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m ([38;5;28mself[39m[38;5;241m.[39mconfig[38;5;241m.[39msh_client_id [38;5;129;01mand[39;00m [38;5;28mself[39m[38;5;241m.[39mconfig[38;5;241m.[39msh_client_secret):
+[0;32m     67[0m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m(
+[0;32m     68[0m         [38;5;124m"[39m[38;5;124mConfiguration parameters [39m[38;5;124m'[39m[38;5;124msh_client_id[39m[38;5;124m'[39m[38;5;124m and [39m[38;5;124m'[39m[38;5;124msh_client_secret[39m[38;5;124m'[39m[38;5;124m have to be set in order [39m[38;5;124m"[39m
+[0;32m     69[0m         [38;5;124m"[39m[38;5;124mto authenticate with Sentinel Hub service. Check [39m[38;5;124m"[39m
+[0;32m     70[0m         [38;5;124m"[39m[38;5;124mhttps://sentinelhub-py.readthedocs.io/en/latest/configure.html for more info.[39m[38;5;124m"[39m
+[0;32m     71[0m     )
+[1;32m---> 73[0m [38;5;28mself[39m[38;5;241m.[39m_token [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_collect_new_token[49m[43m([49m[43m)[49m [38;5;28;01mif[39;00m _token [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;28;01melse[39;00m _token
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\download\session.py:127[0m, in [0;36mSentinelHubSession._collect_new_token[1;34m(self)[0m
+[0;32m    121[0m [38;5;250m[39m[38;5;124;03m"""Creates a download request and fetches a token from the service.[39;00m
+[0;32m    122[0m 
+[0;32m    123[0m [38;5;124;03mNote that the `DownloadRequest` object is created only because retry decorators of `_fetch_token` method[39;00m
+[0;32m    124[0m [38;5;124;03mrequire it.[39;00m
+[0;32m    125[0m [38;5;124;03m"""[39;00m
+[0;32m    126[0m request [38;5;241m=[39m DownloadRequest(url[38;5;241m=[39m[38;5;124mf[39m[38;5;124m"[39m[38;5;132;01m{[39;00m[38;5;28mself[39m[38;5;241m.[39mconfig[38;5;241m.[39msh_token_url[38;5;132;01m}[39;00m[38;5;124m"[39m)
+[1;32m--> 127[0m [38;5;28;01mreturn[39;00m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_fetch_token[49m[43m([49m[43mrequest[49m[43m)[49m
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\download\handlers.py:67[0m, in [0;36mretry_temporary_errors.<locals>.new_download_func[1;34m(self, request)[0m
+[0;32m     65[0m [38;5;28;01mfor[39;00m attempt_idx [38;5;129;01min[39;00m [38;5;28mrange[39m(download_attempts):
+[0;32m     66[0m     [38;5;28;01mtry[39;00m:
+[1;32m---> 67[0m         [38;5;28;01mreturn[39;00m [43mdownload_func[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43mrequest[49m[43m)[49m
+[0;32m     69[0m     [38;5;28;01mexcept[39;00m requests[38;5;241m.[39mRequestException [38;5;28;01mas[39;00m exception:  [38;5;66;03m# noqa: PERF203[39;00m
+[0;32m     70[0m         attempts_left [38;5;241m=[39m download_attempts [38;5;241m-[39m (attempt_idx [38;5;241m+[39m [38;5;241m1[39m)
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\download\handlers.py:40[0m, in [0;36mfail_user_errors.<locals>.new_download_func[1;34m(self, request)[0m
+[0;32m     37[0m [38;5;129m@functools[39m[38;5;241m.[39mwraps(download_func)
+[0;32m     38[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21mnew_download_func[39m([38;5;28mself[39m: Self, request: DownloadRequest) [38;5;241m-[39m[38;5;241m>[39m T:
+[0;32m     39[0m     [38;5;28;01mtry[39;00m:
+[1;32m---> 40[0m         [38;5;28;01mreturn[39;00m [43mdownload_func[49m[43m([49m[38;5;28;43mself[39;49m[43m,[49m[43m [49m[43mrequest[49m[43m)[49m
+[0;32m     41[0m     [38;5;28;01mexcept[39;00m requests[38;5;241m.[39mHTTPError [38;5;28;01mas[39;00m exception:
+[0;32m     42[0m         [38;5;28;01mif[39;00m (
+[0;32m     43[0m             exception[38;5;241m.[39mresponse[38;5;241m.[39mstatus_code [38;5;241m<[39m requests[38;5;241m.[39mstatus_codes[38;5;241m.[39mcodes[38;5;241m.[39mINTERNAL_SERVER_ERROR
+[0;32m     44[0m             [38;5;129;01mand[39;00m exception[38;5;241m.[39mresponse[38;5;241m.[39mstatus_code [38;5;241m!=[39m requests[38;5;241m.[39mstatus_codes[38;5;241m.[39mcodes[38;5;241m.[39mTOO_MANY_REQUESTS
+[0;32m     45[0m         ):
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\sentinelhub\download\session.py:139[0m, in [0;36mSentinelHubSession._fetch_token[1;34m(self, request)[0m
+[0;32m    136[0m [38;5;28;01mwith[39;00m OAuth2Session(client[38;5;241m=[39moauth_client) [38;5;28;01mas[39;00m oauth_session:
+[0;32m    137[0m     oauth_session[38;5;241m.[39mregister_compliance_hook([38;5;124m"[39m[38;5;124maccess_token_response[39m[38;5;124m"[39m, [38;5;28mself[39m[38;5;241m.[39m_compliance_hook)
+[1;32m--> 139[0m     [38;5;28;01mreturn[39;00m [43moauth_session[49m[38;5;241;43m.[39;49m[43mfetch_token[49m[43m([49m
+[0;32m    140[0m [43m        [49m[43mtoken_url[49m[38;5;241;43m=[39;49m[43mrequest[49m[38;5;241;43m.[39;49m[43murl[49m[43m,[49m
+[0;32m    141[0m [43m        [49m[43mclient_id[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mconfig[49m[38;5;241;43m.[39;49m[43msh_client_id[49m[43m,[49m
+[0;32m    142[0m [43m        [49m[43mclient_secret[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mconfig[49m[38;5;241;43m.[39;49m[43msh_client_secret[49m[43m,[49m
+[0;32m    143[0m [43m        [49m[43mheaders[49m[38;5;241;43m=[39;49m[43m{[49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mDEFAULT_HEADERS[49m[43m,[49m[43m [49m[38;5;241;43m*[39;49m[38;5;241;43m*[39;49m[43mSHConstants[49m[38;5;241;43m.[39;49m[43mHEADERS[49m[43m}[49m[43m,[49m
+[0;32m    144[0m [43m        [49m[43minclude_client_id[49m[38;5;241;43m=[39;49m[38;5;28;43;01mTrue[39;49;00m[43m,[49m
+[0;32m    145[0m [43m    [49m[43m)[49m
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\requests_oauthlib\oauth2_session.py:406[0m, in [0;36mOAuth2Session.fetch_token[1;34m(self, token_url, code, authorization_response, body, auth, username, password, method, force_querystring, timeout, headers, verify, proxies, include_client_id, client_secret, cert, **kwargs)[0m
+[0;32m    403[0m     log[38;5;241m.[39mdebug([38;5;124m"[39m[38;5;124mInvoking hook [39m[38;5;132;01m%s[39;00m[38;5;124m.[39m[38;5;124m"[39m, hook)
+[0;32m    404[0m     r [38;5;241m=[39m hook(r)
+[1;32m--> 406[0m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43m_client[49m[38;5;241;43m.[39;49m[43mparse_request_body_response[49m[43m([49m[43mr[49m[38;5;241;43m.[39;49m[43mtext[49m[43m,[49m[43m [49m[43mscope[49m[38;5;241;43m=[39;49m[38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mscope[49m[43m)[49m
+[0;32m    407[0m [38;5;28mself[39m[38;5;241m.[39mtoken [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39m_client[38;5;241m.[39mtoken
+[0;32m    408[0m log[38;5;241m.[39mdebug([38;5;124m"[39m[38;5;124mObtained token [39m[38;5;132;01m%s[39;00m[38;5;124m.[39m[38;5;124m"[39m, [38;5;28mself[39m[38;5;241m.[39mtoken)
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\oauthlib\oauth2\rfc6749\clients\base.py:427[0m, in [0;36mClient.parse_request_body_response[1;34m(self, body, scope, **kwargs)[0m
+[0;32m    379[0m [38;5;250m[39m[38;5;124;03m"""Parse the JSON response body.[39;00m
+[0;32m    380[0m 
+[0;32m    381[0m [38;5;124;03mIf the access token request is valid and authorized, the[39;00m
+[1;32m   (...)[0m
+[0;32m    424[0m [38;5;124;03m.. _`Section 7.1`: https://tools.ietf.org/html/rfc6749#section-7.1[39;00m
+[0;32m    425[0m [38;5;124;03m"""[39;00m
+[0;32m    426[0m scope [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mscope [38;5;28;01mif[39;00m scope [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;28;01melse[39;00m scope
+[1;32m--> 427[0m [38;5;28mself[39m[38;5;241m.[39mtoken [38;5;241m=[39m [43mparse_token_response[49m[43m([49m[43mbody[49m[43m,[49m[43m [49m[43mscope[49m[38;5;241;43m=[39;49m[43mscope[49m[43m)[49m
+[0;32m    428[0m [38;5;28mself[39m[38;5;241m.[39mpopulate_token_attributes([38;5;28mself[39m[38;5;241m.[39mtoken)
+[0;32m    429[0m [38;5;28;01mreturn[39;00m [38;5;28mself[39m[38;5;241m.[39mtoken
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\oauthlib\oauth2\rfc6749\parameters.py:441[0m, in [0;36mparse_token_response[1;34m(body, scope)[0m
+[0;32m    438[0m         params[[38;5;124m'[39m[38;5;124mexpires_at[39m[38;5;124m'[39m] [38;5;241m=[39m time[38;5;241m.[39mtime() [38;5;241m+[39m [38;5;28mint[39m(params[[38;5;124m'[39m[38;5;124mexpires_in[39m[38;5;124m'[39m])
+[0;32m    440[0m params [38;5;241m=[39m OAuth2Token(params, old_scope[38;5;241m=[39mscope)
+[1;32m--> 441[0m [43mvalidate_token_parameters[49m[43m([49m[43mparams[49m[43m)[49m
+[0;32m    442[0m [38;5;28;01mreturn[39;00m params
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\oauthlib\oauth2\rfc6749\parameters.py:448[0m, in [0;36mvalidate_token_parameters[1;34m(params)[0m
+[0;32m    446[0m [38;5;250m[39m[38;5;124;03m"""Ensures token presence, token type, expiration and scope in params."""[39;00m
+[0;32m    447[0m [38;5;28;01mif[39;00m [38;5;124m'[39m[38;5;124merror[39m[38;5;124m'[39m [38;5;129;01min[39;00m params:
+[1;32m--> 448[0m     [43mraise_from_error[49m[43m([49m[43mparams[49m[38;5;241;43m.[39;49m[43mget[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43merror[39;49m[38;5;124;43m'[39;49m[43m)[49m[43m,[49m[43m [49m[43mparams[49m[43m)[49m
+[0;32m    450[0m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;124m'[39m[38;5;124maccess_token[39m[38;5;124m'[39m [38;5;129;01min[39;00m params:
+[0;32m    451[0m     [38;5;28;01mraise[39;00m MissingTokenError(description[38;5;241m=[39m[38;5;124m"[39m[38;5;124mMissing access token parameter.[39m[38;5;124m"[39m)
+
+File [1;32mF:\ProgramFiles\condaEnvs\cds_env\lib\site-packages\oauthlib\oauth2\rfc6749\errors.py:399[0m, in [0;36mraise_from_error[1;34m(error, params)[0m
+[0;32m    397[0m [38;5;28;01mfor[39;00m _, [38;5;28mcls[39m [38;5;129;01min[39;00m inspect[38;5;241m.[39mgetmembers(sys[38;5;241m.[39mmodules[[38;5;18m__name__[39m], inspect[38;5;241m.[39misclass):
+[0;32m    398[0m     [38;5;28;01mif[39;00m [38;5;28mcls[39m[38;5;241m.[39merror [38;5;241m==[39m error:
+[1;32m--> 399[0m         [38;5;28;01mraise[39;00m [38;5;28mcls[39m([38;5;241m*[39m[38;5;241m*[39mkwargs)
+[0;32m    400[0m [38;5;28;01mraise[39;00m CustomOAuth2Error(error[38;5;241m=[39merror, [38;5;241m*[39m[38;5;241m*[39mkwargs)
+
+[1;31mInvalidClientError[0m: (invalid_client) Invalid client or Invalid client credentials
+
