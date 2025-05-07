@@ -31,6 +31,10 @@ source/secrets/
 *.nc
 *.tif*
 *.TIF*
+*.grib*
+*.grib2*
+*.grb*
+*.gb*
 
 # Ignore all image
 *.jpg
@@ -52,5 +56,5 @@ jupyter_execute/
 !source_de/_static/
 
 # Specific scripts & batch files
-update_dropdown.py
-update_images.py
+# update_dropdown.py
+# update_images.py
